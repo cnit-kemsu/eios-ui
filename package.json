@@ -1,0 +1,77 @@
+{
+  "name": "@kemsu/eios-ui",
+  "version": "0.1.1",
+  "description": "EIOS UI React library",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "scripts": {
+    "lint": "npx eslint ./src",
+    "prepublishOnly": "npm run build",
+    "build": "rollup -c --environment NODE_ENV:production",
+    "start": "rollup -c -w --environment RUN_EXAMPLE,NODE_ENV:development",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Igor Sotnikov",
+    "email": "sotnikov@kemsu.ru"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "tinycolor2": "^1.4.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "@emotion/core": "^10.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@emotion/babel-preset-css-prop": "^10.0.9",
+    "@emotion/core": "^10.0.10",
+    "chokidar": "^2.1.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-element-to-jsx-string": "^14.0.2",
+    "rollup": "^1.10.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-copy": "^1.1.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-serve": "^1.0.1"
+  },
+  "babelOptions": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false
+        }
+      ],
+      "@babel/preset-react",
+      "@emotion/babel-preset-css-prop"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ]
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}
