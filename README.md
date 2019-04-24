@@ -1,1 +1,4 @@
-# EIOS UI library
+# UI React library
+
+---
+**MIT Licensed**
