@@ -7,10 +7,10 @@ function Example(props) {
 
     return (
         <div css={{
-            display: 'flex',            
+            display: 'flex',
             justifyContent: 'center'
         }}>
-            <Tooltip content="I'am button tooltip" {...props} contentStyle={{ width: '200px' }}>
+            <Tooltip text="I'am button tooltip" {...props}>
                 <Button>I'am button with tooltip</Button>
             </Tooltip>
         </div>
@@ -22,6 +22,19 @@ export default [
         title: 'Tooltip',
         target(props) {
             return <Example {...props} />
-        }
+        },
+        getCode: () => `function Example(props) {
+
+            return (
+                <div css={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                    <Tooltip text="I'am button tooltip" {...props}>
+                        <Button>I'am button with tooltip</Button>
+                    </Tooltip>
+                </div>
+            )
+        }`
     })
 ]

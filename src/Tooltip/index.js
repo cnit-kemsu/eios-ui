@@ -19,8 +19,8 @@ function getPosFor(targetElement, tooltipElement, position) {
 
     const { offsetLeft, offsetTop } = offset(targetElement)
 
-    const haflTooltipElementHeight = tooltipElement.offsetHeight / 2
-    const haflTargetElementHeight = targetElement.offsetHeight / 2
+    const haflTooltipElementHeight = tooltipElement.offsetHeight / 2.0
+    const haflTargetElementHeight = targetElement.offsetHeight / 2.0
 
     const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight
 
@@ -43,11 +43,7 @@ function getPosFor(targetElement, tooltipElement, position) {
 }
 
 
-export default function Tooltip({ children, content, delay, css, contentStyle, contentCss, position, ...props }) {
-
-    const child = Children.only(children)
-    let { onMouseEnter, onMouseLeave, ...childProps } = child.props
-
+export default function Tooltip({ children, text, delay, css, position, ...props }) {
     const theme = useTheme()
     const [state, setState] = useState({ show: false })
 
@@ -55,51 +51,31 @@ export default function Tooltip({ children, content, delay, css, contentStyle, c
     const debounceId = useRef()
 
     const handleMouseEnter = useCallback(
-        onMouseEnter
-            ?
-            (e) => {
-                onMouseEnter(e);
-                const target = e.target
-                debounceId.current = debounce(() => setState({ show: true, ...getPosFor(target, tooltipRef.current, position) }), delay)
-            }
-            :
-            (e) => {
-                const target = e.target
-                debounceId.current = debounce(() => setState({ show: true, ...getPosFor(target, tooltipRef.current, position) }), delay)
-            },
-        [onMouseEnter, position]
+        (e) => {
+            const target = e.target
+            debounceId.current = debounce(() => setState({ show: true, ...getPosFor(target, tooltipRef.current, position) }), delay)
+        },
+        [position, delay]
     )
 
     const handleMouseLeave = useCallback(
-        onMouseLeave ?
-            (e) => {
-                const target = e.target
-                onMouseLeave(e);
-                undebounce(debounceId.current)
-                setState({ show: false, ...getPosFor(target, tooltipRef.current, position) })
-            }
-            :
-            (e) => {
-                const target = e.target
-                undebounce(debounceId.current)
-                setState({ show: false, ...getPosFor(target, tooltipRef.current, position) })
-            },
-        [onMouseLeave, position]
+        (e) => {
+            const target = e.target
+            undebounce(debounceId.current)
+            setState({ show: false, ...getPosFor(target, tooltipRef.current, position) })
+        },
+        [position, delay]
     )
 
-    const contentElement = <div style={contentStyle} css={[tooltipCss, dynTooltipCss({ theme })]}>{content}</div>
-    const arrowElement = <div css={[arrowCss, dynArrowCss({ theme, position }), ...(Array.isArray(contentCss) ? contentCss : [contentCss])]}></div>
+    const contentElement = <div {...props} css={[tooltipCss, dynTooltipCss({ theme }), ...(Array.isArray(css) ? css : [css])]}>{text}</div>
+    const arrowElement = <div css={[arrowCss, dynArrowCss({ theme, position })]}></div>
 
     return (
         <>
-            {
-                cloneElement(child, {
-                    onMouseEnter: handleMouseEnter,
-                    onMouseLeave: handleMouseLeave,
-                    ...childProps
-                })
-            }
-            <div ref={tooltipRef} {...props} css={[rootCss, dynRootCss({ theme, position, state })]}>
+            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                {children}
+            </div>
+            <div ref={tooltipRef} css={[rootCss, dynRootCss({ theme, position, state })]}>
                 {
                     position === 'left' || position === 'top'
                         ?
@@ -115,5 +91,6 @@ export default function Tooltip({ children, content, delay, css, contentStyle, c
 
 addPropMetadataTo(Tooltip, {
     position: { type: positionType, def: 'top' },
-    delay: { type: PropTypes.number, def: 1 }
+    delay: { type: PropTypes.number, def: 1 },
+    text: { type: PropTypes.node }
 })
