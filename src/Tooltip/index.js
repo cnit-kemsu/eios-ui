@@ -19,25 +19,25 @@ function getPosFor(targetElement, tooltipElement, position) {
 
     const { offsetLeft, offsetTop } = offset(targetElement)
 
-    const haflTooltipElementHeight = tooltipElement.offsetHeight / 2.0
-    const haflTargetElementHeight = targetElement.offsetHeight / 2.0
+    const haflTooltipElementHeight = tooltipElement.clientHeight / 2.0
+    const haflTargetElementHeight = targetElement.clientHeight / 2.0
 
-    const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight
+    const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight    
 
     switch (position) {
         case 'top': return {
-            top: offsetTop - targetElement.offsetHeight - 5
+            top: offsetTop - targetElement.clientHeight - 5
         }
         case 'bottom': return {
-            top: offsetTop + targetElement.offsetHeight + 5
+            top: offsetTop + targetElement.clientHeight + 5
         }
         case 'left': return {
             top: top,
-            left: offsetLeft - tooltipElement.offsetWidth
+            left: offsetLeft - tooltipElement.clientWidth
         }
         case 'right': return {
             top: top,
-            left: offsetLeft + targetElement.offsetWidth + 5
+            left: offsetLeft + targetElement.clientWidth + 5
         }
     }
 }
