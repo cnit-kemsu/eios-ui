@@ -19,10 +19,23 @@ export function offset(elem) {
 }
 
 
-export function debounce(f, delay) {
-    return setTimeout(f, delay * 1000)
-}
+export function debounce(f, delayMs) {
 
-export function undebounce(id) {
-    clearTimeout(id)
+    let timer = null
+
+    function debounced(...args) {
+
+        debounced.cancel = () => clearTimeout(timer)
+
+        if (timer) clearTimeout(timer)
+
+        timer = setTimeout(() => {
+            f(...args)
+            timer = null
+        }, delayMs)
+
+
+    }
+
+    return debounced
 }
