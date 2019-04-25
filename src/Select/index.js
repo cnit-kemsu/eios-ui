@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 import Ripple from '../Ripple'
@@ -20,7 +20,7 @@ import {
 
 function getValue(valueFromContent, item, index) {
 
-    if (valueFromContent) return (item.content || item || "").toString()
+    if (valueFromContent) return item.content || item    
 
     return item.value === undefined ? index : item.value
 }
@@ -32,6 +32,24 @@ export default function Select({
 }) {
 
     const theme = useTheme()
+
+    const hoveredOnItems = useRef(false)
+
+    const handleMouseEnter = useCallback(() => hoveredOnItems.current = true)
+    const handleMouseLeave = useCallback(() => hoveredOnItems.current = false)
+
+    const handleOutsideClick = useCallback(() => open && !hoveredOnItems.current && onChange && onChange(value))
+    const handleEffect = useCallback(() => {
+
+        document.addEventListener('click', handleOutsideClick)
+
+        return () => {
+            document.removeEventListener('click', handleOutsideClick)
+        }
+
+    })
+
+    useEffect(handleEffect)
 
     const item = items.find((item, index) => getValue(valueFromContent, item, index) === value) || placeholder || ""
 
@@ -51,19 +69,9 @@ export default function Select({
                     <i style={{ userSelect: 'none' }} className="material-icons">arrow_drop_down</i>
                 </div>
 
-                {open && <div
-                    onClick={onChange ? () => onChange(value) : undefined}
-                    style={{
-                        position: 'fixed',
-                        width: '100%',
-                        height: '100%',
-                        background: 'transparent',
-                        left: '0px',
-                        top: '0px',
-                        zIndex: 100
-                    }}></div>}
-
                 <div
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                     css={[itemStyle, dynOptionsCss({ theme, borderless, flat }), open && displayedSelectOptionsCss]}
                     style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined }}
                 >
