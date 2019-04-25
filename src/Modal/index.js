@@ -34,12 +34,13 @@ export default function Modal({ open, title, onClose, children, css, modalLayerD
     const [isAnimFin, setAnimFin] = useState(true)
     const handleAnimationEnd = useCallback(() => {
         setAnimFin(true)
-    })
+    }, [])
+    
     const handleEffect = useCallback(() => {
         if (open && isAnimFin) {
             setAnimFin(false)
         }
-    })
+    }, [open, isAnimFin])
 
     useEffect(handleEffect, [open])
 
