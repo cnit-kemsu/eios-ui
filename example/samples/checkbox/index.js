@@ -5,7 +5,7 @@ import reactSample from '../reactSample'
 
 export default [
     reactSample(Checkbox, {
-        description: <>Uses inside the native input element and therefore can be used inside the form</>,
+        description: <>Can be used inside the <i>form</i> element</>,
         initPropValues: {
             name: 'name-for-form',
             children: "i'm checkbox",
