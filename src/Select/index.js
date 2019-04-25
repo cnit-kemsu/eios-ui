@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from 'react'
+import React, { forwardRef } from 'react'
 import PropTypes from 'prop-types'
 
 import Ripple from '../Ripple'
@@ -20,42 +20,23 @@ import {
 
 function getValue(valueFromContent, item, index) {
 
-    if (valueFromContent) return item.content || item    
+    if (valueFromContent) return item.content || item
 
     return item.value === undefined ? index : item.value
 }
 
-export default function Select({
+const Select = forwardRef(({
     name, open, onClick, selectStyle, onChange, valueFromContent,
     disabled, items, value, size, itemStyle, placeholder,
     borderless, flat, ...props
-}) {
+}, ref) => {
 
     const theme = useTheme()
-
-    const hoveredOnItems = useRef(false)
-
-    const handleMouseEnter = useCallback(() => hoveredOnItems.current = true)
-    const handleMouseLeave = useCallback(() => hoveredOnItems.current = false)
-
-    const handleOutsideClick = useCallback(() => open && !hoveredOnItems.current && onChange && onChange(value))
-    const handleEffect = useCallback(() => {
-
-        document.addEventListener('click', handleOutsideClick)
-
-        return () => {
-            document.removeEventListener('click', handleOutsideClick)
-        }
-
-    })
-
-    useEffect(handleEffect)
-
     const item = items.find((item, index) => getValue(valueFromContent, item, index) === value) || placeholder || ""
 
     return (
         <>
-            <div {...props} css={containerCss}>
+            <div ref={ref} {...props} css={containerCss}>
                 <div
                     onClick={onClick}
                     style={selectStyle}
@@ -70,8 +51,6 @@ export default function Select({
                 </div>
 
                 <div
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
                     css={[itemStyle, dynOptionsCss({ theme, borderless, flat }), open && displayedSelectOptionsCss]}
                     style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined }}
                 >
@@ -95,16 +74,18 @@ export default function Select({
             </select>
         </>
     )
-}
+})
+
+Select.displayName = 'Select'
+
+export default Select
 
 addPropMetadataTo(Select, {
     placeholder: { type: PropTypes.string },
     size: { type: PropTypes.number },
     borderless: { type: PropTypes.bool, def: true },
     flat: { type: PropTypes.bool },
-    open: {
-        type: PropTypes.bool
-    },
+    open: { type: PropTypes.bool },
     name: {
         type: PropTypes.string,
         info: 'form element name'
