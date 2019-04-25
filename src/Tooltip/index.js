@@ -12,7 +12,7 @@ import {
     arrowCss, dynArrowCss, rootCss
 } from './style'
 
-import { debounce, undebounce, offset } from '../utils'
+import { debounce, offset } from '../utils'
 
 
 function getPosFor(targetElement, tooltipElement, position) {
@@ -22,7 +22,7 @@ function getPosFor(targetElement, tooltipElement, position) {
     const haflTooltipElementHeight = tooltipElement.clientHeight / 2.0
     const haflTargetElementHeight = targetElement.clientHeight / 2.0
 
-    const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight    
+    const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight
 
     switch (position) {
         case 'top': return {
@@ -48,24 +48,13 @@ export default function Tooltip({ children, text, delay, css, position, ...props
     const [state, setState] = useState({ show: false })
 
     const tooltipRef = useRef()
-    const debounceId = useRef()
 
-    const handleMouseEnter = useCallback(
-        (e) => {
-            const target = e.target
-            debounceId.current = debounce(() => setState({ show: true, ...getPosFor(target, tooltipRef.current, position) }), delay)
-        },
-        [position, delay]
-    )
-
-    const handleMouseLeave = useCallback(
-        (e) => {
-            const target = e.target
-            undebounce(debounceId.current)
-            setState({ show: false, ...getPosFor(target, tooltipRef.current, position) })
-        },
-        [position, delay]
-    )
+    const debouncedSetState = useCallback(debounce(state => setState(state), delay * 1000), [delay])
+    const handleMouseEnter = useCallback((e) => debouncedSetState({ show: true, ...getPosFor(e.target, tooltipRef.current, position) }), [debouncedSetState, position])
+    const handleMouseLeave = useCallback((e) => {
+        debouncedSetState.cancel()
+        setState({ show: false, ...getPosFor(e.target, tooltipRef.current, position) })
+    }, [debouncedSetState, position])
 
     const contentElement = <div {...props} css={[tooltipCss, dynTooltipCss({ theme }), ...(Array.isArray(css) ? css : [css])]}>{text}</div>
     const arrowElement = <div css={[arrowCss, dynArrowCss({ theme, position })]}></div>
