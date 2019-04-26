@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import {
     Checkbox, useCheckbox,
     TextField, useTextField,
-    Select, useSelect
+    Select, useSelect, Tooltip
 
 } from '../src/index'
 
@@ -12,7 +12,7 @@ import {
     colorStyleType, stringOrNumberType,
     listItemsType, typeOfMessageType,
     colorStyleVariants, positionType,
-    positionVariants,  typeOfMessageVariants
+    positionVariants, typeOfMessageVariants
 } from '../src/prop-types'
 
 const propTypes = propTypes => [...propTypes, ...propTypes.map(propType => propType.isRequired)]
@@ -31,11 +31,11 @@ export default [
         groupName: 'bool props',
         propTypes: propTypes([PropTypes.bool]),
 
-        Generator(propName, initValue) {
+        Generator(propName, initValue, info) {
 
             let cb = null
 
-            this.createView = () => () => <Checkbox {...cb}>{propName}</Checkbox>
+            this.createView = () => () => <Tooltip text={info}><Checkbox {...cb}>{propName}</Checkbox></Tooltip>
 
             this.getValue = () => {
                 cb = useCheckbox(initValue)
@@ -110,7 +110,7 @@ export default [
             this.createView = () => () => <InputRow><Label>{propName}:</Label><TextField placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                ti = useTextField(initValue)                
+                ti = useTextField(initValue)
                 return ti.value === '' ? undefined : isNaN(+ti.value) ? ti.value : +ti.value
             }
 

@@ -7,18 +7,23 @@ import { colorStyleType, addPropMetadataTo } from '../prop-types'
 
 import { rootCss, dynRootCss, dynIconCss } from './style'
 
+import { toArray } from '../utils'
+
 export default function Checkbox({ name, css, colorStyle, disabled, checked, onClick, children, value, ...props }) {
 
     const theme = useTheme()
     const { colorStyles, checkbox } = theme
 
     return (
-        <div {...props} onClick={onClick} css={[rootCss, dynRootCss({ disabled }), checkbox.css, css]}>
+        <div {...props} onClick={onClick} css={[rootCss, dynRootCss({ disabled }), checkbox.css, ...toArray(css)]}>
             <div
-                css={[dynIconCss({ theme, disabled, checked, colorStyle }), {
-                    position: 'relative',
-                    overflow: 'unset'
-                }]}
+                css={[
+                    dynIconCss({ theme, disabled, checked, colorStyle }),
+                    {
+                        position: 'relative',
+                        overflow: 'unset'
+                    }
+                ]}
             >
                 <Ripple
                     style={{
@@ -28,7 +33,7 @@ export default function Checkbox({ name, css, colorStyle, disabled, checked, onC
                         top: '-50%',
                         borderRadius: '100%'
                     }}
-                    color={colorStyles[colorStyle].ripple}                    
+                    color={colorStyles[colorStyle].ripple}
                 />
                 <i style={{ display: 'block' }} className='material-icons'>{checked ? "check_box" : "check_box_outline_blank"}</i>
             </div>
@@ -38,7 +43,7 @@ export default function Checkbox({ name, css, colorStyle, disabled, checked, onC
     )
 }
 
-addPropMetadataTo(Checkbox, {    
+addPropMetadataTo(Checkbox, {
     children: { type: PropTypes.node },
     name: {
         type: PropTypes.string,

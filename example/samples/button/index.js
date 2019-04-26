@@ -1,24 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button } from '../../../src/index'
+import { Button, Spinner } from '../../../src/index'
 import reactSample from '../reactSample'
 
 export default [
-    reactSample(Button, {     
-        title: 'Button~1',
+
+    reactSample(Button, {
+        title: 'Button',
         description: <>By default, Button represents a wrapper around the native button element.</>,
-        propTypes: {            
+        propTypes: {
             onClick: PropTypes.func
         },
-        initPropValues: {            
+        initPropValues: {
             children: 'Push Me!',
             onClick: () => alert('Good human :)')
         }
     }),
 
     reactSample(Button, {
-        title: 'Button~2',
+        title: 'Button (anchor as elementType)',
         description: <>Instead of button you can use another type of element, for example anchor.</>,
         propTypes: {
             href: PropTypes.string
@@ -29,6 +30,18 @@ export default [
         initPropValues: {
             elementType: 'a',
             href: '/'
+        }
+    }),
+
+    reactSample(Spinner, {
+        title: 'Button (with loading)',
+        target(props) {
+            return (
+                <Button borderless disabled transparent style={{ width: '64px', height: '64px', borderRadius: '100%' }}>
+                    <span>Loading</span>
+                    <Spinner style={{ position: 'absolute' }} {...props} />
+                </Button>
+            )
         }
     })
 ]

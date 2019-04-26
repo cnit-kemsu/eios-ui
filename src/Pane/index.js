@@ -10,12 +10,14 @@ import {
     dynTitleCss
 } from './style'
 
+import { toArray } from '../utils'
+
 export default function Pane({ flat, borderless, title, children, css, ...props }) {
 
     const theme = useTheme()
 
     return (
-        <div {...props} css={[dynRootCss({ theme, flat, borderless }), css]}>
+        <div {...props} css={[dynRootCss({ theme, flat, borderless }), ...toArray(css)]}>
             {title && <div css={dynTitleCss({ theme })}>{title}</div>}
             <div css={dynContentCss({ theme })}>{children}</div>
         </div>

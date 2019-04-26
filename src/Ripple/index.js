@@ -6,8 +6,10 @@ import { useTheme } from '../theme'
 import { rootCss, rippleCss, dynRippleCss } from './style'
 import { addPropMetadataTo } from '../prop-types'
 
-export default function Ripple({ 
-    color, duration, containerStyle, css, 
+import { toArray } from '../utils'
+
+export default function Ripple({
+    color, duration, containerStyle, css,
     rippleCss: rippleCssProp, rippleStyle, rippleClassName, ...props }) {
 
     const { disableRipple } = useTheme()
@@ -25,7 +27,7 @@ export default function Ripple({
     if (disableRipple) return null
 
     return (
-        <div {...props} ref={rippleDomRef} css={[rootCss, css]} {...mouseEventHandlers}>
+        <div {...props} ref={rippleDomRef} css={[rootCss, ...toArray(css)]} {...mouseEventHandlers}>
             {
                 active && (
                     <div

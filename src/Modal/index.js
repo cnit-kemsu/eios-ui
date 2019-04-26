@@ -15,6 +15,8 @@ import {
     dynContentCss
 } from './style'
 
+import { toArray } from '../utils'
+
 // create backlayer for modals
 let modalLayerNode = document.getElementById('__modal_layer__')
 
@@ -46,7 +48,7 @@ export default function Modal({ open, title, onClose, children, css, modalLayerD
 
     return ReactDOM.createPortal(
         (open || !isAnimFin) && (
-            <div {...props} css={[dynBacklayerCss({ theme, open }), css]}>
+            <div {...props} css={[dynBacklayerCss({ theme, open }), ...toArray(css)]}>
                 <div
                     onAnimationEnd={open ? undefined : handleAnimationEnd}
                     css={dynContainerCss({ theme, open })}

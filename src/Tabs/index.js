@@ -13,6 +13,8 @@ import {
 
 import Ripple from '../Ripple'
 
+import { toArray } from '../utils'
+
 
 export default function Tabs({
     tabElementType, colorStyle, stretchTabs, onTabClick,
@@ -22,7 +24,7 @@ export default function Tabs({
     const theme = useTheme()
 
     return (
-        <div {...props} css={[tabsCss, dynTabsCss({ theme }), stretchTabs ? stretchTabsCss : undefined, ...(css instanceof Array ? css : [css])]}>
+        <div {...props} css={[tabsCss, dynTabsCss({ theme }), stretchTabs ? stretchTabsCss : undefined, ...toArray(css)]}>
             {
                 Children.map(children, (child, index) => {
 
@@ -37,7 +39,7 @@ export default function Tabs({
                         colorStyle,
                         selected,
                         fillSelectedTab,
-                        onClick: onTabClick ? () => onTabClick(child.props.id || index) : undefined,                        
+                        onClick: onTabClick ? () => onTabClick(child.props.id || index) : undefined,
                         css: [stretchTabs ? stretchTabCss : undefined, ...childCss]
                     })
                 })

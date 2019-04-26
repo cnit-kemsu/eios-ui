@@ -17,6 +17,8 @@ import {
     dynOpenedSelectCss
 } from './style'
 
+import { toArray } from '../utils'
+
 
 function getValue(valueFromContent, item, index) {
 
@@ -27,7 +29,7 @@ function getValue(valueFromContent, item, index) {
 
 const Select = forwardRef(({
     name, open, onClick, selectStyle, onChange, valueFromContent,
-    disabled, items, value, size, itemStyle, placeholder,
+    disabled, items, value, size, itemStyle, placeholder, css,
     borderless, flat, ...props
 }, ref) => {
 
@@ -36,7 +38,7 @@ const Select = forwardRef(({
 
     return (
         <>
-            <div ref={ref} {...props} css={containerCss}>
+            <div ref={ref} {...props} css={[containerCss, ...toArray(css)]}>
                 <div
                     onClick={onClick}
                     style={selectStyle}

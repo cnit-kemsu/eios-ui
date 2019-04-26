@@ -1,5 +1,5 @@
 
-export default function reactSample(ReactComponent, { initPropValues = {}, target, propTypes = {}, ...props } = {}) {
+export default function reactSample(ReactComponent, { initPropValues = {}, propInfo = {}, target, propTypes = {}, ...props } = {}) {
     return {
         title: ReactComponent.name,
         target: target || (({ children, ...props }) => {
@@ -9,6 +9,10 @@ export default function reactSample(ReactComponent, { initPropValues = {}, targe
                 return <ReactComponent {...props} />
             }
         }),
+        propInfo: {
+            ...ReactComponent.propInfo,
+            ...propInfo
+        },
         initPropValues: {
             ...ReactComponent.defaultProps,
             ...initPropValues

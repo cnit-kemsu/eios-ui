@@ -6,6 +6,7 @@ export default class InteractiveDocGenerator {
         getResult,
         target,
         propTypes = {},
+        propInfo = {},
         initPropValues = {},
         dynamicPropValues,
         filterProps = []
@@ -15,6 +16,7 @@ export default class InteractiveDocGenerator {
         this.getResult = getResult
         this.target = target
         this.propTypes = propTypes
+        this.propInfo = propInfo
         this.initPropValues = initPropValues
         this.dynamicPropValues = dynamicPropValues
         this.filterProps = filterProps
@@ -31,7 +33,7 @@ export default class InteractiveDocGenerator {
 
         for (const [propName, propType] of propTypeEntries) {
 
-            if(this.filterProps.includes(propName)) continue
+            if (this.filterProps.includes(propName)) continue
 
             const g = this.searchGeneratorFor(propType, propName)
 
@@ -41,7 +43,7 @@ export default class InteractiveDocGenerator {
 
             if (!this.groupPropViews[groupName]) this.groupPropViews[groupName] = {}
 
-            const generator = new Generator(propName, this.initPropValues[propName])
+            const generator = new Generator(propName, this.initPropValues[propName], this.propInfo[propName])
 
             this.groupPropViews[groupName][propName] = generator.createView()
             this.propGenerators[propName] = generator
@@ -53,8 +55,8 @@ export default class InteractiveDocGenerator {
         return this.generators.find((generator => (
             generator.propNames && generator.propNames.includes(propName)
         ) || (
-            generator.propTypes && generator.propTypes.includes(propType)))
-        ) 
+                generator.propTypes && generator.propTypes.includes(propType)))
+        )
     }
 
     generate() {

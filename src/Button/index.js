@@ -7,6 +7,7 @@ import Ripple from '../Ripple'
 import { colorStyleType, addPropMetadataTo } from '../prop-types'
 
 import { buttonCss, dynButtonCss } from './style'
+import { toArray } from '../utils'
 
 
 export default function Button({
@@ -25,7 +26,7 @@ export default function Button({
                 buttonCss,
                 dynButtonCss({ theme, flat, stickOnHover, disabled, colorStyle, transparent, fillable, borderless }),
                 button.css,
-                css
+                ...toArray(css)
             ],
             ...props
         },
@@ -37,7 +38,7 @@ export default function Button({
 
 }
 
-addPropMetadataTo(Button, {    
+addPropMetadataTo(Button, {
     children: { type: PropTypes.node },
     colorStyle: {
         type: colorStyleType,

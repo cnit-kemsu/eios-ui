@@ -1,3 +1,5 @@
+import { cloneElement } from 'react'
+
 export function offset(elem) {
 
     let offsetLeft = 0
@@ -18,6 +20,9 @@ export function offset(elem) {
 
 }
 
+export function toArray(val) {
+    return Array.isArray(val) ? val : [val]
+}
 
 export function debounce(f, delayMs) {
 
@@ -38,4 +43,24 @@ export function debounce(f, delayMs) {
     }
 
     return debounced
+}
+
+export function addHandlersTo(element, eventHandlerMap) {
+
+    const eventHandlerEntries = Object.entries(eventHandlerMap)
+
+    if (eventHandlerEntries.length === 0) return element
+
+    const elProps = element.props
+    const props = {}
+
+    for (let [event, handler] of eventHandlerEntries) {
+        if (!elProps[event]) {
+            props[event] = handler
+        } else {
+            props[event] = (e) => { elProps[event](e); handler(e) }
+        }
+    }
+
+    return cloneElement(element, props)
 }

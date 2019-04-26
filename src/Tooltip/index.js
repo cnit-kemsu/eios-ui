@@ -12,7 +12,7 @@ import {
     arrowCss, dynArrowCss, rootCss
 } from './style'
 
-import { debounce, offset } from '../utils'
+import { debounce, offset, toArray, addHandlersTo } from '../utils'
 
 
 function getPosFor(targetElement, tooltipElement, position) {
@@ -59,12 +59,16 @@ export default function Tooltip({ children, text, delay, css, position, ...props
     const contentElement = <div {...props} css={[tooltipCss, dynTooltipCss({ theme }), ...(Array.isArray(css) ? css : [css])]}>{text}</div>
     const arrowElement = <div css={[arrowCss, dynArrowCss({ theme, position })]}></div>
 
-    return (
+    return text ? (
         <>
-            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            {/* <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 {children}
-            </div>
-            <div ref={tooltipRef} css={[rootCss, dynRootCss({ theme, position, state })]}>
+            </div> */}
+            {addHandlersTo(Children.only(children), {
+                onMouseEnter: handleMouseEnter,
+                onMouseLeave: handleMouseLeave
+            })}
+            <div ref={tooltipRef} css={[rootCss, dynRootCss({ theme, position, state }), ...toArray(css)]}>
                 {
                     position === 'left' || position === 'top'
                         ?
@@ -74,12 +78,12 @@ export default function Tooltip({ children, text, delay, css, position, ...props
                 }
             </div>
         </>
-    )
+    ) : children
 }
 
 
 addPropMetadataTo(Tooltip, {
     position: { type: positionType, def: 'top' },
-    delay: { type: PropTypes.number, def: 1 },
+    delay: { type: PropTypes.number, def: 0.5 },
     text: { type: PropTypes.node }
 })

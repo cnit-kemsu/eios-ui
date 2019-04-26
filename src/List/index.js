@@ -12,6 +12,8 @@ import {
     dynSelectedItemCss
 } from './style'
 
+import { toArray } from '../utils'
+
 function getValue(valueFromContent, item, index) {
 
     if (valueFromContent) return (item.content || item || "").toString()
@@ -28,7 +30,7 @@ export default function List({
 
     return (
         <>
-            <ul {...props} css={[rootCss, dynRootCss({ disabled, borderless, theme, flat }), css]}>
+            <ul {...props} css={[rootCss, dynRootCss({ disabled, borderless, theme, flat }), ...toArray(css)]}>
                 {
                     items.map((item, index) => (
                         <li
@@ -68,8 +70,8 @@ addPropMetadataTo(List, {
         type: stringOrNumberType,
         info: 'if an array of string/number is passed, then the element number is used as value'
     },
-    disabled: { type: PropTypes.bool},
-    borderless: { type: PropTypes.bool, def: true  },
+    disabled: { type: PropTypes.bool },
+    borderless: { type: PropTypes.bool, def: true },
     flat: { type: PropTypes.bool },
     items: { type: listItemsType.isRequired },
     onChange: { type: PropTypes.func }

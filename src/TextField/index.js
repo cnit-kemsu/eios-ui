@@ -9,12 +9,14 @@ import {
 
 import { dynRootCss } from './style'
 
-export default function TextField({ colorStyle, borderless, flat, value, ...props }) {
+import { toArray } from '../utils'
+
+export default function TextField({ colorStyle, borderless, flat, value, css, ...props }) {
 
     const theme = useTheme()
 
     return (
-        <input value={!value && value !== 0 && value !== "" ? "" : value} css={dynRootCss({ theme, flat, borderless, colorStyle })} {...props} />
+        <input value={!value && value !== 0 && value !== "" ? "" : value} css={[dynRootCss({ theme, flat, borderless, colorStyle }), ...toArray(css)]} {...props} />
     )
 }
 

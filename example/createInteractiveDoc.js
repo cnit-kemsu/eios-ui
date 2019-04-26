@@ -25,7 +25,7 @@ const interDocGenStaticParams = {
         return reactElementToJSXString(targetResult, {
             maxInlineAttributesLineLength: 100, showDefaultProps: false,
             functionValue: fn => fn.name || 'handler',
-            filterProps: filterProps
+            //filterProps: filterProps
         })
     },
     getResult(target, props) {

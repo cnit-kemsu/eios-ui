@@ -32,7 +32,7 @@ function App() {
 
     return (
         <>
-            <span style={{ marginRight: '8px' }}>Samples:</span><Select borderless items={transformedSamples} {...select} />
+            <span style={{ marginRight: '8px' }}>Samples:</span><Select size={15} borderless items={transformedSamples} {...select} />
 
             <hr />
 
