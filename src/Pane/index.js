@@ -2,31 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { useTheme } from '../theme'
-import { addPropMetadataTo } from '../prop-types'
 
 import {
     dynContentCss,
     dynRootCss,
     dynTitleCss
 } from './style'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
+import { toArray, createUi } from '../utils'
 
-export default function Pane({ flat, borderless, title, children, css, ...props }) {
+
+export default createUi(propMetadata, function Pane({ flat, borderless, title, children, css, ...props }, ref) {
 
     const theme = useTheme()
 
     return (
-        <div {...props} css={[dynRootCss({ theme, flat, borderless }), ...toArray(css)]}>
+        <div ref={ref} {...props} css={[dynRootCss({ theme, flat, borderless }), ...toArray(css)]}>
             {title && <div css={dynTitleCss({ theme })}>{title}</div>}
             <div css={dynContentCss({ theme })}>{children}</div>
         </div>
     )
-}
-
-addPropMetadataTo(Pane, {    
-    children: { type: PropTypes.node },
-    title: { type: PropTypes.node },
-    borderless: { type: PropTypes.bool, def: true },
-    flat: { type: PropTypes.bool }
 })

@@ -1,19 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
-import { useTheme } from '../theme'
-import { addPropMetadataTo } from '../prop-types'
 
 import { dynTableCss } from './style'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
+import { useTheme } from '../theme'
+import { toArray, createUi } from '../utils'
 
-export default function Table({ children, borderless, flat, selectableRows, selectableCell, css, ...props }) {
+
+export default createUi(propMetadata, function Table({ children, borderless, flat, selectableRows, selectableCell, css, ...props }, ref) {
 
     const theme = useTheme()
 
     return (
         <table
+            ref={ref}
             {...props}
             css={[
                 dynTableCss({
@@ -25,11 +25,4 @@ export default function Table({ children, borderless, flat, selectableRows, sele
             {children}
         </table>
     )
-}
-
-addPropMetadataTo(Table, {
-    selectableRows: { type: PropTypes.bool },
-    selectableCell: { type: PropTypes.bool },
-    borderless: { type: PropTypes.bool },
-    flat: { type: PropTypes.bool }
 })

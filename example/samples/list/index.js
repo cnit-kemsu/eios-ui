@@ -9,7 +9,7 @@ export default [
         title: 'List~1',        
         initPropValues: {
             name: 'name-for-form',
-            onChange: value => console.log(value),
+            onChange: value => alert(`List item with value "${value}" was clicked`),
             value: 0,
             items: [1, 2, 3, 4, 5]
         }
@@ -20,7 +20,7 @@ export default [
         initPropValues: {
             name: 'name-for-form',
             value: 'item1',
-            onChange: value => console.log(value),
+            onChange: value => alert(`List item with value "${value}" was clicked`),
             items: [
                 { value: 'item1', content: 'Item 1' },
                 { value: 'item2', content: 'Item 2' },

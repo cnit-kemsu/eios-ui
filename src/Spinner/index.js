@@ -1,19 +1,17 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
-import { useTheme } from '../theme'
-import {
-    addPropMetadataTo, colorStyleType
-} from '../prop-types'
 
 import {
-    spinnerCss, spinnerCircleCss,
+    spinnerCss,
+    spinnerCircleCss,
     dynSpinnerCircleCss
 } from './style'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
+import { useTheme } from '../theme'
+import { toArray, createUi } from '../utils'
 
-export default function Spinner({ colorStyle, scale, css, ...props }) {
+
+export default createUi(propMetadata, function Spinner({ colorStyle, scale, css, ...props }, ref) {
 
     const theme = useTheme()
 
@@ -21,14 +19,8 @@ export default function Spinner({ colorStyle, scale, css, ...props }) {
     const l = 2 * Math.PI * r
 
     return (
-        <svg {...props} css={[spinnerCss, ...toArray(css)]} viewBox="0 0 100 100">
-            <circle css={[spinnerCircleCss, dynSpinnerCircleCss({ theme, l , colorStyle })]} cx="50" cy="50" r={r} />
+        <svg ref={ref} {...props} css={[spinnerCss, ...toArray(css)]} viewBox="0 0 100 100">
+            <circle css={[spinnerCircleCss, dynSpinnerCircleCss({ theme, l, colorStyle })]} cx="50" cy="50" r={r} />
         </svg>
     )
-}
-
-
-addPropMetadataTo(Spinner, {
-    colorStyle: { type: colorStyleType, def: 'secondary' },
-    scale: { type: PropTypes.number, def: 1 }
 })

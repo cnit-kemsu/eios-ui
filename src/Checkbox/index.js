@@ -1,21 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import { useTheme } from '../theme'
 import Ripple from '../Ripple'
-import { colorStyleType, addPropMetadataTo } from '../prop-types'
 
 import { rootCss, dynRootCss, dynIconCss } from './style'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
+import { toArray, createUi } from '../utils'
 
-export default function Checkbox({ name, css, colorStyle, disabled, checked, onClick, children, value, ...props }) {
+
+export default createUi(propMetadata, function Checkbox({ name, css, colorStyle, disabled, checked, onClick, children, value, ...props }, ref) {
 
     const theme = useTheme()
     const { colorStyles, checkbox } = theme
 
     return (
-        <div {...props} onClick={onClick} css={[rootCss, dynRootCss({ disabled }), checkbox.css, ...toArray(css)]}>
+        <div ref={ref} {...props} onClick={onClick} css={[rootCss, dynRootCss({ disabled }), checkbox.css, ...toArray(css)]}>
             <div
                 css={[
                     dynIconCss({ theme, disabled, checked, colorStyle }),
@@ -41,19 +41,4 @@ export default function Checkbox({ name, css, colorStyle, disabled, checked, onC
             <input name={name} type='hidden' readOnly checked={checked} value={value} />
         </div>
     )
-}
-
-addPropMetadataTo(Checkbox, {
-    children: { type: PropTypes.node },
-    name: {
-        type: PropTypes.string,
-        info: 'form element name'
-    },
-    colorStyle: {
-        type: colorStyleType,
-        def: 'secondary'
-    },
-    disabled: { type: PropTypes.bool },
-    checked: { type: PropTypes.bool, def: false },
-    onClick: { type: PropTypes.func }
 })

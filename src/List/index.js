@@ -1,36 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import {
-    colorStyleType, stringOrNumberType,
-    listItemsType, addPropMetadataTo
-} from '../prop-types'
-import { useTheme } from '../theme'
 import {
     rootCss, dynRootCss,
     itemCss, dynItemCss,
     dynSelectedItemCss
 } from './style'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
+import { useTheme } from '../theme'
+import { toArray, createUi, getValue } from '../utils'
 
-function getValue(valueFromContent, item, index) {
 
-    if (valueFromContent) return (item.content || item || "").toString()
 
-    return item.value === undefined ? index : item.value
-}
-
-export default function List({
+export default createUi(propMetadata, function List({
     name, items, borderless, flat, colorStyle, css,
     value, disabled, onChange, valueFromContent, ...props
-}) {
+}, ref) {
 
     const theme = useTheme()
 
     return (
         <>
-            <ul {...props} css={[rootCss, dynRootCss({ disabled, borderless, theme, flat }), ...toArray(css)]}>
+            <ul ref={ref} {...props} css={[rootCss, dynRootCss({ disabled, borderless, theme, flat }), ...toArray(css)]}>
                 {
                     items.map((item, index) => (
                         <li
@@ -54,25 +45,4 @@ export default function List({
             </select>
         </>
     )
-}
-
-addPropMetadataTo(List, {
-    valueFromContent: { type: PropTypes.bool },
-    name: {
-        type: PropTypes.string,
-        info: 'form element name'
-    },
-    colorStyle: {
-        type: colorStyleType,
-        def: 'primary'
-    },
-    value: {
-        type: stringOrNumberType,
-        info: 'if an array of string/number is passed, then the element number is used as value'
-    },
-    disabled: { type: PropTypes.bool },
-    borderless: { type: PropTypes.bool, def: true },
-    flat: { type: PropTypes.bool },
-    items: { type: listItemsType.isRequired },
-    onChange: { type: PropTypes.func }
 })

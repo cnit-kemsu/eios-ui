@@ -1,16 +1,17 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
 
 import RippleExtra from './RippleExtra'
 import { useTheme } from '../theme'
+import { toArray, createUi } from '../utils'
+
 import { rootCss, rippleCss, dynRippleCss } from './style'
-import { addPropMetadataTo } from '../prop-types'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
 
-export default function Ripple({
+export default createUi(propMetadata, function Ripple({
     color, duration, containerStyle, css,
-    rippleCss: rippleCssProp, rippleStyle, rippleClassName, ...props }) {
+    rippleCss: rippleCssProp, rippleStyle, rippleClassName, ...props
+}) {
 
     const { disableRipple } = useTheme()
     const [, forceUpdate] = useState()
@@ -41,15 +42,4 @@ export default function Ripple({
             }
         </div>
     )
-}
-
-addPropMetadataTo(Ripple, {
-    color: {
-        type: PropTypes.string,
-        def: 'rgba(0,0,0,0.5)'
-    },
-    duration: {
-        type: PropTypes.string,
-        def: '2s'
-    }
-})
+}, true)

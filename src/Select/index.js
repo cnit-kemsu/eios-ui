@@ -1,13 +1,9 @@
-import React, { forwardRef } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import Ripple from '../Ripple'
-
 import { useTheme } from '../theme'
-import {
-    addPropMetadataTo,
-    listItemsType, stringOrNumberType
-} from '../prop-types'
+import { toArray, createUi, getValue } from '../utils'
+
 import {
     containerCss,
     displayedSelectOptionsCss,
@@ -16,22 +12,14 @@ import {
     dynSelectCss,
     dynOpenedSelectCss
 } from './style'
+import propMetadata from './propMetadata'
 
-import { toArray } from '../utils'
 
-
-function getValue(valueFromContent, item, index) {
-
-    if (valueFromContent) return item.content || item
-
-    return item.value === undefined ? index : item.value
-}
-
-const Select = forwardRef(({
+export default createUi(propMetadata, function Select({
     name, open, onClick, selectStyle, onChange, valueFromContent,
     disabled, items, value, size, itemStyle, placeholder, css,
     borderless, flat, ...props
-}, ref) => {
+}, ref) {
 
     const theme = useTheme()
     const item = items.find((item, index) => getValue(valueFromContent, item, index) === value) || placeholder || ""
@@ -76,29 +64,4 @@ const Select = forwardRef(({
             </select>
         </>
     )
-})
-
-Select.displayName = 'Select'
-
-export default Select
-
-addPropMetadataTo(Select, {
-    placeholder: { type: PropTypes.string },
-    size: { type: PropTypes.number },
-    borderless: { type: PropTypes.bool, def: true },
-    flat: { type: PropTypes.bool },
-    open: { type: PropTypes.bool },
-    name: {
-        type: PropTypes.string,
-        info: 'form element name'
-    },
-    value: {
-        type: stringOrNumberType,
-        info: 'if an array of primitives is passed and property `valueFromContent=false`, then the element number is used as value'
-    },
-    valueFromContent: { type: PropTypes.bool },
-    disabled: { type: PropTypes.bool },
-    items: { type: listItemsType.isRequired },
-    onChange: { type: PropTypes.func },
-    onClick: { type: PropTypes.func }
 })

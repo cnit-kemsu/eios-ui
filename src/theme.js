@@ -7,7 +7,7 @@ const lightenValue = 8
 
 export const defaultTheme = {
     borderColor: '#dce3ec',
-    transitionDuration: '0.2s',
+    transitionDuration: '0.1s',
     disabledOpacity: '0.5',
     disableRipple: false,
     colorStyles: {
@@ -123,7 +123,11 @@ export const defaultTheme = {
     tooltip: {
         bg: '#575d6d',
         color: 'white'
+    },
+    menu: {
+        padding: '6px'
     }
+    
 }
 
 /** Контекст для задания темы */

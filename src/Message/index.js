@@ -1,30 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
+import { dynMessageCss } from './style'
+import propMetadata from './propMetadata'
 
 import { useTheme } from '../theme'
-import { dynMessageCss } from './style'
+import { toArray, createUi } from '../utils'
 
-import { typeOfMessageType, addPropMetadataTo } from '../prop-types'
 
-import { toArray } from '../utils'
-
-export default function Message({ children, flat, type, borderless, css, ...props }) {
+export default createUi(propMetadata, function Message({ children, flat, type, borderless, css, ...props }, ref) {
 
     const theme = useTheme()
 
     return (
-        <div {...props} css={[dynMessageCss({ theme, flat, type, borderless }), theme.message.style, ...toArray(css)]}>
+        <div ref={ref} {...props} css={[dynMessageCss({ theme, flat, type, borderless }), theme.message.style, ...toArray(css)]}>
             {children}
         </div>
     )
-}
-
-addPropMetadataTo(Message, {
-    flat: { type: PropTypes.bool },
-    borderless: { type: PropTypes.bool, def: true },
-    type: {
-        type: typeOfMessageType,
-        def: 'info'
-    }
 })
-

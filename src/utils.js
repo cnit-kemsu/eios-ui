@@ -1,4 +1,7 @@
-import { cloneElement } from 'react'
+import React from 'react'
+import { cloneElement, forwardRef } from 'react'
+import PropTypes from 'prop-types'
+
 
 export function offset(elem) {
 
@@ -63,4 +66,71 @@ export function addHandlersTo(element, eventHandlerMap) {
     }
 
     return cloneElement(element, props)
+}
+
+export function createUi(metadata, ReactComponent, notForwardRef) {
+
+    if (!notForwardRef) {
+        const name = ReactComponent.name
+        ReactComponent = forwardRef(ReactComponent)    
+        ReactComponent.name = name    
+        ReactComponent.displayName = name
+    }
+
+    ReactComponent.propTypes = {
+        css: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+        style: PropTypes.object,
+        className: PropTypes.string
+    }
+    ReactComponent.defaultProps = {}
+    ReactComponent.propInfo = {
+        css: <p>result of <i>css</i> function from <i>@emotion/core</i> lib</p>,
+        style: <p>inline-style added to the root element of the component</p>,
+        className: <p>css-class name added to the root element of the component</p>
+    }
+
+    Object.entries(metadata).map(([propName, { type = PropTypes.any, def, info }]) => {
+        ReactComponent.propTypes[propName] = type
+        if (def) ReactComponent.defaultProps[propName] = def
+        if (info) ReactComponent.propInfo[propName] = info
+    })
+
+    
+
+    return ReactComponent
+
+}
+
+export function getValue(valueFromContent, item, index) {
+
+    if (valueFromContent) return (item.content || item || "").toString()
+
+    return item.value === undefined ? index : item.value
+}
+
+export function getPosFor(targetElement, tooltipElement, position) {
+
+    const { offsetLeft, offsetTop } = offset(targetElement)
+
+    const haflTooltipElementHeight = tooltipElement.clientHeight / 2.0
+    const haflTargetElementHeight = targetElement.clientHeight / 2.0
+
+    const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight
+
+    switch (position) {
+        case 'top': return {
+            top: offsetTop - targetElement.clientHeight - 5
+        }
+        case 'bottom': return {
+            top: offsetTop + targetElement.clientHeight + 5
+        }
+        case 'left': return {
+            top: top,
+            left: offsetLeft - tooltipElement.clientWidth
+        }
+        case 'right': return {
+            top: top,
+            left: offsetLeft + targetElement.clientWidth + 5
+        }
+    }
 }

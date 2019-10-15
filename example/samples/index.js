@@ -18,6 +18,7 @@ import useList from './useList'
 import useSelect from './useSelect'
 import useCheckbox from './useCheckbox'
 import useModal from './useModal'
+import useMenuButton from './useMenuButton'
 
 export default [
     '-- Components --',
@@ -38,5 +39,6 @@ export default [
     ...useList,
     ...useSelect,
     ...useCheckbox,
-    ...useModal
+    ...useModal,
+    ...useMenuButton
 ]

@@ -8,18 +8,19 @@ export const rootCss = css`
     position: absolute;        
 `
 
-export const dynRootCss = ({ theme, position, state: { show, left, top } }) => {
+export const dynRootCss = ({ theme, position, show, offset: { left, top }, hide }) => {
 
     const topOrBottom = position === 'top' || position === 'bottom'
 
     const scaleProp = topOrBottom ? 'scaleY' : 'scaleX'
-    
+
     let scaleOrigin = 'top'
     if (position === 'left') scaleOrigin = 'right'
     else if (position === 'right') scaleOrigin = 'left'
     else if (position === 'top') scaleOrigin = 'bottom'
 
     return css`
+        ${hide ? 'display: none;' : ''}
         transform-origin: ${scaleOrigin};
         transform: ${scaleProp}(${show ? '1' : '0'});
         opacity: ${show ? '1' : '0'};
@@ -41,8 +42,7 @@ export const tooltipCss = css`
     box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
     border-radius: 4px;
     padding: 8px;
-    font-size: small;
-    font-style: italic;    
+    font-size: small;    
 `
 
 export const arrowCss = css`

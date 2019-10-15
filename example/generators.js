@@ -10,8 +10,8 @@ import {
 
 import {
     colorStyleType, stringOrNumberType,
-    listItemsType, typeOfMessageType,
-    colorStyleVariants, positionType,
+    listItemsType, typeOfMessageType, typeOfTextFieldType,
+    colorStyleVariants, positionType, typeOfTextFieldVariants,
     positionVariants, typeOfMessageVariants
 } from '../src/prop-types'
 
@@ -169,6 +169,26 @@ export default [
 
             let sel
             const items = colorStyleVariants
+
+            this.createView = () => () => (
+                <Select valueFromContent borderless items={items} {...sel} />
+            )
+
+            this.getValue = () => {
+                sel = useSelect(initValue)
+                return sel.value
+            }
+        }
+    },
+
+    {
+        groupName: 'textField type prop',
+        propTypes: propTypes([typeOfTextFieldType]),
+
+        Generator(propName, initValue) {
+
+            let sel
+            const items = typeOfTextFieldVariants
 
             this.createView = () => () => (
                 <Select valueFromContent borderless items={items} {...sel} />

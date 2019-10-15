@@ -7,7 +7,7 @@ export default [
         title: 'Select~1',
         initPropValues: {
             onClick: () => alert('Select was clicked'),
-            onChange: (item) => alert(`Item "${item.content || item}" was clicked`),
+            onChange: (item) => alert(`Select item with value "${item}" was clicked`),
             name: 'name-for-form',
             value: 0,
             items: [1, 2, 3, 4, 5]
@@ -20,7 +20,7 @@ export default [
             name: 'name-for-form',
             value: 'item1',
             onClick: () => alert('Select was clicked'),
-            onChange: (item) => alert(`Item "${item.content || item}" was clicked`),
+            onChange: (item) => alert(`Select item with value "${item}" was clicked`),
             items: [
                 { value: 'item1', content: 'Item 1' },
                 { value: 'item2', content: 'Item 2' },

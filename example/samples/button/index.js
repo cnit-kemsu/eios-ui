@@ -19,7 +19,7 @@ export default [
     }),
 
     reactSample(Button, {
-        title: 'Button (anchor as elementType)',
+        title: 'Button with anchor as elementType',
         description: <>Instead of button you can use another type of element, for example anchor.</>,
         propTypes: {
             href: PropTypes.string
@@ -34,7 +34,7 @@ export default [
     }),
 
     reactSample(Spinner, {
-        title: 'Button (with loading)',
+        title: 'Round Button with spinner',
         target(props) {
             return (
                 <Button borderless disabled transparent style={{ width: '64px', height: '64px', borderRadius: '100%' }}>

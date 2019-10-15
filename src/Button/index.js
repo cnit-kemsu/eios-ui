@@ -1,20 +1,19 @@
 import React from 'react'
 import { jsx } from '@emotion/core'
-import PropTypes from 'prop-types'
+
+import propMetadata from './propMetadata'
+import { buttonCss, dynButtonCss } from './style'
 
 import { useTheme } from '../theme'
 import Ripple from '../Ripple'
-import { colorStyleType, addPropMetadataTo } from '../prop-types'
-
-import { buttonCss, dynButtonCss } from './style'
-import { toArray } from '../utils'
+import { toArray, createUi } from '../utils'
 
 
-export default function Button({
+export default createUi(propMetadata, function Button({
     elementType, disabled, flat, stickOnHover,
     colorStyle, transparent, fillable, borderless,
     children, css, ...props
-}) {
+}, ref) {
 
     const theme = useTheme()
     const { colorStyles, button } = theme
@@ -28,6 +27,7 @@ export default function Button({
                 button.css,
                 ...toArray(css)
             ],
+            ref,
             ...props
         },
         <>
@@ -36,28 +36,4 @@ export default function Button({
         </>
     )
 
-}
-
-addPropMetadataTo(Button, {
-    children: { type: PropTypes.node },
-    colorStyle: {
-        type: colorStyleType,
-        def: 'dark'
-    },
-    elementType: {
-        type: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType]),
-        def: 'button'
-    },
-    transparent: { type: PropTypes.bool },
-    fillable: {
-        type: PropTypes.bool,
-        info: "used in conjunction with the property 'transparent=true'"
-    },
-    borderless: { type: PropTypes.bool },
-    disabled: { type: PropTypes.bool },
-    flat: { type: PropTypes.bool },
-    stickOnHover: {
-        type: PropTypes.bool
-    }
 })
-

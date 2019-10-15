@@ -10,6 +10,7 @@ import { Select, useSelect, Message } from '../src/index'
 
 const transformedSamples = samples.map(sample => ({ value: sample.title || sample, content: sample.title || sample }))
 
+
 function App() {
 
 
@@ -32,6 +33,8 @@ function App() {
 
     return (
         <>
+            <h1>Interactive Samples</h1>
+
             <span style={{ marginRight: '8px' }}>Samples:</span><Select size={15} borderless items={transformedSamples} {...select} />
 
             <hr />
