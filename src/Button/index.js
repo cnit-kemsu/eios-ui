@@ -23,7 +23,7 @@ export default createUi(propMetadata, function Button({
         {
             css: [
                 buttonCss,
-                dynButtonCss({ theme, flat, stickOnHover, disabled, colorStyle, transparent, fillable, borderless }),
+                dynButtonCss({ theme, flat, elementType, stickOnHover, disabled, colorStyle, transparent, fillable, borderless }),
                 button.css,
                 ...toArray(css)
             ],
