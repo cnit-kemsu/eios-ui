@@ -20,35 +20,34 @@ export const dynButtonCss = ({
     const { transitionDuration, colorStyles } = theme
     const cs = colorStyles[colorStyle]
 
-    return css`
-        ${elementType}& {       
-            ${borderless ? 'border: none' : `border: 1px solid ${cs.origin}`};        
-            ${flat && !stickOnHover ? '' : 'border-bottom: none;'};
-            background: ${transparent ? 'transparent' : cs.origin};
-            color: ${transparent ? cs.origin : cs.text};
-            opacity: ${disabled ? theme.disabledOpacity : '1'};                 
-            transition-duration: ${transitionDuration};
-            ${flat ? '' : `box-shadow: ${theme.button.shadow} ${cs.shadow};`}
-            ${!disabled
-                ?
-                css`
-                    &:hover {
-                        background: ${!transparent || fillable ? cs.hover : 'transparent'};
-                        color: ${!transparent || fillable ? cs.textHover : cs.hover};
-                        ${stickOnHover ? `box-shadow: ${theme.button.shadowOnHover} ${cs.shadow};` : ''}
-                    }
+    return css`        
+        ${borderless ? 'border: none' : `border: 1px solid ${cs.origin}`};        
+        ${flat && !stickOnHover ? '' : 'border-bottom: none;'};
+        background: ${transparent ? 'transparent' : cs.origin};
+        color: ${transparent ? cs.origin : cs.text};
+        opacity: ${disabled ? theme.disabledOpacity : '1'};                 
+        transition-duration: ${transitionDuration};
+        ${flat ? '' : `box-shadow: ${theme.button.shadow} ${cs.shadow};`}
+        ${!disabled
+            ?
+            css`
+                &:hover {
+                    background: ${!transparent || fillable ? cs.hover : 'transparent'};
+                    color: ${!transparent || fillable ? cs.textHover : cs.hover};
+                    ${stickOnHover ? `box-shadow: ${theme.button.shadowOnHover} ${cs.shadow};` : ''}
+                }
 
-                    &:active {
-                        box-shadow: none;                    
-                    }
-                `
-                :
-                'pointer-events: none;'
-            }
-
-            &:focus{
-                outline: none;
-            } 
+                &:active {
+                    box-shadow: none;                    
+                }
+            `
+            :
+            'pointer-events: none;'
         }
+
+        &:focus{
+            outline: none;
+        } 
+        
     `
 }
