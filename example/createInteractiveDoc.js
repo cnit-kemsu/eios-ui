@@ -5,6 +5,9 @@ import reactElementToJSXString from 'react-element-to-jsx-string'
 import InteractiveDocGenerator from './InteractiveDocGenerator'
 import generators from './generators'
 
+import 'highlight.js/styles/dark.css'
+import hljs from 'highlight.js'
+
 import {
     Button, Message
 } from '../src/index'

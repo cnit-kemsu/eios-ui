@@ -4,6 +4,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import serve from 'rollup-plugin-serve'
 import replace from 'rollup-plugin-replace'
 import copy from 'rollup-plugin-copy'
+import postcss from 'rollup-plugin-postcss'
 
 import pkg from './package.json'
 
@@ -56,6 +57,7 @@ const exampleConfig = {
                 'react': Object.getOwnPropertyNames(require('react'))                
             }
         }),
+        postcss(),
 
         process.env.RUN_EXAMPLE
         &&
