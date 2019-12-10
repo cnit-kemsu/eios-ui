@@ -26,7 +26,7 @@ export default createUi(propMetadata, function List({
                     items.map((item, index) => (
                         <li
                             key={index}
-                            onClick={onChange ? () => onChange(getValue(valueFromContent, item, index)) : undefined}
+                            onClick={onChange ? () => onChange(getValue(valueFromContent, item, index), item.content ? item.content : item) : undefined}
                             css={[
                                 itemCss,
                                 dynItemCss({ theme, colorStyle }),

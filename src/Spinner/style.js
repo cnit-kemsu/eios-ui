@@ -23,8 +23,9 @@ const spinnerDashKeyframe = (l) => keyframes`
 `
 
 export const spinnerCss = css`
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: inherit;
+    /*height: 100%;*/
 `
 
 export const spinnerCircleCss = css`

@@ -20,5 +20,6 @@ export default {
     flat: { type: PropTypes.bool },
     step: { type: PropTypes.number },
     min: { type: PropTypes.number },
-    max: { type: PropTypes.number }
+    max: { type: PropTypes.number },
+    filled: { type: PropTypes.bool }
 }

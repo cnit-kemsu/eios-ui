@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 
 import { offset } from '../utils'
 
 const emptyParentMenu = { show: true }
+
 
 export default function useMenuButton(position = 'bottom', { show: parentShow } = emptyParentMenu) {
 
@@ -15,7 +16,7 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
 
     useEffect(() => {
 
-        const handleOutsideClick = (e) => {            
+        const handleOutsideClick = (e) => {
 
             if (show && !e.target.dataset.menuitem) {
                 setShow(false)
@@ -28,35 +29,35 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
 
     }, [show])
 
-    const handleButtonClick = (e) => {
+    const handleButtonClick = useCallback((e) => {
 
         const { offsetLeft, offsetTop } = offset(buttonRef.current)
 
         const { clientWidth: menuWidth, clientHeight: menuHeight } = menuRef.current
         const { clientWidth: buttonWidth, clientHeight: buttonHeight } = buttonRef.current
 
-        let x, y
+        let newX, newY
 
         if (position === 'bottom') {
-            x = offsetLeft + (buttonWidth - menuWidth) / 2
-            y = offsetTop + buttonHeight
+            newX = offsetLeft + (buttonWidth - menuWidth) / 2
+            newY = offsetTop + buttonHeight
         } else if (position === 'right') {
-            x = offsetLeft + buttonWidth
-            y = offsetTop
+            newX = offsetLeft + buttonWidth
+            newY = offsetTop
         } else if (position === 'left') {
-            x = offsetLeft - menuWidth
-            y = offsetTop
+            newX = offsetLeft - menuWidth
+            newY = offsetTop
         } else if (position === 'top') {
-            x = offsetLeft + (buttonWidth - menuWidth) / 2
-            y = offsetTop - menuHeight
+            newX = offsetLeft + (buttonWidth - menuWidth) / 2
+            newY = offsetTop - menuHeight
         }
 
-        setOffset({ x, y })
+        setOffset({ x: newX, y: newY })
         setShow(!show)
-    }
+    }, [show])
 
-    const handleMenuEnter = () => isMenuHovered.current = true
-    const handleMenuLeave = () => isMenuHovered.current = false
+    const handleMenuEnter = useCallback(() => isMenuHovered.current = true, [])
+    const handleMenuLeave = useCallback(() => isMenuHovered.current = false, [])
 
     return [
         {
@@ -68,7 +69,7 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
             onMouseEnter: handleMenuEnter,
             onMouseLeave: handleMenuLeave,
             ref: menuRef,
-            
+
         }
     ]
 }

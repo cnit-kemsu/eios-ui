@@ -49,7 +49,7 @@ export default createUi(propMetadata, function Select({
                             <div
                                 key={index}
                                 css={dynOptionCss({ theme })}
-                                onClick={onChange ? () => onChange(getValue(valueFromContent, item, index)) : undefined}
+                                onClick={onChange ? () => onChange(getValue(valueFromContent, item, index), item.content ? item.content : item) : undefined}
                             >
                                 {item.content || item || ""}
                             </div>

@@ -24,7 +24,7 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
     min-width: 100%;
     position: absolute;
     white-space: nowrap;  
-    ${borderless ? 'border: none' : `border: 1px solid ${theme.borderColor}`};
+    ${borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor}`};
     border-top: none;
     transform: scaleY(0);
     opacity: 0;    
@@ -39,7 +39,7 @@ export const dynSelectCss = ({ theme, disabled, borderless, flat }) => css`
     overflow: hidden;
     display: inline-flex;
     align-items: center;    
-    ${borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.borderColor}`};
+    ${borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`};
     outline: none;
     transition-property: border;    
     padding-right: 0px;
@@ -66,5 +66,5 @@ export const displayedSelectOptionsCss = css`
 
 export const dynOpenedSelectCss = ({ theme }) => css`
     padding-bottom: 2px;
-    border-bottom: 1px solid ${theme.borderColor};
+    border-bottom: 1px solid ${theme.select.borderColor};
 `

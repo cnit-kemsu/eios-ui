@@ -58,26 +58,26 @@ export const dynArrowCss = ({ theme, position }) => {
 
         case 'top':
             return css`
-                border-width: 8px 10px 0 10px;
+                border-width: 8px 12px 0 12px;
                 border-color: ${theme.tooltip.bg} transparent transparent transparent;               
             `
 
         case 'left':
             return css`
-                border-width: 10px 0 10px 8px;
+                border-width: 12px 0 12px 8px;
                 border-color: transparent transparent transparent ${theme.tooltip.bg};                 
             `
 
         case 'right':
             return css`
-                border-width: 10px 8px 10px 0;
+                border-width: 12px 8px 12px 0;
                 border-color: transparent ${theme.tooltip.bg} transparent transparent;                            
             `
 
         case 'bottom':
         default:
             return css`
-                border-width: 0 10px 8px 10px;
+                border-width: 0 12px 8px 12px;
                 border-color: transparent transparent ${theme.tooltip.bg} transparent;                
             `
     }

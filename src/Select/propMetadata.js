@@ -5,7 +5,7 @@ import { listItemsType, stringOrNumberType } from '../prop-types'
 export default {
     placeholder: { type: PropTypes.string },
     size: { type: PropTypes.number },
-    borderless: { type: PropTypes.bool, def: true },
+    borderless: { type: PropTypes.bool, def: false },
     flat: { type: PropTypes.bool },
     open: { type: PropTypes.bool },
     name: {

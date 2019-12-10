@@ -1,4 +1,4 @@
-import React, { Children, useState, useCallback, useRef } from 'react'
+import React, { Children, useState, useCallback, useRef, useEffect } from 'react'
 
 import {
     tooltipCss,
@@ -30,20 +30,25 @@ export default createUi(propMetadata, function Tooltip({ children, hideArrow, hi
 
     const hideTooltip = useCallback(debounce(offset => {
         setShow(false)
-        if(offset) setOffset(offset)
+        if (offset) setOffset(offset)
     }, hideDelay * 1000), [hideDelay])
 
     const handleMouseEnter = useCallback((e) => {
-        showTooltip(getPosFor(e.target, tooltipRef.current, position))
+        showTooltip && showTooltip(getPosFor(e.target, tooltipRef.current, position))
     }, [showTooltip, position])
 
     const handleMouseLeave = useCallback((e) => {
-        showTooltip.cancel()
-        hideTooltip(getPosFor(e.target, tooltipRef.current, position))
+        showTooltip.cancel && showTooltip.cancel()
+        hideTooltip && hideTooltip(getPosFor(e.target, tooltipRef.current, position))
     }, [showTooltip, hideTooltip, position])
 
-    const handleTooltipMouseEnter = useCallback(() => hideTooltip.cancel(), [hideTooltip])
-    const handleTooltipMouseLeave = useCallback(() => hideTooltip(), [hideTooltip])
+    useEffect(() => () => {
+        showTooltip && showTooltip.cancel && showTooltip.cancel()
+        hideTooltip && hideTooltip.cancel && hideTooltip.cancel()
+    }, [])
+
+    const handleTooltipMouseEnter = useCallback(() => hideTooltip.cancel && hideTooltip.cancel(), [hideTooltip])
+    const handleTooltipMouseLeave = useCallback(() => hideTooltip && hideTooltip(), [hideTooltip])
 
     const contentElement = <div {...props} css={[tooltipCss, dynTooltipCss({ theme }), ...(Array.isArray(css) ? css : [css])]}>{text}</div>
     const arrowElement = hideArrow ? null : <div css={[arrowCss, dynArrowCss({ theme, position })]}></div>

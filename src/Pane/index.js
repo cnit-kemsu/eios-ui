@@ -19,7 +19,7 @@ export default createUi(propMetadata, function Pane({ flat, borderless, title, c
 
     return (
         <div ref={ref} {...props} css={[dynRootCss({ theme, flat, borderless }), ...toArray(css)]}>
-            {title && <div css={dynTitleCss({ theme })}>{title}</div>}
+            {title && <h3 css={dynTitleCss({ theme })}>{title}</h3>}
             <div css={dynContentCss({ theme })}>{children}</div>
         </div>
     )

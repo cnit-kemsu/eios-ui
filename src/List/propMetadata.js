@@ -21,7 +21,7 @@ export default {
         info: 'if an array of string/number is passed, then the element number is used as value'
     },
     disabled: { type: PropTypes.bool },
-    borderless: { type: PropTypes.bool, def: true },
+    borderless: { type: PropTypes.bool, def: false },
     flat: { type: PropTypes.bool },
     items: { type: listItemsType.isRequired },
     onChange: { type: PropTypes.func }

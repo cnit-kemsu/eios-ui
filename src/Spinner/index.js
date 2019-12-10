@@ -15,7 +15,7 @@ export default createUi(propMetadata, function Spinner({ colorStyle, scale, css,
 
     const theme = useTheme()
 
-    const r = scale * 49
+    const r = scale * 45
     const l = 2 * Math.PI * r
 
     return (

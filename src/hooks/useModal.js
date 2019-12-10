@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react'
 export default function useModal(initOpen) {
 
     const [open, setOpen] = useState(initOpen)
-    const onClose = useCallback(open => setOpen(!open))
+    const onClose = useCallback(open => setOpen(!open), [open])
 
     return [{ onClose, open }, setOpen]
 }
