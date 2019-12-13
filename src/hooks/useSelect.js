@@ -25,11 +25,12 @@ export default function useSelect(initValue, additionalOnChange) {
 
         ref.current.addEventListener('mouseenter', handleMouseEnter)
         ref.current.addEventListener('mouseleave', handleMouseLeave)
+        
         document.addEventListener('click', handleOutsideClick)
 
         return () => {            
-            ref.current.removeEventListener('mouseenter', handleMouseEnter)
-            ref.current.removeEventListener('mouseenter', handleMouseLeave)
+            ref.current && ref.current.removeEventListener('mouseenter', handleMouseEnter)
+            ref.current && ref.current.removeEventListener('mouseenter', handleMouseLeave)
             document.removeEventListener('click', handleOutsideClick)
         }
     }, [ref.current])
