@@ -40,7 +40,7 @@
     "@emotion/babel-preset-css-prop": "^10.0.17",
     "@emotion/core": "^10.0.21",
     "chokidar": "^2.1.8",
-    "highlight.js": "^9.16.2",
+    "highlight.js": "^10.1.2",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
