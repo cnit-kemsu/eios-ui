@@ -84,7 +84,7 @@ export function createUi(metadata, ReactComponent, notForwardRef) {
     }
     ReactComponent.defaultProps = {}
     ReactComponent.propInfo = {
-        css: <p>result of <i>css</i> function from <i>@emotion/core</i> lib</p>,
+        css: <p>result of <i>css</i> function from <i>@emotion/react</i> lib</p>,
         style: <p>inline-style added to the root element of the component</p>,
         className: <p>css-class name added to the root element of the component</p>
     }
