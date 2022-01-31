@@ -1,5 +1,5 @@
 import React from 'react'
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 import propMetadata from './propMetadata'
 import { buttonCss, dynButtonCss } from './style'

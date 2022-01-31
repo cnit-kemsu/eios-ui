@@ -1,5 +1,5 @@
 import React, { Children, cloneElement } from 'react'
-import { jsx } from '@emotion/core'
+import { jsx } from '@emotion/react'
 
 import {
     tabsCss, dynTabsCss, stretchTabsCss,

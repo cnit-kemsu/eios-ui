@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 
 export const dynRootCss = ({ theme, flat, borderless }) => css`
     ${borderless ? 'border: none' : `border: 1px solid ${theme.pane.borderColor}`};

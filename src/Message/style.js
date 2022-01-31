@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/react'
 import tc from 'tinycolor2'
 
 export const dynMessageCss = ({ theme, flat, type, borderless }) => css`
