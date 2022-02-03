@@ -68,7 +68,7 @@ export function addHandlersTo(element, eventHandlerMap) {
     return cloneElement(element, props)
 }
 
-export function createUi(metadata, ReactComponent, notForwardRef) {
+export function createUIComponent(metadata, ReactComponent, notForwardRef) {
 
     if (!notForwardRef) {
         const name = ReactComponent.name
