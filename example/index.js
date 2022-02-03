@@ -1,6 +1,4 @@
-import '@babel/polyfill'
-
-import React, { useState, useCallback, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 
 import createInteractiveDoc from './createInteractiveDoc'
