@@ -9,11 +9,11 @@ import {
 import { tabPropMetadata, tabsPropMetadata } from './propMetadata'
 
 import Ripple from '../Ripple'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 import { useTheme } from '../theme'
 
 
-export default createUi(tabsPropMetadata, function Tabs({
+export default createUIComponent(tabsPropMetadata, function Tabs({
     tabElementType, colorStyle, stretchTabs, onTabClick,
     tab, css, fillSelectedTab, children, ...props
 }, ref) {
@@ -46,7 +46,7 @@ export default createUi(tabsPropMetadata, function Tabs({
 })
 
 
-export const Tab = createUi(tabPropMetadata, function Tab({ css, id, tabElementType, fillSelectedTab, colorStyle, selected, children, ...props }, ref) {
+export const Tab = createUIComponent(tabPropMetadata, function Tab({ css, id, tabElementType, fillSelectedTab, colorStyle, selected, children, ...props }, ref) {
 
     const theme = useTheme()
 

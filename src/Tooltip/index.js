@@ -10,11 +10,11 @@ import {
 } from './style'
 import propMetadata from './propMetadata'
 
-import { debounce, toArray, addHandlersTo, createUi, getPosFor } from '../utils'
+import { debounce, toArray, addHandlersTo, createUIComponent, getPosFor } from '../utils'
 import { useTheme } from '../theme'
 
 
-export default createUi(propMetadata, function Tooltip({ children, hideArrow, hide, text, showDelay, hideDelay, css, position, ...props }) {
+export default createUIComponent(propMetadata, function Tooltip({ children, hideArrow, hide, text, showDelay, hideDelay, css, position, ...props }) {
 
     const theme = useTheme()
 

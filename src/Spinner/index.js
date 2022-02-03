@@ -8,10 +8,10 @@ import {
 import propMetadata from './propMetadata'
 
 import { useTheme } from '../theme'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Spinner({ colorStyle, scale, css, ...props }, ref) {
+export default createUIComponent(propMetadata, function Spinner({ colorStyle, scale, css, ...props }, ref) {
 
     const theme = useTheme()
 

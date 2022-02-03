@@ -12,10 +12,10 @@ import propMetadata from './propMetadata'
 
 import { useTheme } from '../theme'
 import Button from '../Button'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Modal({ open, title, onClose, children, css, modalLayerDOMElement, ...props }, ref) {
+export default createUIComponent(propMetadata, function Modal({ open, title, onClose, children, css, modalLayerDOMElement, ...props }, ref) {
 
     const theme = useTheme()
     

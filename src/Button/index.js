@@ -6,10 +6,10 @@ import { buttonCss, dynButtonCss } from './style'
 
 import { useTheme } from '../theme'
 import Ripple from '../Ripple'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Button({
+export default createUIComponent(propMetadata, function Button({
     elementType, disabled, flat, stickOnHover,
     colorStyle, transparent, fillable, borderless,
     children, css, ...props

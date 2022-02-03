@@ -3,10 +3,10 @@ import React from 'react'
 import propMetadata from './propMetadata'
 import { dynMenuCss, dynMenuItemCss, displayedMenuCss } from './style'
 
-import { createUi, toArray, offset } from '../utils'
+import { createUIComponent, toArray, offset } from '../utils'
 import { useTheme } from '../theme'
 
-export default createUi(propMetadata, function Menu({ show, x, y, flat, borderless, items, css, children, ...props }, ref) {
+export default createUIComponent(propMetadata, function Menu({ show, x, y, flat, borderless, items, css, children, ...props }, ref) {
 
     const theme = useTheme()
 
@@ -17,7 +17,7 @@ export default createUi(propMetadata, function Menu({ show, x, y, flat, borderle
     )
 })
 
-export const MenuItem = createUi({}, function MenuItem({ onClick, children, css, ...props }, ref) { 
+export const MenuItem = createUIComponent({}, function MenuItem({ onClick, children, css, ...props }, ref) { 
 
     const theme = useTheme()
 

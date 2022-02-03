@@ -4,10 +4,10 @@ import { dynTableCss } from './style'
 import propMetadata from './propMetadata'
 
 import { useTheme } from '../theme'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Table({ children, borderless, flat, selectableRows, selectableCell, css, ...props }, ref) {
+export default createUIComponent(propMetadata, function Table({ children, borderless, flat, selectableRows, selectableCell, css, ...props }, ref) {
 
     const theme = useTheme()
 

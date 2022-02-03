@@ -10,10 +10,10 @@ import {
 } from './style'
 import propMetadata from './propMetadata'
 
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Pane({ flat, borderless, title, children, css, ...props }, ref) {
+export default createUIComponent(propMetadata, function Pane({ flat, borderless, title, children, css, ...props }, ref) {
 
     const theme = useTheme()
 

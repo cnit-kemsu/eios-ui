@@ -2,7 +2,7 @@ import React from 'react'
 
 import Ripple from '../Ripple'
 import { useTheme } from '../theme'
-import { toArray, createUi, getValue } from '../utils'
+import { toArray, createUIComponent, getValue } from '../utils'
 
 import {
     containerCss,
@@ -15,7 +15,7 @@ import {
 import propMetadata from './propMetadata'
 
 
-export default createUi(propMetadata, function Select({
+export default createUIComponent(propMetadata, function Select({
     name, open, onClick, selectStyle, onChange, valueFromContent,
     disabled, items, value, size, itemStyle, placeholder, css,
     borderless, flat, ...props

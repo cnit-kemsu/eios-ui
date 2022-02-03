@@ -8,11 +8,11 @@ import {
 import propMetadata from './propMetadata'
 
 import { useTheme } from '../theme'
-import { toArray, createUi, getValue } from '../utils'
+import { toArray, createUIComponent, getValue } from '../utils'
 
 
 
-export default createUi(propMetadata, function List({
+export default createUIComponent(propMetadata, function List({
     name, items, borderless, flat, colorStyle, css,
     value, disabled, onChange, valueFromContent, ...props
 }, ref) {

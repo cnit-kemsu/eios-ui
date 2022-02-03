@@ -4,10 +4,10 @@ import { dynMessageCss } from './style'
 import propMetadata from './propMetadata'
 
 import { useTheme } from '../theme'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Message({ children, flat, type, borderless, css, ...props }, ref) {
+export default createUIComponent(propMetadata, function Message({ children, flat, type, borderless, css, ...props }, ref) {
 
     const theme = useTheme()
 

@@ -2,13 +2,13 @@ import React, { useState, useMemo, useRef, useEffect } from 'react'
 
 import RippleExtra from './RippleExtra'
 import { useTheme } from '../theme'
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 import { rootCss, rippleCss, dynRippleCss } from './style'
 import propMetadata from './propMetadata'
 
 
-export default createUi(propMetadata, function Ripple({
+export default createUIComponent(propMetadata, function Ripple({
     color, duration, containerStyle, css,
     rippleCss: rippleCssProp, rippleStyle, rippleClassName, ...props
 }) {

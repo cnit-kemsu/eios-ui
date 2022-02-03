@@ -6,10 +6,10 @@ import Ripple from '../Ripple'
 import { rootCss, dynRootCss, dynIconCss } from './style'
 import propMetadata from './propMetadata'
 
-import { toArray, createUi } from '../utils'
+import { toArray, createUIComponent } from '../utils'
 
 
-export default createUi(propMetadata, function Checkbox({ name, css, colorStyle, disabled, checked, onClick, children, value, ...props }, ref) {
+export default createUIComponent(propMetadata, function Checkbox({ name, css, colorStyle, disabled, checked, onClick, children, value, ...props }, ref) {
 
     const theme = useTheme()
     const { colorStyles, checkbox } = theme
