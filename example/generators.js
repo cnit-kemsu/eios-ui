@@ -175,7 +175,7 @@ export default [
             )
 
             this.getValue = () => {
-                sel = useSelect(initValue)
+                [sel] = useSelect(initValue)
                 return sel.value
             }
         }
@@ -195,7 +195,7 @@ export default [
             )
 
             this.getValue = () => {
-                sel = useSelect(initValue)
+                [sel] = useSelect(initValue)
                 return sel.value
             }
         }
@@ -215,7 +215,7 @@ export default [
             )
 
             this.getValue = () => {
-                sel = useSelect(initValue)
+                [sel] = useSelect(initValue)
                 return sel.value
             }
         }
@@ -235,7 +235,7 @@ export default [
             )
 
             this.getValue = () => {
-                sel = useSelect(initValue)
+                [sel] = useSelect(initValue)
                 return sel.value
             }
         }

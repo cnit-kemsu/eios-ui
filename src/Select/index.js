@@ -42,7 +42,7 @@ export default createUIComponent(propMetadata, function Select({
 
                 <div
                     css={[itemStyle, dynOptionsCss({ theme, borderless, flat }), open && displayedSelectOptionsCss]}
-                    style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined }}
+                    style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined,  }}
                 >
                     {
                         items.map((item, index) => (

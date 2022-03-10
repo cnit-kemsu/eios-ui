@@ -15,15 +15,15 @@ import Button from '../Button'
 import { toArray, createUIComponent } from '../utils'
 
 
-export default createUIComponent(propMetadata, function Modal({ open, title, onClose, children, css, modalLayerDOMElement, ...props }, ref) {
+export default createUIComponent(propMetadata, function Modal({ open, title, onClose, children, css, modalLayerDOMElement, style, ...props }, ref) {
 
     const theme = useTheme()
-    
+
     const [isAnimFin, setAnimFin] = useState(true)
     const handleAnimationEnd = useCallback(() => {
         setAnimFin(true)
     }, [])
-    
+
     const handleEffect = useCallback(() => {
         if (open && isAnimFin) {
             setAnimFin(false)
@@ -34,15 +34,16 @@ export default createUIComponent(propMetadata, function Modal({ open, title, onC
 
     return ReactDOM.createPortal(
         (open || !isAnimFin) && (
-            <div ref={ref} {...props} css={[dynBacklayerCss({ theme, open }), ...toArray(css)]}>
+            <div ref={ref} {...props} css={dynBacklayerCss({ theme, open })}>
                 <div
                     onAnimationEnd={open ? undefined : handleAnimationEnd}
-                    css={dynContainerCss({ theme, open })}
+                    css={[dynContainerCss({ theme, open }), ...toArray(css)]}
+                    style={style}
                 >
                     <div css={dynHeaderCss({ theme })}>
-                        <div css={dynTitleCss({ theme })}>
+                        <h1 css={dynTitleCss({ theme })}>
                             {title}
-                        </div>
+                        </h1>
                         <Button
                             style={{ padding: '0px' }}
                             flat

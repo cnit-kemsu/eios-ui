@@ -8,5 +8,5 @@ export default function useCheckbox(initChecked, additionalOnClick) {
 		additionalOnClick && additionalOnClick(!checked)
 	}, [checked])
 
-    return { onClick, checked }
+    return [{ onClick, checked }, setChecked]
 }

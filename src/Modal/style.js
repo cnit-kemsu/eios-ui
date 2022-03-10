@@ -15,12 +15,12 @@ const dynBacklayerKeyframes = ({ open }) => open ?
 const dynModalKeyframes = ({ open }) => open ?
     keyframes`
         from { 
-            margin-top: 0%;
+            /*margin-top: 0%;*/
             opacity: 0;
             transform: scale(0.5,0); 
         }
         to { 
-            margin-top: 10%;
+            /*margin-top: 10%;*/
             opacity: 1;
             transform: scale(1,1); 
         }
@@ -28,12 +28,12 @@ const dynModalKeyframes = ({ open }) => open ?
     :
     keyframes`
         from { 
-            margin-top: 10%;
+            /*margin-top: 10%;*/
             opacity: 1;
             transform: scale(1,1); 
         }
         to { 
-            margin-top: 50%;
+            /*margin-top: 50%;*/
             opacity: 0;
             transform: scale(0.5,0); 
         }
@@ -88,6 +88,7 @@ export const dynHeaderCss = ({ theme }) => css`
 
 export const dynTitleCss = ({ theme }) => css`
     font-weight: bold;
+    font-size: 24px;
     margin: 0px;
     margin-right: ${theme.modal.padding};
     padding-bottom: 0px;

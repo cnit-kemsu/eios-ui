@@ -1,9 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
 
-
-
-
 export default function useSelect(initValue, additionalOnChange) {
 
     const [value, setValue] = useState(initValue)
@@ -35,9 +32,9 @@ export default function useSelect(initValue, additionalOnChange) {
         }
     }, [ref.current])
 
-    return {
+    return [{
         open, onClick,
         onChange, value,
         ref
-    }
+    }, setValue]
 }

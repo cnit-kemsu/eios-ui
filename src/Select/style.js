@@ -34,6 +34,7 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
 `
 
 export const dynSelectCss = ({ theme, disabled, borderless, flat }) => css`    
+    min-width: 100%;
     position: relative;
     padding: 2px;
     overflow: hidden;

@@ -9,5 +9,5 @@ export default function useList(initValue, additionalOnChange) {
         additionalOnChange && additionalOnChange(val, content)
     }, [additionalOnChange])
 
-    return { onChange, value }
+    return [{ onChange, value }, setValue]
 }

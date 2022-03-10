@@ -12,7 +12,7 @@ const transformedSamples = samples.map(sample => ({ value: sample.title || sampl
 function App() {
 
 
-    const select = useSelect(localStorage.getItem('sampleName') || '')
+    const [select] = useSelect(localStorage.getItem('sampleName') || '')
 
     useEffect(() => {
         localStorage.setItem('sampleName', select.value)
@@ -27,7 +27,7 @@ function App() {
         }
     }
 
-    const InteractiveDoc = useMemo(() => sample && typeof sample !== 'string' && createInteractiveDoc(sample), [select.value])
+    const InteractiveDoc = useMemo(() => sample && typeof sample !== 'string' ? createInteractiveDoc(sample) : null, [select.value])
 
     return (
         <>
@@ -40,7 +40,7 @@ function App() {
             <main>
                 {
                     sample ?
-                        <InteractiveDoc />
+                        InteractiveDoc && <InteractiveDoc />
                         :
                         <Message>Choose sample from the drop-down list above.</Message>
                 }

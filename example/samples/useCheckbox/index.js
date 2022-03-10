@@ -4,7 +4,7 @@ import { useCheckbox, Checkbox } from '../../../src/index'
 
 function Example() {
 
-    const checkbox = useCheckbox(false)
+    const [checkbox] = useCheckbox(false)
 
     return (
         <Checkbox {...checkbox}>i'am checkbox</Checkbox>
@@ -13,7 +13,7 @@ function Example() {
 
 const code = `function Example() {
 
-    const checkbox = useCheckbox(false)
+    const [checkbox] = useCheckbox(false)
 
     return (
         <Checkbox {...checkbox}>i'am checkbox</Checkbox>

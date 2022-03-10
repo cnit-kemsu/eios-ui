@@ -9,7 +9,7 @@ const tabContentMap = {
 
 function Example() {
 
-    const tabs = useTabs('tab1')
+    const [tabs] = useTabs('tab1')
 
     return (
         <>
@@ -33,7 +33,7 @@ const code = `const tabContentMap = {
 
 function Example() {
 
-    const tabs = useTabs('tab1')
+    const [tabs] = useTabs('tab1')
 
     return (
         <>
