@@ -28,7 +28,7 @@ const Label = ({ children }) => <div style={{ marginRight: '8px' }}>{children}</
 export default [
 
     {
-        groupName: 'bool props',
+        groupName: 'bool',
         propTypes: propTypes([PropTypes.bool]),
 
         Generator(propName, initValue, info) {
@@ -38,14 +38,14 @@ export default [
             this.createView = () => () => <Tooltip text={info}><Checkbox {...cb}>{propName}</Checkbox></Tooltip>
 
             this.getValue = () => {
-                cb = useCheckbox(initValue)
+                [cb] = useCheckbox(initValue)
                 return cb.checked
             }
         }
     },
 
     {
-        groupName: 'function props',
+        groupName: 'function',
         propTypes: propTypes([PropTypes.func]),
 
         Generator(propName, initValue) {
@@ -55,14 +55,14 @@ export default [
             this.createView = () => () => <Checkbox {...cb}>{propName}</Checkbox>
 
             this.getValue = () => {
-                cb = useCheckbox(true)
+                [cb] = useCheckbox(true)
                 return cb.checked ? initValue : undefined
             }
         }
     },
 
     {
-        groupName: 'string props',
+        groupName: 'string',
         propTypes: propTypes([PropTypes.string]),
 
         Generator(propName, initValue) {
@@ -72,7 +72,7 @@ export default [
             this.createView = () => () => <InputRow><Label style={{ marginRight: '8px' }}>{propName}:</Label><TextField placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                ti = useTextField(initValue)
+                [ti] = useTextField(initValue)
                 return ti.value
             }
 
@@ -81,7 +81,7 @@ export default [
     },
 
     {
-        groupName: 'number props',
+        groupName: 'number',
         propTypes: propTypes([PropTypes.number]),
 
         Generator(propName, initValue) {
@@ -91,7 +91,7 @@ export default [
             this.createView = () => () => <InputRow> <Label>{propName}:</Label> <TextField type="number" placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                ti = useTextField(initValue)
+                [ti] = useTextField(initValue)
                 return +ti.value
             }
 
@@ -100,7 +100,7 @@ export default [
     },
 
     {
-        groupName: 'string/number props',
+        groupName: 'string/number',
         propTypes: propTypes([stringOrNumberType]),
 
         Generator(propName, initValue) {
@@ -110,7 +110,7 @@ export default [
             this.createView = () => () => <InputRow><Label>{propName}:</Label><TextField placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                ti = useTextField(initValue)
+                [ti] = useTextField(initValue)
                 return ti.value === '' ? undefined : isNaN(+ti.value) ? ti.value : +ti.value
             }
 
@@ -119,7 +119,7 @@ export default [
     },
 
     {
-        groupName: 'object props',
+        groupName: 'object',
         propTypes: propTypes([PropTypes.object]),
 
         Generator(propName, initValue) {
@@ -130,7 +130,7 @@ export default [
 
             this.getValue = () => {
 
-                ti = useTextField(JSON.stringify(initValue, null, '\t'))
+                [ti] = useTextField(JSON.stringify(initValue, null, '\t'))
                 let value
                 try { value = JSON.parse(ti.value) } catch { }
 
@@ -141,7 +141,7 @@ export default [
     },
 
     {
-        groupName: 'list items props',
+        groupName: 'list items',
         propTypes: propTypes([listItemsType]),
 
         Generator(propName, initValue) {
@@ -152,7 +152,7 @@ export default [
 
             this.getValue = () => {
 
-                ti = useTextField(JSON.stringify(initValue, null, '\t'))
+                [ti] = useTextField(JSON.stringify(initValue, null, '\t'))
                 let value
                 try { value = JSON.parse(ti.value) } catch{ }
 

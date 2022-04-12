@@ -6,7 +6,7 @@ const lightenValue = 8
 
 
 export const defaultTheme = {
-    borderColor: '#dce3ec',
+    borderColor: '#abb7c7',
     transitionDuration: '0.1s',
     disabledOpacity: '0.5',
     disableRipple: false,
@@ -66,9 +66,9 @@ export const defaultTheme = {
     },
     checkbox: {
         css: {
-            padding: '8px'
+            padding: '0px'
         },
-        uncheckedColor: '#b4bbc3'
+        uncheckedColor: '#abb7c7'
     },
     list: {
         selectedItemBgColorStart: tc('#f2f7fd').darken(darkenValue).toString(),
@@ -103,10 +103,10 @@ export const defaultTheme = {
     },
     select: {
         selectedOptionBg: '#e8f0fb',
-        borderColor: '#8a8a8a'
+        borderColor: '#abb7c7'
     },
     table: {
-        borderColor: '#b8bec5',
+        borderColor: "#abb7c7", //'#b8bec5',
         headerColBg: '#d2dce6',
         bodyColBg: 'white',
         footerColBg: 'white',
@@ -118,7 +118,7 @@ export const defaultTheme = {
     pane: {
         titleBg: '#d2dce6',
         padding: '12px',
-        borderColor: '#e6e6e6'
+        borderColor: "#abb7c7", //'#e6e6e6'
     },
     tooltip: {
         bg: '#575d6d',

@@ -31,7 +31,7 @@ export default createUIComponent(propMetadata, function Checkbox({ name, css, co
                         height: '200%',
                         left: '-50%',
                         top: '-50%',
-                        borderRadius: '100%'
+                        borderRadius: '100%',                        
                     }}
                     color={colorStyles[colorStyle].ripple}
                 />

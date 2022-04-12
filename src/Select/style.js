@@ -3,6 +3,8 @@ import { css } from '@emotion/react'
 export const containerCss = css`
     display: inline-block;
     position: relative;  
+    background: white;
+    height: 32px;
 `
 
 export const dynOptionCss = ({ theme }) => css`
@@ -24,7 +26,8 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
     min-width: 100%;
     position: absolute;
     white-space: nowrap;  
-    ${borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor}`};
+    ${/*borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor}`*/''};
+    ${flat ? borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor};` : 'border: none;'}
     border-top: none;
     transform: scaleY(0);
     opacity: 0;    
@@ -35,12 +38,14 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
 
 export const dynSelectCss = ({ theme, disabled, borderless, flat }) => css`    
     min-width: 100%;
+    height: 100%;
     position: relative;
     padding: 2px;
     overflow: hidden;
     display: inline-flex;
     align-items: center;    
-    ${borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`};
+    ${/*borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`*/''};
+    ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}
     outline: none;
     transition-property: border;    
     padding-right: 0px;

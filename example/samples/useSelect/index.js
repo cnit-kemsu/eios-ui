@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelect, Select } from '../../../src/index'
 
-const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
+const items = ['Item 1', 'Item 2', 'Item 3 Long', 'Item 4']
 
 function Example() {
 
@@ -9,13 +9,13 @@ function Example() {
 
     return (
         <>
-            <Select valueFromContent items={items} {...select} />
+            <Select fullWidth valueFromContent items={items} {...select} />
             <div style={{ marginTop: '8px' }}>Selected Item: {select.value}</div>
         </>
     )
 }
 
-const code = `const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
+const code = `const items = ['Item 1', 'Item 2', 'Item 3 Long', 'Item 4']
 
 function Example() {
 

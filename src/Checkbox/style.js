@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 
+
 export const rootCss = css`
     position: relative; 
     cursor: pointer;  
@@ -18,7 +19,8 @@ export const dynIconCss = ({ checked, disabled, theme, colorStyle }) => {
 
     return css`
         color: ${color};
-        opacity: ${disabled ? theme.disabledOpacity : '1'};        
+        opacity: ${disabled ? theme.disabledOpacity : '1'};
+        margin: -2px;
     `
 }
 

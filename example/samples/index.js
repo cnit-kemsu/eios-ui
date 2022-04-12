@@ -21,7 +21,7 @@ import useModal from './useModal'
 import useMenuButton from './useMenuButton'
 
 export default [
-    '-- Components --',
+    '-- Компоненты --',
     ...button,
     ...checkbox,
     ...list,
@@ -33,7 +33,7 @@ export default [
     ...pane,
     ...tabs,    
     ...tooltip,
-    '-- Hooks --',
+    '-- Хуки --',
     ...useTextField,
     ...useTabs,
     ...useList,

@@ -43,12 +43,11 @@ export default function createInteractiveDoc({ title, description, ...props }) {
 
     return function InteractiveDoc() {
 
-        const handleEffect = useCallback(() => {
-            hljs.highlightBlock(document.querySelector('code'))
-        })
         const handleCopyBtnClick = useCallback(() => copyToClipboard(code))
 
-        useEffect(handleEffect)
+        useEffect(() => {
+            hljs.highlightBlock(document.querySelector('code'))
+        })
 
         const { code, result } = interDocGen.generate()        
         
@@ -63,7 +62,7 @@ export default function createInteractiveDoc({ title, description, ...props }) {
                     <>
 
                         <div style={{ zIndex: 1000000, background: 'rgb(245, 245, 245)', padding: '8px 16px' }}>
-                            <h3>Interactive props</h3>
+                            <h3>Интерактивные свойства</h3>
                             {
                                 groupPropViewEntries.map(([groupName, propViews]) => (
                                     <div key={groupName}>
@@ -78,18 +77,18 @@ export default function createInteractiveDoc({ title, description, ...props }) {
                         <hr />
                     </>
                 )}
-                <h3>View</h3>
+                <h3>Вывод</h3>
                 <ErrorBoundary>
                     <div>
                         {result}
                     </div>
                 </ErrorBoundary>
                 <hr />
-                <h3>Code</h3>
+                <h3>Код</h3>
                 <pre><code className="html">{code}</code></pre>
                 <Button style={{ padding: '8px' }} onClick={handleCopyBtnClick}>
                     <i style={{ fontSize: '16px' }} className='material-icons'>file_copy</i>
-                    Copy Code to Clipboard
+                    Скопировать код
                 </Button>
             </>
         )

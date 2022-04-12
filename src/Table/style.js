@@ -11,7 +11,7 @@ export const dynTableCss = ({ theme, borderless, flat, selectableRows, selectabl
         ${borderless ? 'border: none' : `border: 1px solid ${theme.table.borderColor}`};        
         padding: 15px;
 
-        ${/*!flat && !borderless ? css`
+        ${!flat && !borderless ? css`
             
             &:last-of-type {
                 border-right: none;
@@ -20,10 +20,10 @@ export const dynTableCss = ({ theme, borderless, flat, selectableRows, selectabl
             &:first-of-type {
                 border-left: none;
             }      
-        ` : */''}
+        ` : ''}
     }
 
-    ${/*!flat && !borderless ? 
+    ${!flat && !borderless ? 
     css`
         tr:last-of-type {
             td, th {
@@ -36,7 +36,7 @@ export const dynTableCss = ({ theme, borderless, flat, selectableRows, selectabl
                 border-top: none;
             }
         }
-    ` : */''}
+    ` : ''}
 
     thead td{
         background: ${theme.table.headerColBg};

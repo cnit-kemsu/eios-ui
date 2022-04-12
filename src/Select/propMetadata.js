@@ -18,6 +18,7 @@ export default {
     },
     valueFromContent: { type: PropTypes.bool },
     disabled: { type: PropTypes.bool },
+    fullWidth: { type: PropTypes.bool },
     items: { type: listItemsType, def: [] },
     onChange: { type: PropTypes.func },
     onClick: { type: PropTypes.func }

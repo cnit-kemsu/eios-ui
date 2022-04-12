@@ -31,9 +31,9 @@ function App() {
 
     return (
         <>
-            <h1>Interactive Samples</h1>
+            <h1>Интерактивная документация</h1>
 
-            <span style={{ marginRight: '8px' }}>Samples:</span><Select size={15} borderless items={transformedSamples} {...select} />
+            <span style={{ marginRight: '8px' }}>Примеры:</span><Select size={15} borderless items={transformedSamples} {...select} />
 
             <hr />
 
@@ -42,7 +42,7 @@ function App() {
                     sample ?
                         InteractiveDoc && <InteractiveDoc />
                         :
-                        <Message>Choose sample from the drop-down list above.</Message>
+                        <Message>Выберите пример из выпадающего списка выше.</Message>
                 }
             </main>
         </>

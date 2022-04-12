@@ -5,7 +5,7 @@ const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
 
 function Example() {
 
-    const list = useList('Item 1')
+    const [list] = useList('Item 1')
 
     return (
         <>
@@ -19,7 +19,7 @@ const code = `const items = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
 
 function Example() {
 
-    const list = useList('item1')
+    const [list] = useList('item1')
 
     <>
         <List valueFromContent items={items} {...list} />

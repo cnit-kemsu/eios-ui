@@ -18,16 +18,30 @@ import propMetadata from './propMetadata'
 export default createUIComponent(propMetadata, function Select({
     name, open, onClick, selectStyle, onChange, valueFromContent,
     disabled, items, value, size, itemStyle, placeholder, css,
-    borderless, flat, ...props
+    borderless, flat, fullWidth, ...props
 }, ref) {
 
     const theme = useTheme()
     const item = items.find((item, index) => getValue(valueFromContent, item, index) === value) || placeholder || ""
 
+    const selectRef = React.useRef()
+    const listRef = React.useRef()
+
+    React.useLayoutEffect(() => {
+        
+        if(fullWidth) {
+            selectRef.current.style.width = `calc(${window.getComputedStyle(listRef.current).width} + 18px)`
+        }else {
+            selectRef.current.style.width = ""
+        }
+
+    }, [fullWidth])
+
     return (
         <>
             <div ref={ref} {...props} css={[containerCss, ...toArray(css)]}>
                 <div
+                    ref={selectRef}
                     onClick={onClick}
                     style={selectStyle}
                     css={[
@@ -41,6 +55,7 @@ export default createUIComponent(propMetadata, function Select({
                 </div>
 
                 <div
+                    ref={listRef}
                     css={[itemStyle, dynOptionsCss({ theme, borderless, flat }), open && displayedSelectOptionsCss]}
                     style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined,  }}
                 >
