@@ -28,10 +28,10 @@ export default createUIComponent(propMetadata, function Select({
     const listRef = React.useRef()
 
     React.useLayoutEffect(() => {
-        
-        if(fullWidth) {
-            selectRef.current.style.width = `calc(${window.getComputedStyle(listRef.current).width} + 18px)`
-        }else {
+
+        if (fullWidth) {
+            selectRef.current.style.width = `calc(${window.getComputedStyle(listRef.current).width} + 32px)`
+        } else {
             selectRef.current.style.width = ""
         }
 
@@ -46,7 +46,7 @@ export default createUIComponent(propMetadata, function Select({
                     style={selectStyle}
                     css={[
                         dynSelectCss({ theme, borderless, flat, disabled }),
-                        open && dynOpenedSelectCss({ theme })
+                        //open && dynOpenedSelectCss({ theme })
                     ]}
                 >
                     <Ripple color='rgba(0,0,0,0.2)' />
@@ -57,7 +57,7 @@ export default createUIComponent(propMetadata, function Select({
                 <div
                     ref={listRef}
                     css={[itemStyle, dynOptionsCss({ theme, borderless, flat }), open && displayedSelectOptionsCss]}
-                    style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined,  }}
+                    style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined }}
                 >
                     {
                         items.map((item, index) => (

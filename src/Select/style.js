@@ -40,7 +40,7 @@ export const dynSelectCss = ({ theme, disabled, borderless, flat }) => css`
     min-width: 100%;
     height: 100%;
     position: relative;
-    padding: 2px;
+    padding: 1em;
     overflow: hidden;
     display: inline-flex;
     align-items: center;    
@@ -71,6 +71,6 @@ export const displayedSelectOptionsCss = css`
 `
 
 export const dynOpenedSelectCss = ({ theme }) => css`
-    padding-bottom: 2px;
-    border-bottom: 1px solid ${theme.select.borderColor};
+    //padding-bottom: 2px;
+    //border-bottom: 1px solid ${theme.select.borderColor};
 `
