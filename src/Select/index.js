@@ -28,14 +28,22 @@ export default createUIComponent(propMetadata, function Select({
     const listRef = React.useRef()
 
     React.useLayoutEffect(() => {
-
+        
         if (fullWidth) {
-            selectRef.current.style.width = `calc(${window.getComputedStyle(listRef.current).width} + 32px)`
-        } else {
-            selectRef.current.style.width = ""
-        }
+            const listStyle = window.getComputedStyle(listRef.current)
+            selectRef.current.style.width = `calc(${listStyle.width} + 32px)`
+        }      
 
     }, [fullWidth])
+
+    React.useLayoutEffect(() => { 
+
+        if (typeof size === 'number' && size > 0 && listRef.current.children.length > 0) {
+            const itemHeight = 32//listRef.current.children[0].clientHeight
+            listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size})`
+        }
+
+    }, [items, size])
 
     return (
         <>
@@ -45,7 +53,7 @@ export default createUIComponent(propMetadata, function Select({
                     onClick={onClick}
                     style={selectStyle}
                     css={[
-                        dynSelectCss({ theme, borderless, flat, disabled }),
+                        dynSelectCss({ theme, borderless, flat, disabled, open }),
                         //open && dynOpenedSelectCss({ theme })
                     ]}
                 >
@@ -57,7 +65,7 @@ export default createUIComponent(propMetadata, function Select({
                 <div
                     ref={listRef}
                     css={[itemStyle, dynOptionsCss({ theme, borderless, flat }), open && displayedSelectOptionsCss]}
-                    style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined }}
+                    //style={{ maxHeight: size ? `calc(${size}em + ${size} * 12px)` : undefined }}
                 >
                     {
                         items.map((item, index) => (

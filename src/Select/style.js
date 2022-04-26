@@ -11,6 +11,7 @@ export const dynOptionCss = ({ theme }) => css`
     padding: 4px;
     position: relative;
     overflow: hidden;
+    height: 32px;
     
     cursor: pointer;
 
@@ -28,7 +29,7 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
     white-space: nowrap;  
     ${/*borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor}`*/''};
     ${flat ? borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor};` : 'border: none;'}
-    border-top: none;
+    /*border-top: none;*/
     transform: scaleY(0);
     opacity: 0;    
     transform-origin: top;
@@ -36,7 +37,7 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
     ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4)'};
 `
 
-export const dynSelectCss = ({ theme, disabled, borderless, flat }) => css`    
+export const dynSelectCss = ({ theme, disabled, borderless, flat, open }) => css`    
     min-width: 100%;
     height: 100%;
     position: relative;
@@ -46,6 +47,7 @@ export const dynSelectCss = ({ theme, disabled, borderless, flat }) => css`
     align-items: center;    
     ${/*borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`*/''};
     ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}
+    ${open ? 'border-bottom: none; padding-bottom: 12px;' : ''}
     outline: none;
     transition-property: border;    
     padding-right: 0px;

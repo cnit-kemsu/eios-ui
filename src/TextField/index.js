@@ -7,17 +7,17 @@ import { useTheme } from '../theme'
 import { toArray, createUIComponent } from '../utils'
 
 
-export default createUIComponent(propMetadata, function TextField({ colorStyle, borderless, flat, filled, value, css, ...props }, ref) {
+export default createUIComponent(propMetadata, function TextField({ colorStyle, borderless, flat, filled, value, css, multiline, ...props }, ref) {
 
     const theme = useTheme()
 
-    return (
-        <input
-            ref={ref}
-            value={!value && value !== 0 && value !== "" ? "" : value}
-            css={[rootCss, dynRootCss({ filled, theme, flat, borderless, colorStyle }), ...toArray(css)]}
-            {...props}
-        />
-    )
+    const finalProps = {
+        ref,
+        value: !value && value !== 0 && value !== "" ? "" : value,
+        css: [rootCss, dynRootCss({ theme, filled, flat, borderless, colorStyle }), ...toArray(css)],
+        ...props
+    }
+
+    return multiline ? (<textarea {...finalProps} />) : (<input {...finalProps} />)
 })
 

@@ -113,7 +113,7 @@ export const defaultTheme = {
         hoverColor: '#ececf5'
     },
     textField: {
-
+        height: "32px"
     },
     pane: {
         titleBg: '#d2dce6',

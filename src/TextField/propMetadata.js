@@ -18,6 +18,7 @@ export default {
     disabled: { type: PropTypes.bool },
     borderless: { type: PropTypes.bool },
     flat: { type: PropTypes.bool },
+    multiline: { type: PropTypes.bool },
     step: { type: PropTypes.number },
     min: { type: PropTypes.number },
     max: { type: PropTypes.number },
