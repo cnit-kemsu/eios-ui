@@ -12,7 +12,7 @@ import { toArray, createUIComponent } from '../utils'
 export default createUIComponent(propMetadata, function Button({
     elementType, disabled, flat, stickOnHover,
     colorStyle, transparent, fillable, borderless,
-    children, css, ...props
+    children, css,  ...props
 }, ref) {
 
     const theme = useTheme()

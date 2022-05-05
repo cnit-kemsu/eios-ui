@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 
 export const dynRootCss = ({ theme, flat, borderless }) => css`
     ${borderless ? 'border: none' : `border: 1px solid ${theme.pane.borderColor}`};
-    ${flat ? 'box-shadow: none' : 'box-shadow: 0px 2px 4px rgba(0,0,0,0.4)'};
+    ${flat ? 'box-shadow: none' : theme.boxShadow + ';'};
     display: flex;
     flex-direction: column;
 `

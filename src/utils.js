@@ -101,11 +101,11 @@ export function createUIComponent(metadata, ReactComponent, notForwardRef) {
 
 }
 
-export function getValue(valueFromContent, item, index) {
+export function getValue(valueFromContent, item, index, valueProp = 'value', contentProp = 'content') {
 
-    if (valueFromContent) return (item.content || item || "").toString()
+    if (valueFromContent) return (item[contentProp] || item || "").toString()
 
-    return item.value === undefined ? index : item.value
+    return item[valueProp] === undefined ? index : item[valueProp]
 }
 
 export function getPosFor(targetElement, tooltipElement, position) {

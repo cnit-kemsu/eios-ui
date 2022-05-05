@@ -12,7 +12,7 @@ import tabs from './tabs'
 import tooltip from './tooltip'
 
 // hooks
-import useTextField from './useTextField'
+import useInputField from './useInputField'
 import useTabs from './useTabs'
 import useList from './useList'
 import useSelect from './useSelect'
@@ -34,7 +34,7 @@ export default [
     ...tabs,    
     ...tooltip,
     '-- Хуки --',
-    ...useTextField,
+    ...useInputField,
     ...useTabs,
     ...useList,
     ...useSelect,

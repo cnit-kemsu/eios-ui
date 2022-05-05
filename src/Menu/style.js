@@ -9,7 +9,7 @@ export const dynMenuCss = ({ theme, flat, borderless, x, y }) => css`
     z-index: 1000000;
     left: ${x}px;
     top: ${y}px;
-    ${flat ? '' : 'box-shadow: 0px 2px 4px rgba(0,0,0,0.5);'}
+    ${flat ? '' : theme.boxShadow + ";"}
     opacity: 0;
     transform: scaleY(0);
     transform-origin: top;

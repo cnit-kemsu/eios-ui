@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { listItemsType, stringOrNumberType } from '../prop-types'
 
 export default {
-    placeholder: { type: PropTypes.string },
+    placeholder: { type: PropTypes.string, def: "" },
     size: { type: PropTypes.number },
     borderless: { type: PropTypes.bool, def: false },
     flat: { type: PropTypes.bool },
@@ -21,5 +21,11 @@ export default {
     fullWidth: { type: PropTypes.bool },
     items: { type: listItemsType, def: [] },
     onChange: { type: PropTypes.func },
-    onClick: { type: PropTypes.func }
+    onClick: { type: PropTypes.func },
+    valueProp: { type: PropTypes.string, def: "value" },
+    contentProp: { type: PropTypes.string, def: "content" },
+    selectableProp: { type: PropTypes.string, def: "selectable" },
+    getValue: { type: PropTypes.func, def: (item, valueProp, itemIndex) => item[valueProp] },
+    getContent: { type: PropTypes.func, def: (item, contentProp, itemIndex) => item[contentProp] },
+    getSelectable: { type: PropTypes.func, def: (item, selectableProp, itemIndex) => item[selectableProp] || typeof item[selectableProp] === 'undefined' },
 }

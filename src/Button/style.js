@@ -13,7 +13,7 @@ export const buttonCss = css`
 `
 
 export const dynButtonCss = ({
-    theme, colorStyle, flat, stickOnHover, elementType,
+    theme, colorStyle, flat, stickOnHover,
     transparent, fillable, borderless, disabled
 }) => {
 

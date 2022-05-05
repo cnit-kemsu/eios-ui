@@ -1,18 +1,19 @@
 import { css } from '@emotion/react'
 
-export const containerCss = css`
+export const dynContainerCss = ({ theme }) => css`
     display: inline-block;
     position: relative;  
     background: white;
-    height: 32px;
+    height: ${theme.select.height};
 `
 
 export const dynOptionCss = ({ theme }) => css`
     padding: 4px;
     position: relative;
     overflow: hidden;
-    height: 32px;
-    
+    height: ${theme.select.height};
+    display: flex;
+    align-items: center;
     cursor: pointer;
 
     &:hover, &:active  {        
@@ -34,7 +35,8 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
     opacity: 0;    
     transform-origin: top;
     transition: transform ${theme.transitionDuration}, opacity ${theme.transitionDuration};
-    ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4)'};
+    ${flat ? '' : theme.boxShadow + ";"};
+   
 `
 
 export const dynSelectCss = ({ theme, disabled, borderless, flat, open }) => css`    
@@ -70,9 +72,4 @@ export const dynSelectCss = ({ theme, disabled, borderless, flat, open }) => css
 export const displayedSelectOptionsCss = css`       
     transform: scaleY(1);
     opacity: 1;
-`
-
-export const dynOpenedSelectCss = ({ theme }) => css`
-    //padding-bottom: 2px;
-    //border-bottom: 1px solid ${theme.select.borderColor};
 `

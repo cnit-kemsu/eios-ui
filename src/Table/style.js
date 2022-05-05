@@ -5,7 +5,7 @@ export const dynTableCss = ({ theme, borderless, flat, selectableRows, selectabl
     width: 100%;
     border-collapse: collapse; 
 
-    ${flat ? '' : 'box-shadow: 0px 2px 4px rgba(0,0,0,0.4);'}
+    ${flat ? '' : theme.boxShadow + ';'}
 
     td, th {
         ${borderless ? 'border: none' : `border: 1px solid ${theme.table.borderColor}`};        

@@ -1,14 +1,14 @@
 import React from 'react'
-import { useTextField, TextField } from '../../../src/index'
+import { useInputField, InputField } from '../../../src/index'
 
 
 function Example() {
 
-    const ti = useTextField(42)
+    const ti = useInputField(42)
 
     return (
         <>
-            <TextField {...ti} />
+            <InputField {...ti} />
             <div style={{ marginTop: '8px' }}>echo: {ti.value}</div>
         </>
     )
@@ -16,11 +16,11 @@ function Example() {
 
 const code = `function Example() {
 
-    const ti = useTextField(42)
+    const ti = useInputField(42)
 
     return (
         <>
-            <TextField {...ti} />
+            <InputField {...ti} />
             <div style={{ marginTop: '8px' }}>echo: {ti.value}</div>
         </>
     )
@@ -29,7 +29,7 @@ const code = `function Example() {
 
 export default [
     {
-        title: 'useTextField',
+        title: 'useInputField',
         target() {
             return <Example />
         },

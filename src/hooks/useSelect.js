@@ -6,7 +6,7 @@ export default function useSelect(initValue, additionalOnChange) {
     const [value, setValue] = useState(initValue)
     const [open, setOpen] = useState(false)
 
-    const onChange = useCallback((v, c) => { setValue(v); setOpen(false); additionalOnChange && additionalOnChange(v, c) }, [additionalOnChange])
+    const onChange = useCallback((v, item) => { setValue(v); setOpen(false); additionalOnChange && additionalOnChange(v, item) }, [additionalOnChange])
     const onClick = useCallback(() => setOpen(!open), [open])
     const ref = useRef()
 

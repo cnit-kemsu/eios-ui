@@ -10,6 +10,7 @@ export const defaultTheme = {
     transitionDuration: '0.1s',
     disabledOpacity: '0.5',
     disableRipple: false,
+    boxShadow: 'box-shadow: 0 1px 6px rgba(0,0,0,0.4)',
     colorStyles: {
         dark: {
             origin: '#575d6d',
@@ -61,8 +62,8 @@ export const defaultTheme = {
             position: 'relative',
             overflow: 'hidden'
         },
-        shadow: '0 3px 4px',
-        shadowOnHover: '0 4px 4px'
+        shadow: '0 1px 6px',
+        shadowOnHover: '0 2px 8px'
     },
     checkbox: {
         css: {
@@ -103,7 +104,8 @@ export const defaultTheme = {
     },
     select: {
         selectedOptionBg: '#e8f0fb',
-        borderColor: '#abb7c7'
+        borderColor: '#abb7c7',
+        height: "32px"
     },
     table: {
         borderColor: "#abb7c7", //'#b8bec5',

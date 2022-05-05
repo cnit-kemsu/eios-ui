@@ -58,7 +58,7 @@ export const dynBacklayerCss = ({ theme, open }) => css`
 
 
 export const dynContainerCss = ({ theme, open }) => css`
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4); 
+    box-shadow: ${theme.boxShadow}; 
     display: inline-flex;
     flex-direction: column;  
     position: relative;

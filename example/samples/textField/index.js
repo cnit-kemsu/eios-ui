@@ -1,8 +1,8 @@
-import { TextField } from '../../../src/index'
+import { InputField } from '../../../src/index'
 import reactSample from '../reactSample'
 
 export default [
-    reactSample(TextField, {
+    reactSample(InputField, {
         initPropValues: {
             onChange: e => console.log(e.target.value)
         }

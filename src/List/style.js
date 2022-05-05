@@ -12,7 +12,7 @@ export const dynRootCss = ({ theme, disabled, flat, borderless }) => css`
     ${!borderless ? `border: 1px solid ${theme.borderColor}` : 'border: none'};
     pointer-events: ${disabled ? 'none' : 'auto'};
     opacity: ${disabled ? theme.disabledOpacity : '1'};
-    ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4);'}
+    ${flat ? '' : theme.boxShadow + ";"}
 `
 
 export const itemCss = css`

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import {
     Checkbox, useCheckbox,
-    TextField, useTextField,
+    InputField, useInputField,
     Select, useSelect, Tooltip
 
 } from '../src/index'
@@ -69,10 +69,10 @@ export default [
 
             let ti = null
 
-            this.createView = () => () => <InputRow><Label style={{ marginRight: '8px' }}>{propName}:</Label><TextField placeholder='type value' {...ti} /></InputRow>
+            this.createView = () => () => <InputRow><Label style={{ marginRight: '8px' }}>{propName}:</Label><InputField placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                [ti] = useTextField(initValue)
+                [ti] = useInputField(initValue)
                 return ti.value
             }
 
@@ -88,10 +88,10 @@ export default [
 
             let ti = null
 
-            this.createView = () => () => <InputRow> <Label>{propName}:</Label> <TextField type="number" placeholder='type value' {...ti} /></InputRow>
+            this.createView = () => () => <InputRow> <Label>{propName}:</Label> <InputField type="number" placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                [ti] = useTextField(initValue)
+                [ti] = useInputField(initValue)
                 return +ti.value
             }
 
@@ -107,10 +107,10 @@ export default [
 
             let ti = null
 
-            this.createView = () => () => <InputRow><Label>{propName}:</Label><TextField placeholder='type value' {...ti} /></InputRow>
+            this.createView = () => () => <InputRow><Label>{propName}:</Label><InputField placeholder='type value' {...ti} /></InputRow>
 
             this.getValue = () => {
-                [ti] = useTextField(initValue)
+                [ti] = useInputField(initValue)
                 return ti.value === '' ? undefined : isNaN(+ti.value) ? ti.value : +ti.value
             }
 
@@ -130,7 +130,7 @@ export default [
 
             this.getValue = () => {
 
-                [ti] = useTextField(JSON.stringify(initValue, null, '\t'))
+                [ti] = useInputField(JSON.stringify(initValue, null, '\t'))
                 let value
                 try { value = JSON.parse(ti.value) } catch { }
 
@@ -152,7 +152,7 @@ export default [
 
             this.getValue = () => {
 
-                [ti] = useTextField(JSON.stringify(initValue, null, '\t'))
+                [ti] = useInputField(JSON.stringify(initValue, null, '\t'))
                 let value
                 try { value = JSON.parse(ti.value) } catch{ }
 
