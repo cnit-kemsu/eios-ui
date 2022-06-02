@@ -14,12 +14,15 @@ export default {
     transparent: { type: PropTypes.bool },
     fillable: {
         type: PropTypes.bool,
-        info: "used in conjunction with the property 'transparent=true'"
+        info: "если 'transparent=true', то кнопка будет заливаться при наведении на неё"
     },
     borderless: { type: PropTypes.bool },
     disabled: { type: PropTypes.bool },
     flat: { type: PropTypes.bool },
-    stickOnHover: { type: PropTypes.bool },
+    stickOnHover: { 
+        type: PropTypes.bool,
+        info:  `эффект "прилипания" при наведении на кнопку`
+    },
     onChange: { type: PropTypes.func },
     required: { type: PropTypes.bool },
     value: { type: stringOrNumberType },

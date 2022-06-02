@@ -20,9 +20,10 @@ const nativeSelectStyle = { display: 'none' }
 
 export default createUIComponent(propMetadata, function Select({
     name, open, onClick, selectStyle, onChange,
-    valueProp, contentProp, selectableProp, getContent, getValue, getSelectable,
+    valueProp, contentProp, selectableProp, 
+    getContent, getValue, getSelectable,
     disabled, items, value, size, itemStyle, placeholder, css,
-    borderless, flat, fullWidth, ...props
+    borderless, flat, fullWidth, valueIsIndex, ...props
 }, ref) {
 
     const theme = useTheme()
@@ -60,7 +61,7 @@ export default createUIComponent(propMetadata, function Select({
                     onClick={onClick}
                     style={selectStyle}
                     css={[
-                        dynSelectCss({ theme, borderless, flat, disabled, open })                        
+                        dynSelectCss({ theme, borderless, flat, disabled, open })
                     ]}
                 >
                     <Ripple color='rgba(0,0,0,0.2)' />
@@ -75,13 +76,14 @@ export default createUIComponent(propMetadata, function Select({
                     {
                         items.map((item, index) => {
 
-                            const curValue = getValue(item, valueProp, index)                           
+                            const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
 
                             return (
                                 <div
                                     key={curValue}
                                     css={dynOptionCss({ theme })}
-                                    onClick={onChange && getSelectable(item, selectableProp, index) ? () => onChange(getValue(item, valueProp, index), item) : undefined}
+                                    onClick={onChange && getSelectable(item, selectableProp, index) ?
+                                        (e) => onChange(curValue, item, e) : undefined}
                                 >
                                     {getContent(item, contentProp, index)}
                                 </div>
@@ -93,7 +95,7 @@ export default createUIComponent(propMetadata, function Select({
             <select name={name} readOnly value={value} style={nativeSelectStyle}>
                 {
                     items.map((item, index) => {
-                        const curValue = getValue(item, valueProp, index)
+                        const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
                         return (<option key={curValue} value={curValue} />)
                     })
                 }

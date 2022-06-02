@@ -7,6 +7,12 @@ export const colorStyleType = PropTypes.oneOfType([
     PropTypes.string
 ])
 
+export const colorStyleVariantsNL = ['dark', 'primary', 'secondary']
+export const colorStyleTypeNL = PropTypes.oneOfType([
+    PropTypes.oneOf(colorStyleVariantsNL),
+    PropTypes.string
+])
+
 export const positionVariants = ['top', 'left', 'right', 'bottom']
 export const positionType = PropTypes.oneOf(positionVariants)
 

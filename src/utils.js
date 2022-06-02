@@ -72,8 +72,8 @@ export function createUIComponent(metadata, ReactComponent, notForwardRef) {
 
     if (!notForwardRef) {
         const name = ReactComponent.name
-        ReactComponent = forwardRef(ReactComponent)    
-        ReactComponent.name = name    
+        ReactComponent = forwardRef(ReactComponent)
+        ReactComponent.name = name
         ReactComponent.displayName = name
     }
 
@@ -84,9 +84,9 @@ export function createUIComponent(metadata, ReactComponent, notForwardRef) {
     }
     ReactComponent.defaultProps = {}
     ReactComponent.propInfo = {
-        css: <p>result of <i>css</i> function from <i>@emotion/react</i> lib</p>,
-        style: <p>inline-style added to the root element of the component</p>,
-        className: <p>css-class name added to the root element of the component</p>
+        css: <p>результат функции <i>css</i> из библиотеки <i>@emotion/react</i></p>,
+        style: <p>inline-style добавляемый в корневой элемент компонента</p>,
+        className: <p>css-class добавляемый в корневой элемент компонента</p>
     }
 
     Object.entries(metadata).map(([propName, { type = PropTypes.any, def, info }]) => {
@@ -95,7 +95,7 @@ export function createUIComponent(metadata, ReactComponent, notForwardRef) {
         if (info) ReactComponent.propInfo[propName] = info
     })
 
-    
+
 
     return ReactComponent
 
@@ -108,29 +108,63 @@ export function getValue(valueFromContent, item, index, valueProp = 'value', con
     return item[valueProp] === undefined ? index : item[valueProp]
 }
 
-export function getPosFor(targetElement, tooltipElement, position) {
+export function getPosFor(relativeElement, targetElement, position) {
 
-    const { offsetLeft, offsetTop } = offset(targetElement)
+    const { left: offsetLeft, top: offsetTop } = offset(relativeElement)
 
-    const haflTooltipElementHeight = tooltipElement.clientHeight / 2.0
-    const haflTargetElementHeight = targetElement.clientHeight / 2.0
+    const haflTooltipElementHeight = targetElement.clientHeight / 2.0
+    const haflTargetElementHeight = relativeElement.clientHeight / 2.0
 
     const top = offsetTop - haflTooltipElementHeight + haflTargetElementHeight
 
     switch (position) {
         case 'top': return {
-            top: offsetTop - targetElement.clientHeight - 5
+            top: offsetTop - relativeElement.clientHeight - 5
         }
         case 'bottom': return {
-            top: offsetTop + targetElement.clientHeight + 5
+            top: offsetTop + relativeElement.clientHeight + 5
         }
         case 'left': return {
             top: top,
-            left: offsetLeft - tooltipElement.clientWidth
+            left: offsetLeft - targetElement.clientWidth
         }
         case 'right': return {
             top: top,
-            left: offsetLeft + targetElement.clientWidth + 5
+            left: offsetLeft + relativeElement.clientWidth + 5
         }
     }
+
+}
+
+export function getPosRelative(relativeElement, targetElement, position) {    
+
+    let relativeElBCR = relativeElement.getBoundingClientRect()
+    let targetElBCR = targetElement.getBoundingClientRect()
+
+    relativeElBCR = { left: relativeElBCR.left, right: relativeElBCR.right, top: relativeElBCR.top, width: relativeElBCR.width, height: relativeElBCR.height }
+    targetElBCR = { left: targetElBCR.left, top: targetElBCR.top, width: targetElBCR.width, height: targetElBCR.height }
+
+    relativeElBCR.left += window.scrollX
+    relativeElBCR.right += window.scrollX
+    relativeElBCR.top += window.scrollY
+
+    targetElBCR.left += window.scrollX
+    targetElBCR.top += window.scrollY
+
+    let p = { left: 0, top: 0 }
+
+    if (position === "top" || position === "bottom") {
+        p.left = relativeElBCR.left + relativeElement.clientWidth * 0.5 - targetElement.clientWidth * 0.5;
+        p.top = position === 'top' ? relativeElBCR.top - targetElement.clientHeight : relativeElBCR.bottom;
+    } else {
+        p.left = position === 'left' ? relativeElBCR.left - targetElement.clientWidth : relativeElBCR.right;
+        p.top = relativeElBCR.top + relativeElement.clientHeight * 0.5;
+    }
+
+    return p
+}
+
+export function isPrimitive(arg) {
+    var type = typeof arg;
+    return arg == null || (type != "object" && type != "function");
 }

@@ -18,7 +18,7 @@ export default {
     disabled: { type: PropTypes.bool },
     borderless: { type: PropTypes.bool },
     flat: { type: PropTypes.bool },
-    multiline: { type: PropTypes.bool },
+    multiline: { type: PropTypes.bool, info: "если true, будет использоваться textarea, вместо input" },
     step: { type: PropTypes.number },
     min: { type: PropTypes.number },
     max: { type: PropTypes.number },

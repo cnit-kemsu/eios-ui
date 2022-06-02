@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types'
 
-import { colorStyleType } from '../prop-types'
+import { colorStyleTypeNL } from '../prop-types'
 
 export default {
     children: { type: PropTypes.node },
-    name: {
-        type: PropTypes.string,
-        info: 'form element name'
-    },
+    name: { type: PropTypes.string },
     colorStyle: {
-        type: colorStyleType,
+        type: colorStyleTypeNL,
         def: 'secondary'
     },
     disabled: { type: PropTypes.bool },

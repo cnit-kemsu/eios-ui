@@ -7,25 +7,25 @@ import reactSample from '../reactSample'
 export default [
 
     reactSample(Button, {
-        title: 'Button',
-        description: <>By default, Button represents a wrapper around the native button element.</>,
+        title: 'Button~1',
+        description: <>По умолчанию, кнопка представляет собой обёртку вокруг нативного элемента button.</>,
         propTypes: {
             onClick: PropTypes.func
         },
         initPropValues: {
-            children: 'Push Me!',
-            onClick: () => alert('Good human :)')
+            children: 'Нажми Меня!',
+            onClick: () => alert('Хороший человек :)')
         }
     }),
 
     reactSample(Button, {
-        title: 'Button with anchor as elementType',
-        description: <>Instead of button you can use another type of element, for example anchor.</>,
+        title: 'Button~2',
+        description: <>Вместо нативного элемента button вы можете использовать другой элемент, например элемент "a".</>,
         propTypes: {
             href: PropTypes.string
         },
         dynamicPropValues({ href }) {
-            return { children: `Go to ${href}` }
+            return { children: `Перейти к ${href}` }
         },
         initPropValues: {
             elementType: 'a',
@@ -34,7 +34,7 @@ export default [
     }),
 
     reactSample(Spinner, {
-        title: 'Round Button with spinner',
+        title: 'Button~3',
         target(props) {
             return (
                 <Button borderless disabled transparent style={{ width: '64px', height: '64px', borderRadius: '100%' }}>
