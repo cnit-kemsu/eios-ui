@@ -28,5 +28,5 @@ export const listItemsType = PropTypes.arrayOf(PropTypes.any) /*PropTypes.oneOfT
 export const typeOfMessageVariants = ['info', 'warning', 'error', 'success']
 export const typeOfMessageType = PropTypes.oneOf(typeOfMessageVariants)
 
-export const typeOfTextFieldVariants = ['text', 'password', 'email', 'number', 'date']
-export const typeOfTextFieldType = PropTypes.oneOf(typeOfTextFieldVariants)
+export const typeOfInputFieldVariants = ['text', 'password', 'email', 'number', 'date']
+export const typeOfInputFieldType = PropTypes.oneOf(typeOfInputFieldVariants)

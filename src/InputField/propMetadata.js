@@ -2,14 +2,14 @@ import PropTypes from 'prop-types'
 
 import {
     colorStyleType,
-    typeOfTextFieldType,
+    typeOfInputFieldType,
     stringOrNumberType
 } from '../prop-types'
 
 
 export default {
     colorStyle: { type: colorStyleType, def: 'secondary' },
-    type: { type: typeOfTextFieldType, def: 'text' },
+    type: { type: typeOfInputFieldType, def: 'text' },
     onChange: { type: PropTypes.func },
     required: { type: PropTypes.bool },
     placeholder: { type: PropTypes.string },

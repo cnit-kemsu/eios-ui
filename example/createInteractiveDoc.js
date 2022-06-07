@@ -44,7 +44,9 @@ function defToView(defValue) {
     return "" + defValue
 }
 
-export default function createInteractiveDoc({ title, description, defaultProps, ...props }) {
+export default function createInteractiveDoc({ title, description, defaultProps = {}, ...props }) {    
+
+    console.log(defaultProps, props)
 
     const interDocGen = new InteractiveDocGenerator({ ...interDocGenStaticParams, ...props })
 

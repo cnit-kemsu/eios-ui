@@ -10,7 +10,7 @@ import {
 } from './style'
 import propMetadata from './propMetadata'
 
-import { debounce, toArray, addHandlersTo, createUIComponent, getPosFor, getPosRelative } from '../utils'
+import { debounce, toArray, addHandlersTo, createUIComponent, getPosFor, getOffset } from '../utils'
 import { useTheme } from '../theme'
 
 
@@ -25,7 +25,7 @@ export default createUIComponent(propMetadata, function Tooltip({ children, hide
 
     const showTooltip = useCallback(debounce(target => {
         
-        setOffset(getPosRelative(target, tooltipRef.current, position))
+        setOffset(getOffset(target, tooltipRef.current, position))
         setShow(true)        
 
     }, showDelay * 1000), [position, showDelay])
@@ -34,7 +34,7 @@ export default createUIComponent(propMetadata, function Tooltip({ children, hide
 
         setShow(false)
 
-        let offset = getPosRelative(target, tooltipRef.current, position) ;
+        let offset = getOffset(target, tooltipRef.current, position) ;
         if (offset) setOffset(offset)
 
     }, hideDelay * 1000), [position, hideDelay])

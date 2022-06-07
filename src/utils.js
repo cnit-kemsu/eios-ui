@@ -92,7 +92,23 @@ export function createUIComponent(metadata, ReactComponent, notForwardRef) {
     Object.entries(metadata).map(([propName, { type = PropTypes.any, def, info }]) => {
         ReactComponent.propTypes[propName] = type
         if (def) ReactComponent.defaultProps[propName] = def
+
+        if (!info) {
+            switch (propName) {
+                case 'flat': info = 'если true, убирает эффект тени, делая элемент "плоским"'; break;
+                case 'borderless': info = 'если true, убирает границы'; break;
+                case 'colorStyle': info = 'цветовой стиль'; break;
+                case 'disabled': info = 'если true, элемент перестанет принимать ввод пользователя'; break;
+                case 'name': info = 'имя элемента, располагаемого внутри формы (form)'; break;
+                case 'value': info = 'значение элемента формы'; break;
+                case 'placeholder': info = 'строка, выводимая при пустом value'; break;
+            }
+
+        }
+
         if (info) ReactComponent.propInfo[propName] = info
+
+
     })
 
 
@@ -136,12 +152,12 @@ export function getPosFor(relativeElement, targetElement, position) {
 
 }
 
-export function getPosRelative(relativeElement, targetElement, position) {    
+export function getOffset(relativeElement, targetElement, position, pivot = { x: 0.5, y: 0.5 }) {
 
     let relativeElBCR = relativeElement.getBoundingClientRect()
     let targetElBCR = targetElement.getBoundingClientRect()
 
-    relativeElBCR = { left: relativeElBCR.left, right: relativeElBCR.right, top: relativeElBCR.top, width: relativeElBCR.width, height: relativeElBCR.height }
+    relativeElBCR = { left: relativeElBCR.left, right: relativeElBCR.right, top: relativeElBCR.top, bottom: relativeElBCR.bottom, width: relativeElBCR.width, height: relativeElBCR.height }
     targetElBCR = { left: targetElBCR.left, top: targetElBCR.top, width: targetElBCR.width, height: targetElBCR.height }
 
     relativeElBCR.left += window.scrollX
@@ -154,11 +170,11 @@ export function getPosRelative(relativeElement, targetElement, position) {
     let p = { left: 0, top: 0 }
 
     if (position === "top" || position === "bottom") {
-        p.left = relativeElBCR.left + relativeElement.clientWidth * 0.5 - targetElement.clientWidth * 0.5;
+        p.left = relativeElBCR.left + relativeElement.clientWidth * pivot.x - targetElement.clientWidth * pivot.x;
         p.top = position === 'top' ? relativeElBCR.top - targetElement.clientHeight : relativeElBCR.bottom;
     } else {
         p.left = position === 'left' ? relativeElBCR.left - targetElement.clientWidth : relativeElBCR.right;
-        p.top = relativeElBCR.top + relativeElement.clientHeight * 0.5;
+        p.top = relativeElBCR.top + relativeElement.clientHeight * pivot.y;
     }
 
     return p

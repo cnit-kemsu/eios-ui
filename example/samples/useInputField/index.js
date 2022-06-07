@@ -4,7 +4,7 @@ import { useInputField, InputField } from '../../../src/index'
 
 function Example() {
 
-    const ti = useInputField(42)
+    const [ti] = useInputField(42)
 
     return (
         <>
@@ -16,7 +16,7 @@ function Example() {
 
 const code = `function Example() {
 
-    const ti = useInputField(42)
+    const [ti] = useInputField(42)
 
     return (
         <>

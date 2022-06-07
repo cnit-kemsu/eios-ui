@@ -10,7 +10,8 @@ export default {
     },
     elementType: {
         type: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType]),
-        def: 'button'
+        def: 'button',
+        info: "оборачиваемый элемент"
     },
     transparent: { type: PropTypes.bool },
     fillable: {
@@ -20,5 +21,5 @@ export default {
     borderless: { type: PropTypes.bool },
     disabled: { type: PropTypes.bool },
     flat: { type: PropTypes.bool },
-    stickOnHover: { type: PropTypes.bool, info:  `эффект "прилипания" при наведении на кнопку` }
+    stickOnHover: { type: PropTypes.bool, info:  `если true, появится эффект "прилипания" при наведении на кнопку` }
 }

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 
-import { offset } from '../utils'
+import { getOffset, offset } from '../utils'
 
 const emptyParentMenu = { show: true }
 
@@ -31,7 +31,7 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
 
     const handleButtonClick = useCallback((e) => {
 
-        const { offsetLeft, offsetTop } = offset(buttonRef.current)
+        /*const { offsetLeft, offsetTop } = offset(buttonRef.current)
 
         const { clientWidth: menuWidth, clientHeight: menuHeight } = menuRef.current
         const { clientWidth: buttonWidth, clientHeight: buttonHeight } = buttonRef.current
@@ -50,11 +50,13 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
         } else if (position === 'top') {
             newX = offsetLeft + (buttonWidth - menuWidth) / 2
             newY = offsetTop - menuHeight
-        }
+        }*/
 
-        setOffset({ x: newX, y: newY })
+        let offset = getOffset(buttonRef.current, menuRef.current, position);
+
+        setOffset({ x: offset.left, y: offset.top }/*{ x: newX, y: newY }*/, { x: 0.5, y: 0 })
         setShow(!show)
-    }, [show])
+    }, [show, position])
 
     const handleMenuEnter = useCallback(() => isMenuHovered.current = true, [])
     const handleMenuLeave = useCallback(() => isMenuHovered.current = false, [])

@@ -10,8 +10,8 @@ import {
 
 import {
     colorStyleType, stringOrNumberType,
-    listItemsType, typeOfMessageType, typeOfTextFieldType,
-    colorStyleVariants, positionType, typeOfTextFieldVariants,
+    listItemsType, typeOfMessageType, typeOfInputFieldType,
+    colorStyleVariants, positionType, typeOfInputFieldVariants,
     positionVariants, typeOfMessageVariants, colorStyleTypeNL, colorStyleVariantsNL
 } from '../src/prop-types'
 
@@ -72,7 +72,7 @@ export default [
 
             let ti = null
 
-            this.createView = () => () => <InputField flat placeholder='type value' {...ti} />
+            this.createView = () => () => <InputField flat placeholder='введите значение' {...ti} />
 
             this.getValue = () => {
                 [ti] = useInputField(initValue)
@@ -91,7 +91,9 @@ export default [
 
             let ti = null
 
-            this.createView = () => () =>   <InputField flat type="number" placeholder='type value' {...ti} />
+            if(typeof initValue === 'undefined' || initValue == null) initValue = ""
+
+            this.createView = () => () =>   <InputField flat type="number" placeholder='введите значение' {...ti} />
 
             this.getValue = () => {
                 [ti] = useInputField(initValue)
@@ -110,7 +112,7 @@ export default [
 
             let ti = null
 
-            this.createView = () => () => <InputField flat placeholder='type value' {...ti} />
+            this.createView = () => () => <InputField flat placeholder='введите значение' {...ti} />
 
             this.getValue = () => {
                 [ti] = useInputField(initValue)
@@ -142,7 +144,7 @@ export default [
     },
 
     {
-        groupName: 'list items',
+        groupName: 'listItemsType',
         propTypes: propTypes([listItemsType]),
 
         Generator(propName, initValue, info) {
@@ -163,7 +165,7 @@ export default [
     },
 
     {
-        groupName: 'colorStyle prop',
+        groupName: 'colorStyleType',
         propTypes: propTypes([colorStyleType]),
 
         Generator(propName, initValue, info) {
@@ -183,7 +185,7 @@ export default [
     },
 
     {
-        groupName: 'colorStyle (without light) prop',
+        groupName: 'colorStyleTypeNL',
         propTypes: propTypes([colorStyleTypeNL]),
 
         Generator(propName, initValue, info) {
@@ -203,13 +205,13 @@ export default [
     },
 
     {
-        groupName: 'textField type prop',
-        propTypes: propTypes([typeOfTextFieldType]),
+        groupName: 'typeOfInputFieldType',
+        propTypes: propTypes([typeOfInputFieldType]),
 
         Generator(propName, initValue, info) {
 
             let sel
-            const items = typeOfTextFieldVariants
+            const items = typeOfInputFieldVariants
 
             this.createView = () => () => (
                 <Select flat items={items} {...sel} />
@@ -223,7 +225,7 @@ export default [
     },
 
     {
-        groupName: 'position prop',
+        groupName: 'positionType',
         propTypes: propTypes([positionType]),
 
         Generator(propName, initValue, info) {
@@ -243,7 +245,7 @@ export default [
     },
 
     {
-        groupName: 'message type prop',
+        groupName: 'typeOfMessageType',
         propTypes: propTypes([typeOfMessageType]),
 
         Generator(propName, initValue, info) {
