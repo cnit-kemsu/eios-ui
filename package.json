@@ -12,6 +12,9 @@
     "start": "rollup -c -w --environment RUN_EXAMPLE,NODE_ENV:development",
     "test": "jest"
   },
+  "publishConfig": {
+    "@kemsu:registry":" http://gitlab.kemsu.com/api/v4/projects/3/packages/npm/"
+  },
   "keywords": [],
   "author": {
     "name": "Igor Sotnikov",
@@ -19,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cnit-kemsu/eios-ui"
+    "url": "git+http://gitlab.kemsu.ru/kemsu/eios-ui"
   },
   "license": "MIT",
   "dependencies": {
