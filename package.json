@@ -1,11 +1,12 @@
 {
   "name": "@kemsu/eios-ui",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "EIOS UI React library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "scripts": {
     "lint": "npx eslint ./src",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build",
     "build": "rollup -c --environment NODE_ENV:production",
     "start": "rollup -c -w --environment RUN_EXAMPLE,NODE_ENV:development",
