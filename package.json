@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "publishConfig": {
-    "@kemsu:registry":" http://gitlab.kemsu.com/api/v4/projects/3/packages/npm/"
+    "@kemsu:registry":"http://gitlab.kemsu.ru/api/v4/projects/3/packages/npm/"
   },
   "keywords": [],
   "author": {
