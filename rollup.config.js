@@ -5,11 +5,13 @@ import dev from 'rollup-plugin-dev'
 import replace from '@rollup/plugin-replace'
 import copy from '@guanghechen/rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss'
+import typescript from '@rollup/plugin-typescript';
+import cleaner from 'rollup-plugin-cleaner';
 
 import pkg from './package.json'
 
 const srcConfig = {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: [
         {
             file: pkg.main,
@@ -24,15 +26,16 @@ const srcConfig = {
     ],
     external: Object.keys(pkg.peerDependencies).concat(Object.keys(pkg.dependencies)),
     plugins: [
+        typescript({compilerOptions: {declaration: true, declarationDir: './dist/types'}}),
         babel({
             babelHelpers: 'bundled',
-            exclude: 'node_modules/**',
-            ...pkg.babelOptions
+            exclude: ['node_modules/**', 'src/**/*.stories.js', 'src/**/*.stories.ts'],
         }),
-        resolve({            
+        resolve({
             moduleDirectories: ["node_modules"]
-          }),
-        commonjs()
+        }),
+        commonjs(),
+        cleaner({ targets: ['./dist/'] })
     ]
 }
 
@@ -45,7 +48,7 @@ const exampleConfig = {
     },
     plugins: [
         copy({
-            targets: [{ src: 'example/index.html', dest: 'example/dist' }],
+            targets: [{src: 'example/index.html', dest: 'example/dist'}],
         }),
         babel({
             babelHelpers: 'bundled',

@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "moduleResolution": "Node",
+    "allowJs": false,
+    "checkJs": false,
+    "strict": true,
+    "sourceMap": true,
+    "declaration": false,
+    "emitDeclarationOnly": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false,
+    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "disableSizeLimit": true,
+    "baseUrl": "./"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".vs",
+    ".idea",
+    "src/**/*.js"
+  ]
+}
