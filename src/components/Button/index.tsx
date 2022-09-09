@@ -7,10 +7,10 @@ import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 
 export default function Button<ElType extends React.ElementType = ButtonProps["elementType"]>({
-                                   elementType = "button", disabled = false, flat = false, stickOnHover = false,
+                                   elementType, disabled = false, flat = false, stickOnHover = false,
                                    colorStyle = "dark", transparent = false, fillable = false, borderless = false,
                                    children, css, ...props
-                               }: ButtonProps, ref: React.Ref<HTMLInputElement> | undefined) {
+                               }: ButtonProps<ElType>, ref: React.Ref<HTMLInputElement> | undefined) {
 
     const theme = useTheme()
     const {colorStyles, button} = theme
