@@ -1,8 +1,7 @@
-import React from "react";
+import React, {ComponentPropsWithoutRef, ComponentPropsWithRef} from "react";
 import {SerializedStyles} from '@emotion/react'
 
-export type ButtonProps<ElType extends React.ElementType = "button"> = React.ComponentPropsWithoutRef<ElType> & {
-    elementType: ElType;
+type BaseButtonProps = {
     disabled?: boolean;
     flat?: boolean;
     stickOnHover?: boolean;
@@ -11,5 +10,10 @@ export type ButtonProps<ElType extends React.ElementType = "button"> = React.Com
     fillable?: boolean;
     borderless?: boolean;
     children?: React.ReactNode;
-    css?: SerializedStyles | ((...args: any) => SerializedStyles) | [SerializedStyles | ((params: any) => SerializedStyles)];
-};
+    css?: SerializedStyles | ((...args: any) => SerializedStyles) | [SerializedStyles | ((...args: any) => SerializedStyles)];
+}
+
+export type ButtonProps<C extends React.ElementType> =
+    BaseButtonProps
+    & { elementType?: C; }
+    & Omit<ComponentPropsWithoutRef<C>, keyof BaseButtonProps | 'elementType'>;
