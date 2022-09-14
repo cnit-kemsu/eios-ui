@@ -1,7 +1,7 @@
 export { ThemeProvider, defaultTheme, useTheme } from './theme'
 
 export { default as Ripple } from './components/Ripple'
-export { default as Button } from './components/Button'
+export { Button } from './components/Button'
 export { default as Checkbox } from './components/Checkbox'
 export { default as List } from './components/List'
 export { default as Select } from './components/Select'

@@ -5,7 +5,7 @@ import Ripple from '../Ripple'
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 
-export default function Button<C extends React.ElementType = 'button'>({
+export function Button<C extends React.ElementType = 'button'>({
                                                                            elementType,
                                                                            disabled = false,
                                                                            flat = false,
