@@ -11,7 +11,7 @@ import {
 import propMetadata from './propMetadata'
 
 import { useTheme } from '../../theme'
-import Button from '../Button'
+import {Button} from '../Button'
 import { toArray, createUIComponent } from '../../utils'
 
 

@@ -1,21 +1,20 @@
 import {Button} from "../components/Button";
-import {ComponentMeta, ComponentStory} from "@storybook/react";
+import {ComponentMeta} from "@storybook/react";
+import {createStoryTemplate} from "./createStoryTemplate";
 
 export default {
     title: "Компоненты/Button",
     component: Button
 } as ComponentMeta<typeof Button>
 
-const Template : ComponentStory<typeof Button> = args => <Button {...args}/>;
+const Template = createStoryTemplate(Button);
 
-export const Default = Template.bind({});
-Default.args = {
+export const Default = Template.createStory({
     children: "Нажми меня"
-};
+});
 
-export const ButtonWithLink = Template.bind({});
-ButtonWithLink.args = {
+export const ButtonWithLink = Template.createStory({
     elementType: 'a',
     href: '/',
     children: "Я ссылка"
-};
+});

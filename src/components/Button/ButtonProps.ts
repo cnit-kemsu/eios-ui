@@ -1,16 +1,17 @@
-import React, {ComponentPropsWithoutRef, ComponentPropsWithRef} from "react";
-import {SerializedStyles} from '@emotion/react'
+import React, {ComponentPropsWithoutRef} from "react";
+import {ColorStyle, Css} from "../types";
+
 
 type BaseButtonProps = {
     disabled?: boolean;
     flat?: boolean;
     stickOnHover?: boolean;
-    colorStyle?: 'light' | 'dark' | 'primary' | 'secondary';
+    colorStyle?: ColorStyle;
     transparent?: boolean;
     fillable?: boolean;
     borderless?: boolean;
     children?: React.ReactNode;
-    css?: SerializedStyles | ((...args: any) => SerializedStyles) | [SerializedStyles | ((...args: any) => SerializedStyles)];
+    css?: Css;
 }
 
 export type ButtonProps<C extends React.ElementType> =
