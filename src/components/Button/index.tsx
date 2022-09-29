@@ -22,7 +22,7 @@ export function Button<C extends React.ElementType = 'button'>({
     const theme = useTheme();
     const {colorStyles, button} = theme;
 
-    const Component = elementType || 'button';
+    const Component : React.ElementType = elementType ?? 'button';
 
     return (
         <Component css={[
@@ -30,7 +30,6 @@ export function Button<C extends React.ElementType = 'button'>({
             dynButtonCss({
                 theme,
                 flat,
-                elementType,
                 stickOnHover,
                 disabled,
                 colorStyle,
