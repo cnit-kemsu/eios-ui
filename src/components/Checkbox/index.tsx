@@ -13,6 +13,19 @@ const rippleStyle = {
     borderRadius: '100%',
 };
 
+/**
+ * Компонент, который представляет чекбокс
+ * @param name
+ * @param css
+ * @param colorStyle
+ * @param disabled
+ * @param checked
+ * @param onClick
+ * @param children
+ * @param value
+ * @param props
+ * @constructor
+ */
 export function Checkbox({
                              name,
                              css,
