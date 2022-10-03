@@ -17,7 +17,7 @@ const titleStyle = {
     display: 'inline-block'
 }
 
-export function Example(props : RippleProps) {
+export const Example = (props : RippleProps) => {
     return (
         <div style={{position: 'relative', ...divStyle}}>
             <Ripple {...props} />

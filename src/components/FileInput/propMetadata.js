@@ -26,6 +26,5 @@ export default {
     onChange: { type: PropTypes.func },
     required: { type: PropTypes.bool },
     value: { type: stringOrNumberType },
-    disabled: { type: PropTypes.bool },    
     title: { type: PropTypes.string }
 }
