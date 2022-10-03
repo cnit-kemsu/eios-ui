@@ -11,11 +11,11 @@ export default {
         colorStyle: argTypes.colorStyle,
         css: argTypes.css,
         elementType: argTypes.elementType,
-        stickOnHover: {description: "появится эффект \"прилипания\" при наведении на кнопку"},
-        fillable: {description: "кнопка будет заливаться цветом (в соответствии с выбранным стилем) при наведении на неё"},
-        flat: {description: "кнопка будет плоской (без тени)"},
-        borderless: {description: "границы не будут выводиться"},
-        transparent: {description: "фон кнопки будет прозрачным"}
+        stickOnHover: argTypes.stickOnHover,
+        fillable: argTypes.fillable,
+        flat: argTypes.flat,
+        borderless: argTypes.borderless,
+        transparent: argTypes.transparent
     }
 } as ComponentMeta<typeof Button>
 
