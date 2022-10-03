@@ -4,7 +4,6 @@ import {ComponentMeta} from "@storybook/react";
 import {createStoryTemplate} from "./createStoryTemplate";
 
 import 'material-icons/iconfont/material-icons.css';
-import {Button, useCheckbox} from "../index";
 
 export default {
     title: "Компоненты/Checkbox",

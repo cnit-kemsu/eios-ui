@@ -7,7 +7,7 @@ export type ReturnType = [{ onClick: () => void, checked: boolean }, React.Dispa
  * @param initChecked начальное состояние чекбокса
  * @param additionalOnClick дополнительный обработчик, который вызовется при нажатии на чекбокс
  */
-export default function useCheckbox(initChecked : boolean, additionalOnClick? : (checked : boolean) => void) {
+export function useCheckbox(initChecked : boolean, additionalOnClick? : (checked : boolean) => void) {
     const [checked, setChecked] = useState(initChecked)
 
     const onClick : () => void = useCallback(() => {

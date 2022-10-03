@@ -6,7 +6,7 @@ import {createHookArgsTable} from "./createHookArgsTable";
 
 export const Example = () => {
     const initialValue = false;
-    const additionalOnClick = checked => alert('Тест');
+    const additionalOnClick = checked => alert('Тест: ' + checked);
 
     const [checkbox, setChecked] = useCheckbox(initialValue, additionalOnClick);
 
