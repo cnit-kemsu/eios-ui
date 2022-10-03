@@ -9,7 +9,7 @@ export class RippleCallbacks {
     rippleDataRef: React.MutableRefObject<RippleData>;
 
     constructor(update, rippleDataRef, rippleDomRef) {
-        this.update = () => update();
+        this.update = update;
         this.rippleDomRef = rippleDomRef;
         this.rippleDataRef = rippleDataRef;
     }

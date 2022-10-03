@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react'
+import React, {useEffect, useMemo, useReducer, useRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {dynRippleCss, rippleCss, rootCss} from './style'
@@ -12,13 +12,13 @@ export default function Ripple({
                                }: RippleProps) {
 
     const {disableRipple} = useTheme();
-    const [, forceUpdate] = useState<object>()//useReducer(x => x + 1, 0, undefined);
+    const [, forceUpdate] = useReducer(x => x + 1, 0, undefined);
     const rippleDomRef = useRef<HTMLDivElement>(null);
     const rippleDataRef = useRef(initRippleData);
 
     const {
         mouseEventHandlers, onTransitionEnd, handleEffect
-    } = useMemo(() => new RippleCallbacks(() => forceUpdate({}), rippleDataRef, rippleDomRef), [])
+    } = useMemo(() => new RippleCallbacks(() => forceUpdate(), rippleDataRef, rippleDomRef), [])
 
     useEffect(handleEffect)
 
