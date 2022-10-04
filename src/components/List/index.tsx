@@ -2,31 +2,11 @@ import React from 'react'
 import {useTheme} from '../../theme'
 import {isPrimitive, toArray} from '../../utils'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
-import {ColorStyle, Css} from "../types";
+import {ListProps} from "./ListProps";
 
 const defGetValue = (item, valueProp, itemIndex) => isPrimitive(item) ? item : item[valueProp];
 const defGetContent = (item, contentProp, itemIndex) => isPrimitive(item) ? item : item[contentProp];
 const defGetSelectable = (item, selectableProp, itemIndex) => item[selectableProp] || typeof item[selectableProp] === 'undefined';
-
-
-export type ListProps = {
-    name: string;
-    items: any[];
-    borderless: boolean;
-    flat: boolean;
-    colorStyle: ColorStyle;
-    css: Css;
-    valueIsIndex: boolean;
-    valueProp: string;
-    contentProp: string;
-    selectableProp: string;
-    getContent: (item :string | number | null | {}, contentProp: string, itemIndex: number) => string | number | null;
-    getValue: (item :string | number | null | {}, valueProp: string, itemIndex: number) => string | number | null;
-    getSelectable: (item :string | number | null | {}, valueProp: string, itemIndex: number) => boolean;
-    value,
-    disabled,
-    onChange,
-}
 
 export function List({
                          name,
@@ -46,7 +26,7 @@ export function List({
                          disabled,
                          onChange,
                          ...props
-                     }) {
+                     }: ListProps) {
 
     const theme = useTheme();
 
