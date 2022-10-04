@@ -16,5 +16,5 @@ export const argTypes = {
     borderless: {description: "границы не будут выводиться"},
     transparent: {description: "фон кнопки будет прозрачным"},
     style: {description: "стиль, который применится к корневому элементу", control: {type: null}},
-    className: {description: "имя css-класса, который применится к корневому элементу", control: {type: null}}
+    className: {description: "css-классы, которые применятся к корневому элементу", control: {type: null}}
 };
