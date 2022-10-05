@@ -1,6 +1,8 @@
 import {ColorStyle, Css} from "../types";
 
-type ValueType = string | number
+export type ValueType = string | number
+export type ItemType = string | number | {[key: string]: string | number}
+
 export type ListProps = {
     name?: string;
     items?: (string | number | {})[];
@@ -12,10 +14,10 @@ export type ListProps = {
     valueProp?: string;
     contentProp?: string;
     selectableProp?: string;
-    getContent?: (item: string | number | {}, contentProp: string, itemIndex: number) => string | number | null;
-    getValue?: (item: string | number | {}, valueProp: string, itemIndex: number) => ValueType;
-    getSelectable?: (item: string | number | null | {}, valueProp: string, itemIndex: number) => boolean;
+    getContent?: (item: ItemType, contentProp: string, itemIndex: number) => string | number | null;
+    getValue?: (item: ItemType, valueProp: string, itemIndex: number) => ValueType;
+    getSelectable?: (item: ItemType, valueProp: string, itemIndex: number) => boolean;
     value?: ValueType;
     disabled?: boolean;
-    onChange?: (value: string | number | null, item: string | number | null | {}) => void;
+    onChange?: (value: ValueType, item: ItemType) => void;
 }
