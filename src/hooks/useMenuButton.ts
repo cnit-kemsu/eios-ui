@@ -1,18 +1,32 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import React, {MouseEventHandler, MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
+import {getOffset} from '../utils'
+import {PolymorphicRef} from "../components/types";
 
-import { getOffset, offset } from '../utils'
+const emptyParentMenu = {show: true}
 
-const emptyParentMenu = { show: true }
+type ReturnType<C extends React.ElementType> = [
+    {
+        onClick: ()=>void;
+        ref: MutableRefObject<HTMLElement>;
+    },
+    {
+        show:  boolean;
+        x: number;
+        y: number;
+        onMouseEnter: MouseEventHandler;
+        onMouseLeave: MouseEventHandler;
+        ref: MutableRefObject<HTMLElement>;
+    }
+]
 
-
-export default function useMenuButton(position = 'bottom', { show: parentShow } = emptyParentMenu) {
+export function useMenuButton<C extends React.ElementType = 'button'>(position = 'bottom', {show: parentShow} = emptyParentMenu) {
 
     const [show, setShow] = useState(false)
-    const [{ x, y }, setOffset] = useState({ x: 0, y: 0 })
+    const [{x, y}, setOffset] = useState({x: 0, y: 0})
 
-    const buttonRef = useRef()
-    const menuRef = useRef()
-    const isMenuHovered = useRef(false)
+    const buttonRef = useRef() as MutableRefObject<HTMLElement>;
+    const menuRef = useRef() as MutableRefObject<HTMLElement>;
+    const isMenuHovered = useRef(false);
 
     useEffect(() => {
 
@@ -29,7 +43,7 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
 
     }, [show])
 
-    const handleButtonClick = useCallback((e) => {
+    const handleButtonClick = useCallback(() => {
 
         /*const { offsetLeft, offsetTop } = offset(buttonRef.current)
 
@@ -54,7 +68,7 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
 
         let offset = getOffset(buttonRef.current, menuRef.current, position);
 
-        setOffset({ x: offset.left, y: offset.top }/*{ x: newX, y: newY }*/, { x: 0.5, y: 0 })
+        setOffset({x: offset.left, y: offset.top}/*{ x: newX, y: newY }*//*, { x: 0.5, y: 0 }*/)
         setShow(!show)
     }, [show, position])
 
@@ -67,11 +81,12 @@ export default function useMenuButton(position = 'bottom', { show: parentShow } 
             ref: buttonRef
         },
         {
-            show: show && parentShow, x, y,
+            show: show && parentShow,
+            x,
+            y,
             onMouseEnter: handleMenuEnter,
             onMouseLeave: handleMenuLeave,
             ref: menuRef,
-
         }
-    ]
+    ] as ReturnType<C>;
 }

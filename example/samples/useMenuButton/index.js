@@ -8,6 +8,9 @@ function Example({ borderless, flat }) {
     const [button, menu] = useMenuButton()
     const [menuItem, submenu] = useMenuButton('right', menu)
 
+    button.elementRef = button.ref;
+    delete button.ref;
+
     return (
         <>
             <Button {...button}>Push Me!</Button>

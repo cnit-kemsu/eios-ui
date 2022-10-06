@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithoutRef} from "react";
+import React, {ComponentPropsWithRef} from "react";
 import {ColorStyle, Css} from "../types";
 
 
@@ -17,4 +17,4 @@ type BaseButtonProps = {
 export type ButtonProps<C extends React.ElementType> =
     BaseButtonProps
     & { elementType?: C; }
-    & Omit<ComponentPropsWithoutRef<C>, keyof BaseButtonProps | 'elementType'>;
+    & Omit<ComponentPropsWithRef<C>, keyof BaseButtonProps | 'elementType'>;

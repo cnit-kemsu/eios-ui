@@ -1,11 +1,10 @@
-import React, {forwardRef} from 'react'
+import React, {forwardRef, MutableRefObject} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {dynContentCss, dynRootCss, dynTitleCss} from './style'
 import {PaneProps} from "./PaneProps";
 
-
-function _Pane({ flat, borderless, title, children, titleCss, css, ...props } : PaneProps, ref) {
+export const Pane = forwardRef<HTMLDivElement, PaneProps>(({ flat, borderless, title, children, titleCss, css, ...props } : PaneProps, ref) => {
 
     const theme = useTheme()
 
@@ -15,7 +14,6 @@ function _Pane({ flat, borderless, title, children, titleCss, css, ...props } : 
             <div css={dynContentCss({ theme })}>{children}</div>
         </div>
     )
-}
+});
 
-export const Pane = forwardRef<HTMLDivElement, PaneProps>((_Pane));
 Pane.displayName = "Pane";
