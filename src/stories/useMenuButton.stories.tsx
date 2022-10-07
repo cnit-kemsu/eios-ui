@@ -1,23 +1,21 @@
 import * as React from "react";
+import {MutableRefObject, useEffect, useRef, useState} from "react";
 import {ComponentMeta} from "@storybook/react";
-import {Button, Menu, MenuItem, useMenuButton} from "../index";
+import {Menu, MenuItem, useMenuButton} from "../index";
 import {createHookArgsTable} from "./createHookArgsTable";
-import {ComponentPropsWithRef, MutableRefObject, useCallback, useEffect, useRef, useState} from "react";
 
-function useContextMenu(onClose?: () => void) {
-
+function useMenu(position: 'client' | 'right' | 'left' | 'top' | 'bottom' = 'client') {
     const [menuPos, setMenuPosition] = useState({x: 0, y: 0});
     const [show, setShow] = useState(false);
-    const insideMenuRef = useRef(false);
+    const elRef = useRef() as MutableRefObject<HTMLUListElement>
 
     useEffect(() => {
 
         if (!show) return;
 
         const handleClick = (e) => {
-            if (!e.target.dataset.menuitem){
+            if (!e.target.dataset.menuitem) {
                 setShow(false);
-                onClose?.();
             }
         }
 
@@ -26,77 +24,106 @@ function useContextMenu(onClose?: () => void) {
 
     }, [show])
 
-    const onContextMenu = (e: React.MouseEvent<HTMLDivElement>) => {
+    const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         setShow(true);
-        setMenuPosition({
-            x: e.clientX - e.currentTarget.getBoundingClientRect().left + e.currentTarget.offsetLeft,
-            y: e.clientY - e.currentTarget.getBoundingClientRect().top + e.currentTarget.offsetTop
-        });
-    }
 
-    const onMouseEnter = (e: React.MouseEvent<HTMLUListElement>) => {
-        insideMenuRef.current = true;
-    }
+        let x, y;
+        const parentEl = elRef.current.parentElement;
 
-    const onMouseLeave = (e: React.MouseEvent<HTMLUListElement>) => {
-        insideMenuRef.current = false;
-    }
+        if (parentEl) {
+            if (position === 'client') {
+                x = e.clientX;
+                y = e.clientY;
+            } else {
+                const el = e.currentTarget;
+                const brc = el.getBoundingClientRect();
 
-    return {
-        onContextMenu, menu: {
-            show,
-            onMouseEnter,
-            onMouseLeave,
-            ...menuPos
+                if (position === 'right') {
+                    x = brc.right;
+                    y = brc.top;
+                }
+            }
+
+            setMenuPosition({
+                x: x - parentEl.getBoundingClientRect().left + parentEl.offsetLeft,
+                y: y - parentEl.getBoundingClientRect().top + parentEl.offsetTop
+            });
         }
     };
+
+    return {
+        onClick, menu: {ref: elRef, show, ...menuPos}
+    };
+}
+
+function useSubmenu(menu: { ref: MutableRefObject<HTMLUListElement>, x: number, y: number, show: boolean }) {
+    const [showSubmenu, setShowSubmenu] = useState(false);
+    const [submenuPos, setSubmenuPos] = useState({x: 0, y: 0});
+
+    useEffect(() => {
+        setShowSubmenu(false);
+    }, [menu.x, menu.y])
+
+    useEffect(() => {
+        !menu.show && setShowSubmenu(false);
+    }, [menu.show])
+
+    const onClick = (e: React.MouseEvent<HTMLLIElement>) => {
+
+        if (showSubmenu) {
+            setShowSubmenu(false);
+            return;
+        }
+
+        const parentEl = menu.ref.current.parentElement;
+
+        if (parentEl) {
+            const menuItemBCR = e.currentTarget.getBoundingClientRect();
+            const parentBCR = parentEl.getBoundingClientRect();
+
+            setSubmenuPos({
+                x: menuItemBCR.right - parentBCR.left + parentEl.offsetLeft,
+                y: menuItemBCR.top - parentBCR.top + parentEl.offsetTop
+            });
+
+            setShowSubmenu(true);
+        }
+    }
+
+    return [{onClick}, {show: showSubmenu, ...submenuPos}, setShowSubmenu]
 }
 
 export const Example = () => {
 
-    const {onContextMenu, menu} = useContextMenu(() => {
-        setShowSubmenu(false);
-    });
-
-    const parentElRef = useRef() as MutableRefObject<HTMLDivElement>;
-    const menuItemElRef = useRef() as MutableRefObject<HTMLLIElement>;
-    const [showSubmenu, setShowSubmenu] = useState(false);
-    const [submenuPos, setSubmenuPos] = useState({x: 0, y: 0});
-    const handleMenuItemClick = (e : React.MouseEvent<HTMLLIElement>) => {
-        const menuItemBCR = e.currentTarget.getBoundingClientRect();
-        const parentBCR = parentElRef.current.getBoundingClientRect();
-
-        setSubmenuPos({
-            x:menuItemBCR.right - parentBCR.left + parentElRef.current.offsetLeft,
-            y:menuItemBCR.top - parentBCR.top + parentElRef.current.offsetTop
-        });
-
-        setShowSubmenu(true);
-    }
+    const {onClick, menu} = useMenu();
+    const [menuButton, submenu, setShowSubmenu] = useSubmenu(menu);
 
     return (
-        <div ref={parentElRef} onContextMenu={onContextMenu} style={{height: "10em"}}>
+        <div onContextMenu={onClick} style={{height: "10em"}}>
 
-            <Menu {...menu}>
-                <MenuItem ref={menuItemElRef} onClick={handleMenuItemClick}>Элемент 1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 2 был нажат')}>Элемент 2</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 3 был нажат')}>Элемент 3</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 4 был нажат')}>Элемент 4</MenuItem>
-            </Menu>
+            <div style={{margin: "4em"}}>
+                <Menu {...menu}>
+                    <MenuItem {...menuButton}>Элемент 1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 2 был нажат')}>Элемент 2</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 3 был нажат')}>Элемент 3</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 4 был нажат')}>Элемент 4</MenuItem>
+                </Menu>
 
-            <Menu show={showSubmenu} {...submenuPos}>
-                <MenuItem onClick={() => alert('Элемент 1.1 был нажат')}>Элемент 1.1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 1.2 был нажат')}>Элемент 1.2</MenuItem>
-            </Menu>
+                <Menu {...submenu}>
+                    <MenuItem onClick={() => alert('Элемент 1.1 был нажат')}>Элемент 1.1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 1.2 был нажат')}>Элемент 1.2</MenuItem>
+                </Menu>
+            </div>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad aliquam assumenda distinctio dolorum est
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad aliquam assumenda distinctio dolorum est
                 eum facere modi neque nobis numquam odio officiis perferendis porro, qui quibusdam repellendus tempora
-                veritatis!</p>
-
+                veritatis!
+            </p>
 
         </div>
-    )
+    );
 }
 
 Example.storyName = "useMenuButton"

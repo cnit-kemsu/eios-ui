@@ -3,10 +3,10 @@ import {Css} from "../types";
 
 export type MenuItemProps = {
     onClick?: (e : React.MouseEvent<HTMLLIElement>) => void;
-    children?: ReactNode,
-    css?: Css,
-    style?: React.CSSProperties,
-    className?: string
+    children?: ReactNode;
+    css?: Css;
+    style?: React.CSSProperties;
+    className?: string;
 }
 export type MenuProps = {
     show?: boolean;
@@ -14,10 +14,11 @@ export type MenuProps = {
     y?: number;
     flat?: boolean;
     borderless?: boolean;
-    css?: Css,
-    children?: ReactElement<MenuItemProps> | ReactElement<MenuItemProps>[],
-    style?: React.CSSProperties,
-    className?: string,
+    css?: Css;
+    children?: ReactElement<MenuItemProps> | ReactElement<MenuItemProps>[];
+    style?: React.CSSProperties;
+    className?: string;
     onMouseEnter?: MouseEventHandler;
     onMouseLeave?: MouseEventHandler;
+    rootElement?: HTMLElement;
 }

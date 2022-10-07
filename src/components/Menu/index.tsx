@@ -3,6 +3,7 @@ import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {displayedMenuCss, dynMenuCss, dynMenuItemCss} from './style'
 import {MenuItemProps, MenuProps} from "./MenuProps";
+import {createPortal} from "react-dom";
 
 export const Menu = forwardRef<HTMLUListElement, MenuProps>(({
                                                                  show,
@@ -12,17 +13,26 @@ export const Menu = forwardRef<HTMLUListElement, MenuProps>(({
                                                                  borderless,
                                                                  css,
                                                                  children,
+                                                                 rootElement = document.body,
                                                                  ...props
                                                              }: MenuProps, ref) => {
 
     const theme = useTheme();
+
+    /*return createPortal(
+        <ul ref={ref} {...props}
+            css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss, ...toArray(css)]}>
+            {children}
+        </ul>,
+        rootElement
+    );*/
 
     return (
         <ul ref={ref} {...props}
             css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss, ...toArray(css)]}>
             {children}
         </ul>
-    );
+    )
 });
 
 Menu.displayName = "Menu";
