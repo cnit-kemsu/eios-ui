@@ -184,3 +184,11 @@ export function isPrimitive(arg) {
     var type = typeof arg;
     return arg == null || (type != "object" && type != "function");
 }
+
+export function lerp(start, end, t) {
+    return start * (1 - t) + end * t;
+}
+
+export function clamp(v, a = 0, b = 1) {
+    return Math.min(Math.max(v, a), b);
+}
