@@ -7,6 +7,9 @@ import {Button} from "../components/Button";
 export default {
     title: "Компоненты/Tooltip",
     component: Tooltip,
+    args: {
+      text: "Я подсказка для этой кнопки"
+    },
     argTypes: {
         css: argTypes.css,
         style: argTypes.style,
@@ -15,8 +18,8 @@ export default {
 } as ComponentMeta<typeof Tooltip>
 
 export const Default = (props) => (
-    <div style={{height: "5em", position: "relative"}}>
-        <Tooltip text="Я подсказка для этой кнопки" position="right">
+    <div style={{height: "5em"}}>
+        <Tooltip {...props}>
             <Button>Наведи курсор на меня</Button>
         </Tooltip>
     </div>

@@ -30,11 +30,11 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
         setShow(true);
 
         let x, y;
-        const parentEl = elRef.current.parentElement;
+        const parentEl = elRef.current.offsetParent;
 
         if (parentEl) {
 
-            const el = anchorElementRef.current;//e.currentTarget;
+            const el = anchorElementRef.current;
             const brc = el.getBoundingClientRect();
 
             if (e && position.x === undefined) {
@@ -50,8 +50,8 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
             }
 
             setMenuPosition({
-                x: x - parentEl.getBoundingClientRect().left + (parentEl.style.position === 'relative' ? 0 : parentEl.offsetLeft),
-                y: y - parentEl.getBoundingClientRect().top + (parentEl.style.position === 'relative' ? 0 : parentEl.offsetTop)
+                x: x - parentEl.getBoundingClientRect().left,
+                y: y - parentEl.getBoundingClientRect().top
             });
         }
     }, [position.x, position.y]);

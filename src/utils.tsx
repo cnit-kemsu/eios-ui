@@ -1,6 +1,7 @@
 import React from 'react'
 import {cloneElement, forwardRef} from 'react'
 import PropTypes from 'prop-types'
+import {Point} from "./components/types";
 
 
 export function offset(elem) {
@@ -172,12 +173,38 @@ export function getPosFor(relativeElement, targetElement, position) {
 
 }
 
-export function getOffset(relativeElement, targetElement, position, pivot = {x: 0.5, y: 0.5}) {
+export function getElementPositionRelativeTo(element: HTMLElement, targetElement: HTMLElement, targetPosition: Point, targetElementPivot: Point) {
 
-    let relativeElBCR = relativeElement.getBoundingClientRect()
-    let targetElBCR = targetElement.getBoundingClientRect()
+    const elementBCR = element.getBoundingClientRect();
+    const targetElementBCR = targetElement.getBoundingClientRect();
 
-    relativeElBCR = {
+    const p = {
+        x: lerp(elementBCR.left, elementBCR.right, targetPosition.x),
+        y: lerp(elementBCR.top, elementBCR.bottom, targetPosition.y)
+    };
+
+    const parentEl = targetElement.offsetParent;
+
+    if (!parentEl) throw new Error();
+
+    const parentElBCR = parentEl.getBoundingClientRect();
+    //const parentElPosition = parentEl.style.position ?? window.getComputedStyle(parentEl).position;
+
+    return ({
+        x: p.x - parentElBCR.left /* + (parentElPosition === 'relative' ? 0 : parentEl.offsetLeft)*/ - targetElement.clientWidth * targetElementPivot.x,
+        y: p.y - parentElBCR.top /* + (parentElPosition === 'relative' ? 0 : parentEl.offsetTop)*/ - targetElement.clientHeight * targetElementPivot.y
+    }) as Point
+}
+
+export function getOffset(relativeElement: HTMLElement, targetElement: HTMLElement, position, pivot = {
+    x: 0.5,
+    y: 0.5
+}) {
+
+    let relativeElBCR = relativeElement.getBoundingClientRect().toJSON();
+    let targetElBCR = targetElement.getBoundingClientRect().toJSON();
+
+    /*relativeElBCR = {
         left: relativeElBCR.left,
         right: relativeElBCR.right,
         top: relativeElBCR.top,
@@ -185,14 +212,20 @@ export function getOffset(relativeElement, targetElement, position, pivot = {x: 
         width: relativeElBCR.width,
         height: relativeElBCR.height
     }
-    targetElBCR = {left: targetElBCR.left, top: targetElBCR.top, width: targetElBCR.width, height: targetElBCR.height}
 
-    relativeElBCR.left += window.scrollX
+    targetElBCR = {
+        left: targetElBCR.left,
+        top: targetElBCR.top,
+        width: targetElBCR.width,
+        height: targetElBCR.height
+    }*/
+
+    /*relativeElBCR.left += window.scrollX
     relativeElBCR.right += window.scrollX
     relativeElBCR.top += window.scrollY
 
     targetElBCR.left += window.scrollX
-    targetElBCR.top += window.scrollY
+    targetElBCR.top += window.scrollY*/
 
     let p = {left: 0, top: 0}
 

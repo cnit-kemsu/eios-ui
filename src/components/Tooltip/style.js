@@ -1,4 +1,5 @@
 import { css } from '@emotion/react'
+import {number} from "prop-types";
 
 export const rootCss = css`
     display: flex;
@@ -8,7 +9,7 @@ export const rootCss = css`
     position: absolute;        
 `
 
-export const dynRootCss = ({ theme, position, show, offset: { left, top }, hide }) => {
+export const dynRootCss = ({ theme, position, show, offset: { left, top }}) => {
 
     const topOrBottom = position === 'top' || position === 'bottom'
 
@@ -19,17 +20,15 @@ export const dynRootCss = ({ theme, position, show, offset: { left, top }, hide 
     else if (position === 'right') scaleOrigin = 'left'
     else if (position === 'top') scaleOrigin = 'bottom'
 
-    return css`
-        ${hide ? 'display: none;' : ''}
+    return css`        
         transform-origin: ${scaleOrigin};
         transform: ${scaleProp}(${show ? '1' : '0'});
         opacity: ${show ? '1' : '0'};
         transition-property: transform, opacity; 
         transition-duration: ${theme.transitionDuration};
         flex-direction: ${position === 'top' || position === 'bottom' ? 'column' : 'row'};
-
-        left: ${left ? `${left}px` : 'unset'};        
-        top: ${top ? `${top}px` : 'unset'};        
+        left: ${isNaN(left) ? 'unset' : `${left}px`};        
+        top: ${isNaN(top) ?  'unset' : `${top}px`};        
     `
 }
 

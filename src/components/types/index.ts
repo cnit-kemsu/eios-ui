@@ -9,3 +9,5 @@ export type Css =
     | [SerializedStyles | ((...args: any) => SerializedStyles)];
 
 export type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>["ref"];
+
+export type Point = { x: number, y: number };

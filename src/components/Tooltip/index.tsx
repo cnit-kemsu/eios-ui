@@ -1,5 +1,5 @@
 import React, {Children, MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
-import {addHandlersTo, debounce, getOffset, toArray} from '../../utils'
+import {addHandlersTo, debounce, getElementPositionRelativeTo, getOffset, toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {arrowCss, dynArrowCss, dynRootCss, dynTooltipCss, rootCss, tooltipCss} from './style'
 import {Css} from "../types";
@@ -12,17 +12,29 @@ export type TooltipProps = {
     style?: React.CSSProperties;
     className?: string;
     hideArrow?: boolean;
-    hide?: boolean;
     text?: string;
     showDelay?: number;
     hideDelay?: number;
     position?: "left" | "right" | "top" | "bottom";
 }
 
+const positionToPointMap = {
+    'left': {x: 0, y: 0.5},
+    'right': {x: 1, y: 0.5},
+    'top': {x: 0.5, y: 0},
+    'bottom': {x: 0.5, y: 1}
+};
+
+const positionToPivotMap = {
+    'left': {x: 1, y: 0.5},
+    'right': {x: 0, y: 0.5},
+    'top': {x: 0.5, y: 1},
+    'bottom': {x: 0.5, y: 0}
+}
+
 export function Tooltip({
                             children,
                             hideArrow,
-                            hide,
                             text,
                             showDelay = 0.5,
                             hideDelay = 0.5,
@@ -39,26 +51,34 @@ export function Tooltip({
     const tooltipRef = useRef() as MutableRefObject<HTMLDivElement>;
 
     const showTooltip = useCallback(debounce(target => {
-        setOffset(getOffset(target, tooltipRef.current, position));
+
+        if (!target || !tooltipRef.current) return;
+
+        let offset = getElementPositionRelativeTo(target, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
+
+        setOffset({left: offset.x, top: offset.y});
         setShow(true);
+
     }, showDelay * 1000), [position, showDelay]);
 
     const hideTooltip = useCallback(debounce(target => {
 
+        if (!target || !tooltipRef.current) return;
+
         setShow(false)
 
-        let offset = getOffset(target, tooltipRef.current, position);
-        if (offset) setOffset(offset)
+        let offset = getElementPositionRelativeTo(target, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
+        if (offset) setOffset({left: offset.x, top: offset.y});
 
     }, hideDelay * 1000), [position, hideDelay]);
 
     const handleMouseEnter = useCallback((e) => {
-        showTooltip && showTooltip(e.currentTarget)
+        showTooltip?.(e.currentTarget)
     }, []);
 
     const handleMouseLeave = useCallback((e) => {
-        showTooltip.cancel && showTooltip.cancel()
-        hideTooltip && hideTooltip(e.currentTarget)
+        showTooltip.cancel?.();
+        hideTooltip?.(e.currentTarget);
     }, []);
 
     useEffect(() => () => {
@@ -90,7 +110,7 @@ export function Tooltip({
                 <div
                     onMouseEnter={handleTooltipMouseEnter}
                     onMouseLeave={handleTooltipMouseLeave}
-                    ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset, hide}), ...toArray(css)]}
+                    ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset}), ...toArray(css)]}
                 >
                     {
                         position === 'left' || position === 'top'
