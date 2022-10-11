@@ -1,7 +1,7 @@
 import React, {forwardRef} from "react";
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
-import Ripple from '../Ripple'
+import {Ripple} from '../Ripple'
 import {buttonCss, dynButtonCss} from './style'
 import {ButtonProps} from "./ButtonProps";
 import {PolymorphicRef} from "../types";

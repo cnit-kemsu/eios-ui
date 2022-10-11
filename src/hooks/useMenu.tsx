@@ -1,5 +1,5 @@
 import * as React from "react";
-import {MutableRefObject, useCallback, useEffect, useRef, useState} from "react";
+import {MutableRefObject, useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {lerp} from '../utils'
 
 const defOffset = {x: 0, y: 0}
@@ -62,10 +62,14 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
 
 }
 
-export function useSubmenu(menu: { x: number, y: number, show: boolean }) {
+export function useSubmenu(menu: { ref: MutableRefObject<HTMLUListElement>, x: number, y: number, show: boolean }) {
     const [showSubmenu, setShowSubmenu] = useState(false);
     const [submenuPos, setSubmenuPos] = useState({x: 0, y: 0});
     const ref = useRef() as MutableRefObject<HTMLUListElement>;
+
+    useLayoutEffect(() => {
+        ref.current.style.zIndex = (+getComputedStyle(menu.ref.current).zIndex - 1).toString();
+    }, [menu.ref]);
 
     useEffect(() => {
         setShowSubmenu(false);

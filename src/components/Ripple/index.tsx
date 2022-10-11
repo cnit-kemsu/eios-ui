@@ -6,7 +6,7 @@ import {RippleCallbacks} from './RippleCallbacks'
 import {initRippleData} from "./RippleData";
 import {RippleProps} from "./RippleProps";
 
-export default function Ripple({
+export function Ripple({
                                    color = 'rgba(0,0,0,0.5)', duration = '2s', containerStyle, css,
                                    rippleCss: rippleCssProp, rippleStyle, rippleClassName, ...props
                                }: RippleProps) {

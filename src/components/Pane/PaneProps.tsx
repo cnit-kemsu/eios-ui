@@ -9,7 +9,7 @@ type BasePaneProps = {
     titleCss?: Css,
     children?: React.ReactNode;
     style?: React.CSSProperties;
-    className: string;
+    className?: string;
 }
 export type PaneProps =
     BasePaneProps

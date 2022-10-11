@@ -19,22 +19,24 @@ export const Example = () => {
                 Открыть меню
             </Button>
 
-            <Menu {...submenu2}>
-                <MenuItem onClick={() => alert('Элемент 1.1.1 был нажат')}>Элемент 1.1.1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 1.1.2 был нажат')}>Элемент 1.1.2</MenuItem>
-            </Menu>
+            <>
+                <Menu {...menu} style={{translate: '-50% 0%'}}>
+                    <MenuItem {...menuButton}>Элемент 1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 2 был нажат')}>Элемент 2</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 3 был нажат')}>Элемент 3</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 4 был нажат')}>Элемент 4</MenuItem>
+                </Menu>
 
-            <Menu {...submenu}>
-                <MenuItem {...menuButton2}>Элемент 1.1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 1.2 был нажат')}>Элемент 1.2</MenuItem>
-            </Menu>
+                <Menu {...submenu}>
+                    <MenuItem {...menuButton2}>Элемент 1.1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 1.2 был нажат')}>Элемент 1.2</MenuItem>
+                </Menu>
 
-            <Menu {...menu} style={{translate: '-50% 0%'}}>
-                <MenuItem {...menuButton}>Элемент 1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 2 был нажат')}>Элемент 2</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 3 был нажат')}>Элемент 3</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 4 был нажат')}>Элемент 4</MenuItem>
-            </Menu>
+                <Menu {...submenu2}>
+                    <MenuItem onClick={() => alert('Элемент 1.1.1 был нажат')}>Элемент 1.1.1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 1.1.2 был нажат')}>Элемент 1.1.2</MenuItem>
+                </Menu>
+            </>
 
         </div>
     );
@@ -51,26 +53,29 @@ export const Example2 = () => {
 
     return (
         <div style={{height: "10em"}}>
+            
             <Message ref={messageRef} onContextMenu={showMenu} type="info">
                 Нажмите правой кнопкой мыши по области, чтобы открыть контекстное меню
             </Message>
 
-            <Menu {...submenu2}>
-                <MenuItem onClick={() => alert('Элемент 1.1.1 был нажат')}>Элемент 1.1.1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 1.1.2 был нажат')}>Элемент 1.1.2</MenuItem>
-            </Menu>
+            <>
+                <Menu {...menu} style={{translate: '-50% 0%'}}>
+                    <MenuItem {...menuButton}>Элемент 1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 2 был нажат')}>Элемент 2</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 3 был нажат')}>Элемент 3</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 4 был нажат')}>Элемент 4</MenuItem>
+                </Menu>
 
-            <Menu {...submenu}>
-                <MenuItem {...menuButton2}>Элемент 1.1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 1.2 был нажат')}>Элемент 1.2</MenuItem>
-            </Menu>
+                <Menu {...submenu}>
+                    <MenuItem {...menuButton2}>Элемент 1.1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 1.2 был нажат')}>Элемент 1.2</MenuItem>
+                </Menu>
 
-            <Menu {...menu} >
-                <MenuItem {...menuButton}>Элемент 1</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 2 был нажат')}>Элемент 2</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 3 был нажат')}>Элемент 3</MenuItem>
-                <MenuItem onClick={() => alert('Элемент 4 был нажат')}>Элемент 4</MenuItem>
-            </Menu>
+                <Menu {...submenu2}>
+                    <MenuItem onClick={() => alert('Элемент 1.1.1 был нажат')}>Элемент 1.1.1</MenuItem>
+                    <MenuItem onClick={() => alert('Элемент 1.1.2 был нажат')}>Элемент 1.1.2</MenuItem>
+                </Menu>
+            </>
 
         </div>
     );
