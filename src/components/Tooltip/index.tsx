@@ -1,22 +1,10 @@
-import React, {Children, MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
-import {addHandlersTo, debounce, getElementPositionRelativeTo, getOffset, toArray} from '../../utils'
+import React, {MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
+import {debounce, getElementPositionRelativeTo, toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {arrowCss, dynArrowCss, dynRootCss, dynTooltipCss, rootCss, tooltipCss} from './style'
-import {Css} from "../types";
+import {TooltipProps} from "./TooltipProps";
 
 const initOffset = {left: 0, top: 0};
-
-export type TooltipProps = {
-    css?: Css;
-    children: React.ReactNode;
-    style?: React.CSSProperties;
-    className?: string;
-    hideArrow?: boolean;
-    text?: string;
-    showDelay?: number;
-    hideDelay?: number;
-    position?: "left" | "right" | "top" | "bottom";
-}
 
 const positionToPointMap = {
     'left': {x: 0, y: 0.5},
@@ -33,9 +21,9 @@ const positionToPivotMap = {
 }
 
 export function Tooltip({
+                            targetElementRef,
                             children,
                             hideArrow,
-                            text,
                             showDelay = 0.5,
                             hideDelay = 0.5,
                             css,
@@ -81,6 +69,18 @@ export function Tooltip({
         hideTooltip?.(e.currentTarget);
     }, []);
 
+    useEffect(() => {
+
+        targetElementRef.current?.addEventListener('mouseenter', handleMouseEnter);
+        targetElementRef.current?.addEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            targetElementRef.current?.removeEventListener('mouseenter', handleMouseEnter);
+            targetElementRef.current?.removeEventListener('mouseleave', handleMouseLeave);
+        }
+
+    }, [targetElementRef])
+
     useEffect(() => () => {
         showTooltip?.cancel?.();
         hideTooltip?.cancel?.();
@@ -92,35 +92,25 @@ export function Tooltip({
     const contentElement = (
         <div {...props}
              css={[tooltipCss, dynTooltipCss({theme}), ...(Array.isArray(css) ? css : [css])]}>
-            {text}
+            {children}
         </div>
     );
 
     const arrowElement = hideArrow ? null : <div css={[arrowCss, dynArrowCss({theme, position})]}></div>;
 
-    return text ? (
-        <>
+    return (
+        <div
+            onMouseEnter={handleTooltipMouseEnter}
+            onMouseLeave={handleTooltipMouseLeave}
+            ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset}), ...toArray(css)]}
+        >
             {
-                addHandlersTo(Children.only(children), {
-                    onMouseEnter: handleMouseEnter,
-                    onMouseLeave: handleMouseLeave
-                })
+                position === 'left' || position === 'top'
+                    ?
+                    <>{contentElement}{arrowElement}</>
+                    :
+                    <>{arrowElement}{contentElement}</>
             }
-            {
-                <div
-                    onMouseEnter={handleTooltipMouseEnter}
-                    onMouseLeave={handleTooltipMouseLeave}
-                    ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset}), ...toArray(css)]}
-                >
-                    {
-                        position === 'left' || position === 'top'
-                            ?
-                            <>{contentElement}{arrowElement}</>
-                            :
-                            <>{arrowElement}{contentElement}</>
-                    }
-                </div>
-            }
-        </>
-    ) : <>children</>
+        </div>
+    )
 }

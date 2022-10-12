@@ -1,11 +1,10 @@
-import {ColorStyle, Css} from "../types";
+import {ColorStyle, Css, GetContent, GetSelectable, GetValue, ItemType, ValueType} from "../types";
 
-export type ValueType = string | number
-export type ItemType = string | number | {[key: string]: string | number}
+
 
 export type ListProps = {
     name?: string;
-    items?: (string | number | {})[];
+    items?: ItemType[];
     borderless?: boolean;
     flat?: boolean;
     colorStyle?: ColorStyle;
@@ -14,9 +13,9 @@ export type ListProps = {
     valueProp?: string;
     contentProp?: string;
     selectableProp?: string;
-    getContent?: (item: ItemType, contentProp: string, itemIndex: number) => string | number | null;
-    getValue?: (item: ItemType, valueProp: string, itemIndex: number) => ValueType;
-    getSelectable?: (item: ItemType, valueProp: string, itemIndex: number) => boolean;
+    getContent?: GetContent;
+    getValue?: GetValue;
+    getSelectable?: GetSelectable;
     value?: ValueType;
     disabled?: boolean;
     onChange?: (value: ValueType, item: ItemType) => void;

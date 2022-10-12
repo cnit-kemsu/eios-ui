@@ -11,3 +11,10 @@ export type Css =
 export type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>["ref"];
 
 export type Point = { x: number, y: number };
+
+export type ValueType = string | number;
+export type ItemType = string | number | {[key: string]: string | number};
+
+export type GetContent = (item: ItemType, contentProp: string) => string | number | null;
+export type GetValue = (item: ItemType, valueProp: string, itemIndex: number) => ValueType;
+export type GetSelectable = (item: ItemType, valueProp: string, itemIndex: number) => boolean;

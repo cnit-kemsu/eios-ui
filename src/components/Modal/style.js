@@ -39,14 +39,14 @@ const dynModalKeyframes = ({ open }) => open ?
         }
     `
 
-export const dynBacklayerCss = ({ theme, open }) => css`
+export const dynBackLayerCss = ({ theme, open }) => css`
     position: fixed;
     left: 0px;
     top: 0px;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);    
-    z-index: 99998;    
+    z-index: 1000001;    
     display: flex;    
     align-items: flex-start;
     justify-content: center;
@@ -63,7 +63,7 @@ export const dynContainerCss = ({ theme, open }) => css`
     flex-direction: column;  
     position: relative;
     background: white;
-    z-index: 99999;
+    z-index: 1000002;
     margin-top: 10%; 
 
     transform-origin: ${open ? 'top' : 'bottom'};  

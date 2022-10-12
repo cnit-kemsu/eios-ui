@@ -1,7 +1,6 @@
 import React from "react";
 import {Pane} from '../components/Pane'
 import {ComponentMeta} from "@storybook/react";
-import {TableProps} from "../components/Table/TableProps";
 import {argTypes} from "./argTypes";
 import {PaneProps} from "../components/Pane/PaneProps";
 

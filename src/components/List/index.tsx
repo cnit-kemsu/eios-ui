@@ -1,12 +1,10 @@
 import React from 'react'
 import {useTheme} from '../../theme'
-import {isPrimitive, toArray} from '../../utils'
+import {toArray} from '../../utils'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
 import {ListProps} from "./ListProps";
+import {defGetContent, defGetSelectable, defGetValue} from "./defaults";
 
-const defGetValue = (item, valueProp, itemIndex) => isPrimitive(item) ? item : item[valueProp];
-const defGetContent = (item, contentProp, itemIndex) => isPrimitive(item) ? item : item[contentProp];
-const defGetSelectable = (item, selectableProp, itemIndex) => item[selectableProp] || typeof item[selectableProp] === 'undefined';
 
 export function List({
                          name,
@@ -48,7 +46,7 @@ export function List({
                                 (curValue === value) && dynSelectedItemCss({theme, colorStyle})
                             ]}
                         >
-                            {getContent(item, contentProp, index)}
+                            {getContent(item, contentProp)}
                         </li>
                     })
                 }
