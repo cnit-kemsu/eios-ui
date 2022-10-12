@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
-import Ripple from '../Ripple'
+import {Ripple} from '../Ripple'
 import {dynIconCss, dynRootCss, rootCss} from './style'
 import {CheckboxProps} from "./CheckboxProps";
 
