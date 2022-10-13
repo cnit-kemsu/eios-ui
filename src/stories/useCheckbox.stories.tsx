@@ -44,6 +44,10 @@ export default {
                     {
                         name: 'additionalOnClick', type: 'function',
                         description: 'дополнительный обработчик нажатия по чекбоксу (опциональный)'
+                    },
+                    {
+                        name: "return", type: "[{onClick: () => void, checked: boolean}, React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;]",
+                        description: "первый элемент массива передается `Checkbox`; второй используется для смены состояния чекбокса"                        
                     }
                 ])}`,
             },

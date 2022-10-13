@@ -13,6 +13,8 @@ export const Default = (props: MenuProps) => (
     </div>
 );
 
+
+
 export default {
     title: "Компоненты/Menu",
     component: Default,
@@ -37,7 +39,7 @@ export default {
                 component: `Выпадающее меню. В качестве дочерних элементов принимает [MenuItem](..?path=/docs/компоненты-menuitem--default)`
             }
         }
-    }
+    },
 } as ComponentMeta<typeof Default>
 
 Default.storyName = "Menu";

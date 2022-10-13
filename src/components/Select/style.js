@@ -36,37 +36,36 @@ export const dynOptionsCss = ({ theme, borderless, flat }) => css`
     transform-origin: top;
     transition: transform ${theme.transitionDuration}, opacity ${theme.transitionDuration};
     ${flat ? '' : theme.boxShadow + ";"};
+    padding: 2px;
    
 `
 
-export const dynSelectCss = ({ theme, disabled, borderless, flat, open }) => css`    
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-    padding: 1em;
+export const dynSelectCss = ({ theme, disabled, borderless, flat, open }) => css`
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;${/*borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`*/''};
+  ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}
+  ${open ? 'border-bottom: none; padding-bottom: 12px;' : ''}
+  outline: none;
+  transition-property: border;
+  padding: 4px 0px 4px 4px;
+  cursor: pointer;
+  justify-content: space-between;
+  pointer-events: ${disabled ? 'none' : 'auto'};
+  ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4);'}
+
+  * {
+    opacity: ${disabled ? theme.disabledOpacity : '1'};
+  }
+
+  span {
+    white-space: nowrap;
     overflow: hidden;
-    display: inline-flex;
-    align-items: center;    
-    ${/*borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`*/''};
-    ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}
-    ${open ? 'border-bottom: none; padding-bottom: 12px;' : ''}
-    outline: none;
-    transition-property: border;    
-    padding-right: 0px;
-    cursor: pointer;
-    justify-content: space-between;  
-    pointer-events: ${disabled ? 'none' : 'auto'};
-    ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4)'};
-
-    * {        
-        opacity: ${disabled ? theme.disabledOpacity : '1'};
-    }  
-
-    span {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+    text-overflow: ellipsis;
+  }
 `
 
 export const displayedSelectOptionsCss = css`       

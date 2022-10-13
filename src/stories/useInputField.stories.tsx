@@ -6,9 +6,9 @@ import {createHookArgsTable} from "./createHookArgsTable";
 
 export const Example = () => {
     const initialValue = "";
-    const additionalOnClick = value => alert('Тест: ' + value);
+    const additionalOnChange = value => alert('Тест: ' + value);
 
-    const [input, setInput] = useInputField(initialValue, additionalOnClick);
+    const [input, setInput] = useInputField(initialValue, additionalOnChange);
 
     return (
         <>
@@ -38,12 +38,17 @@ export default {
                 component: `Хук, который используется в паре с [InputField](..?path=/docs/компоненты-inputfield--default).                
                 ${createHookArgsTable([
                     {
-                        name: 'initialValue', type: 'string | number',
+                        name: 'initialValue', type: 'string | number | undefined',
                         description: 'начальное значение'
                     },
                     {
-                        name: 'additionalOnClick', type: 'function',
-                        description: 'дополнительный обработчик события onChange (опциональный)'
+                        name: 'additionalOnChange', type: 'function | undefined',
+                        description: 'дополнительный обработчик события onChange'
+                    },
+                    {
+                        name: "return",
+                        type: "[{onChange: (value: (string | number | undefined)) => void, value: string | number | undefined}, React.Dispatch&lt;React.SetStateAction&lt;string | number | undefined&gt;&gt;]",
+                        description: "перывй элемент массива передается `InputField`; второй используется дл установки значения поля ввода"
                     }
                 ])}`,
             },

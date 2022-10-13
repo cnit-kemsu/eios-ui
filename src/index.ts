@@ -12,7 +12,7 @@ export {InputField} from './components/InputField'
 export {FileInput} from './components/FileInput'
 export {Pane} from './components/Pane'
 export {Tooltip} from './components/Tooltip'
-export {default as Tabs, Tab} from './components/Tabs'
+export {Tabs, Tab} from './components/Tabs'
 export {Spinner} from './components/Spinner'
 export {Menu, MenuItem} from './components/Menu'
 

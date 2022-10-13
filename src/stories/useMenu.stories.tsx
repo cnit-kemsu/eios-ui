@@ -112,7 +112,7 @@ export default {
                     {
                         name: "return",
                         type: '[{onClick: (e: React.MouseEvent&lt;HTMLLIElement&gt;) => void}, {x: number, y: number, ref: React.MutableRefObject&lt;HTMLUListElement&gt;, show: boolean},  React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;]',
-                        description: 'первый элемент передается `MenuItem`, по нажатию на который должно открыться подменю; второй элемент передаюется MenuItem, который представляет подменю'
+                        description: 'первый элемент массива передается `MenuItem`, по нажатию на который должно открыться подменю; второй элемент передаюется `MenuItem`, который представляет подменю'
                     }
                 ], 'Аргументы useSubmenu')}`,
             },

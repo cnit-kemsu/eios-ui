@@ -1,14 +1,20 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import {useState, useEffect, useRef, useCallback, MutableRefObject} from 'react'
+import {ItemType, ValueType} from "../components/types";
 
 
-export default function useSelect(initValue, additionalOnChange) {
+export default function useSelect(initValue?: ValueType, additionalOnChange?: (value: ValueType, item: ItemType) => void) {
 
     const [value, setValue] = useState(initValue)
     const [open, setOpen] = useState(false)
 
-    const onChange = useCallback((v, item) => { setValue(v); setOpen(false); additionalOnChange && additionalOnChange(v, item) }, [additionalOnChange])
+    const onChange = useCallback((v: ValueType, item: ItemType) => {
+        setValue(v);
+        setOpen(false);
+        additionalOnChange && additionalOnChange(v, item)
+    }, [additionalOnChange])
+
     const onClick = useCallback(() => setOpen(!open), [open])
-    const ref = useRef()
+    const ref = useRef() as MutableRefObject<HTMLDivElement>;
 
     useEffect(() => {
 
@@ -22,19 +28,21 @@ export default function useSelect(initValue, additionalOnChange) {
 
         ref.current.addEventListener('mouseenter', handleMouseEnter)
         ref.current.addEventListener('mouseleave', handleMouseLeave)
-        
+
         document.addEventListener('click', handleOutsideClick)
 
-        return () => {            
+        return () => {
             ref.current && ref.current.removeEventListener('mouseenter', handleMouseEnter)
             ref.current && ref.current.removeEventListener('mouseenter', handleMouseLeave)
             document.removeEventListener('click', handleOutsideClick)
         }
     }, [ref.current])
 
-    return [{
+    const select = {
         open, onClick,
         onChange, value,
         ref
-    }, setValue]
+    };
+
+    return [select, setValue] as [typeof select, typeof setValue];
 }

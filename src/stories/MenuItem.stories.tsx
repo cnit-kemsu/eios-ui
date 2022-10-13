@@ -5,15 +5,16 @@ import {MenuItemProps} from "../components/Menu/MenuProps";
 
 export const Default = (props: MenuItemProps) => (
     <div style={{padding: "2em"}}>
-        <Menu show  x={20} y={20}>
-            <MenuItem {...props}>Элемент меню</MenuItem>
-        </Menu>
+        <MenuItem {...props}/>
     </div>
 );
 
 export default {
     title: "Компоненты/MenuItem",
     component: Default,
+    args: {
+      children: "Элемент меню"
+    },
     argTypes: {
         onClick: {action: 'clicked', description: "событие клика по кнопке"},
         css: argTypes.css,
