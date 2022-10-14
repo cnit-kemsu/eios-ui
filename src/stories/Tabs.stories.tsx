@@ -1,8 +1,8 @@
 import React from "react";
 import {ComponentMeta} from "@storybook/react";
 import {Tab, Tabs} from "../components/Tabs";
-import {argTypes} from "./argTypes";
 import {TabsProps} from "../components/Tabs/TabsProps";
+import {argTypes} from "./argTypes";
 
 export const Default = (props: TabsProps) => (
     <div style={{padding: "2em"}}>

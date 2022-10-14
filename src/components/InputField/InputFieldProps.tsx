@@ -10,7 +10,6 @@ export type InputFieldProps = {
     css?: Css;
     multiline?: boolean;
     type?: Omit<React.HTMLInputTypeAttribute, 'submit' | 'file' | 'button' | 'checkbox'>;
-    inputRef?: MutableRefObject<HTMLInputElement | HTMLTextAreaElement>;
     onChange?: (value : string | number | undefined) => void;
     style?: React.CSSProperties;
     className?: string;
