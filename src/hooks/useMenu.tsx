@@ -23,7 +23,7 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
         document.addEventListener('click', handleClick);
         return () => document.removeEventListener('click', handleClick);
 
-    }, [show])
+    }, [show]);
 
     const showMenu = useCallback((e?: React.MouseEvent | undefined) => {
         e?.preventDefault();
@@ -56,7 +56,7 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
         }
     }, [position.x, position.y]);
 
-    const menu = {ref: elRef, show, ...menuPos}
+    const menu = {ref: elRef, show, ...menuPos};
 
     return [menu, showMenu, setShow] as [typeof menu, typeof showMenu, typeof setShow];
 

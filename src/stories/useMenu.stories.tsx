@@ -12,6 +12,8 @@ export const Example = () => {
     const [menuButton, submenu] = useSubmenu(menu);
     const [menuButton2, submenu2] = useSubmenu(submenu);
 
+    console.log(menu);
+
     return (
         <div style={{height: "10em"}}>
 
