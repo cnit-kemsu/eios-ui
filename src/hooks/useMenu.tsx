@@ -2,7 +2,6 @@ import * as React from "react";
 import {MutableRefObject, useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {lerp} from '../utils'
 
-const defOffset = {x: 0, y: 0}
 const defPosition = {} as MenuAnchorPosition
 type MenuAnchorPosition = { x?: number | undefined, y?: number | undefined };
 
@@ -11,7 +10,7 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
     const [show, setShow] = useState(false);
     const elRef = useRef() as MutableRefObject<HTMLUListElement>;
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (!show) return;
 
         const handleClick = (e) => {
@@ -23,7 +22,7 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
         document.addEventListener('click', handleClick);
         return () => document.removeEventListener('click', handleClick);
 
-    }, [show]);
+    }, [show]);*/
 
     const showMenu = useCallback((e?: React.MouseEvent | undefined) => {
         e?.preventDefault();
@@ -80,6 +79,8 @@ export function useSubmenu(menu: { ref: MutableRefObject<HTMLUListElement>, x: n
     }, [menu.show]);
 
     const onClick = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
+
+        e.stopPropagation();
 
         if (showSubmenu) {
             setShowSubmenu(false);

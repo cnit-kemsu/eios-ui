@@ -3,7 +3,6 @@ import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {displayedMenuCss, dynMenuCss, dynMenuItemCss} from './style'
 import {MenuItemProps, MenuProps} from "./MenuProps";
-import {createPortal} from "react-dom";
 
 export const Menu = forwardRef<HTMLUListElement, MenuProps>(({
                                                                  show,
@@ -47,8 +46,11 @@ export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(({
     const theme = useTheme();
 
     return (
-        <li data-menuitem css={[dynMenuItemCss({theme}), ...toArray(css)]}
-            onClick={onClick} {...props}>
+        <li ref={ref} data-menuitem={true} css={[dynMenuItemCss({theme}), ...toArray(css)]}
+            onClick={e => {
+                e.stopPropagation();
+                onClick?.(e);
+            }} {...props}>
             {children}
         </li>
     )
