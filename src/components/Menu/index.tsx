@@ -1,8 +1,9 @@
 import React, {forwardRef} from 'react'
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
-import {displayedMenuCss, dynMenuCss, dynMenuItemCss} from './style'
-import {MenuItemProps, MenuProps} from "./MenuProps";
+import {displayedMenuCss, dynMenuCloseAreaCss, dynMenuCss, dynMenuItemCss} from './style'
+import {MenuCloseAreaProps, MenuItemProps, MenuProps} from "./MenuProps";
+
 
 export const Menu = forwardRef<HTMLUListElement, MenuProps>(({
                                                                  show,
@@ -17,14 +18,6 @@ export const Menu = forwardRef<HTMLUListElement, MenuProps>(({
                                                              }: MenuProps, ref) => {
 
     const theme = useTheme();
-
-    /*return createPortal(
-        <ul ref={ref} {...props}
-            css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss, ...toArray(css)]}>
-            {children}
-        </ul>,
-        rootElement
-    );*/
 
     return (
         <ul ref={ref} {...props}
@@ -57,3 +50,24 @@ export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(({
 });
 
 MenuItem.displayName = "MenuItem";
+
+export const MenuCloseArea = forwardRef<HTMLDivElement, MenuCloseAreaProps>(({
+                                                                                 show,
+                                                                                 setShow,
+                                                                                 css,
+                                                                                 onClick,
+                                                                                 ...props
+                                                                             }: MenuCloseAreaProps, ref) => {
+    const theme = useTheme();
+
+    const handleClick = e => {
+        if (show) setShow(false);
+        onClick?.(e);
+    }
+
+    return show
+        ? <div onClick={handleClick} ref={ref} css={[dynMenuCloseAreaCss({theme}), ...toArray(css)]} {...props}/>
+        : null;
+});
+
+MenuCloseArea.displayName = "MenuCloseArea";

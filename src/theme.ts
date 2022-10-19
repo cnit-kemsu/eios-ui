@@ -129,7 +129,8 @@ export const defaultTheme = {
         color: 'white'
     },
     menu: {
-        padding: '6px'
+        padding: '6px',
+        zIndex: 1000000
     }
     
 }

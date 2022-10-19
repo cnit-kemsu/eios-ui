@@ -1,8 +1,8 @@
-import React, {MouseEventHandler, MutableRefObject, ReactElement, ReactNode} from "react";
+import React, {ComponentPropsWithRef, MouseEventHandler, ReactElement, ReactNode} from "react";
 import {Css} from "../types";
 
 export type MenuItemProps = {
-    onClick?: (e : React.MouseEvent<HTMLLIElement>) => void;
+    onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
     children?: ReactNode;
     css?: Css;
     style?: React.CSSProperties;
@@ -22,3 +22,13 @@ export type MenuProps = {
     onMouseLeave?: MouseEventHandler;
     rootElement?: HTMLElement;
 }
+
+type BaseMenuCloseAreaProps = {
+    show: boolean;
+    setShow: (value: boolean) => void;
+    css?: Css;
+};
+
+export type MenuCloseAreaProps =
+    Omit<ComponentPropsWithRef<'div'>, keyof BaseMenuCloseAreaProps>
+    & BaseMenuCloseAreaProps;

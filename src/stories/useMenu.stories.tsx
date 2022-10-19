@@ -4,7 +4,7 @@ import {ComponentMeta} from "@storybook/react";
 import {Button, Menu, MenuItem, Message} from "../index";
 import {createHookArgsTable} from "./createHookArgsTable";
 import {useMenu, useSubmenu} from "../hooks/useMenu";
-
+import {MenuCloseArea} from "../components/Menu";
 
 export const Example = () => {
     const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
@@ -14,9 +14,7 @@ export const Example = () => {
     const [menuButton2, submenu2] = useSubmenu(submenu);
 
     return (
-        <div style={{height: "10em"}} onClick={() => {
-            menu.show && setShow(false);
-        }}>
+        <div style={{height: "10em"}} >
 
             <Button ref={buttonRef} onClick={() => {
                 !menu.show && showMenu()
@@ -25,6 +23,8 @@ export const Example = () => {
             </Button>
 
             <>
+                <MenuCloseArea show={menu.show} setShow={setShow}/>
+
                 <Menu {...menu} style={{translate: '-50% 0%'}}>
                     <MenuItem {...menuButton}>Элемент 1</MenuItem>
                     <MenuItem onClick={() => {
@@ -69,13 +69,15 @@ export const Example2 = () => {
     const [menuButton2, submenu2] = useSubmenu(submenu);
 
     return (
-        <div style={{height: "10em"}} onClick={() => menu.show && setShow(false)}>
+        <div style={{height: "10em"}}>
 
             <Message ref={messageRef} onContextMenu={showMenu} type="info">
                 Нажмите правой кнопкой мыши по области, чтобы открыть контекстное меню
             </Message>
 
             <>
+                <MenuCloseArea show={menu.show} setShow={setShow}/>
+
                 <Menu {...menu} style={{translate: '-50% 0%'}}>
                     <MenuItem {...menuButton}>Элемент 1</MenuItem>
                     <MenuItem onClick={() => {
