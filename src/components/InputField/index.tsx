@@ -10,7 +10,7 @@ type InputFieldComponent =
 
 export const InputField: InputFieldComponent = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFieldProps>(
     ({
-         colorStyle = 'dark',
+         colorStyle = 'secondary',
          borderless,
          flat,
          filled,
