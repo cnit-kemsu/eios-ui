@@ -3,13 +3,12 @@ import {ItemType, ValueType} from "../components/types";
 
 type ReturnType = [{ onChange: (value: ValueType, item: ItemType) => void, value: ValueType }, React.Dispatch<React.SetStateAction<ValueType>>]
 
-export function useList(initValue?: ValueType, additionalOnChange?: (value: ValueType, item: ItemType) => void) {
+export function useList(initValue?: ValueType) {
 
     const [value, setValue] = useState(initValue)
-    const onChange = useCallback((val, item) => {
+    const onChange = useCallback((val, _) => {
         setValue(val)
-        additionalOnChange && additionalOnChange(val, item)
-    }, [additionalOnChange])
+    }, [])
 
     return [{onChange, value}, setValue] as ReturnType
 }

@@ -1,14 +1,13 @@
 import { useState, useCallback } from 'react'
 import {ValueType} from "../components/types";
 
-export default function useTabs(initTab?: ValueType, additionalOnChange?: (tab: ValueType) => void) {
+export function useTabs(initTab?: ValueType) {
 
     const [tab, setTab] = useState(initTab)
     
     const onTabClick = useCallback((tab : ValueType) => {
         setTab(tab)
-        additionalOnChange && additionalOnChange(tab)
-    }, [additionalOnChange])
+    }, [])
 
     const tabs = { tab, onTabClick };
 

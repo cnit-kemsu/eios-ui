@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import {createContext, useContext} from 'react'
 import tc from 'tinycolor2'
 
 const darkenValue = 10
@@ -64,6 +64,7 @@ export const defaultTheme = {
             position: 'relative',
             overflow: 'hidden'
         },
+        height: '32px',
         shadow: '0 1px 6px',
         shadowOnHover: '0 2px 8px'
     },
@@ -100,6 +101,7 @@ export const defaultTheme = {
         padding: '12px'
     },
     tabs: {
+        height: '16px',
         borderWidth: '4px',
         tabPadding: '8px',
         tabContentPadding: '8px',
@@ -107,7 +109,8 @@ export const defaultTheme = {
     select: {
         selectedOptionBg: '#e8f0fb',
         borderColor: '#abb7c7',
-        height: "32px"
+        height: "26px",
+        itemHeight: "24px"
     },
     table: {
         borderColor: "#abb7c7", //'#b8bec5',
@@ -116,7 +119,7 @@ export const defaultTheme = {
         footerColBg: 'white',
         hoverColor: '#ececf5'
     },
-    textField: {
+    inputField: {
         height: "32px"
     },
     pane: {
@@ -129,11 +132,14 @@ export const defaultTheme = {
         color: 'white'
     },
     menu: {
+        height: '20px',
         padding: '6px',
         zIndex: 1000000
     }
-    
+
 }
+
+export type Theme = typeof defaultTheme;
 
 /**
  * Контекст для задания темы

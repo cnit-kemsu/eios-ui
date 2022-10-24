@@ -5,12 +5,11 @@ export type ReturnType = [
     React.Dispatch<React.SetStateAction<string | number | undefined>>
 ]
 
-export function useInputField(initValue: string | number | undefined, additionalOnChange: (value: string | number | undefined) => void) {
+export function useInputField(initValue: string | number | undefined) {
 
     const [value, setValue] = useState(initValue)
     const onChange = useCallback(value => {
-        setValue(value)
-        additionalOnChange && additionalOnChange(value)
+        setValue(value);
     }, [])
 
     return [{value, onChange}, setValue] as ReturnType

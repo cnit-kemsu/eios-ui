@@ -1,7 +1,7 @@
 import React, {Children, cloneElement, ForwardedRef, forwardRef} from 'react'
 import {dynSelectedTabCss, dynTabCss, dynTabsCss, stretchTabCss, stretchTabsCss, tabCss, tabsCss} from './style'
 import {Ripple} from '../Ripple'
-import {CssArray, PolymorphicRef} from "../types";
+import {CssArray} from "../types";
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {TabProps, TabsProps} from "./TabsProps";
@@ -61,7 +61,7 @@ export const Tab: TabComponent = forwardRef<HTMLElement, TabProps>(({
                                                                         css,
                                                                         id,
                                                                         elementType,
-                                                                        fillSelectedTab,
+                                                                        fillSelectedTab = false,
                                                                         colorStyle = 'secondary',
                                                                         selected,
                                                                         children,
@@ -82,22 +82,7 @@ export const Tab: TabComponent = forwardRef<HTMLElement, TabProps>(({
         ]} {...props}>
             <><Ripple color={theme.colorStyles[colorStyle].ripple}/>{children}</>
         </Component>
-    )
-
-    /*return jsx(
-        tabElementType,
-        {
-            css: [
-                tabCss,
-                dynTabCss({ theme, colorStyle }),
-                selected ? dynSelectedTabCss({ theme, fillSelectedTab, selected, colorStyle }) : undefined,
-                ...(css instanceof Array ? css : [css])
-            ],
-            ref: ref,
-            ...props
-        },
-        <><Ripple color={theme.colorStyles[colorStyle].ripple} />{children}</>
-    );*/
+    );
 });
 
 Tab.displayName = "Tab";

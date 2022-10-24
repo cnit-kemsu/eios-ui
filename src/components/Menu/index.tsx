@@ -4,37 +4,41 @@ import {useTheme} from '../../theme'
 import {displayedMenuCss, dynMenuCloseAreaCss, dynMenuCss, dynMenuItemCss} from './style'
 import {MenuCloseAreaProps, MenuItemProps, MenuProps} from "./MenuProps";
 
-
-export const Menu = forwardRef<HTMLUListElement, MenuProps>(({
-                                                                 show,
-                                                                 x,
-                                                                 y,
-                                                                 flat,
-                                                                 borderless,
-                                                                 css,
-                                                                 children,
-                                                                 rootElement = document.body,
-                                                                 ...props
-                                                             }: MenuProps, ref) => {
+export const Menu: React.FC<MenuProps> = forwardRef<HTMLUListElement, MenuProps>(({
+                                                                                      show,
+                                                                                      enableOutsideArea,
+                                                                                      x = 0,
+                                                                                      y = 0,
+                                                                                      flat = false,
+                                                                                      borderless = false,
+                                                                                      css,
+                                                                                      children,
+                                                                                      rootElement = document.body,
+                                                                                      onOutsideClick,
+                                                                                      ...props
+                                                                                  }: MenuProps, ref) => {
 
     const theme = useTheme();
 
     return (
-        <ul ref={ref} {...props}
-            css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss, ...toArray(css)]}>
-            {children}
-        </ul>
-    )
+        <>
+            {enableOutsideArea && show && <div onClick={onOutsideClick} css={[dynMenuCloseAreaCss({theme})]}/>}
+            <ul ref={ref} {...props}
+                css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss, ...toArray(css)]}>
+                {children}
+            </ul>
+        </>
+    );
 });
 
 Menu.displayName = "Menu";
 
-export const MenuItem = forwardRef<HTMLLIElement, MenuItemProps>(({
-                                                                      onClick,
-                                                                      children,
-                                                                      css,
-                                                                      ...props
-                                                                  }: MenuItemProps, ref) => {
+export const MenuItem: React.FC<MenuItemProps> = forwardRef<HTMLLIElement, MenuItemProps>(({
+                                                                                               onClick,
+                                                                                               children,
+                                                                                               css,
+                                                                                               ...props
+                                                                                           }: MenuItemProps, ref) => {
 
     const theme = useTheme();
 

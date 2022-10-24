@@ -2,7 +2,14 @@ import React, {forwardRef, MutableRefObject, useLayoutEffect} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
-import {displayedSelectOptionsCss, dynContainerCss, dynOptionCss, dynOptionsCss, dynSelectCss} from './style'
+import {
+    displayedSelectOptionsCss,
+    dynContainerCss,
+    dynOptionCss,
+    dynOptionsCss,
+    selectCloseAreaCss,
+    dynSelectCss
+} from './style'
 import {defGetContent, defGetSelectable, defGetValue} from "../List/defaults";
 import {SelectProps} from "./SelectProps";
 
@@ -10,8 +17,10 @@ const nativeSelectStyle = {display: 'none'}
 
 export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                                                    name,
-                                                                   open,
+                                                                   open = false,
+                                                                   enableOutsideArea,
                                                                    onClick,
+                                                                   onOutsideClick,
                                                                    selectStyle,
                                                                    onChange,
                                                                    valueProp = 'value',
@@ -20,16 +29,16 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                                                                    getContent = defGetContent,
                                                                    getValue = defGetValue,
                                                                    getSelectable = defGetSelectable,
-                                                                   disabled,
+                                                                   disabled = false,
                                                                    items = [],
                                                                    value,
                                                                    size,
                                                                    itemStyle,
                                                                    placeholder,
                                                                    css,
-                                                                   borderless,
-                                                                   flat,
-                                                                   fullWidth,
+                                                                   borderless = false,
+                                                                   flat = false,
+                                                                   fullWidth = false,
                                                                    valueIsIndex,
                                                                    ...props
                                                                }: SelectProps, ref) => {
@@ -61,6 +70,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
 
     return (
         <>
+            {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
+                                               css={[selectCloseAreaCss]}/>}
             <div ref={ref} {...props} css={[dynContainerCss({theme}), ...toArray(css)]}>
                 <div
                     ref={selectRef}

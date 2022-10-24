@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
@@ -14,7 +14,7 @@ const rippleStyle = {
 };
 
 /**
- * Компонент, который представляет чекбокс
+ * Чекбокс
  * @param name
  * @param css
  * @param colorStyle
@@ -26,7 +26,7 @@ const rippleStyle = {
  * @param props
  * @constructor
  */
-export function Checkbox({
+export const Checkbox : React.FC<CheckboxProps> = forwardRef<HTMLDivElement, CheckboxProps>(({
                              name,
                              css,
                              colorStyle = 'secondary',
@@ -36,13 +36,13 @@ export function Checkbox({
                              children,
                              value,
                              ...props
-                         }: CheckboxProps) {
+                         }: CheckboxProps, ref) => {
 
     const theme = useTheme()
     const {colorStyles, checkbox} = theme
 
     return (
-        <div {...props} onClick={() => onClick?.()}
+        <div ref={ref} {...props} onClick={() => onClick?.()}
              css={[rootCss, dynRootCss({disabled}), checkbox.css, ...toArray(css)]}>
             <div
                 css={[
@@ -65,4 +65,4 @@ export function Checkbox({
             <input name={name} type='hidden' readOnly checked={checked} value={value}/>
         </div>
     )
-}
+});

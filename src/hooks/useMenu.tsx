@@ -10,20 +10,6 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
     const [show, setShow] = useState(false);
     const elRef = useRef() as MutableRefObject<HTMLUListElement>;
 
-    /*useEffect(() => {
-        if (!show) return;
-
-        const handleClick = (e) => {
-            if (!e.target.dataset.menuitem) {
-                setShow(false);
-            }
-        };
-
-        document.addEventListener('click', handleClick);
-        return () => document.removeEventListener('click', handleClick);
-
-    }, [show]);*/
-
     const showMenu = useCallback((e?: React.MouseEvent | undefined) => {
         e?.preventDefault();
         setShow(true);
@@ -55,7 +41,9 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
         }
     }, [position.x, position.y]);
 
-    const menu = {ref: elRef, show, ...menuPos};
+    const onOutsideClick = useCallback(() => setShow(false), [])
+
+    const menu = {ref: elRef, show, enableOutsideArea: true, onOutsideClick, ...menuPos};
 
     return [menu, showMenu, setShow] as [typeof menu, typeof showMenu, typeof setShow];
 

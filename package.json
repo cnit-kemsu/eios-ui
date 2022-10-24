@@ -9,7 +9,6 @@
     "lint": "npx eslint ./src",
     "prepublishOnly": "npm run build",
     "build": "rollup -c --environment NODE_ENV:production",
-    "start": "rollup -c -w --environment RUN_EXAMPLE,NODE_ENV:development",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

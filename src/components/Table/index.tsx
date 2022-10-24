@@ -4,7 +4,11 @@ import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {TableProps} from "./TableProps";
 
-function _Table({ children, borderless, flat, selectableRows, selectableCell, css, ...props } : TableProps, ref) {
+function _Table({
+                    children,
+                    borderless = false, flat = false, selectableRows = false,
+                    selectableCell = false, css, ...props
+                }: TableProps, ref) {
 
     const theme = useTheme();
 

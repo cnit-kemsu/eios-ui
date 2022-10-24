@@ -6,9 +6,8 @@ import {createHookArgsTable} from "./createHookArgsTable";
 
 export const Example = () => {
     const initialValue = "";
-    const additionalOnChange = value => alert('Тест: ' + value);
 
-    const [input, setInput] = useInputField(initialValue, additionalOnChange);
+    const [input, setInput] = useInputField(initialValue);
 
     return (
         <>
@@ -40,11 +39,7 @@ export default {
                     {
                         name: 'initialValue', type: 'string | number | undefined',
                         description: 'начальное значение'
-                    },
-                    {
-                        name: 'additionalOnChange', type: 'function | undefined',
-                        description: 'дополнительный обработчик события onChange'
-                    },
+                    },                    
                     {
                         name: "return",
                         type: "[{onChange: (value: (string | number | undefined)) => void, value: string | number | undefined}, React.Dispatch&lt;React.SetStateAction&lt;string | number | undefined&gt;&gt;]",

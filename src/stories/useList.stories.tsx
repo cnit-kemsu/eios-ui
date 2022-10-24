@@ -6,9 +6,8 @@ import {createHookArgsTable} from "./createHookArgsTable";
 
 export const Example = () => {
     const initialValue = "item0";
-    const additionalOnChange = (v, i) => alert('Тест: ' + v);
 
-    const [list, setValue] = useList(initialValue, additionalOnChange);
+    const [list, setValue] = useList(initialValue);
 
     return (
         <>
@@ -44,15 +43,11 @@ export default {
                     {
                         name: 'initialValue', type: 'string | number | undefined',
                         description: 'начальный `value`'
-                    },
-                    {
-                        name: 'additionalOnChange', type: 'function | undefined',
-                        description: 'дополнительный обработчик нажатия по элементу списка'
-                    },
+                    },                    
                     {
                         name: "return",
                         type: "[{onChange: (value: ValueType, item: ItemType) => void, value: ValueType}, React.Dispatch&lt;React.SetStateAction&lt;ValueType&gt;&gt;]",
-                        description: "перывй элемент массива передается `List`; второй используется дл установки значения списка"
+                        description: "первый элемент массива передается `List`; второй используется дл установки значения списка"
                     }
                 ])}`,
             },

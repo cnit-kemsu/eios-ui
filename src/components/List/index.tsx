@@ -9,11 +9,11 @@ import {defGetContent, defGetSelectable, defGetValue} from "./defaults";
 export function List({
                          name,
                          items = [],
-                         borderless,
-                         flat,
+                         borderless= false,
+                         flat= false,
                          colorStyle = "primary",
                          css,
-                         valueIsIndex,
+                         valueIsIndex= false,
                          valueProp = "value",
                          contentProp = "content",
                          selectableProp = "selectable",
@@ -21,7 +21,7 @@ export function List({
                          getValue = defGetValue,
                          getSelectable = defGetSelectable,
                          value,
-                         disabled,
+                         disabled= false,
                          onChange,
                          ...props
                      }: ListProps) {

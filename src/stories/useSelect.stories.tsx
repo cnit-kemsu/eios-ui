@@ -6,9 +6,8 @@ import {createHookArgsTable} from "./createHookArgsTable";
 
 export const Example = () => {
     const initialValue = "item0";
-    const additionalOnChange = (v, i) => alert('Тест: ' + v);
 
-    const [select, setValue] = useSelect(initialValue, additionalOnChange);
+    const [select, setValue] = useSelect(initialValue);
 
     return (
         <>
@@ -46,13 +45,9 @@ export default {
                         description: 'начальный `value`'
                     },
                     {
-                        name: 'additionalOnChange', type: 'function | undefined',
-                        description: 'дополнительный обработчик нажатия по элементу списка'
-                    },
-                    {
                         name: "return",
-                        type: "[{open: boolean, onClick: () => void, onChange: (v: ValueType, item: ItemType) => void, value: string | number | undefined, ref: MutableRefObject&lt;HTMLDivElement&gt;}, React.Dispatch&lt;React.SetStateAction&lt;string | number | undefined&gt;&gt;]",
-                        description: "первый элемент массива передается `Select`; второй используется для установки значения списка"
+                        type: "[{open: boolean, onClick: () => void, onOutsideClick: () => void,  onChange: (v: ValueType, item: ItemType) => void, value: string | number | undefined}, React.Dispatch&lt;React.SetStateAction&lt;string | number | undefined&gt;&gt;, React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;]",
+                        description: "первый элемент массива передается `Select`; второй используется для установки значения списка; третий для открытия и закрытия меню"
                     }
                 ])}`,
             },

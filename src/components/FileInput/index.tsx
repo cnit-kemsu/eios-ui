@@ -3,24 +3,24 @@ import {buttonCss, dynButtonCss} from "../Button/style"
 import {Ripple} from '../Ripple'
 import {useTheme} from "../../theme"
 import {toArray} from "../../utils"
-import {inputCss, rootCss} from "./style"
+import {inputCss, dynRootCss} from "./style"
 import {FileInputProps} from "./FileInputProps";
 
-export const FileInput = forwardRef<HTMLDivElement, FileInputProps>(({
-                              label,
-                              css,
-                              colorStyle = "dark",
-                              transparent,
-                              fillable,
-                              borderless,
-                              stickOnHover,
-                              flat,
-                              disabled,
-                              inputRef,
-                              onChange,
-                              multiple,
-                              ...props
-                          }: FileInputProps, ref) => {
+export const FileInput: React.FC<FileInputProps> = forwardRef<HTMLDivElement, FileInputProps>(({
+                                                                                                   label,
+                                                                                                   css,
+                                                                                                   colorStyle = "dark",
+                                                                                                   transparent = false,
+                                                                                                   fillable = false,
+                                                                                                   borderless = false,
+                                                                                                   stickOnHover = false,
+                                                                                                   flat = false,
+                                                                                                   disabled = false,
+                                                                                                   inputRef,
+                                                                                                   onChange,
+                                                                                                   multiple = false,
+                                                                                                   ...props
+                                                                                               }: FileInputProps, ref) => {
 
     const theme = useTheme();
     const {colorStyles, button} = theme;
@@ -30,17 +30,17 @@ export const FileInput = forwardRef<HTMLDivElement, FileInputProps>(({
         dynButtonCss({theme, flat, stickOnHover, disabled, colorStyle, transparent, fillable, borderless}),
         button.css,
         ...toArray(css)
-    ]
+    ];
 
     return (
-        <div ref={ref} css={rootCss}>
+        <div ref={ref} css={dynRootCss({theme})}>
             <label css={finalCss}>
                 <Ripple color={colorStyles[colorStyle].ripple}/>
                 <span>{label}</span>
                 <input onChange={onChange} multiple={multiple} type="file" ref={inputRef} css={inputCss} {...props} />
             </label>
         </div>
-    )
+    );
 });
 
 FileInput.displayName = "FileInput";

@@ -1,48 +1,28 @@
-import {useState, useEffect, useRef, useCallback, MutableRefObject} from 'react'
+import {useCallback, useState} from 'react'
 import {ItemType, ValueType} from "../components/types";
 
+export function useSelect(initValue?: ValueType) {
 
-export default function useSelect(initValue?: ValueType, additionalOnChange?: (value: ValueType, item: ItemType) => void) {
+    const [value, setValue] = useState(initValue);
+    const [open, setOpen] = useState(false);
 
-    const [value, setValue] = useState(initValue)
-    const [open, setOpen] = useState(false)
-
-    const onChange = useCallback((v: ValueType, item: ItemType) => {
+    const onChange = useCallback((v: ValueType, _: ItemType) => {
         setValue(v);
         setOpen(false);
-        additionalOnChange && additionalOnChange(v, item)
-    }, [additionalOnChange])
+    }, []);
 
-    const onClick = useCallback(() => setOpen(!open), [open])
-    const ref = useRef() as MutableRefObject<HTMLDivElement>;
+    const onClick = useCallback(() => {
+        setOpen(cur => !cur)
+    }, []);
 
-    useEffect(() => {
-
-        if (!ref.current) return
-
-        let isHovered = false
-
-        const handleOutsideClick = () => !isHovered && setOpen(false)
-        const handleMouseEnter = () => isHovered = true
-        const handleMouseLeave = () => isHovered = false
-
-        ref.current.addEventListener('mouseenter', handleMouseEnter)
-        ref.current.addEventListener('mouseleave', handleMouseLeave)
-
-        document.addEventListener('click', handleOutsideClick)
-
-        return () => {
-            ref.current && ref.current.removeEventListener('mouseenter', handleMouseEnter)
-            ref.current && ref.current.removeEventListener('mouseenter', handleMouseLeave)
-            document.removeEventListener('click', handleOutsideClick)
-        }
-    }, [ref.current])
+    const onOutsideClick = useCallback(() => setOpen(false), []);
 
     const select = {
         open, onClick,
         onChange, value,
-        ref
+        enableOutsideArea: true,
+        onOutsideClick
     };
 
-    return [select, setValue] as [typeof select, typeof setValue];
+    return [select, setValue, setOpen] as [typeof select, typeof setValue, typeof setOpen];
 }

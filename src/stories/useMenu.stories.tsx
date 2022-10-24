@@ -4,17 +4,16 @@ import {ComponentMeta} from "@storybook/react";
 import {Button, Menu, MenuItem, Message} from "../index";
 import {createHookArgsTable} from "./createHookArgsTable";
 import {useMenu, useSubmenu} from "../hooks/useMenu";
-import {MenuCloseArea} from "../components/Menu";
 
 export const Example = () => {
     const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
-    const [menu, showMenu, setShow] = useMenu(buttonRef, {x: 0.5, y: 1});
+    const [menu, showMenu] = useMenu(buttonRef, {x: 0.5, y: 1});
     const [menuButton, submenu] = useSubmenu(menu);
     const [menuButton2, submenu2] = useSubmenu(submenu);
 
     return (
-        <div style={{height: "10em"}} >
+        <div style={{height: "10em"}}>
 
             <Button ref={buttonRef} onClick={() => {
                 !menu.show && showMenu()
@@ -23,8 +22,6 @@ export const Example = () => {
             </Button>
 
             <>
-                <MenuCloseArea show={menu.show} setShow={setShow}/>
-
                 <Menu {...menu} style={{translate: '-50% 0%'}}>
                     <MenuItem {...menuButton}>Элемент 1</MenuItem>
                     <MenuItem onClick={() => {
@@ -64,7 +61,7 @@ Example.storyName = "Меню и кнопка"
 export const Example2 = () => {
     const messageRef = useRef() as MutableRefObject<HTMLDivElement>;
 
-    const [menu, showMenu, setShow] = useMenu(messageRef);
+    const [menu, showMenu] = useMenu(messageRef);
     const [menuButton, submenu] = useSubmenu(menu);
     const [menuButton2, submenu2] = useSubmenu(submenu);
 
@@ -76,8 +73,6 @@ export const Example2 = () => {
             </Message>
 
             <>
-                <MenuCloseArea show={menu.show} setShow={setShow}/>
-
                 <Menu {...menu} style={{translate: '-50% 0%'}}>
                     <MenuItem {...menuButton}>Элемент 1</MenuItem>
                     <MenuItem onClick={() => {
