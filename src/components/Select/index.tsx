@@ -15,7 +15,7 @@ import {SelectProps} from "./SelectProps";
 
 const nativeSelectStyle = {display: 'none'}
 
-export const Select = forwardRef<HTMLDivElement, SelectProps>(({
+export const Select : React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(({
                                                                    name,
                                                                    open = false,
                                                                    enableOutsideArea,

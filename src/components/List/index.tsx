@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
@@ -6,7 +6,7 @@ import {ListProps} from "./ListProps";
 import {defGetContent, defGetSelectable, defGetValue} from "./defaults";
 
 
-export function List({
+export const List : React.FC<ListProps> = forwardRef<HTMLUListElement, ListProps>(({
                          name,
                          items = [],
                          borderless= false,
@@ -24,13 +24,13 @@ export function List({
                          disabled= false,
                          onChange,
                          ...props
-                     }: ListProps) {
+                     }: ListProps, ref) => {
 
     const theme = useTheme();
 
     return (
         <>
-            <ul {...props} css={[rootCss, dynRootCss({disabled, borderless, theme, flat}), ...toArray(css)]}>
+            <ul ref={ref} {...props} css={[rootCss, dynRootCss({disabled, borderless, theme, flat}), ...toArray(css)]}>
                 {
                     items.map((item, index) => {
 
@@ -61,4 +61,4 @@ export function List({
             </select>
         </>
     )
-}
+});

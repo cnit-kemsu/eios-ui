@@ -4,7 +4,7 @@ import {toArray} from '../../utils'
 import {dynContentCss, dynRootCss, dynTitleCss} from './style'
 import {PaneProps} from "./PaneProps";
 
-export const Pane = forwardRef<HTMLDivElement, PaneProps>(({
+export const Pane : React.FC<PaneProps> = forwardRef<HTMLDivElement, PaneProps>(({
                                                                flat= false,
                                                                borderless= false, title, children,
                                                                titleCss, css, ...props

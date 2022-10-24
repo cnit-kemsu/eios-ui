@@ -4,7 +4,12 @@ import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {SpinnerProps} from "./SpinnerProps";
 
-function _Spinner({ colorStyle="secondary", scale = 1, css, ...props } : SpinnerProps, ref) {
+export const Spinner: React.FC<SpinnerProps> = forwardRef<SVGSVGElement, SpinnerProps>(({
+                                                                                            colorStyle = "secondary",
+                                                                                            scale = 1,
+                                                                                            css,
+                                                                                            ...props
+                                                                                        }: SpinnerProps, ref) => {
 
     const theme = useTheme();
 
@@ -13,10 +18,9 @@ function _Spinner({ colorStyle="secondary", scale = 1, css, ...props } : Spinner
 
     return (
         <svg ref={ref} {...props} css={[spinnerCss, ...toArray(css)]} viewBox="0 0 100 100">
-            <circle css={[spinnerCircleCss, dynSpinnerCircleCss({ theme, l, colorStyle })]} cx="50" cy="50" r={r} />
+            <circle css={[spinnerCircleCss, dynSpinnerCircleCss({theme, l, colorStyle})]} cx="50" cy="50" r={r}/>
         </svg>
     )
-}
+});
 
-export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(_Spinner);
 Spinner.displayName = 'Spinner';
