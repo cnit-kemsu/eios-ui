@@ -1,5 +1,5 @@
 import {ColorStyle, Css} from "../types";
-import React, {ChangeEventHandler, MutableRefObject} from "react";
+import React from "react";
 
 export type InputFieldProps = {
     colorStyle?: ColorStyle;
