@@ -4,6 +4,7 @@ import {ComponentMeta} from "@storybook/react";
 import {Button, Menu, MenuItem, Message} from "../index";
 import {createHookArgsTable} from "./createHookArgsTable";
 import {useMenu, useSubmenu} from "../hooks/useMenu";
+import * as dedent from "dedent";
 
 export const Example = () => {
     const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
@@ -115,7 +116,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Хуки, которые используются в паре с [Menu](..?path=/docs/компоненты-menu--default) и [MenuItem](..?path=/docs/компоненты-menuitem--default).                              
+                component: dedent`Хуки, которые используются в паре с [Menu](..?path=/docs/компоненты-menu--default) и [MenuItem](..?path=/docs/компоненты-menuitem--default).                              
                 ${createHookArgsTable([
                     {
                         name: 'anchorElementRef', type: 'MutableRefObject<Element>',
@@ -130,7 +131,8 @@ export default {
                         type: "[{x: number, y: number, ref: React.MutableRefObject&lt;HTMLUListElement&gt;, show: boolean}, ((e?: (React.MouseEvent | undefined)) => void), React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;]",
                         description: "первый элемент передается `Menu`; второй - может быть вызван без аргумента, когда нужно отобразить меню, или его можно передать в качестве обработчика события (например, `onClick`, `onContextMenu`); третий элемент представляет установщик состояния отображения меню."
                     }
-                ], 'Аргументы useMenu')} ${createHookArgsTable([
+                ], 'Аргументы useMenu')} 
+                ${createHookArgsTable([
                     {
                         name: 'menu', type: '{ x: number, y: number, show: boolean }',
                         description: 'первый элемент массива, возвращаемого `useMenu` или второй элемент массива, возвращаемый `useSubmenu`'

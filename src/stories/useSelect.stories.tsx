@@ -3,6 +3,7 @@ import {Select} from "../components/Select";
 import {Button, useSelect} from "../index";
 import {ComponentMeta} from "@storybook/react";
 import {createHookArgsTable} from "./createHookArgsTable";
+import * as dedent from "dedent";
 
 export const Example = () => {
     const initialValue = "item0";
@@ -38,7 +39,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Хук, который используется в паре с [Select](..?path=/docs/компоненты-select--default).                
+                component: dedent`Хук, который используется в паре с [Select](..?path=/docs/компоненты-select--default).                
                 ${createHookArgsTable([
                     {
                         name: 'initialValue', type: 'string | number | undefined',

@@ -1,7 +1,19 @@
+import React from "react";
 import {Button} from "../components/Button";
 import {ComponentMeta} from "@storybook/react";
 import {createStoryTemplate} from "./createStoryTemplate";
 import {argTypes} from "./argTypes";
+
+import {
+    Title,
+    Subtitle,
+    Primary,
+    ArgsTable,
+    Stories,
+    PRIMARY_STORY, Description,
+} from '@storybook/addon-docs';
+import * as dedent from "dedent";
+
 
 export default {
     title: "Компоненты/Button",
@@ -16,6 +28,13 @@ export default {
         flat: argTypes.flat,
         borderless: argTypes.borderless,
         transparent: argTypes.transparent
+    },
+    parameters: {
+        docs: {
+            description: {
+                component: dedent`Кнопка. По умолчанию представляет собой обертку вокруг \`button\`.`
+            }
+        }
     }
 } as ComponentMeta<typeof Button>
 

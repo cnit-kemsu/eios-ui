@@ -3,6 +3,7 @@ import {List} from "../components/List";
 import {Button, useList} from "../index";
 import {ComponentMeta} from "@storybook/react";
 import {createHookArgsTable} from "./createHookArgsTable";
+import * as dedent from "dedent";
 
 export const Example = () => {
     const initialValue = "item0";
@@ -38,7 +39,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Хук, который используется в паре с [List](..?path=/docs/компоненты-list--default).                
+                component: dedent`Хук, который используется в паре с [List](..?path=/docs/компоненты-list--default).                
                 ${createHookArgsTable([
                     {
                         name: 'initialValue', type: 'string | number | undefined',
