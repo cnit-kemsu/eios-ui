@@ -26,7 +26,5 @@ export const dynRootCss = ({theme, filled, borderless, flat, colorStyle}: DynRoo
 
   &:focus {
     border-bottom: 2px solid ${theme.colorStyles[colorStyle].origin};
-    ${flat ? `padding-bottom: 2px` : ''}
-  }
-
+    ${flat ? `padding-bottom: 7px;` : ``}
 `
