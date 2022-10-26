@@ -3,17 +3,7 @@ import {Button} from "../components/Button";
 import {ComponentMeta} from "@storybook/react";
 import {createStoryTemplate} from "./createStoryTemplate";
 import {argTypes} from "./argTypes";
-
-import {
-    Title,
-    Subtitle,
-    Primary,
-    ArgsTable,
-    Stories,
-    PRIMARY_STORY, Description,
-} from '@storybook/addon-docs';
-import * as dedent from "dedent";
-
+import {dedent} from "ts-dedent";
 
 export default {
     title: "Компоненты/Button",

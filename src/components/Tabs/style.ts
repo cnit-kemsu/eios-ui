@@ -15,6 +15,7 @@ export const dynTabsCss = ({theme}: { theme: Theme }) => css`
 `
 
 export const tabCss = css`  
+  box-sizing: content-box;
   outline: none;
   border: none;
   flex: unset;

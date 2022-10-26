@@ -2,7 +2,7 @@ import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
-import {dynIconCss, dynRootCss, rootCss} from './style'
+import {dynIconCss, dynRootCss, labelCss, rootCss} from './style'
 import {CheckboxProps} from "./CheckboxProps";
 
 const rippleStyle = {
@@ -61,7 +61,7 @@ export const Checkbox : React.FC<CheckboxProps> = forwardRef<HTMLDivElement, Che
                    className='material-icons'>{checked ? "check_box" : "check_box_outline_blank"}
                 </i>
             </div>
-            <div>{children}</div>
+            <div css={labelCss}>{children}</div>
             <input name={name} type='hidden' readOnly checked={checked} value={value}/>
         </div>
     )

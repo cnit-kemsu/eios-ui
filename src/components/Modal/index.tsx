@@ -2,7 +2,15 @@ import React, {forwardRef, useCallback, useEffect, useState} from 'react'
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {Button} from '../Button'
-import {dynBackLayerCss, dynContainerCss, dynContentCss, dynHeaderCss, dynTitleCss} from './style'
+import {
+    closeButtonCss,
+    closeButtonIconCss,
+    dynBackLayerCss,
+    dynContainerCss,
+    dynContentCss,
+    dynHeaderCss,
+    dynTitleCss
+} from './style'
 import {ModalProps} from "./ModalProps";
 
 export const Modal : React.FC<ModalProps> = forwardRef<HTMLDivElement, ModalProps>(({
@@ -39,18 +47,18 @@ export const Modal : React.FC<ModalProps> = forwardRef<HTMLDivElement, ModalProp
                 style={style}
             >
                 <div css={dynHeaderCss({theme})}>
-                    <h1 css={dynTitleCss({theme})}>
+                    <h2 css={dynTitleCss({theme})}>
                         {title}
-                    </h1>
+                    </h2>
                     <Button
-                        style={{padding: '0px', width: theme.button.height}}
+                        css={closeButtonCss}
                         flat
                         transparent
                         fillable
                         borderless
                         onClick={onClose}
                     >
-                        <i className='material-icons'>close</i>
+                        <i css={closeButtonIconCss} className='material-icons'>close</i>
                     </Button>
                 </div>
                 <div css={dynContentCss({theme})}>

@@ -7,7 +7,7 @@ export const rootCss = css`
     position: relative; 
     cursor: pointer;  
     display: inline-flex;
-    align-items: center;
+    align-items: stretch;
     flex-direction: row;
     user-select: none;
 `
@@ -31,3 +31,7 @@ export const dynIconCss = ({ checked, disabled, theme, colorStyle } : DynIconCss
 }
 
 export const dynRootCss = ({ disabled }) => disabled ? css`pointer-events: none;` : ''
+
+export const labelCss = css`
+  margin-left: 4px;
+`

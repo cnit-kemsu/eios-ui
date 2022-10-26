@@ -64,7 +64,7 @@ export const defaultTheme = {
             position: 'relative',
             overflow: 'hidden'
         },
-        height: '32px',
+        height: '1rem',
         shadow: '0 1px 6px',
         shadowOnHover: '0 2px 8px'
     },
@@ -79,11 +79,6 @@ export const defaultTheme = {
         selectedItemBgColor: '#f2f7fd'
     },
     message: {
-        style: {
-            padding: '12px',
-            margin: '12px 0px',
-            borderRadius: '6px'
-        },
         bg: {
             info: tc('#d2dce6').setAlpha(0.5).toString() as string,
             warning: tc('#ffe581').setAlpha(0.5).toString() as string,
@@ -98,10 +93,10 @@ export const defaultTheme = {
         }
     },
     modal: {
-        padding: '12px'
+
     },
     tabs: {
-        height: '16px',
+        height: '1rem',
         borderWidth: '4px',
         tabPadding: '8px',
         tabContentPadding: '8px',
@@ -109,8 +104,8 @@ export const defaultTheme = {
     select: {
         selectedOptionBg: '#e8f0fb',
         borderColor: '#abb7c7',
-        height: "26px",
-        itemHeight: "24px"
+        height: "1em",
+        itemHeight: "1em"
     },
     table: {
         borderColor: "#abb7c7", //'#b8bec5',
@@ -120,11 +115,10 @@ export const defaultTheme = {
         hoverColor: '#ececf5'
     },
     inputField: {
-        height: "32px"
+        height: "1rem"
     },
     pane: {
         titleBg: '#d2dce6',
-        padding: '12px',
         borderColor: "#abb7c7", //'#e6e6e6'
     },
     tooltip: {
@@ -132,8 +126,8 @@ export const defaultTheme = {
         color: 'white'
     },
     menu: {
-        height: '20px',
-        padding: '6px',
+        height: '1rem',
+        padding: '8px',
         zIndex: 1000000
     }
 

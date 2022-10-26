@@ -8,7 +8,7 @@ export function createHookArgsTable(args, header = 'Аргументы') {
     <tbody>
     ${args.map(({name, type, description}) => `<tr>
             <td><b>${name}</b></td>
-            <td><i>${type}</i></td>
+            <td><code>${type}</code></td>
             <td>${description}</td>
         </tr>
 `).join('')}

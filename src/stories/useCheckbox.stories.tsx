@@ -3,12 +3,12 @@ import {Checkbox} from "../components/Checkbox";
 import {Button, useCheckbox} from "../index";
 import {ComponentMeta} from "@storybook/react";
 import {createHookArgsTable} from "./createHookArgsTable";
+import * as dedent from "dedent";
 
 export const Example = () => {
     const initialValue = false;
-    const additionalOnClick = checked => alert('Тест: ' + checked);
 
-    const [checkbox, setChecked] = useCheckbox(initialValue, additionalOnClick);
+    const [checkbox, setChecked] = useCheckbox(initialValue);
 
     return (
         <>
@@ -35,19 +35,15 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Хук, который используется в паре с [Checkbox](..?path=/docs/компоненты-checkbox--default).                
+                component: dedent`Хук, который используется в паре с [Checkbox](..?path=/docs/компоненты-checkbox--default).                
                 ${createHookArgsTable([
                     {
                         name: 'initialValue', type: 'boolean',
                         description: 'если установлен в `true`, то чекбокс будет изначально отмечен'
-                    },
+                    },                    
                     {
-                        name: 'additionalOnClick', type: 'function',
-                        description: 'дополнительный обработчик нажатия по чекбоксу (опциональный)'
-                    },
-                    {
-                        name: "return", type: "[{onClick: () => void, checked: boolean}, React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;]",
-                        description: "первый элемент массива передается `Checkbox`; второй используется для смены состояния чекбокса"                        
+                        name: "return", type: "[<br/>&nbsp;{onClick: () => void, checked: boolean},<br/>&nbsp;React.Dispatch&lt;React.SetStateAction&lt;boolean&gt;&gt;<br/>]",
+                        description: "<i>первый элемент массива</i> представляет свойства компонента `Checkbox`;<br/><i>второй элемент массива</i> используется для смены состояния чекбокса"                        
                     }
                 ])}`,
             },

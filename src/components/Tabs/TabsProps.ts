@@ -10,7 +10,10 @@ export type TabProps= {
     fillSelectedTab?: boolean;
     onClick?: () => void;
     children?: React.ReactNode;
-}
+    style?: React.CSSProperties;
+    className?: string;
+};
+
 export type TabsProps = {
     colorStyle?: ColorStyle;
     stretchTabs?: boolean;
@@ -19,4 +22,6 @@ export type TabsProps = {
     css?: Css;
     fillSelectedTab?: boolean;
     children?: ReactElement<TabProps> | ReactElement<TabProps>[];
-}
+    style?: React.CSSProperties;
+    className?: string;
+};

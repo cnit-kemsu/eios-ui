@@ -14,7 +14,7 @@ export const Pane : React.FC<PaneProps> = forwardRef<HTMLDivElement, PaneProps>(
 
     return (
         <div ref={ref} {...props} css={[dynRootCss({theme, flat, borderless}), ...toArray(css)]}>
-            {title && <h3 css={[dynTitleCss({theme}), ...toArray(titleCss)]}>{title}</h3>}
+            {title && <h2 css={[dynTitleCss({theme}), ...toArray(titleCss)]}>{title}</h2>}
             <div css={dynContentCss({theme})}>{children}</div>
         </div>
     )

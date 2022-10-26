@@ -54,8 +54,6 @@ export const dynBackLayerCss = ({theme, open}: { theme: Theme, open: boolean }) 
   top: 0;
   right: 0;
   bottom: 0;
-  /*width: 100%;
-  height: 100%;*/
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000001;
   display: flex;
@@ -94,19 +92,30 @@ export const dynHeaderCss = ({theme}: { theme: Theme }) => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: ${theme.modal.padding};
+  margin: 16px;
+  
 `
 
 export const dynTitleCss = ({theme}: { theme: Theme }) => css`
-  font-weight: bold;
-  font-size: 24px;
-  margin: 0 ${theme.modal.padding} 0 0;
+  font-weight: bold;  
+  margin: 0 16px 0 0;
   padding-bottom: 0;
+  font-size: 1.5rem;
 `
 
 export const dynContentCss = ({theme}: { theme: Theme }) => css`
-  padding: ${theme.modal.padding};
+  padding: 16px;
   text-align: justify;
-  margin-top: -1em;
+  margin-top: -1rem;
+`
+
+export const closeButtonIconCss = css`
+    font-size: 1.5rem;
+`
+
+export const closeButtonCss = css`
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
 `
 

@@ -2,17 +2,16 @@ import {css} from '@emotion/react'
 import {Theme} from "../../theme";
 import {ColorStyle} from "../types";
 
-
 export const buttonCss = css`
   font-size: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition-property: background, color, box-shadow;
+  box-sizing: content-box;
   /* for anchor */
   text-decoration: none;
-  cursor: pointer;
-  box-sizing: border-box;
+  cursor: pointer;  
 `
 type DynButtonCssArgs = {
     theme: Theme, colorStyle: ColorStyle, flat: Boolean,
@@ -57,6 +56,5 @@ export const dynButtonCss = ({
       &:focus {
         outline: none;
       }
-
     `
 }

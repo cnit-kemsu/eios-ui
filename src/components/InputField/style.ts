@@ -4,7 +4,7 @@ import {ColorStyle} from "../types";
 
 export const rootCss = css`
   outline: none;
-  padding: 0 4px;
+  padding: 8px;
   transition-property: padding, border, box-shadow;  
 `
 

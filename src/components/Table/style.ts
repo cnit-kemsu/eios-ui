@@ -14,7 +14,7 @@ export const dynTableCss = ({theme, borderless, flat, selectableRows, selectable
   ${flat ? '' : theme.boxShadow + ';'}
   td, th {
     ${borderless ? 'border: none' : `border: 1px solid ${theme.table.borderColor}`};
-    padding: 15px;
+    padding: 8px;
 
     ${!flat && !borderless ? css`
 

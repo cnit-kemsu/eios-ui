@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
-import {dynMessageCss} from './style'
+import {dynMessageCss, messageCss} from './style'
 import {MessageProps} from "./MessageProps";
 
 export const Message : React.FC<MessageProps> = forwardRef<HTMLDivElement, MessageProps>(({
@@ -17,7 +17,7 @@ export const Message : React.FC<MessageProps> = forwardRef<HTMLDivElement, Messa
 
     return (
         <div ref={ref} {...props}
-             css={[dynMessageCss({theme, flat, type, borderless}), theme.message.style, ...toArray(css)]}>
+             css={[dynMessageCss({theme, flat, type, borderless}), messageCss, ...toArray(css)]}>
             {children}
         </div>
     );

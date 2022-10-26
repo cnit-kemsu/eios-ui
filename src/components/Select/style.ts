@@ -6,16 +6,18 @@ export const dynContainerCss = ({theme}: { theme: Theme }) => css`
   position: relative;
   background: white;
   height: ${theme.select.height};
+  box-sizing: content-box;
 `
 
 export const dynOptionCss = ({theme}: { theme: Theme }) => css`
-  padding: 4px;
+  padding: 8px;
   position: relative;
   overflow: hidden;
   height: ${theme.select.itemHeight};
   display: flex;
   align-items: center;
   cursor: pointer;
+  box-sizing: content-box;
 
   &:hover, &:active {
     background: ${theme.select.selectedOptionBg};
@@ -36,7 +38,7 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   transform-origin: top;
   transition: transform ${theme.transitionDuration}, opacity ${theme.transitionDuration};
   ${flat ? '' : theme.boxShadow + ";"};
-  padding: 1.5px;
+  padding: 4px;
 
 `
 
@@ -53,7 +55,7 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   ${open ? 'border-bottom: none; padding-bottom: 12px;' : ''}
   outline: none;
   transition-property: border;
-  padding: 3px 0 3px 3px;
+  padding: 8px 0 8px 8px;
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
