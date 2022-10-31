@@ -27,7 +27,7 @@ export const Default = (props: Omit<TooltipProps, 'targetElementRef'>) => {
     const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
     return (
-        <div style={{height: "5em"}}>
+        <div style={{padding: "3em 12em"}}>
             <Button ref={buttonRef}>Наведи курсор на меня</Button>
             <Tooltip targetElementRef={buttonRef} {...props} />
         </div>
