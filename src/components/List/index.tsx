@@ -4,27 +4,28 @@ import {toArray} from '../../utils'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
 import {ListProps} from "./ListProps";
 import {defGetContent, defGetSelectable, defGetValue} from "./defaults";
+import {Ripple} from "../Ripple";
 
 
-export const List : React.FC<ListProps> = forwardRef<HTMLUListElement, ListProps>(({
-                         name,
-                         items = [],
-                         borderless= false,
-                         flat= false,
-                         colorStyle = "primary",
-                         css,
-                         valueIsIndex= false,
-                         valueProp = "value",
-                         contentProp = "content",
-                         selectableProp = "selectable",
-                         getContent = defGetContent,
-                         getValue = defGetValue,
-                         getSelectable = defGetSelectable,
-                         value,
-                         disabled= false,
-                         onChange,
-                         ...props
-                     }: ListProps, ref) => {
+export const List: React.FC<ListProps> = forwardRef<HTMLUListElement, ListProps>(({
+                                                                                      name,
+                                                                                      items = [],
+                                                                                      borderless = false,
+                                                                                      flat = false,
+                                                                                      colorStyle = "primary",
+                                                                                      css,
+                                                                                      valueIsIndex = false,
+                                                                                      valueProp = "value",
+                                                                                      contentProp = "content",
+                                                                                      selectableProp = "selectable",
+                                                                                      getContent = defGetContent,
+                                                                                      getValue = defGetValue,
+                                                                                      getSelectable = defGetSelectable,
+                                                                                      value,
+                                                                                      disabled = false,
+                                                                                      onChange,
+                                                                                      ...props
+                                                                                  }: ListProps, ref) => {
 
     const theme = useTheme();
 
@@ -46,6 +47,7 @@ export const List : React.FC<ListProps> = forwardRef<HTMLUListElement, ListProps
                                 (curValue === value) && dynSelectedItemCss({theme, colorStyle})
                             ]}
                         >
+                            <Ripple color={theme.colorStyles[colorStyle].ripple}/>
                             {getContent(item, contentProp)}
                         </li>
                     })
