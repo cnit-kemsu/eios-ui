@@ -8,7 +8,7 @@ const lightenValue = 8
  * Тема по умолчанию
  */
 export const defaultTheme = {
-    borderColor: '#abb7c7',
+    borderColor: 'rgb(220, 227, 236)',//'#abb7c7',
     transitionDuration: '0.1s',
     disabledOpacity: '0.5',
     disableRipple: false,
