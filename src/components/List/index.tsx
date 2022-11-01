@@ -53,7 +53,7 @@ export const List: React.FC<ListProps> = forwardRef<HTMLUListElement, ListProps>
                     })
                 }
             </ul>
-            <select value={value} style={{display: 'none'}}>
+            <select disabled value={value} style={{display: 'none'}}>
                 {
                     items.map((item, index) => {
                         const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
