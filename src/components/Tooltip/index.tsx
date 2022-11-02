@@ -37,6 +37,7 @@ export function Tooltip({
     const [offset, setOffset] = useState(initOffset);
 
     const tooltipRef = useRef() as MutableRefObject<HTMLDivElement>;
+    const enteredTheTooltipAreaRef = useRef(false);
 
     const showTooltip = useCallback(debounce(target => {
 
@@ -51,9 +52,11 @@ export function Tooltip({
 
     const hideTooltip = useCallback(debounce(target => {
 
-        if (!target || !tooltipRef.current) return;
+        if (!tooltipRef.current || enteredTheTooltipAreaRef.current) return;
 
         setShow(false)
+
+        if(!target) return;
 
         let offset = getElementPositionRelativeTo(target, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
         if (offset) setOffset({left: offset.x, top: offset.y});
@@ -86,8 +89,14 @@ export function Tooltip({
         hideTooltip?.cancel?.();
     }, []);
 
-    const handleTooltipMouseEnter = () => hideTooltip.cancel?.();
-    const handleTooltipMouseLeave = () => hideTooltip?.();
+    const handleTooltipMouseEnter = () => {
+        hideTooltip.cancel?.();
+        enteredTheTooltipAreaRef.current = true;
+    }
+    const handleTooltipMouseLeave = () => {
+        enteredTheTooltipAreaRef.current = false;
+        hideTooltip?.();
+    }
 
     const contentElement = (
         <div {...props}
