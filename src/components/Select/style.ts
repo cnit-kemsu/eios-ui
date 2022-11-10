@@ -39,7 +39,7 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   transition: transform ${theme.transitionDuration}, opacity ${theme.transitionDuration};
   ${flat ? '' : theme.boxShadow + ";"};
   padding: 4px;
-
+  box-sizing: content-box;
 `
 
 type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, flat: boolean, open: boolean};
@@ -59,6 +59,7 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
+  box-sizing: content-box;
 
   ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4);'}
   * {
