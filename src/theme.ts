@@ -104,8 +104,8 @@ export const defaultTheme = {
     select: {
         selectedOptionBg: '#e8f0fb',
         borderColor: '#abb7c7',
-        height: "1em",
-        itemHeight: "1em"
+        height: "1rem",
+        itemHeight: "1rem"
     },
     table: {
         borderColor: "#abb7c7", //'#b8bec5',
