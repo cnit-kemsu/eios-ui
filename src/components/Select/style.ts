@@ -5,7 +5,7 @@ export const dynContainerCss = ({theme}: { theme: Theme }) => css`
   display: inline-block;
   position: relative;
   background: white;
-  height: ${theme.select.height};
+  /*height: ${theme.select.height};*/
   box-sizing: content-box;
 `
 
@@ -46,16 +46,17 @@ type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, f
 
 export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelectCssArgs) => css`
   min-width: 100%;
-  height: 100%;
+  /*height: 100%;*/
+  height: ${theme.select.height};
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;${/*borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor}`*/''};
-  ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}
-  ${open ? 'border-bottom: none; padding-bottom: 12px;' : ''}
+  ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}  
   outline: none;
   transition-property: border;
   padding: 8px 0 8px 8px;
+  ${open ? 'border-bottom: none; padding-bottom: 10px;' : ''}
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
