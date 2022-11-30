@@ -108,7 +108,7 @@ export const defaultTheme = {
         itemHeight: "1rem"
     },
     table: {
-        borderColor: "#abb7c7", //'#b8bec5',
+        borderColor: "#bbc7d3",//"#abb7c7", //'#b8bec5',
         headerColBg: '#d2dce6',
         bodyColBg: 'white',
         footerColBg: 'white',
