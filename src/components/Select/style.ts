@@ -56,7 +56,7 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   outline: none;
   transition-property: border;
   padding: 8px 0 8px 8px;
-  ${open ? 'border-bottom: none; padding-bottom: 10px;' : ''}
+  ${open ? 'border-bottom: none;' : ''}
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
