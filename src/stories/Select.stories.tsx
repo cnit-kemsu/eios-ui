@@ -26,7 +26,7 @@ export default {
         onClick: {action: 'clicked', description: "событие нажатия по списку", control: {type: null}}
     },
     decorators: [
-        (Story) => <div style={{height: "10em"}}>{Story()}</div>
+        (Story) => <div style={{height: "10em"}}>{Story()}<div style={{background: "red", width: "100%"}}>test</div></div>
     ]
 } as ComponentMeta<typeof Select>
 
