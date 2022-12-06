@@ -2,7 +2,6 @@ import {Select} from "../components/Select";
 import {ComponentMeta} from "@storybook/react";
 import {createStoryTemplate} from "./createStoryTemplate";
 import {argTypes} from "./argTypes";
-import {SelectProps} from "../components/Select/SelectProps";
 
 export default {
     title: "Компоненты/Select",
@@ -26,7 +25,7 @@ export default {
         onClick: {action: 'clicked', description: "событие нажатия по списку", control: {type: null}}
     },
     decorators: [
-        (Story) => <div style={{height: "10em"}}>{Story()}<div style={{background: "red", width: "100%"}}>test</div></div>
+        (Story) => <div style={{height: "10em"}}>{Story()}</div>
     ]
 } as ComponentMeta<typeof Select>
 

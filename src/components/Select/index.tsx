@@ -4,7 +4,7 @@ import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
 import {
     displayedSelectOptionsCss,
-    dynContainerCss,
+    containerCss,
     dynOptionCss,
     dynOptionsCss,
     selectCloseAreaCss,
@@ -72,7 +72,7 @@ export const Select : React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectP
         <>
             {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
                                                css={[selectCloseAreaCss]}/>}
-            <div ref={ref} {...props} css={[dynContainerCss({theme}), ...toArray(css)]}>
+            <div ref={ref} {...props} css={[containerCss, ...toArray(css)]}>
                 <div
                     ref={selectRef}
                     onClick={onClick}
