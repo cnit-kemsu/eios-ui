@@ -54,7 +54,7 @@ export const Select : React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectP
 
         if (fullWidth) {
             const listStyle = window.getComputedStyle(listRef.current)
-            selectRef.current.style.width = `calc(${listStyle.width} + ${theme.select.height})`
+            selectRef.current.style.width = `calc(${listStyle.width} + ${theme.select.height} - ${listStyle.paddingLeft})`
         }
 
     }, [fullWidth, theme])

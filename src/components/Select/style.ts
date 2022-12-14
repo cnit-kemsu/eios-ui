@@ -28,22 +28,22 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   background: white;
   overflow: auto;
   z-index: 100;
-  min-width: 100%;
+  /*min-width: 100%;*/
   position: absolute;
-  white-space: nowrap;${/*borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor}`*/''};
-  ${flat ? borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor};` : 'border: none;'} /*border-top: none;*/ transform: scaleY(0);
+  white-space: nowrap;
+  ${flat ? borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor};` : 'border: none;'} transform: scaleY(0);
   opacity: 0;
   transform-origin: top;
   transition: transform ${theme.transitionDuration}, opacity ${theme.transitionDuration};
   ${flat ? '' : theme.boxShadow + ";"};
-  padding: 4px;
+  padding: 8px;
   box-sizing: content-box;
 `
 
 type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, flat: boolean, open: boolean};
 
 export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelectCssArgs) => css`
-  min-width: 100%;
+  /*min-width: 100%;*/
   background: white;
   height: ${theme.select.height};
   position: relative;
@@ -54,7 +54,7 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   outline: none;
   transition-property: border;
   padding: 8px 0 8px 8px;
-  ${open && !borderless ? 'border-bottom: none; padding-bottom: 9px;' : ''}
+  ${open && !borderless ? `border-bottom: none; padding-bottom: ${flat ? '9' : '10'}px;` : ''}
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
