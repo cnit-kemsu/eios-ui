@@ -105,17 +105,20 @@ export const defaultTheme = {
         selectedOptionBg: '#e8f0fb',
         borderColor: '#abb7c7',
         height: "1rem",
-        itemHeight: "1rem"
+        itemHeight: "1rem",
+        placeholderColor: "#7d8395"
     },
     table: {
-        borderColor: "#bbc7d3",//"#abb7c7", //'#b8bec5',
+        borderColor: "#bbc7d3",
         headerColBg: '#d2dce6',
         bodyColBg: 'white',
         footerColBg: 'white',
         hoverColor: '#ececf5'
     },
     inputField: {
-        height: "1rem"
+        borderColor: '#abb7c7',
+        height: "1rem",
+        placeholderColor: "#9fa4b3"
     },
     pane: {
         titleBg: '#d2dce6',

@@ -15,33 +15,34 @@ import {SelectProps} from "./SelectProps";
 
 const nativeSelectStyle = {display: 'none'}
 
-export const Select : React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(({
-                                                                   name,
-                                                                   open = false,
-                                                                   enableOutsideArea,
-                                                                   onClick,
-                                                                   onOutsideClick,
-                                                                   selectStyle,
-                                                                   onChange,
-                                                                   valueProp = 'value',
-                                                                   contentProp = 'content',
-                                                                   selectableProp = 'selectable',
-                                                                   getContent = defGetContent,
-                                                                   getValue = defGetValue,
-                                                                   getSelectable = defGetSelectable,
-                                                                   disabled = false,
-                                                                   items = [],
-                                                                   value,
-                                                                   size,
-                                                                   itemStyle,
-                                                                   placeholder,
-                                                                   css,
-                                                                   borderless = false,
-                                                                   flat = false,
-                                                                   fullWidth = false,
-                                                                   valueIsIndex,
-                                                                   ...props
-                                                               }: SelectProps, ref) => {
+export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(({
+                                                                                          name,
+                                                                                          open = false,
+                                                                                          enableOutsideArea,
+                                                                                          onClick,
+                                                                                          onOutsideClick,
+                                                                                          selectStyle,
+                                                                                          onChange,
+                                                                                          valueProp = 'value',
+                                                                                          contentProp = 'content',
+                                                                                          selectableProp = 'selectable',
+                                                                                          getContent = defGetContent,
+                                                                                          getValue = defGetValue,
+                                                                                          getSelectable = defGetSelectable,
+                                                                                          disabled = false,
+                                                                                          items = [],
+                                                                                          value,
+                                                                                          size,
+                                                                                          itemStyle,
+                                                                                          placeholder,
+                                                                                          css,
+                                                                                          borderless = false,
+                                                                                          flat = false,
+                                                                                          fullWidth = false,
+                                                                                          width,
+                                                                                          valueIsIndex,
+                                                                                          ...props
+                                                                                      }: SelectProps, ref) => {
 
     const theme = useTheme();
 
@@ -53,8 +54,18 @@ export const Select : React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectP
     useLayoutEffect(() => {
 
         if (fullWidth) {
-            const listStyle = window.getComputedStyle(listRef.current)
-            selectRef.current.style.width = `calc(${listStyle.width} + ${listStyle.paddingLeft})`
+            const listStyle = window.getComputedStyle(listRef.current);
+            const selectStyle = window.getComputedStyle(selectRef.current);
+
+            const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft)
+            let listWidth = Number.parseFloat(listStyle.width) + listPaddingLeft;
+            let selectWidth = Number.parseFloat(selectStyle.width);
+
+            if(listWidth > selectWidth) {
+                selectRef.current.style.width = listWidth + 'px'; //`calc(${listStyle.width} + ${listStyle.paddingLeft})`;
+            }else {
+                listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
+            }
         }
 
     }, [fullWidth, theme])
@@ -80,7 +91,8 @@ export const Select : React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectP
                     css={[dynSelectCss({theme, borderless, flat, disabled, open})]}
                 >
                     <Ripple color='rgba(0,0,0,0.2)'/>
-                    <span>{item ? getContent(item, contentProp) : placeholder} </span>
+                    <span
+                        data-placeholder={placeholder ? true : undefined}>{item ? getContent(item, contentProp) : placeholder}</span>
                     <i style={{userSelect: 'none'}} className="material-icons">arrow_drop_down</i>
                 </div>
 

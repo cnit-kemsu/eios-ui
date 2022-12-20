@@ -26,6 +26,7 @@ export type SelectProps = {
     flat?: boolean;
     fullWidth?: boolean;
     valueIsIndex?: boolean;
+    width?: string;
 };
 
 type BaseSelectCloseAreaProps = {

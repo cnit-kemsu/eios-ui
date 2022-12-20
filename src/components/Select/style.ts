@@ -38,6 +38,7 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   ${flat ? '' : theme.boxShadow + ";"};
   padding: 8px;
   box-sizing: content-box;
+  margin-top: -1px;
 `
 
 type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, flat: boolean, open: boolean};
@@ -53,8 +54,8 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}  
   outline: none;
   transition-property: border;
-  padding: 8px 0 8px 8px;
-  ${open && !borderless ? `border-bottom: none; padding-bottom: ${flat ? '9' : '10'}px;` : ''}
+  padding: 8px 0 8px 8px; 
+  ${/*open && !borderless ? `border-bottom: none; padding-bottom: ${flat ? '9' : '10'}px;` : */''}
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
@@ -69,6 +70,10 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  
+  span[data-placeholder=true] {
+    color: ${theme.select.placeholderColor};
   }
 `
 

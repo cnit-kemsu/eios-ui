@@ -5,7 +5,7 @@ type DynMessageCssArgs = { theme, flat, type, borderless }
 
 export const messageCss = css`
   padding: 8px;
-  margin: 8px 0px;
+  margin: 0px;
   border-radius: 6px;
 `
 

@@ -4,8 +4,7 @@ import {Theme} from "../../theme";
 
 export const dynRootCss = ({theme} : {theme:Theme}) => css`
     display: flex;
-    align-items: center;
-    height: ${theme.button.height};
+    align-items: center;    
 `
 
 export const inputCss = css`
