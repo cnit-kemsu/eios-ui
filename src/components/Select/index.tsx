@@ -62,7 +62,7 @@ export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectPr
             let selectWidth = Number.parseFloat(selectStyle.width);
 
             if(listWidth > selectWidth) {
-                selectRef.current.style.width = listWidth + 'px'; //`calc(${listStyle.width} + ${listStyle.paddingLeft})`;
+                selectRef.current.style.width = listWidth + 'px';
             }else {
                 listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
             }
@@ -93,7 +93,7 @@ export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectPr
                     <Ripple color='rgba(0,0,0,0.2)'/>
                     <span
                         data-placeholder={placeholder ? true : undefined}>{item ? getContent(item, contentProp) : placeholder}</span>
-                    <i style={{userSelect: 'none'}} className="material-icons">arrow_drop_down</i>
+                    <i style={{userSelect: 'none', width: "24px"}} className="material-icons">arrow_drop_down</i>
                 </div>
 
                 <div
