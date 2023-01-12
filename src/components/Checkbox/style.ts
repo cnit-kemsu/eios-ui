@@ -7,7 +7,7 @@ export const rootCss = css`
     position: relative; 
     cursor: pointer;  
     display: inline-flex;
-    align-items: stretch;
+    align-items: center;
     flex-direction: row;
     user-select: none;
 `
