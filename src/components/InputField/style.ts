@@ -25,9 +25,8 @@ export const dynRootCss = ({theme, filled, borderless, flat, colorStyle}: DynRoo
     color: ${theme.inputField.placeholderColor}  
   }
 
-
-  transition-duration: ${theme.transitionDuration};
-  transition: padding-bottom 0.1s ease-out, border 0.1s ease-out;
+  /*transition-duration: ${theme.transitionDuration};
+  transition: padding-bottom 0.1s ease-out, border 0.1s ease-out;*/
 
   &:focus {
     border-bottom: 2px solid ${theme.colorStyles[colorStyle].origin};
