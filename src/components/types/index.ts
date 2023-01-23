@@ -3,9 +3,9 @@ import React from "react";
 
 export type ColorStyle = 'light' | 'dark' | 'primary' | 'secondary';
 
-export type BaseCss = SerializedStyles | ((...args: any) => SerializedStyles);
-export type CssArray = (BaseCss | undefined)[]
-export type Css = BaseCss | CssArray;
+//export type BaseCss = SerializedStyles | ((...args: any) => SerializedStyles);
+//export type CssArray = (BaseCss | undefined)[]
+export type Css = SerializedStyles | (SerializedStyles | null | undefined)[];
 
 export type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>["ref"];
 
