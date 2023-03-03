@@ -7,7 +7,7 @@ import {
     closeButtonIconCss,
     dynBackLayerCss,
     dynContainerCss,
-    dynContentCss,
+    contentCss,
     dynHeaderCss,
     dynTitleCss
 } from './style'
@@ -61,7 +61,7 @@ export const Modal : React.FC<ModalProps> = forwardRef<HTMLDivElement, ModalProp
                         <i css={closeButtonIconCss} className='material-icons'>close</i>
                     </Button>
                 </div>
-                <div css={dynContentCss({theme})}>
+                <div css={contentCss}>
                     {children}
                 </div>
             </div>

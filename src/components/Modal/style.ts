@@ -103,10 +103,10 @@ export const dynTitleCss = ({theme}: { theme: Theme }) => css`
   font-size: 1.5rem;
 `
 
-export const dynContentCss = ({theme}: { theme: Theme }) => css`
+export const contentCss = css`
   padding: 16px;
-  text-align: justify;
-  margin-top: -1rem;
+  padding-top: 0;
+  text-align: justify;  
 `
 
 export const closeButtonIconCss = css`
