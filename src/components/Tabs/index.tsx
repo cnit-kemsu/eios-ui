@@ -1,7 +1,7 @@
 import React, {Children, cloneElement, ForwardedRef, forwardRef} from 'react'
 import {dynSelectedTabCss, dynTabCss, dynTabsCss, stretchTabCss, stretchTabsCss, tabCss, tabsCss} from './style'
 import {Ripple} from '../Ripple'
-import {CssArray} from "../types";
+import {Css} from "../types";
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {TabProps, TabsProps} from "./TabsProps";
@@ -33,7 +33,7 @@ export const Tabs: TabsComponent = forwardRef<HTMLDivElement, TabsProps>(({
                     if (!child) return null;
 
                     const selected = tab === child.props.id || tab === index;
-                    let childCss = (child.props.css ? toArray(child.props.css) : []) as CssArray;
+                    let childCss = (child.props.css ? toArray(child.props.css) : [] as Css[]);
 
                     return cloneElement(child, {
                         ...child.props,
