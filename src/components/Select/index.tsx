@@ -68,7 +68,7 @@ export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectPr
             }
         }
 
-    }, [fullWidth, theme])
+    }, [items, fullWidth, theme]);
 
     useLayoutEffect(() => {
 
