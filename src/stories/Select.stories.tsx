@@ -1,7 +1,10 @@
+import React from 'react';
 import {Select} from "../components/Select";
 import {ComponentMeta} from "@storybook/react";
 import {createStoryTemplate} from "./createStoryTemplate";
 import {argTypes} from "./argTypes";
+import {useTabs} from "../hooks/useTabs";
+import {Tab, Tabs} from "../components/Tabs";
 
 export default {
     title: "Компоненты/Select",
@@ -67,3 +70,37 @@ export const Example4 = () => (
 )
 
 Example4.storyName = "Пример 4"
+
+export const Example5 = () => {
+
+    const [tabs] = useTabs("items1");
+
+    return (
+        <>
+            <Tabs {...tabs}>
+                <Tab id="items1">Items 1</Tab>
+                <Tab id="items2">Items 2</Tab>
+            </Tabs>
+            <Select
+                fullWidth
+                open
+                items={tabs.tab === 'items1'
+                    ? [
+                        {id: 'item0', name: "Элемент 1 ___"},
+                        {id: 'item1', name: "Элемент 2"},
+                        {id: 'item2', name: "Элемент 3"}
+                    ]
+                    : [
+                        {id: 'item0', name: "Элемент 1 ___ ___"},
+                        {id: 'item1', name: "Элемент 2"},
+                        {id: 'item2', name: "Элемент 3"}
+                    ]}
+                value='item1'
+                getValue={(item, valueProp, itemIndex) => (item as { id: string }).id}
+                getContent={(item, contentProp) => (item as { name: string }).name}
+            />
+        </>
+    );
+}
+
+Example5.storyName = "Пример 5"

@@ -57,18 +57,18 @@ export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectPr
             const listStyle = window.getComputedStyle(listRef.current);
             const selectStyle = window.getComputedStyle(selectRef.current);
 
-            const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft)
+            const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
             let listWidth = Number.parseFloat(listStyle.width) + listPaddingLeft;
             let selectWidth = Number.parseFloat(selectStyle.width);
 
-            if(listWidth > selectWidth) {
+            //if(listWidth > selectWidth) {
                 selectRef.current.style.width = listWidth + 'px';
-            }else {
+            /*}else {
                 listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
-            }
+            }*/
         }
 
-    }, [fullWidth, theme])
+    }, [items, fullWidth, theme]);
 
     useLayoutEffect(() => {
 
