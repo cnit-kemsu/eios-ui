@@ -61,7 +61,7 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   pointer-events: ${disabled ? 'none' : 'auto'};
   box-sizing: content-box;
 
-  ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.4);'}
+  ${flat ? '' : 'box-shadow: 0 2px 4px rgba(0,0,0,0.2);'}
   * {
     opacity: ${disabled ? theme.disabledOpacity : '1'};
   }

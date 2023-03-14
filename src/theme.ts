@@ -12,7 +12,7 @@ export const defaultTheme = {
     transitionDuration: '0.1s',
     disabledOpacity: '0.5',
     disableRipple: false,
-    boxShadow: 'box-shadow: 0 1px 6px rgba(0,0,0,0.4)',
+    boxShadow: 'box-shadow: 0 1px 6px rgba(0,0,0,0.2)',
     colorStyles: {
         dark: {
             origin: '#575d6d',
