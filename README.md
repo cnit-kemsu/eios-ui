@@ -1,4 +1,1 @@
-# UI React library
-
----
-**MIT Licensed**
+# UI библиотека для ЭИОС
