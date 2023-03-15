@@ -7,6 +7,7 @@ export type InputFieldProps = {
     flat?: boolean;
     filled?: boolean;
     value?: string | number;
+    defaultValue?: string | number;
     css?: Css;
     multiline?: boolean;
     type?: Omit<React.HTMLInputTypeAttribute, 'submit' | 'file' | 'button' | 'checkbox'>;
@@ -15,4 +16,5 @@ export type InputFieldProps = {
     className?: string;
     disabled?: boolean;
     placeholder?: string;
+    name?: string;
 }

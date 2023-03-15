@@ -10,7 +10,7 @@ export const InputField: React.FC<InputFieldProps> = forwardRef<HTMLInputElement
          borderless = false,
          flat = false,
          filled = false,
-         value,
+         value, defaultValue,
          css,
          multiline = false,
          type = "text",
@@ -21,7 +21,7 @@ export const InputField: React.FC<InputFieldProps> = forwardRef<HTMLInputElement
         const theme = useTheme();
 
         const elCss = [rootCss, dynRootCss({theme, filled, flat, borderless, colorStyle}), ...toArray(css)];
-        const v = !value && value !== 0 && value !== "" ? "" : value;
+        const v = defaultValue !== undefined ? undefined : (!value && value !== 0 && value !== "" ? "" : value);
 
         if (type === 'file') {
             throw new Error("Используйте FileInput вместо InputField для работы с файлами");
@@ -40,6 +40,7 @@ export const InputField: React.FC<InputFieldProps> = forwardRef<HTMLInputElement
         }
 
         const finalProps = {
+            defaultValue,
             value: v,
             css: elCss,
             onChange: useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange?.(e.target.value), [onChange]),
