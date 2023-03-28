@@ -7,7 +7,7 @@ import type {PolymorphicRef} from "../types";
 import {buttonCss, dynButtonCss} from './style'
 import type {ButtonProps} from "./ButtonProps";
 
-type ButtonComponent =
+export type ButtonComponent =
     (<C extends ElementType = 'button'>(props: ButtonProps<C>, ref?: PolymorphicRef<C>) => (ReactElement | null))
     & { displayName?: string };
 
