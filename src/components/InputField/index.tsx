@@ -1,5 +1,5 @@
 import type {
-    ChangeEvent,
+    ChangeEvent, ComponentPropsWithRef,
     ForwardedRef,
     HTMLInputTypeAttribute,
     MutableRefObject,
@@ -15,10 +15,10 @@ import {dynRootCss, rootCss} from './style';
 import type {InputFieldProps} from "./InputFieldProps";
 
 export type InputFieldComponent =
-    ((props: InputFieldProps, ref?: ForwardedRef<HTMLInputElement | HTMLTextAreaElement>) => (ReactElement | null))
+    ((props: InputFieldProps, ref?: ForwardedRef<HTMLInputElement & HTMLTextAreaElement>) => (ReactElement | null))
     & { displayName?: string };
 
-export const InputField: InputFieldComponent = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFieldProps>(
+export const InputField: InputFieldComponent = forwardRef<HTMLInputElement & HTMLTextAreaElement, InputFieldProps>(
     ({
          colorStyle = 'secondary',
          borderless = false,

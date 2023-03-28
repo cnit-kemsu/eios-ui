@@ -1,7 +1,7 @@
 import {ColorStyle, Css} from "../types";
-import React from "react";
+import React, {ComponentPropsWithRef, InputHTMLAttributes, MutableRefObject, TextareaHTMLAttributes} from "react";
 
-export type InputFieldProps = {
+export type InputFieldPropsBase = {
     colorStyle?: ColorStyle;
     borderless?: boolean;
     flat?: boolean;
@@ -11,10 +11,14 @@ export type InputFieldProps = {
     css?: Css;
     multiline?: boolean;
     type?: Omit<React.HTMLInputTypeAttribute, 'submit' | 'file' | 'button' | 'checkbox'>;
-    onChange?: (value : string | number | undefined) => void;
+    onChange?: (value: string | number | undefined) => void;
     style?: React.CSSProperties;
     className?: string;
     disabled?: boolean;
     placeholder?: string;
     name?: string;
+    ref?: MutableRefObject<HTMLInputElement&HTMLTextAreaElement>
 }
+
+export type InputFieldProps =
+    InputFieldPropsBase & InputHTMLAttributes<HTMLInputElement> & TextareaHTMLAttributes<HTMLTextAreaElement>
