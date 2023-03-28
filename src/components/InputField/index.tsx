@@ -1,10 +1,14 @@
-import React, {ChangeEvent, forwardRef, MutableRefObject, useCallback} from 'react'
+import React, {ChangeEvent, forwardRef, MutableRefObject, ReactElement, useCallback} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {dynRootCss, rootCss} from './style'
 import {InputFieldProps} from "./InputFieldProps";
 
-export const InputField: React.FC<InputFieldProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFieldProps>(
+export type InputFieldComponent =
+    ((props: InputFieldProps, ref?: React.ForwardedRef<HTMLInputElement | HTMLTextAreaElement>) => (ReactElement | null))
+    & {displayName?: string};
+
+export const InputField: InputFieldComponent = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputFieldProps>(
     ({
          colorStyle = 'secondary',
          borderless = false,
@@ -16,7 +20,7 @@ export const InputField: React.FC<InputFieldProps> = forwardRef<HTMLInputElement
          type = "text",
          onChange,
          ...props
-     }: InputFieldProps, ref) => {
+     }: InputFieldProps, ref?) => {
 
         const theme = useTheme();
 
