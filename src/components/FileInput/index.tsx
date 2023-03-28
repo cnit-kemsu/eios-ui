@@ -1,4 +1,4 @@
-import React, {forwardRef} from "react"
+import React, {ForwardedRef, forwardRef, ReactElement} from "react"
 import {buttonCss, dynButtonCss} from "../Button/style"
 import {Ripple} from '../Ripple'
 import {useTheme} from "../../theme"
@@ -6,21 +6,25 @@ import {toArray} from "../../utils"
 import {inputCss, dynRootCss} from "./style"
 import {FileInputProps} from "./FileInputProps";
 
-export const FileInput: React.FC<FileInputProps> = forwardRef<HTMLDivElement, FileInputProps>(({
-                                                                                                   label,
-                                                                                                   css,
-                                                                                                   colorStyle = "dark",
-                                                                                                   transparent = false,
-                                                                                                   fillable = false,
-                                                                                                   borderless = false,
-                                                                                                   stickOnHover = false,
-                                                                                                   flat = false,
-                                                                                                   disabled = false,
-                                                                                                   inputRef,
-                                                                                                   onChange,
-                                                                                                   multiple = false,
-                                                                                                   ...props
-                                                                                               }: FileInputProps, ref) => {
+export type FileInputComponent =
+    ((props: FileInputProps, ref?: ForwardedRef<HTMLDivElement>) => ReactElement | null)
+    & { displayName?: string };
+
+export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInputProps>(({
+                                                                                             label,
+                                                                                             css,
+                                                                                             colorStyle = "dark",
+                                                                                             transparent = false,
+                                                                                             fillable = false,
+                                                                                             borderless = false,
+                                                                                             stickOnHover = false,
+                                                                                             flat = false,
+                                                                                             disabled = false,
+                                                                                             inputRef,
+                                                                                             onChange,
+                                                                                             multiple = false,
+                                                                                             ...props
+                                                                                         }: FileInputProps, ref) => {
 
     const theme = useTheme();
     const {colorStyles, button} = theme;
