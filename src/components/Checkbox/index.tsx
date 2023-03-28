@@ -1,9 +1,10 @@
-import React, {forwardRef} from 'react'
+import type {ForwardedRef, ReactElement} from 'react';
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
 import {dynIconCss, dynRootCss, labelCss, rootCss} from './style'
-import {CheckboxProps} from "./CheckboxProps";
+import type {CheckboxProps} from "./CheckboxProps";
+import {forwardRef} from "react";
 
 const rippleStyle = {
     width: '200%',
@@ -12,6 +13,10 @@ const rippleStyle = {
     top: '-50%',
     borderRadius: '100%',
 };
+
+export type CheckboxComponent =
+    ((props: CheckboxProps, ref?: ForwardedRef<HTMLDivElement>) => (ReactElement | null))
+    & { displayName?: string };
 
 /**
  * Чекбокс
@@ -26,17 +31,17 @@ const rippleStyle = {
  * @param props
  * @constructor
  */
-export const Checkbox : React.FC<CheckboxProps> = forwardRef<HTMLDivElement, CheckboxProps>(({
-                             name,
-                             css,
-                             colorStyle = 'secondary',
-                             disabled = false,
-                             checked = false,
-                             onClick,
-                             children,
-                             value,
-                             ...props
-                         }: CheckboxProps, ref) => {
+export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxProps>(({
+                                                                                          name,
+                                                                                          css,
+                                                                                          colorStyle = 'secondary',
+                                                                                          disabled = false,
+                                                                                          checked = false,
+                                                                                          onClick,
+                                                                                          children,
+                                                                                          value,
+                                                                                          ...props
+                                                                                      }: CheckboxProps, ref) => {
 
     const theme = useTheme()
     const {colorStyles, checkbox} = theme
