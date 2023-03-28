@@ -39,13 +39,19 @@ export function Tooltip({
     const tooltipRef = useRef() as MutableRefObject<HTMLDivElement>;
     const enteredTheTooltipAreaRef = useRef(false);
 
+    const updateOffset = useCallback(() => {
+        let offset = getElementPositionRelativeTo(targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
+        if(offset) setOffset({left: offset.x, top: offset.y});
+    }, [])
+
     const showTooltip = useCallback(debounce(target => {
 
-        if (!target || !tooltipRef.current) return;
+        if (/*!target*/!targetElementRef.current || !tooltipRef.current) return;
 
-        let offset = getElementPositionRelativeTo(target, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
+        //let offset = getElementPositionRelativeTo(/*target*/targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
+        //setOffset({left: offset.x, top: offset.y});
+        updateOffset();
 
-        setOffset({left: offset.x, top: offset.y});
         setShow(true);
 
     }, showDelay * 1000), [position, showDelay]);
@@ -56,38 +62,57 @@ export function Tooltip({
 
         setShow(false)
 
-        if(!target) return;
+        if(!/*target*/targetElementRef.current) return;
 
-        let offset = getElementPositionRelativeTo(target, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
-        if (offset) setOffset({left: offset.x, top: offset.y});
+        //let offset = getElementPositionRelativeTo(/*target*/targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
+        //if (offset) setOffset({left: offset.x, top: offset.y});
+
+        updateOffset();
 
     }, hideDelay * 1000), [position, hideDelay]);
 
-    const handleMouseEnter = useCallback((e) => {
-        showTooltip?.(e.currentTarget)
-    }, []);
+    useEffect(() => {
 
-    const handleMouseLeave = useCallback((e) => {
-        showTooltip.cancel?.();
-        hideTooltip?.(e.currentTarget);
-    }, []);
+        const handleResize = () => {
+            updateOffset();
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
 
     useEffect(() => {
 
+        const handleMouseEnter = (e) => {
+            showTooltip?.(e.currentTarget)
+        }
+
+        const handleMouseLeave = (e) => {
+            showTooltip.cancel?.();
+            hideTooltip?.(e.currentTarget);
+        }
+
+
+
         targetElementRef.current?.addEventListener('mouseenter', handleMouseEnter);
         targetElementRef.current?.addEventListener('mouseleave', handleMouseLeave);
+
+
 
         return () => {
             targetElementRef.current?.removeEventListener('mouseenter', handleMouseEnter);
             targetElementRef.current?.removeEventListener('mouseleave', handleMouseLeave);
         }
 
-    }, [targetElementRef])
+    }, [showTooltip, hideTooltip, targetElementRef.current])
 
     useEffect(() => () => {
         showTooltip?.cancel?.();
         hideTooltip?.cancel?.();
-    }, []);
+    }, [showTooltip, hideTooltip]);
 
     const handleTooltipMouseEnter = () => {
         hideTooltip.cancel?.();
