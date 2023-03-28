@@ -23,17 +23,17 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "disableSizeLimit": true,
-    "baseUrl": "./"
+    "baseUrl": "./src"
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules",
     "dist",
     ".vs",
     ".idea",
-    "src/**/*.js"
+    "**/*.js"
   ]
 }
