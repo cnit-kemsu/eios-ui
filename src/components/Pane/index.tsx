@@ -1,10 +1,11 @@
-import React, {forwardRef} from 'react'
+import {forwardRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {dynContentCss, dynRootCss, dynTitleCss} from './style'
-import {PaneProps} from "./PaneProps";
+import type {PaneProps} from "./PaneProps";
+import type {FCR} from "../types";
 
-export const Pane : React.FC<PaneProps> = forwardRef<HTMLDivElement, PaneProps>(({
+export const Pane : FCR<PaneProps, HTMLDivElement> = forwardRef<HTMLDivElement, PaneProps>(({
                                                                flat= false,
                                                                borderless= false, title, children,
                                                                titleCss, css, ...props

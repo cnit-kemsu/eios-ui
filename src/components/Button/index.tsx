@@ -1,32 +1,34 @@
-import React, {forwardRef} from "react";
+import type {ElementType, ReactElement} from "react";
+import {forwardRef} from 'react';
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {Ripple} from '../Ripple'
-import {PolymorphicRef} from "../types";
+import type {PolymorphicRef} from "../types";
 import {buttonCss, dynButtonCss} from './style'
-import {ButtonProps} from "./ButtonProps";
+import type {ButtonProps} from "./ButtonProps";
 
-type ButtonComponent = (<C extends React.ElementType = 'button'>(props: ButtonProps<C>, ref?: PolymorphicRef<C>) => (React.ReactElement | null))
+type ButtonComponent =
+    (<C extends ElementType = 'button'>(props: ButtonProps<C>, ref?: PolymorphicRef<C>) => (ReactElement | null))
     & { displayName?: string };
 
-export const Button: ButtonComponent = forwardRef(<C extends React.ElementType = 'button'>({
-                                                                                               elementType,
-                                                                                               disabled = false,
-                                                                                               flat = false,
-                                                                                               stickOnHover = false,
-                                                                                               colorStyle = "dark",
-                                                                                               transparent = false,
-                                                                                               fillable = false,
-                                                                                               borderless = false,
-                                                                                               children,
-                                                                                               css,
-                                                                                               ...props
-                                                                                           }: ButtonProps<C>, ref?: PolymorphicRef<C>) => {
+export const Button: ButtonComponent = forwardRef(<C extends ElementType = 'button'>({
+                                                                                         elementType,
+                                                                                         disabled = false,
+                                                                                         flat = false,
+                                                                                         stickOnHover = false,
+                                                                                         colorStyle = "dark",
+                                                                                         transparent = false,
+                                                                                         fillable = false,
+                                                                                         borderless = false,
+                                                                                         children,
+                                                                                         css,
+                                                                                         ...props
+                                                                                     }: ButtonProps<C>, ref?: PolymorphicRef<C>) => {
 
     const theme = useTheme();
     const {colorStyles, button} = theme;
 
-    const Component: React.ElementType = elementType ?? 'button';
+    const Component: ElementType = elementType ?? 'button';
 
     return (
         <Component ref={ref} css={[

@@ -1,4 +1,4 @@
-import React, {forwardRef, MutableRefObject, useLayoutEffect} from 'react'
+import {forwardRef, MutableRefObject, useLayoutEffect, useMemo, useRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
@@ -11,11 +11,12 @@ import {
     dynSelectCss
 } from './style'
 import {defGetContent, defGetSelectable, defGetValue} from "../List/defaults";
-import {SelectProps} from "./SelectProps";
+import type {SelectProps} from "./SelectProps";
+import type {FCR} from "../types";
 
 const nativeSelectStyle = {display: 'none'}
 
-export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectProps>(({
+export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElement, SelectProps>(({
                                                                                           name,
                                                                                           open = false,
                                                                                           enableOutsideArea,
@@ -46,10 +47,10 @@ export const Select: React.FC<SelectProps> = forwardRef<HTMLDivElement, SelectPr
 
     const theme = useTheme();
 
-    const item = React.useMemo(() => items.find((item, index) => valueIsIndex ? index === value : getValue(item, valueProp, index) === value), [items, valueProp, value]);
+    const item = useMemo(() => items.find((item, index) => valueIsIndex ? index === value : getValue(item, valueProp, index) === value), [items, valueProp, value]);
 
-    const selectRef = React.useRef() as MutableRefObject<HTMLDivElement>;
-    const listRef = React.useRef() as MutableRefObject<HTMLDivElement>;
+    const selectRef = useRef() as MutableRefObject<HTMLDivElement>;
+    const listRef = useRef() as MutableRefObject<HTMLDivElement>;
 
     useLayoutEffect(() => {
 

@@ -1,10 +1,11 @@
-import React, {ForwardedRef, forwardRef, ReactElement} from "react"
-import {buttonCss, dynButtonCss} from "../Button/style"
-import {Ripple} from '../Ripple'
-import {useTheme} from "../../theme"
-import {toArray} from "../../utils"
-import {inputCss, dynRootCss} from "./style"
-import {FileInputProps} from "./FileInputProps";
+import type {ForwardedRef, ReactElement} from "react";
+import {forwardRef} from 'react';
+import {buttonCss, dynButtonCss} from "../Button/style";
+import {Ripple} from '../Ripple';
+import {useTheme} from "../../theme";
+import {toArray} from "../../utils";
+import {inputCss, dynRootCss} from "./style";
+import type {FileInputProps} from "./FileInputProps";
 
 export type FileInputComponent =
     ((props: FileInputProps, ref?: ForwardedRef<HTMLDivElement>) => ReactElement | null)

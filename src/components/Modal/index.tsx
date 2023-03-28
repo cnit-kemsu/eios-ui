@@ -1,4 +1,4 @@
-import React, {forwardRef, useCallback, useEffect, useState} from 'react'
+import {forwardRef, useCallback, useEffect, useState} from 'react'
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {Button} from '../Button'
@@ -11,9 +11,10 @@ import {
     dynHeaderCss,
     dynTitleCss
 } from './style'
-import {ModalProps} from "./ModalProps";
+import type {ModalProps} from "./ModalProps";
+import type {FCR} from "../types";
 
-export const Modal : React.FC<ModalProps> = forwardRef<HTMLDivElement, ModalProps>(({
+export const Modal : FCR<ModalProps, HTMLDivElement> = forwardRef<HTMLDivElement, ModalProps>(({
                                                                  open = false,
                                                                  title,
                                                                  onClose,

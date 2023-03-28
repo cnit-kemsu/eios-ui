@@ -2,21 +2,22 @@ import React, {forwardRef} from 'react'
 import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {displayedMenuCss, dynMenuCloseAreaCss, dynMenuCss, dynMenuItemCss} from './style'
-import {MenuCloseAreaProps, MenuItemProps, MenuProps} from "./MenuProps";
+import type {MenuCloseAreaProps, MenuItemProps, MenuProps} from "./MenuProps";
+import type {FCR} from "../types";
 
-export const Menu: React.FC<MenuProps> = forwardRef<HTMLUListElement, MenuProps>(({
-                                                                                      show,
-                                                                                      enableOutsideArea,
-                                                                                      x = 0,
-                                                                                      y = 0,
-                                                                                      flat = false,
-                                                                                      borderless = false,
-                                                                                      css,
-                                                                                      children,
-                                                                                      rootElement = document.body,
-                                                                                      onOutsideClick,
-                                                                                      ...props
-                                                                                  }: MenuProps, ref) => {
+export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElement, MenuProps>(({
+                                                                                                   show,
+                                                                                                   enableOutsideArea,
+                                                                                                   x = 0,
+                                                                                                   y = 0,
+                                                                                                   flat = false,
+                                                                                                   borderless = false,
+                                                                                                   css,
+                                                                                                   children,
+                                                                                                   rootElement = document.body,
+                                                                                                   onOutsideClick,
+                                                                                                   ...props
+                                                                                               }: MenuProps, ref) => {
 
     const theme = useTheme();
 
@@ -33,7 +34,7 @@ export const Menu: React.FC<MenuProps> = forwardRef<HTMLUListElement, MenuProps>
 
 Menu.displayName = "Menu";
 
-export const MenuItem: React.FC<MenuItemProps> = forwardRef<HTMLLIElement, MenuItemProps>(({
+export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElement, MenuItemProps>(({
                                                                                                onClick,
                                                                                                children,
                                                                                                css,
@@ -55,7 +56,7 @@ export const MenuItem: React.FC<MenuItemProps> = forwardRef<HTMLLIElement, MenuI
 
 MenuItem.displayName = "MenuItem";
 
-export const MenuCloseArea = forwardRef<HTMLDivElement, MenuCloseAreaProps>(({
+export const MenuCloseArea : FCR<MenuCloseAreaProps, HTMLDivElement> = forwardRef<HTMLDivElement, MenuCloseAreaProps>(({
                                                                                  show,
                                                                                  setShow,
                                                                                  css,

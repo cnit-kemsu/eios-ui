@@ -1,10 +1,11 @@
-import React, {forwardRef} from 'react'
-import {useTheme} from '../../theme'
-import {toArray} from '../../utils'
-import {dynMessageCss, messageCss} from './style'
-import {MessageProps} from "./MessageProps";
+import {forwardRef} from 'react';
+import {useTheme} from '../../theme';
+import {toArray} from '../../utils';
+import {dynMessageCss, messageCss} from './style';
+import type {MessageProps} from "./MessageProps";
+import type {FCR} from "../types";
 
-export const Message : React.FC<MessageProps> = forwardRef<HTMLDivElement, MessageProps>(({
+export const Message : FCR<MessageProps, HTMLDivElement> = forwardRef<HTMLDivElement, MessageProps>(({
                                                                      children,
                                                                      flat,
                                                                      type,

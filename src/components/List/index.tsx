@@ -2,12 +2,12 @@ import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
-import {ListProps} from "./ListProps";
+import type{ListProps} from "./ListProps";
 import {defGetContent, defGetSelectable, defGetValue} from "./defaults";
 import {Ripple} from "../Ripple";
+import type {FCR} from "../types";
 
-
-export const List: React.FC<ListProps> = forwardRef<HTMLUListElement, ListProps>(({
+export const List: FCR<ListProps, HTMLUListElement> = forwardRef<HTMLUListElement, ListProps>(({
                                                                                       name,
                                                                                       items = [],
                                                                                       borderless = false,

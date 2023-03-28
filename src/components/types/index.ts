@@ -1,5 +1,6 @@
 import {SerializedStyles} from "@emotion/react";
-import React from "react";
+import React, {ForwardedRef, ReactElement} from "react";
+import {InputFieldProps} from "../InputField/InputFieldProps";
 
 export type ColorStyle = 'light' | 'dark' | 'primary' | 'secondary';
 
@@ -15,3 +16,6 @@ export type ItemType = string | number | { [key: string]: any };
 export type GetContent = (item: ItemType, contentProp: string) => string | number | JSX.Element | null;
 export type GetValue = (item: ItemType, valueProp: string, itemIndex: number) => ValueType;
 export type GetSelectable = (item: ItemType, valueProp: string, itemIndex: number) => boolean;
+
+export type FCR<P,R> = ((props: P, ref?: ForwardedRef<R>) => (ReactElement | null))
+    & { displayName?: string }

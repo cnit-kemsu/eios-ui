@@ -1,10 +1,11 @@
-import React, {forwardRef} from 'react'
+import {forwardRef} from 'react'
 import {dynSpinnerCircleCss, spinnerCircleCss, spinnerCss} from './style'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
-import {SpinnerProps} from "./SpinnerProps";
+import type {SpinnerProps} from "./SpinnerProps";
+import type {FCR} from "../types";
 
-export const Spinner: React.FC<SpinnerProps> = forwardRef<SVGSVGElement, SpinnerProps>(({
+export const Spinner: FCR<SpinnerProps, SVGSVGElement> = forwardRef<SVGSVGElement, SpinnerProps>(({
                                                                                             colorStyle = "secondary",
                                                                                             scale = 1,
                                                                                             css,

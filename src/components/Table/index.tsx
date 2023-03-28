@@ -1,13 +1,14 @@
-import React, {forwardRef} from 'react'
-import {dynTableCss} from './style'
-import {useTheme} from '../../theme'
-import {toArray} from '../../utils'
-import {TableProps} from "./TableProps";
+import {forwardRef} from 'react';
+import {dynTableCss} from './style';
+import {useTheme} from '../../theme';
+import {toArray} from '../../utils';
+import type {TableProps} from "./TableProps";
+import type {FCR} from "../types";
 
 /**
  * Обёртка вокруг `table`
  */
-export const Table: React.FC<TableProps> = forwardRef<HTMLTableElement, TableProps>(({
+export const Table: FCR<TableProps, HTMLTableElement> = forwardRef<HTMLTableElement, TableProps>(({
                                                                                          children,
                                                                                          borderless = false,
                                                                                          flat = false,
