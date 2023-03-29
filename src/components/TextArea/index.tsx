@@ -17,20 +17,20 @@ export interface TextAreaPropsBase {
 export type TextAreaProps = TextAreaPropsBase
     & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, keyof TextAreaPropsBase>
 
-export const TextArea: FCR<TextAreaProps, HTMLTextAreaElement> = forwardRef(({
+export const TextArea: FCR<TextAreaProps, HTMLTextAreaElement> = forwardRef<HTMLTextAreaElement>(({
                                                                                  colorStyle = 'secondary',
                                                                                  borderless = false,
                                                                                  flat = false,
                                                                                  css,
                                                                                  onChange,
                                                                                  ...props
-                                                                             }: TextAreaProps) => {
+                                                                             }: TextAreaProps, ref) => {
     const theme = useTheme();
     const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle}), ...toArray(css)];
 
     const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => onChange?.(e.target.value), [onChange]);
 
-    return <textarea css={elCss} onChange={handleChange} {...props} />
+    return <textarea ref={ref} css={elCss} onChange={handleChange} {...props} />
 });
 
 TextArea.displayName = "TextArea";
