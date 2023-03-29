@@ -14,16 +14,17 @@ export interface TextAreaPropsBase {
     ref?: MutableRefObject<HTMLTextAreaElement>
 }
 
-export type TextAreaProps = TextAreaPropsBase & TextareaHTMLAttributes<HTMLTextAreaElement>
+export type TextAreaProps = TextAreaPropsBase
+    & Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, keyof TextAreaPropsBase>
 
-export const  TextArea : FCR<TextAreaProps, HTMLTextAreaElement> = forwardRef(({
-                             colorStyle = 'secondary',
-                             borderless = false,
-                             flat = false,
-                             css,
-                             onChange,
-                             ...props
-                         }: TextAreaProps) => {
+export const TextArea: FCR<TextAreaProps, HTMLTextAreaElement> = forwardRef(({
+                                                                                 colorStyle = 'secondary',
+                                                                                 borderless = false,
+                                                                                 flat = false,
+                                                                                 css,
+                                                                                 onChange,
+                                                                                 ...props
+                                                                             }: TextAreaProps) => {
     const theme = useTheme();
     const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle}), ...toArray(css)];
 

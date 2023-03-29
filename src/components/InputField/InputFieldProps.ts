@@ -10,7 +10,8 @@ export type InputFieldPropsBase = {
     type?: Omit<React.HTMLInputTypeAttribute, 'submit' | 'file' | 'button' | 'checkbox'>;
     onChange?: (value: string | number | undefined) => void;
     disabled?: boolean;
-    ref?: MutableRefObject<HTMLInputElement & HTMLTextAreaElement>
+    ref?: MutableRefObject<HTMLInputElement>
 }
 
-export type InputFieldProps = InputFieldPropsBase & InputHTMLAttributes<HTMLInputElement>
+export type InputFieldProps = InputFieldPropsBase
+    & Omit<InputHTMLAttributes<HTMLInputElement>, keyof InputFieldPropsBase>
