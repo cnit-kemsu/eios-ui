@@ -1,7 +1,7 @@
 {
   "name": "@kemsu/eios-ui",
-  "version": "0.6.15",
-  "description": "Библиотека UI компонентов на React для ЭИОС",
+  "version": "0.7.0",
+  "description": "UI Kit для ЭИОС",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",

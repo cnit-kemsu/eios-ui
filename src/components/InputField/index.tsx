@@ -1,32 +1,21 @@
-import type {
-    ChangeEvent, ComponentPropsWithRef,
-    ForwardedRef,
-    HTMLInputTypeAttribute,
-    MutableRefObject,
-    ReactElement
-} from 'react';
-import {
-    forwardRef,
-    useCallback
-} from 'react';
+import type {ChangeEvent, ForwardedRef, HTMLInputTypeAttribute, MutableRefObject, ReactElement} from 'react';
+import {forwardRef, useCallback} from 'react';
 import {useTheme} from '../../theme';
 import {toArray} from '../../utils';
 import {dynRootCss, rootCss} from './style';
 import type {InputFieldProps} from "./InputFieldProps";
 
 export type InputFieldComponent =
-    ((props: InputFieldProps, ref?: ForwardedRef<HTMLInputElement & HTMLTextAreaElement>) => (ReactElement | null))
+    ((props: InputFieldProps, ref?: ForwardedRef<HTMLInputElement>) => (ReactElement | null))
     & { displayName?: string };
 
-export const InputField: InputFieldComponent = forwardRef<HTMLInputElement & HTMLTextAreaElement, InputFieldProps>(
+export const InputField: InputFieldComponent = forwardRef<HTMLInputElement, InputFieldProps>(
     ({
          colorStyle = 'secondary',
          borderless = false,
          flat = false,
          filled = false,
-         value, defaultValue,
          css,
-         multiline = false,
          type = "text",
          onChange,
          ...props
@@ -34,8 +23,7 @@ export const InputField: InputFieldComponent = forwardRef<HTMLInputElement & HTM
 
         const theme = useTheme();
 
-        const elCss = [rootCss, dynRootCss({theme, filled, flat, borderless, colorStyle}), ...toArray(css)];
-        const v = defaultValue !== undefined ? undefined : (!value && value !== 0 && value !== "" ? "" : value);
+        const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle}), ...toArray(css)];
 
         if (type === 'file') {
             throw new Error("Используйте FileInput вместо InputField для работы с файлами");
@@ -53,18 +41,9 @@ export const InputField: InputFieldComponent = forwardRef<HTMLInputElement & HTM
             throw new Error("Используйте Checkbox вместо InputField для чекбокса");
         }
 
-        const finalProps = {
-            defaultValue,
-            value: v,
-            css: elCss,
-            onChange: useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange?.(e.target.value), [onChange]),
-            ...props
-        };
+        const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => onChange?.(e.target.value), [onChange])
 
-        return multiline
-            ? (<textarea ref={ref as MutableRefObject<HTMLTextAreaElement>} {...finalProps} />)
-            : (<input ref={ref as MutableRefObject<HTMLInputElement>}
-                      type={type as HTMLInputTypeAttribute} {...finalProps} />);
+        return <input ref={ref} type={type as HTMLInputTypeAttribute} onChange={handleChange} css={elCss} {...props} />
     });
 
 InputField.displayName = "InputField";

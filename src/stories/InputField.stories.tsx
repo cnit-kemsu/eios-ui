@@ -20,8 +20,7 @@ export default {
         disabled: argTypes.disabled,
         colorStyle: argTypes.colorStyle,
         borderless: argTypes.borderless,
-        flat: argTypes.flat,
-        multiline: {description: "делает поле обёрткой вокруг `textarea`"}
+        flat: argTypes.flat
     }
 } as ComponentMeta<typeof InputField>
 

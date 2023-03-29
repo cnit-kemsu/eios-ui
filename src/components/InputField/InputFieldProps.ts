@@ -6,19 +6,11 @@ export type InputFieldPropsBase = {
     borderless?: boolean;
     flat?: boolean;
     filled?: boolean;
-    value?: string | number;
-    defaultValue?: string | number;
     css?: Css;
-    multiline?: boolean;
     type?: Omit<React.HTMLInputTypeAttribute, 'submit' | 'file' | 'button' | 'checkbox'>;
     onChange?: (value: string | number | undefined) => void;
-    style?: React.CSSProperties;
-    className?: string;
     disabled?: boolean;
-    placeholder?: string;
-    name?: string;
-    ref?: MutableRefObject<HTMLInputElement&HTMLTextAreaElement>
+    ref?: MutableRefObject<HTMLInputElement & HTMLTextAreaElement>
 }
 
-export type InputFieldProps =
-    InputFieldPropsBase & InputHTMLAttributes<HTMLInputElement> & TextareaHTMLAttributes<HTMLTextAreaElement>
+export type InputFieldProps = InputFieldPropsBase & InputHTMLAttributes<HTMLInputElement>

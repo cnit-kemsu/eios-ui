@@ -5,30 +5,33 @@ import {ColorStyle} from "../types";
 export const rootCss = css`
   outline: none;
   padding: 8px;
-  transition-property: padding, border, box-shadow;  
+  transition-property: padding, border, box-shadow;
 `
 
 type DynRootCssArgs = {
-    theme: Theme, filled: boolean, borderless: boolean, flat: boolean, colorStyle: ColorStyle
+    theme: Theme, borderless: boolean, flat: boolean, colorStyle: ColorStyle
 };
 
-export const dynRootCss = ({theme, filled, borderless, flat, colorStyle}: DynRootCssArgs) => css`
+export const dynRootCss = ({theme, borderless, flat, colorStyle}: DynRootCssArgs) => css`
 
   ${!flat ? `${theme.boxShadow};` : ''}
 
   min-height: ${theme.inputField.height};
 
-  ${flat ? `${borderless ? 'border: none; padding-top: 9px; border-bottom' : 'border'}: 1px solid ${theme.inputField.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}
-  background: ${filled ? 'rgba(240,240,240,1)' : 'white'};
+  ${flat && borderless ? `border: none; border-bottom: 1px solid ${theme.inputField.borderColor}; padding: 9px 9px 8px 9px;` : ''}
+  ${flat && !borderless ? `border: 1px solid ${theme.inputField.borderColor};` : ''}
+  ${!flat ? 'border: none; padding: 9px;' : ''}
+
+  background: white;
 
   &::placeholder {
-    color: ${theme.inputField.placeholderColor}  
+    color: ${theme.inputField.placeholderColor}
   }
 
-  /*transition-duration: ${theme.transitionDuration};
-  transition: padding-bottom 0.1s ease-out, border 0.1s ease-out;*/
+  ${flat ? `transition: border-bottom-color ${theme.transitionDuration} ease-out` : ''};
 
   &:focus {
     border-bottom: 2px solid ${theme.colorStyles[colorStyle].origin};
-    ${flat ? `padding-bottom: 7px;` : ``}
+    padding-bottom: 7px;
+  }
 `
