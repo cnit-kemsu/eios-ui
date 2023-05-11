@@ -6,8 +6,6 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "preinstall": "nvm use",
-    "prestart": "nvm use",
     "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "lint": "npx eslint ./src",
