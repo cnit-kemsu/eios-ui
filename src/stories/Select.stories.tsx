@@ -82,6 +82,7 @@ export const Example5 = () => {
                 <Tab id="items2">Items 2</Tab>
             </Tabs>
             <Select
+                key={tabs.tab}
                 fullWidth
                 open
                 items={tabs.tab === 'items1'
@@ -104,3 +105,20 @@ export const Example5 = () => {
 }
 
 Example5.storyName = "Пример 5"
+
+export const Example6 = () => {
+    return (
+        <Select
+            value=""
+            fullWidth
+            placeholder="- Выберите элемент -"
+            items={[
+                {value: "item1", content: "Элемент 1"},
+                {value: "item2", content: "Элемент 2"},
+                {value: "item3", content: "Элемент 3"}
+            ]}
+        />
+    )
+}
+
+Example6.storyName = "Пример 6"

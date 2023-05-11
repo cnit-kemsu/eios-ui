@@ -62,11 +62,11 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             let listWidth = Number.parseFloat(listStyle.width) + listPaddingLeft;
             let selectWidth = Number.parseFloat(selectStyle.width);
 
-            //if(listWidth > selectWidth) {
+            if(listWidth > selectWidth) {
                 selectRef.current.style.width = listWidth + 'px';
-            /*}else {
+            }else {
                 listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
-            }*/
+            }
         }
 
     }, [items, fullWidth, theme]);
