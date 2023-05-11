@@ -6,12 +6,14 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "preinstall": "nvm use",
+    "prestart": "nvm use",
+    "start": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "lint": "npx eslint ./src",
     "prepublishOnly": "npm run build",
     "build": "rollup -c --environment NODE_ENV:production",
-    "test": "jest",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test": "jest"
   },
   "publishConfig": {
     "@kemsu:registry": "http://gitlab.kemsu.ru/api/v4/projects/3/packages/npm/"
