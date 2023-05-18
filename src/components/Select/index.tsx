@@ -17,33 +17,33 @@ import type {FCR} from "../types";
 const nativeSelectStyle = {display: 'none'}
 
 export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElement, SelectProps>(({
-                                                                                          name,
-                                                                                          open = false,
-                                                                                          enableOutsideArea,
-                                                                                          onClick,
-                                                                                          onOutsideClick,
-                                                                                          selectStyle,
-                                                                                          onChange,
-                                                                                          valueProp = 'value',
-                                                                                          contentProp = 'content',
-                                                                                          selectableProp = 'selectable',
-                                                                                          getContent = defGetContent,
-                                                                                          getValue = defGetValue,
-                                                                                          getSelectable = defGetSelectable,
-                                                                                          disabled = false,
-                                                                                          items = [],
-                                                                                          value,
-                                                                                          size,
-                                                                                          itemStyle,
-                                                                                          placeholder,
-                                                                                          css,
-                                                                                          borderless = false,
-                                                                                          flat = false,
-                                                                                          fullWidth = false,
-                                                                                          width,
-                                                                                          valueIsIndex,
-                                                                                          ...props
-                                                                                      }: SelectProps, ref) => {
+                                                                                                     name,
+                                                                                                     open = false,
+                                                                                                     enableOutsideArea,
+                                                                                                     onClick,
+                                                                                                     onOutsideClick,
+                                                                                                     selectStyle,
+                                                                                                     onChange,
+                                                                                                     valueProp = 'value',
+                                                                                                     contentProp = 'content',
+                                                                                                     selectableProp = 'selectable',
+                                                                                                     getContent = defGetContent,
+                                                                                                     getValue = defGetValue,
+                                                                                                     getSelectable = defGetSelectable,
+                                                                                                     disabled = false,
+                                                                                                     items = [],
+                                                                                                     value,
+                                                                                                     size,
+                                                                                                     itemStyle,
+                                                                                                     placeholder,
+                                                                                                     css,
+                                                                                                     borderless = false,
+                                                                                                     flat = false,
+                                                                                                     fullWidth = false,
+                                                                                                     width,
+                                                                                                     valueIsIndex,
+                                                                                                     ...props
+                                                                                                 }: SelectProps, ref) => {
 
     const theme = useTheme();
 
@@ -62,9 +62,17 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             let listWidth = Number.parseFloat(listStyle.width) + listPaddingLeft;
             let selectWidth = Number.parseFloat(selectStyle.width);
 
-            if(listWidth > selectWidth) {
-                selectRef.current.style.width = listWidth + 'px';
-            }else {
+            /*let div = document.createElement('div');
+            div.style.overflowY = 'scroll';
+            div.style.width = '50px';
+            div.style.height = '50px';
+            document.body.append(div);
+            let scrollWidth = div.offsetWidth - div.clientWidth;
+            div.remove();*/
+
+            if (listWidth > selectWidth) {
+                selectRef.current.style.width = `${Math.ceil(listWidth)}px`;
+            } else {
                 listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
             }
         }
