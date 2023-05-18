@@ -54,6 +54,9 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
     useLayoutEffect(() => {
 
+        selectRef.current.style.width = 'unset';
+        listRef.current.style.width = 'unset';
+
         if (fullWidth) {
             const listStyle = window.getComputedStyle(listRef.current);
             const selectStyle = window.getComputedStyle(selectRef.current);
@@ -62,16 +65,8 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             let listWidth = Number.parseFloat(listStyle.width) + listPaddingLeft;
             let selectWidth = Number.parseFloat(selectStyle.width);
 
-            /*let div = document.createElement('div');
-            div.style.overflowY = 'scroll';
-            div.style.width = '50px';
-            div.style.height = '50px';
-            document.body.append(div);
-            let scrollWidth = div.offsetWidth - div.clientWidth;
-            div.remove();*/
-
             if (listWidth > selectWidth) {
-                selectRef.current.style.width = `${Math.ceil(listWidth)}px`;
+                selectRef.current.style.width = `${listWidth}px`;
             } else {
                 listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
             }

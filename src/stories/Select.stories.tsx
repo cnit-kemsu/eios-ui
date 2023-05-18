@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Select} from "../components/Select";
 import {ComponentMeta} from "@storybook/react";
 import {createStoryTemplate} from "./createStoryTemplate";
@@ -122,19 +122,3 @@ export const Example6 = () => {
 }
 
 Example6.storyName = "Пример 6"
-
-export const Example7 = () => {
-    return (
-        <Select
-            value="item1"
-            fullWidth
-            items={[
-                {value: "item1", content: "Эл 1"},
-                {value: "item2", content: "Элем 2"},
-                {value: "item3", content: "Элемент 3"}
-            ]}
-        />
-    )
-}
-
-Example7.storyName = "Пример 7"
