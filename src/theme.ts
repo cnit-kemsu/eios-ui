@@ -104,8 +104,8 @@ export const defaultTheme = {
     select: {
         selectedOptionBg: '#e8f0fb',
         borderColor: '#abb7c7',
-        height: "1rem",
-        itemHeight: "1rem",
+        height: "2.5rem",
+        itemHeight: "2.5rem",
         placeholderColor: "#7d8395"
     },
     table: {
@@ -117,7 +117,7 @@ export const defaultTheme = {
     },
     inputField: {
         borderColor: '#abb7c7',
-        height: "1rem",
+        height: "2.5rem",
         placeholderColor: "#9fa4b3"
     },
     pane: {
