@@ -54,6 +54,23 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
     useLayoutEffect(() => {
 
+        if(!width) {
+            selectRef.current.style.width = 'unset';
+            listRef.current.style.width = 'unset';
+        }else {
+            const listStyle = window.getComputedStyle(listRef.current);
+            const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
+
+            selectRef.current.style.width = width//`calc(${width} - ${listPaddingLeft}px - ${borderless ? '0px' : '2px'})`;
+            listRef.current.style.width = width //`calc(${width} - ${listPaddingLeft * 2}px - ${borderless ? '0px' : '2px'})`;
+        }
+
+    }, [width, borderless])
+
+    useLayoutEffect(() => {
+
+        if(width) return;
+
         selectRef.current.style.width = 'unset';
         listRef.current.style.width = 'unset';
 
@@ -61,24 +78,24 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             const listStyle = window.getComputedStyle(listRef.current);
             const selectStyle = window.getComputedStyle(selectRef.current);
 
-            const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
-            let listWidth = Number.parseFloat(listStyle.width) + listPaddingLeft;
+            //const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
+            let listWidth = Number.parseFloat(listStyle.width)// + listPaddingLeft;
             let selectWidth = Number.parseFloat(selectStyle.width);
 
             if (listWidth > selectWidth) {
                 selectRef.current.style.width = `${listWidth}px`;
             } else {
-                listRef.current.style.width = (selectWidth - listPaddingLeft) + "px";
+                listRef.current.style.width = selectWidth + "px"//(selectWidth - listPaddingLeft) + "px";
             }
         }
 
-    }, [items, fullWidth, theme]);
+    }, [items, fullWidth, theme, width]);
 
     useLayoutEffect(() => {
 
         if (typeof size === 'number' && size > 0 && listRef.current.children.length > 0) {
             const itemHeight = listRef.current.children[0].clientHeight
-            listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size})`
+            listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size} + 16px)`
         }
 
     }, [items, size]);
