@@ -6,6 +6,7 @@ export const rootCss = css`
   outline: none;
   padding: 8px;
   transition-property: padding, border, box-shadow;
+  box-sizing: border-box;
 `
 
 type DynRootCssArgs = {
@@ -16,7 +17,7 @@ export const dynRootCss = ({theme, borderless, flat, colorStyle}: DynRootCssArgs
 
   ${!flat ? `${theme.boxShadow};` : ''}
 
-  min-height: ${theme.inputField.height};
+  height: ${theme.inputField.height};
 
   ${flat && borderless ? `border: none; border-bottom: 1px solid ${theme.inputField.borderColor}; padding: 9px 9px 8px 9px;` : ''}
   ${flat && !borderless ? `border: 1px solid ${theme.inputField.borderColor};` : ''}
