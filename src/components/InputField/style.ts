@@ -35,4 +35,8 @@ export const dynRootCss = ({theme, borderless, flat, colorStyle}: DynRootCssArgs
     border-bottom: 1px solid ${theme.colorStyles[colorStyle].origin};
     padding-bottom: 8px;
   }
+  
+  &:disabled {
+    opacity: ${theme.disabledOpacity};
+  }
 `
