@@ -1,4 +1,4 @@
-import React, {forwardRef, MutableRefObject, useLayoutEffect, useMemo, useRef} from 'react'
+import React, {forwardRef, Fragment, MutableRefObject, useLayoutEffect, useMemo, useRef} from 'react'
 import {useTheme} from '../../theme'
 import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
@@ -42,6 +42,9 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      fullWidth = false,
                                                                                                      width,
                                                                                                      valueIsIndex,
+                                                                                                     BeforeContentComponent,
+                                                                                                     AfterContentComponent,
+                                                                                                     ContentWrapper = ({children}) => <>{children}</>,
                                                                                                      ...props
                                                                                                  }: SelectProps, ref) => {
 
@@ -54,10 +57,10 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
     useLayoutEffect(() => {
 
-        if(!width) {
+        if (!width) {
             selectRef.current.style.width = 'unset';
             listRef.current.style.width = 'unset';
-        }else {
+        } else {
             const listStyle = window.getComputedStyle(listRef.current);
             const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
 
@@ -69,7 +72,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
     useLayoutEffect(() => {
 
-        if(width) return;
+        if (width) return;
 
         selectRef.current.style.width = 'unset';
         listRef.current.style.width = 'unset';
@@ -112,8 +115,9 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                     css={[dynSelectCss({theme, borderless, flat, disabled, open})]}
                 >
                     <Ripple color='rgba(0,0,0,0.2)'/>
-                    <span
-                        data-placeholder={placeholder ? true : undefined}>{item ? getContent(item, contentProp) : placeholder}</span>
+                    <span data-placeholder={placeholder ? true : undefined}>
+                        {item ? getContent(item, contentProp) : placeholder}
+                    </span>
                     <i style={{userSelect: 'none', width: "24px"}} className="material-icons">arrow_drop_down</i>
                 </div>
 
@@ -128,14 +132,20 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                             const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
 
                             return (
-                                <div
-                                    key={curValue}
-                                    css={dynOptionCss({theme})}
-                                    onClick={onChange && getSelectable(item, selectableProp, index) ?
-                                        (e) => onChange(curValue, item, e) : undefined
-                                    }
-                                >
-                                    {getContent(item, contentProp)}
+                                <div style={{display: "flex", alignItems: "center"}}>
+                                    {BeforeContentComponent && <BeforeContentComponent item={item}/>}
+                                    <div
+                                        key={curValue}
+                                        css={dynOptionCss({theme})}
+                                        onClick={onChange && getSelectable(item, selectableProp, index) ?
+                                            (e) => onChange(curValue, item, e) : undefined
+                                        }
+                                    >
+                                        <ContentWrapper item={item}>
+                                            {getContent(item, contentProp)}
+                                        </ContentWrapper>
+                                    </div>
+                                    {AfterContentComponent && <AfterContentComponent item={item}/>}
                                 </div>
                             )
                         })

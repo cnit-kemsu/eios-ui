@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithRef} from "react";
+import React, {ComponentPropsWithRef, FC, PropsWithChildren} from "react";
 import {Css, GetContent, GetSelectable, GetValue, ItemType, ValueType} from "../types";
 
 export type SelectProps = {
@@ -27,6 +27,9 @@ export type SelectProps = {
     fullWidth?: boolean;
     valueIsIndex?: boolean;
     width?: string;
+    BeforeContentComponent?: FC<{item: ItemType}>;
+    AfterContentComponent?: FC<{item: ItemType}>;
+    ContentWrapper?: FC<PropsWithChildren<{item: ItemType}>>;
 };
 
 type BaseSelectCloseAreaProps = {

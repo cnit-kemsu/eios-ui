@@ -16,6 +16,7 @@ export const dynOptionCss = ({theme}: { theme: Theme }) => css`
   align-items: center;
   cursor: pointer;
   box-sizing: border-box;
+  width: 100%;
 
   &:hover, &:active {
     background: ${theme.select.selectedOptionBg};
