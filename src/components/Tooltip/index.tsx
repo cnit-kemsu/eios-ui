@@ -95,12 +95,8 @@ export function Tooltip({
             hideTooltip?.(e.currentTarget);
         }
 
-
-
         targetElementRef.current?.addEventListener('mouseenter', handleMouseEnter);
         targetElementRef.current?.addEventListener('mouseleave', handleMouseLeave);
-
-
 
         return () => {
             targetElementRef.current?.removeEventListener('mouseenter', handleMouseEnter);

@@ -48,7 +48,7 @@ export const tooltipCss = css`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 8px;
-  font-size: 0.85rem;
+  font-size: 1rem;
 `
 
 export const arrowCss = css`
@@ -88,4 +88,3 @@ export const dynArrowCss = ({theme, position}: {theme: Theme, position: string})
             `
     }
 }
-
