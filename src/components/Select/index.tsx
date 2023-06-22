@@ -112,7 +112,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                     ref={selectRef}
                     onClick={onClick}
                     style={selectStyle}
-                    css={[dynSelectCss({theme, borderless, flat, disabled, open})]}
+                    css={[dynSelectCss({theme, borderless, flat, disabled})]}
                 >
                     <Ripple color='rgba(0,0,0,0.2)'/>
                     <span data-placeholder={placeholder ? true : undefined}>
@@ -132,10 +132,10 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                             const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
 
                             return (
-                                <div style={{display: "flex", alignItems: "center"}}>
+                                <div  key={curValue} style={{display: "flex", alignItems: "center"}}>
                                     {BeforeContentComponent && <BeforeContentComponent item={item}/>}
                                     <div
-                                        key={curValue}
+
                                         css={dynOptionCss({theme})}
                                         onClick={onChange && getSelectable(item, selectableProp, index) ?
                                             (e) => onChange(curValue, item, e) : undefined

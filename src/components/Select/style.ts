@@ -41,9 +41,9 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   margin-top: -1px;
 `
 
-type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, flat: boolean, open: boolean};
+type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, flat: boolean};
 
-export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelectCssArgs) => css`  
+export const dynSelectCss = ({theme, disabled, borderless, flat}: DynSelectCssArgs) => css`  
   background: white;
   height: ${theme.select.height};
   position: relative;
@@ -58,8 +58,8 @@ export const dynSelectCss = ({theme, disabled, borderless, flat, open}: DynSelec
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};
   box-sizing: border-box;  
-
-  ${flat ? '' : 'box-shadow: 0 0px 4px rgba(0,0,0,0.3);'}
+  
+  ${flat ? '' : theme.boxShadow + ';'}
   * {
     opacity: ${disabled ? theme.disabledOpacity : '1'};
   }

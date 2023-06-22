@@ -1,6 +1,6 @@
 {
   "name": "@kemsu/eios-ui",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "UI Kit для ЭИОС",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -11,6 +11,7 @@
     "lint": "npx eslint ./src",
     "prepublishOnly": "npm run build",
     "build": "rollup -c --environment NODE_ENV:production",
+    "build:watch": "rollup -c --environment NODE_ENV:development --watch",
     "test": "jest"
   },
   "publishConfig": {
