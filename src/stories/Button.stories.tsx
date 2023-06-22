@@ -1,7 +1,5 @@
-import React from "react";
 import {Button} from "../components/Button";
-import {ComponentMeta} from "@storybook/react";
-import {createStoryTemplate} from "./createStoryTemplate";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 import {dedent} from "ts-dedent";
 
@@ -11,7 +9,6 @@ export default {
     argTypes: {
         disabled: argTypes.disabled,
         colorStyle: argTypes.colorStyle,
-        css: argTypes.css,
         elementType: argTypes.elementType,
         stickOnHover: argTypes.stickOnHover,
         fillable: argTypes.fillable,
@@ -26,20 +23,21 @@ export default {
             }
         }
     }
-} as ComponentMeta<typeof Button>
+} as Meta<typeof Button>
 
-const Template = createStoryTemplate(Button);
+type Story = StoryObj<typeof Button>;
 
-export const Default = Template.createStory({
-    children: "Я кнопка"
-}, "Кнопка");
-
-Default.argTypes = {
-    onClick: {action: 'clicked', description: "событие клика по кнопке"}
+export const Default: Story = {
+    name: "По умолчанию",
+    args: {children: "Я кнопка"},
+    argTypes: {onClick: {action: 'clicked', description: "событие клика по кнопке"}}
 }
 
-export const ButtonWithLink = Template.createStory({
-    elementType: 'a',
-    href: '/',
-    children: "Я кнопка-ссылка"
-}, "Кнопка-ссылка");
+export const ButtonWithLink: Story = {
+    name: "Кнопка-ссылка",
+    args: {
+        elementType: 'a',
+        href: '/',
+        children: "Я кнопка-ссылка"
+    }
+}
