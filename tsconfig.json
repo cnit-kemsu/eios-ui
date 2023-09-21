@@ -26,8 +26,13 @@
     "baseUrl": "./src"
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src/index.ts",
+    "src/theme.ts",
+    "src/utils.ts",
+    "src/components/**/*.ts",
+    "src/components/**/*.tsx",
+    "src/hooks/**/*.ts",
+    "src/hooks/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
