@@ -25,7 +25,7 @@ const srcConfig = {
         typescript({compilerOptions: {declaration: true, declarationDir: './dist/types'}}),
         babel({
             babelHelpers: 'bundled',
-            exclude: ['node_modules/**', 'src/**/*.stories.js', 'src/**/*.stories.ts'],
+            exclude: ['node_modules/**', 'src/stories/**'],
         }),
         resolve({
             moduleDirectories: ["node_modules"]
