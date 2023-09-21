@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {Modal} from '../components/Modal'
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 import {ModalProps} from "../components/Modal/ModalProps";
 import {Button} from "../components/Button";
+
+import 'material-icons/iconfont/material-icons.css';
 
 export default {
     title: "Компоненты/Modal",
@@ -20,21 +22,22 @@ export default {
         open: {description: "отобразить модальное окно", control: {type: null}},
         modalLayerDOMElement: {description: "DOM-элемент, внутри которого будет отрисовано модальное окно"}
     }
-} as ComponentMeta<typeof Modal>
+} as Meta<typeof Modal>
 
-export const Default = (props: Omit<ModalProps, 'open' | 'onClose'>) => {
+export const Default : StoryObj<typeof Modal> = {
+    name: "Modal",
+    render: (props: Omit<ModalProps, 'open' | 'onClose'>) => {
 
-    const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
+        const [open, setOpen] = useState(false);
+        const handleClose = () => setOpen(false);
 
-    delete (props as any).onClose;
+        delete (props as any).onClose;
 
-    return (
-        <>
-            <Button onClick={() => setOpen(true)}>Открыть модальное окно</Button>
-            <Modal open={open} onClose={handleClose} {...props} />
-        </>
-    )
+        return (
+            <div style={{minHeight: "400px"}}>
+                <Button onClick={() => setOpen(true)}>Открыть модальное окно</Button>
+                <Modal open={open} onClose={handleClose} {...props} />
+            </div>
+        )
+    }
 }
-
-Default.storyName = "Modal"

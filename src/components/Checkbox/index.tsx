@@ -19,21 +19,10 @@ export type CheckboxComponent =
     & { displayName?: string };
 
 /**
- * Чекбокс
- * @param name
- * @param css
- * @param colorStyle
- * @param disabled
- * @param checked
- * @param onClick
- * @param children
- * @param value
- * @param props
- * @constructor
+ *
  */
 export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxProps>(({
                                                                                           name,
-                                                                                          css,
                                                                                           colorStyle = 'secondary',
                                                                                           disabled = false,
                                                                                           checked = false,
@@ -48,7 +37,7 @@ export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxPr
 
     return (
         <div ref={ref} {...props} onClick={() => onClick?.()}
-             css={[rootCss, dynRootCss({disabled}), checkbox.css, ...toArray(css)]}>
+             css={[rootCss, dynRootCss({disabled}), checkbox.css]}>
             <div
                 css={[
                     dynIconCss({theme, disabled, checked, colorStyle}),

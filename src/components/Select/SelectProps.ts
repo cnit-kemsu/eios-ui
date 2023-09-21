@@ -1,7 +1,7 @@
 import React, {ComponentPropsWithRef, FC, PropsWithChildren} from "react";
 import {Css, GetContent, GetSelectable, GetValue, ItemType, ValueType} from "../types";
 
-export type SelectProps = {
+type SelectPropsBase = {
     name?: string;
     open?: boolean;
     enableOutsideArea?: boolean;
@@ -21,7 +21,6 @@ export type SelectProps = {
     size?: number;
     itemStyle?: React.CSSProperties;
     placeholder?: string;
-    css?: Css;
     borderless?: boolean;
     flat?: boolean;
     fullWidth?: boolean;
@@ -32,12 +31,4 @@ export type SelectProps = {
     ContentWrapper?: FC<PropsWithChildren<{item: ItemType}>>;
 };
 
-type BaseSelectCloseAreaProps = {
-    open: boolean;
-    setOpen: (value: boolean) => void;
-    css?: Css;
-};
-
-export type SelectCloseAreaProps =
-    Omit<ComponentPropsWithRef<'div'>, keyof BaseSelectCloseAreaProps>
-    & BaseSelectCloseAreaProps;
+export type SelectProps = SelectPropsBase & Omit<ComponentPropsWithRef<'div'>, keyof SelectPropsBase>;

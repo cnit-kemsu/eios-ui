@@ -1,14 +1,8 @@
 import React from "react";
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
-import {Tab, Tabs} from "../components/Tabs";
+import {Tab} from "../components/Tabs";
 import {TabProps} from "../components/Tabs/TabsProps";
-
-export const Default = (props: TabProps) => (
-    <div style={{padding: "2em"}}>
-        <Tab {...props} />
-    </div>
-);
 
 export default {
     title: "Компоненты/Tab",
@@ -32,10 +26,17 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Вкладка. Используется в качестве дочернего элемента [Tabs](..?path=/docs/компоненты-tabs--default)`
+                component: `Вкладка. Используется в качестве дочернего элемента [Tabs](..?path=/docs/компоненты-tabs--docs)`
             }
         }
     }
-} as ComponentMeta<typeof Tab>
+} as Meta<typeof Tab>
 
-Default.storyName = "Tab";
+export const Default : StoryObj<typeof Tab> = {
+    name:  "Tab",
+    render:  (props: TabProps) => (
+        <div style={{padding: "2em"}}>
+            <Tab {...props} />
+        </div>
+    )
+}

@@ -6,8 +6,6 @@ type BaseRippleProps = {
     duration?: string;
     containerStyle?: React.CSSProperties;
     rippleStyle?: React.CSSProperties;
-    css?: Css;
-    rippleCss?: Css;
     rippleClassName?: string;
 };
 

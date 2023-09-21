@@ -1,7 +1,6 @@
 import React from "react";
 import {InputField} from '../components/InputField'
-import {ComponentMeta} from "@storybook/react";
-import {createStoryTemplate} from "./createStoryTemplate";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 
 export default {
@@ -22,8 +21,10 @@ export default {
         borderless: argTypes.borderless,
         flat: argTypes.flat
     }
-} as ComponentMeta<typeof InputField>
+} as Meta<typeof InputField>
 
-const Template = createStoryTemplate(InputField)
+type Story = StoryObj<typeof InputField>;
 
-export const Default = Template.createStory({}, "InputField");
+export const Default : Story={
+    name: "InputField"
+}

@@ -1,18 +1,8 @@
 import React from "react";
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {Tab, Tabs} from "../components/Tabs";
 import {TabsProps} from "../components/Tabs/TabsProps";
 import {argTypes} from "./argTypes";
-
-export const Default = (props: TabsProps) => (
-    <div style={{padding: "2em"}}>
-        <Tabs {...props}>
-            <Tab id='tab1'>Вкладка 1</Tab>
-            <Tab id='tab2'>Вкладка 2</Tab>
-            <Tab id='tab3'>Вкладка 3</Tab>
-        </Tabs>
-    </div>
-);
 
 export default {
     title: "Компоненты/Tabs",
@@ -33,6 +23,17 @@ export default {
             }
         }
     }
-} as ComponentMeta<typeof Tabs>
+} as Meta<typeof Tabs>
 
-Default.storyName = "Tabs";
+export const Default : StoryObj<typeof Tabs> = {
+    name: "Tabs",
+    render: (props: TabsProps) => (
+        <div style={{padding: "2em"}}>
+            <Tabs {...props}>
+                <Tab id='tab1'>Вкладка 1</Tab>
+                <Tab id='tab2'>Вкладка 2</Tab>
+                <Tab id='tab3'>Вкладка 3</Tab>
+            </Tabs>
+        </div>
+    )
+}

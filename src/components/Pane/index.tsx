@@ -8,13 +8,13 @@ import type {FCR} from "../types";
 export const Pane : FCR<PaneProps, HTMLDivElement> = forwardRef<HTMLDivElement, PaneProps>(({
                                                                flat= false,
                                                                borderless= false, title, children,
-                                                               titleCss, css, ...props
+                                                               titleCss, ...props
                                                            }: PaneProps, ref) => {
 
     const theme = useTheme()
 
     return (
-        <div ref={ref} {...props} css={[dynRootCss({theme, flat, borderless}), ...toArray(css)]}>
+        <div ref={ref} {...props} css={[dynRootCss({theme, flat, borderless})]}>
             {title && <h2 css={[dynTitleCss({theme}), ...toArray(titleCss)]}>{title}</h2>}
             <div css={dynContentCss({theme})}>{children}</div>
         </div>

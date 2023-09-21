@@ -9,14 +9,14 @@ export const Example = () => {
     const [modal, setOpen] = useModal();
 
     return (
-        <>
+        <div style={{minHeight: "400px"}}>
             <Button onClick={() => setOpen(true)}>Открыть модальное окно</Button>
-            <Modal {...modal} title="Заголовок">
+            <Modal {...modal} title="Заголовок" style={{width: "60%"}}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam corporis illo laboriosam,
                 libero quod ratione repellendus suscipit ut. Amet animi distinctio est facere libero nostrum odio sunt
                 tenetur velit!
             </Modal>
-        </>
+        </div>
     )
 }
 

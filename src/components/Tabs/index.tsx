@@ -1,8 +1,6 @@
-import React, {Children, cloneElement, ForwardedRef, forwardRef} from 'react'
-import {dynSelectedTabCss, dynTabCss, dynTabsCss, stretchTabCss, stretchTabsCss, tabCss, tabsCss} from './style'
+import React, {Children, cloneElement, CSSProperties, ForwardedRef, forwardRef} from 'react'
+import {dynSelectedTabCss, dynTabCss, dynTabsCss, stretchTabsCss, tabCss, tabsCss} from './style'
 import {Ripple} from '../Ripple'
-import {Css} from "../types";
-import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {TabProps, TabsProps} from "./TabsProps";
 
@@ -15,7 +13,6 @@ export const Tabs: TabsComponent = forwardRef<HTMLDivElement, TabsProps>(({
                                                                               stretchTabs,
                                                                               onTabClick,
                                                                               tab,
-                                                                              css,
                                                                               fillSelectedTab,
                                                                               children,
                                                                               ...props
@@ -26,24 +23,28 @@ export const Tabs: TabsComponent = forwardRef<HTMLDivElement, TabsProps>(({
 
     return (
         <div ref={ref} {...props}
-             css={[tabsCss, dynTabsCss({theme}), stretchTabs ? stretchTabsCss : undefined, ...toArray(css)]}>
+             css={[tabsCss, dynTabsCss({theme}), stretchTabs ? stretchTabsCss : undefined]}>
             {
                 Children.map(children, (child, index) => {
 
                     if (!child) return null;
 
                     const selected = tab === child.props.id || tab === index;
-                    let childCss = (child.props.css ? toArray(child.props.css) : [] as Css[]);
+
+                    const childStyle : CSSProperties = child.props.style ?? {};
+                    childStyle.flex = '1 1 0';
+                    //childStyle.display = 'block';
 
                     return cloneElement(child, {
                         ...child.props,
+                        style: childStyle,
                         colorStyle: child.props.colorStyle ?? colorStyle,
                         selected,
                         fillSelectedTab,
                         onClick: onTabClick ? () => {
                             onTabClick(child.props.id || index);
                         } : undefined,
-                        css: [stretchTabs ? stretchTabCss : undefined, ...childCss]
+                        //css: stretchTabs ? stretchTabCss : undefined
                     });
                 })
             }
@@ -58,7 +59,6 @@ type TabComponent =
     & { displayName?: string };
 
 export const Tab: TabComponent = forwardRef<HTMLElement, TabProps>(({
-                                                                        css,
                                                                         id,
                                                                         elementType,
                                                                         fillSelectedTab = false,
@@ -78,7 +78,7 @@ export const Tab: TabComponent = forwardRef<HTMLElement, TabProps>(({
             tabCss,
             dynTabCss({theme, colorStyle}),
             selected ? dynSelectedTabCss({theme, fillSelectedTab, colorStyle}) : undefined,
-            ...(css instanceof Array ? css : [css])
+            //...(css instanceof Array ? css : [css])
         ]} {...props}>
             <><Ripple color={theme.colorStyles[colorStyle].ripple}/>{children}</>
         </Component>

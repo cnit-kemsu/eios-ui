@@ -7,8 +7,8 @@ import {initRippleData} from "./RippleData";
 import {RippleProps} from "./RippleProps";
 
 export function Ripple({
-                                   color = 'rgba(0,0,0,0.5)', duration = '2s', containerStyle, css,
-                                   rippleCss: rippleCssProp, rippleStyle, rippleClassName, ...props
+                                   color = 'rgba(0,0,0,0.5)', duration = '2s', containerStyle,
+                                   rippleStyle, rippleClassName, ...props
                                }: RippleProps) {
 
     const {disableRipple} = useTheme();
@@ -27,12 +27,12 @@ export function Ripple({
     const {active, x, y, diameter, hideRipple} = rippleDataRef.current;
 
     return (
-        <div {...props} ref={rippleDomRef} css={[rootCss, ...toArray(css)]} {...mouseEventHandlers}>
+        <div {...props} ref={rippleDomRef} css={[rootCss]} {...mouseEventHandlers}>
             {
                 active && (
                     <div
                         style={rippleStyle}
-                        css={[rippleCss, dynRippleCss({color, duration, x, y, diameter, hideRipple}), rippleCssProp]}
+                        css={[rippleCss, dynRippleCss({color, duration, x, y, diameter, hideRipple})]}
                         className={rippleClassName}
                         onTransitionEnd={onTransitionEnd}
                     >

@@ -1,6 +1,5 @@
 import {List} from "../components/List";
-import {ComponentMeta} from "@storybook/react";
-import {createStoryTemplate} from "./createStoryTemplate";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 
 export default {
@@ -22,38 +21,48 @@ export default {
         getSelectable: {description: "функция, которая выполняется для каждого элемента `items` и должна вернуть true для выбираемых элементов. Функция по умолчанию использует `selectableProp`"},
         onChange: {action: 'clicked', description: "событие нажатия по элементу списка"}
     }
-} as ComponentMeta<typeof List>
+} as Meta<typeof List>
 
-const Template = createStoryTemplate(List);
+type Story = StoryObj<typeof List>;
 
-export const Example1 = Template.createStory({
-    items: ["Элемент 1", "Элемент 2", "Элемент 3"],
-    value: 1,
-    valueIsIndex: true
-}, "Пример 1");
+export const Example1 : Story = {
+    name: "Пример 1",
+    args: {
+        items: ["Элемент 1", "Элемент 2", "Элемент 3"],
+        value: 1,
+        valueIsIndex: true
+    }
+}
 
-export const Example2 = Template.createStory({
-    items: [{value: 'item0', content: "Элемент 1"}, {value: 'item1', content: "Элемент 2"}, {
-        value: 'item2',
-        content: "Элемент 3"
-    }],
-    value: 'item1'
-}, "Пример 2");
+export const Example2 : Story = {
+    name: "Пример 2",
+    args: {
+        items: [{value: 'item0', content: "Элемент 1"}, {value: 'item1', content: "Элемент 2"}, {
+            value: 'item2',
+            content: "Элемент 3"
+        }],
+        value: 'item1'
+    }
+}
 
-export const Example3 = Template.createStory({
-    items: [{id: 'item0', name: "Элемент 1"}, {id: 'item1', name: "Элемент 2"}, {id: 'item2', name: "Элемент 3"}],
-    value: 'item1',
-    valueProp: "id",
-    contentProp: "name"
-}, "Пример 3");
+export const Example3 : Story = {
+    name:"Пример 3",
+    args: {
+        items: [{id: 'item0', name: "Элемент 1"}, {id: 'item1', name: "Элемент 2"}, {id: 'item2', name: "Элемент 3"}],
+        value: 'item1',
+        valueProp: "id",
+        contentProp: "name"
+    }
+}
 
-export const Example4 = () => (
-    <List
-        items={[{id: 'item0', name: "Элемент 1"}, {id: 'item1', name: "Элемент 2"}, {id: 'item2', name: "Элемент 3"}]}
-        value='item1'
-        getValue={(item, valueProp, itemIndex) => (item as { id: string }).id}
-        getContent={(item, contentProp) => (item as { name: string }).name}
-    />
-)
-
-Example4.storyName = "Пример 4"
+export const Example4 : Story = {
+    name: "Пример 4",
+    render:  () => (
+        <List
+            items={[{id: 'item0', name: "Элемент 1"}, {id: 'item1', name: "Элемент 2"}, {id: 'item2', name: "Элемент 3"}]}
+            value='item1'
+            getValue={(item, valueProp, itemIndex) => (item as { id: string }).id}
+            getContent={(item, contentProp) => (item as { name: string }).name}
+        />
+    )
+}

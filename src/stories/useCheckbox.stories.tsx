@@ -1,41 +1,41 @@
 import * as React from "react";
 import {Checkbox} from "../components/Checkbox";
 import {Button, useCheckbox} from "../index";
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {createHookArgsTable} from "./createHookArgsTable";
-import * as dedent from "dedent";
+import {dedent} from "ts-dedent";
 
-export const Example = () => {
-    const initialValue = false;
+export const Example : StoryObj = {
+    name: "useCheckbox",
+    render: () => {
+        const initialValue = false;
 
-    const [checkbox, setChecked] = useCheckbox(initialValue);
+        const [checkbox, setChecked] = useCheckbox(initialValue);
 
-    return (
-        <>
-            <div style={{margin: "10px"}}>
-                <Checkbox {...checkbox}>Нажми меня</Checkbox>
-            </div>
+        return (
+            <>
+                <div style={{margin: "10px"}}>
+                    <Checkbox {...checkbox}>Нажми меня</Checkbox>
+                </div>
 
-            <div style={{margin: "10px"}}>
-                Текущее значение: {checkbox.checked ? "true" : "false"}
-            </div>
+                <div style={{margin: "10px"}}>
+                    Текущее значение: {checkbox.checked ? "true" : "false"}
+                </div>
 
-            <div style={{margin: "10px"}}>
-                <Button onClick={() => setChecked(false)}>Сброс</Button>
-            </div>
-        </>
-    )
+                <div style={{margin: "10px"}}>
+                    <Button onClick={() => setChecked(false)}>Сброс</Button>
+                </div>
+            </>
+        )
+    }
 }
-
-Example.storyName = "useCheckbox"
 
 export default {
     title: "Хуки/useCheckbox",
-    component: Example,
     parameters: {
         docs: {
             description: {
-                component: dedent`Хук, который используется в паре с [Checkbox](..?path=/docs/компоненты-checkbox--default).                
+                component: dedent`Хук, который используется в паре с [Checkbox](..?path=/docs/компоненты-checkbox--docs).                
                 ${createHookArgsTable([
                     {
                         name: 'initialValue', type: 'boolean',
@@ -49,5 +49,5 @@ export default {
             },
         },
     }
-} as ComponentMeta<typeof Example>
+} as Meta
 

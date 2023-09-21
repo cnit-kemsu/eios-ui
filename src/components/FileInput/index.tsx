@@ -6,6 +6,7 @@ import {useTheme} from "../../theme";
 import {toArray} from "../../utils";
 import {inputCss, dynRootCss} from "./style";
 import type {FileInputProps} from "./FileInputProps";
+import {CSSObject, SerializedStyles} from "@emotion/react";
 
 export type FileInputComponent =
     ((props: FileInputProps, ref?: ForwardedRef<HTMLDivElement>) => ReactElement | null)
@@ -13,7 +14,6 @@ export type FileInputComponent =
 
 export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInputProps>(({
                                                                                              label,
-                                                                                             css,
                                                                                              colorStyle = "dark",
                                                                                              transparent = false,
                                                                                              fillable = false,
@@ -30,16 +30,13 @@ export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInpu
     const theme = useTheme();
     const {colorStyles, button} = theme;
 
-    const finalCss = [
-        buttonCss,
-        dynButtonCss({theme, flat, stickOnHover, disabled, colorStyle, transparent, fillable, borderless}),
-        button.css,
-        ...toArray(css)
-    ];
-
     return (
         <div ref={ref} css={dynRootCss({theme})}>
-            <label css={finalCss}>
+            <label css={[
+                buttonCss,
+                dynButtonCss({theme, flat, stickOnHover, disabled, colorStyle, transparent, fillable, borderless}),
+                button.css as CSSObject
+            ]}>
                 <Ripple color={colorStyles[colorStyle].ripple}/>
                 <span>{label}</span>
                 <input onChange={onChange} multiple={multiple} type="file" ref={inputRef} css={inputCss} {...props} />

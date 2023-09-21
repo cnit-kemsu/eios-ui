@@ -12,7 +12,6 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
                                                                                                    y = 0,
                                                                                                    flat = false,
                                                                                                    borderless = false,
-                                                                                                   css,
                                                                                                    children,
                                                                                                    rootElement = document.body,
                                                                                                    onOutsideClick,
@@ -25,7 +24,7 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
         <>
             {enableOutsideArea && show && <div onClick={onOutsideClick} css={[dynMenuCloseAreaCss({theme})]}/>}
             <ul ref={ref} {...props}
-                css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss, ...toArray(css)]}>
+                css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss]}>
                 {children}
             </ul>
         </>
@@ -37,14 +36,13 @@ Menu.displayName = "Menu";
 export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElement, MenuItemProps>(({
                                                                                                onClick,
                                                                                                children,
-                                                                                               css,
                                                                                                ...props
                                                                                            }: MenuItemProps, ref) => {
 
     const theme = useTheme();
 
     return (
-        <li ref={ref} data-menuitem={true} css={[dynMenuItemCss({theme}), ...toArray(css)]}
+        <li ref={ref} data-menuitem={true} css={[dynMenuItemCss({theme})]}
             onClick={e => {
                 e.stopPropagation();
                 onClick?.(e);
@@ -59,7 +57,6 @@ MenuItem.displayName = "MenuItem";
 export const MenuCloseArea : FCR<MenuCloseAreaProps, HTMLDivElement> = forwardRef<HTMLDivElement, MenuCloseAreaProps>(({
                                                                                  show,
                                                                                  setShow,
-                                                                                 css,
                                                                                  onClick,
                                                                                  ...props
                                                                              }: MenuCloseAreaProps, ref) => {
@@ -71,7 +68,7 @@ export const MenuCloseArea : FCR<MenuCloseAreaProps, HTMLDivElement> = forwardRe
     }
 
     return show
-        ? <div onClick={handleClick} ref={ref} css={[dynMenuCloseAreaCss({theme}), ...toArray(css)]} {...props}/>
+        ? <div onClick={handleClick} ref={ref} css={[dynMenuCloseAreaCss({theme})]} {...props}/>
         : null;
 });
 

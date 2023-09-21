@@ -3,7 +3,6 @@ import {ColorStyle, Css} from "../types";
 
 type BaseFileInputProps = {
     label?: string;
-    css?: Css;
     colorStyle?: ColorStyle;
     transparent?: boolean;
     fillable?: boolean;

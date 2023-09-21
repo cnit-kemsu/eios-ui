@@ -1,8 +1,7 @@
 import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
-import {toArray} from '../../utils'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
-import type{ListProps} from "./ListProps";
+import type {ListProps} from "./ListProps";
 import {defGetContent, defGetSelectable, defGetValue} from "./defaults";
 import {Ripple} from "../Ripple";
 import type {FCR} from "../types";
@@ -13,7 +12,6 @@ export const List: FCR<ListProps, HTMLUListElement> = forwardRef<HTMLUListElemen
                                                                                       borderless = false,
                                                                                       flat = false,
                                                                                       colorStyle = "primary",
-                                                                                      css,
                                                                                       valueIsIndex = false,
                                                                                       valueProp = "value",
                                                                                       contentProp = "content",
@@ -31,7 +29,7 @@ export const List: FCR<ListProps, HTMLUListElement> = forwardRef<HTMLUListElemen
 
     return (
         <>
-            <ul ref={ref} {...props} css={[rootCss, dynRootCss({disabled, borderless, theme, flat}), ...toArray(css)]}>
+            <ul ref={ref} {...props} css={[rootCss, dynRootCss({disabled, borderless, theme, flat})]}>
                 {
                     items.map((item, index) => {
 

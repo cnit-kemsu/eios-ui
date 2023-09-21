@@ -26,7 +26,6 @@ export function Tooltip({
                             hideArrow,
                             showDelay = 0.5,
                             hideDelay = 0.5,
-                            css,
                             position = "top",
                             ...props
                         }: TooltipProps) {
@@ -42,7 +41,7 @@ export function Tooltip({
     const updateOffset = useCallback(() => {
         let offset = getElementPositionRelativeTo(targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
         if(offset) setOffset({left: offset.x, top: offset.y});
-    }, [])
+    }, [position])
 
     const showTooltip = useCallback(debounce(target => {
 
@@ -121,7 +120,7 @@ export function Tooltip({
 
     const contentElement = (
         <div {...props}
-             css={[tooltipCss, dynTooltipCss({theme}), ...(Array.isArray(css) ? css : [css])]}>
+             css={[tooltipCss, dynTooltipCss({theme})]}>
             {children}
         </div>
     );
@@ -132,7 +131,7 @@ export function Tooltip({
         <div
             onMouseEnter={handleTooltipMouseEnter}
             onMouseLeave={handleTooltipMouseLeave}
-            ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset}), ...toArray(css)]}
+            ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset})]}
         >
             {
                 position === 'left' || position === 'top'

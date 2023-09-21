@@ -1,5 +1,5 @@
 import React, {MutableRefObject, useRef} from "react";
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 import {Tooltip} from "../components/Tooltip";
 import {Button} from "../components/Button";
@@ -20,18 +20,25 @@ export default {
             control: {type: null}
         }
     }
-} as ComponentMeta<typeof Tooltip>
+} as Meta<typeof Tooltip>
 
-export const Default = (props: Omit<TooltipProps, 'targetElementRef'>) => {
+export const Default: StoryObj<typeof Tooltip> = {
+    name: "Tooltip",
+    render: (props: Omit<TooltipProps, 'targetElementRef'>) => {
 
-    const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
+        const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
-    return (
-        <div style={{padding: "3em 12em"}}>
-            <Button ref={buttonRef}>Наведи курсор на меня</Button>
-            <Tooltip targetElementRef={buttonRef} {...props} />
-        </div>
-    );
-};
-
-Default.storyName = "Tooltip"
+        return (
+            <div style={{
+                position: "relative",
+                minHeight: "100px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}>
+                <Button ref={buttonRef}>Наведи курсор на меня</Button>
+                <Tooltip targetElementRef={buttonRef} {...props} />
+            </div>
+        );
+    }
+}

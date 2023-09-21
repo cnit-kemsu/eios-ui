@@ -27,12 +27,14 @@ export default {
 
 type Story = StoryObj<typeof Button>;
 
+/** Обычная кнопка */
 export const Default: Story = {
     name: "По умолчанию",
     args: {children: "Я кнопка"},
     argTypes: {onClick: {action: 'clicked', description: "событие клика по кнопке"}}
 }
 
+/** Ссылка, выглядящая как кнопка */
 export const ButtonWithLink: Story = {
     name: "Кнопка-ссылка",
     args: {

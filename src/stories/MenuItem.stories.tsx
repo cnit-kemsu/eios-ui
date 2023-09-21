@@ -1,17 +1,11 @@
-import {ComponentMeta} from "@storybook/react";
+import {Meta} from "@storybook/react";
 import {argTypes} from "./argTypes";
-import {Menu, MenuItem} from "../components/Menu";
+import {MenuItem} from "../components/Menu";
 import {MenuItemProps} from "../components/Menu/MenuProps";
-
-export const Default = (props: MenuItemProps) => (
-    <div style={{padding: "2em"}}>
-        <MenuItem {...props}/>
-    </div>
-);
 
 export default {
     title: "Компоненты/MenuItem",
-    component: Default,
+    component: MenuItem,
     args: {
       children: "Элемент меню"
     },
@@ -24,10 +18,17 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--default)`
+                component: `Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--docs)`
             }
         }
     }
-} as ComponentMeta<typeof Default>
+} as Meta<typeof MenuItem>
 
-Default.storyName = "MenuItem"
+export const Default = {
+    name: "MenuItem",
+    render: (props: MenuItemProps) => (
+        <div style={{padding: "2em"}}>
+            <MenuItem {...props}/>
+        </div>
+    )
+}

@@ -4,6 +4,7 @@ import {ColorStyle, Css} from "../types";
 
 type BaseButtonProps = {
     disabled?: boolean;
+    /** кнопка будет плоской (без тени) */
     flat?: boolean;
     stickOnHover?: boolean;
     colorStyle?: ColorStyle;
@@ -11,7 +12,6 @@ type BaseButtonProps = {
     fillable?: boolean;
     borderless?: boolean;
     children?: React.ReactNode;
-    css?: Css;
 }
 
 export type ButtonProps<C extends React.ElementType> =

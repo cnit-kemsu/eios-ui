@@ -8,7 +8,6 @@ import type {FCR} from "../types";
 export const Spinner: FCR<SpinnerProps, SVGSVGElement> = forwardRef<SVGSVGElement, SpinnerProps>(({
                                                                                             colorStyle = "secondary",
                                                                                             scale = 1,
-                                                                                            css,
                                                                                             ...props
                                                                                         }: SpinnerProps, ref) => {
 
@@ -18,7 +17,7 @@ export const Spinner: FCR<SpinnerProps, SVGSVGElement> = forwardRef<SVGSVGElemen
     const l = 2 * Math.PI * r;
 
     return (
-        <svg ref={ref} {...props} css={[spinnerCss, ...toArray(css)]} viewBox="0 0 100 100">
+        <svg ref={ref} {...props} css={[spinnerCss]} viewBox="0 0 100 100">
             <circle css={[spinnerCircleCss, dynSpinnerCircleCss({theme, l, colorStyle})]} cx="50" cy="50" r={r}/>
         </svg>
     )

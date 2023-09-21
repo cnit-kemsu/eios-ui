@@ -1,6 +1,6 @@
 import React from "react";
 import {MenuCloseArea} from '../components/Menu'
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 import {MenuCloseAreaProps} from "../components/Menu/MenuProps";
 
@@ -24,10 +24,11 @@ export default {
             }
         }
     }
-} as ComponentMeta<typeof MenuCloseArea>
+} as Meta<typeof MenuCloseArea>
 
-export const Default = (props: MenuCloseAreaProps) => (
-    <MenuCloseArea {...props}/>
-);
-
-Default.storyName = "MenuCloseArea"
+export const Default : StoryObj<typeof MenuCloseArea> = {
+    name: "MenuCloseArea",
+    render: (props: MenuCloseAreaProps) => (
+        <MenuCloseArea {...props}/>
+    )
+}

@@ -12,7 +12,6 @@ export type CheckboxProps = {
     checked?: boolean,
     /** обработчик нажатия на чекбокс */
     onClick?: () => void,
-    css?: Css,
     /** значение элемента формы */
     value?: string | number
 } & Omit<ComponentPropsWithoutRef<'div'>, 'onClick'>

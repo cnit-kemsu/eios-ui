@@ -15,7 +15,6 @@ export const InputField: InputFieldComponent = forwardRef<HTMLInputElement, Inpu
          borderless = false,
          flat = false,
          filled = false,
-         css,
          type = "text",
          onChange,
          ...props
@@ -23,7 +22,7 @@ export const InputField: InputFieldComponent = forwardRef<HTMLInputElement, Inpu
 
         const theme = useTheme();
 
-        const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle}), ...toArray(css)];
+        const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle})];
 
         if (type === 'file') {
             throw new Error("Используйте FileInput вместо InputField для работы с файлами");

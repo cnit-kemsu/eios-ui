@@ -1,23 +1,11 @@
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {argTypes} from "./argTypes";
 import {Menu, MenuItem} from "../components/Menu";
 import {MenuProps} from "../components/Menu/MenuProps";
 
-export const Default = (props: MenuProps) => (
-    <div style={{padding: "2em"}}>
-        <Menu {...props}>
-            <MenuItem>Элемент меню 1</MenuItem>
-            <MenuItem>Элемент меню 2</MenuItem>
-            <MenuItem>Элемент меню 3</MenuItem>
-        </Menu>
-    </div>
-);
-
-
-
 export default {
     title: "Компоненты/Menu",
-    component: Default,
+    component: Menu,
     args: {
         show: true,
         x: 20,
@@ -27,7 +15,6 @@ export default {
         x: {description: "позиция по x"},
         y: {description: "позиция по y"},
         show: {description: "показать меню"},
-        css: argTypes.css,
         flat: argTypes.flat,
         borderless: argTypes.borderless,
         style: argTypes.style,
@@ -36,10 +23,22 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: `Выпадающее меню. В качестве дочерних элементов принимает [MenuItem](..?path=/docs/компоненты-menuitem--default)`
+                component: `Выпадающее меню. В качестве дочерних элементов принимает [MenuItem](..?path=/docs/компоненты-menuitem--docs)`
             }
         }
     },
-} as ComponentMeta<typeof Default>
+} as Meta<typeof Menu>
 
-Default.storyName = "Menu";
+export const Default : StoryObj<typeof Menu> = {
+    name: "Menu",
+    render: (props: MenuProps) => (
+        <div style={{minHeight: "100px"}}>
+            <Menu {...props}>
+                <MenuItem>Элемент меню 1</MenuItem>
+                <MenuItem>Элемент меню 2</MenuItem>
+                <MenuItem>Элемент меню 3</MenuItem>
+            </Menu>
+        </div>
+    )
+};
+

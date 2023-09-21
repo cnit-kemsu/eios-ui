@@ -1,5 +1,5 @@
 import React from "react";
-import {ComponentMeta} from "@storybook/react";
+import {Meta, StoryObj} from "@storybook/react";
 import {RippleProps} from "../components/Ripple/RippleProps";
 import {Ripple} from "../index";
 import {argTypes} from "./argTypes";
@@ -17,17 +17,6 @@ const titleStyle = {
     display: 'inline-block'
 }
 
-export const Example = (props : RippleProps) => {
-    return (
-        <div style={{position: 'relative', ...divStyle}}>
-            <Ripple {...props} />
-            <span style={titleStyle}>Кликни меня!</span>
-        </div>
-    )
-}
-
-Example.storyName = "Ripple";
-
 export default {
     title: "Компоненты/Ripple",
     component: Ripple,
@@ -40,4 +29,16 @@ export default {
         containerStyle: { description: "Стиль контейнера эффекта ряби", control: {type: null}},
         rippleStyle: { description: "Стиль самого эффекта ряби", control: {type: null}},
     }
-} as ComponentMeta<typeof Ripple>
+} as Meta<typeof Ripple>
+
+export const Example : StoryObj<typeof Ripple> = {
+    name:"Ripple",
+    render:  (props : RippleProps) => {
+        return (
+            <div style={{position: 'relative', ...divStyle}}>
+                <Ripple {...props} />
+                <span style={titleStyle}>Кликни меня!</span>
+            </div>
+        )
+    }
+}

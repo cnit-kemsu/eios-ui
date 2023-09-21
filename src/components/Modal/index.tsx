@@ -1,13 +1,12 @@
 import {forwardRef, useCallback, useEffect, useState} from 'react'
-import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {Button} from '../Button'
 import {
     closeButtonCss,
     closeButtonIconCss,
+    contentCss,
     dynBackLayerCss,
     dynContainerCss,
-    contentCss,
     dynHeaderCss,
     dynTitleCss
 } from './style'
@@ -19,7 +18,6 @@ export const Modal : FCR<ModalProps, HTMLDivElement> = forwardRef<HTMLDivElement
                                                                  title,
                                                                  onClose,
                                                                  children,
-                                                                 css,
                                                                  modalLayerDOMElement = document.body,
                                                                  style,
                                                                  ...props
@@ -44,7 +42,7 @@ export const Modal : FCR<ModalProps, HTMLDivElement> = forwardRef<HTMLDivElement
         <div ref={ref} {...props} css={dynBackLayerCss({theme, open})}>
             <div
                 onAnimationEnd={open ? undefined : handleAnimationEnd}
-                css={[dynContainerCss({theme, open}), ...toArray(css)]}
+                css={[dynContainerCss({theme, open})]}
                 style={style}
             >
                 <div css={dynHeaderCss({theme})}>

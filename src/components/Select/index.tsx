@@ -1,14 +1,13 @@
-import React, {forwardRef, Fragment, MutableRefObject, useLayoutEffect, useMemo, useRef} from 'react'
+import React, {forwardRef, MutableRefObject, useLayoutEffect, useMemo, useRef} from 'react'
 import {useTheme} from '../../theme'
-import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
 import {
-    displayedSelectOptionsCss,
     containerCss,
+    displayedSelectOptionsCss,
     dynOptionCss,
     dynOptionsCss,
-    selectCloseAreaCss,
-    dynSelectCss
+    dynSelectCss,
+    selectCloseAreaCss
 } from './style'
 import {defGetContent, defGetSelectable, defGetValue} from "../List/defaults";
 import type {SelectProps} from "./SelectProps";
@@ -36,7 +35,6 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      size,
                                                                                                      itemStyle,
                                                                                                      placeholder,
-                                                                                                     css,
                                                                                                      borderless = false,
                                                                                                      flat = false,
                                                                                                      fullWidth = false,
@@ -107,7 +105,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
         <>
             {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
                                                css={[selectCloseAreaCss]}/>}
-            <div ref={ref} {...props} css={[containerCss, ...toArray(css)]}>
+            <div ref={ref} {...props} css={[containerCss]}>
                 <div
                     ref={selectRef}
                     onClick={onClick}

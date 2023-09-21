@@ -1,13 +1,11 @@
-import React, {ReactNode} from "react";
-import {Css} from "../types";
+import React, {ComponentPropsWithRef, ReactNode} from "react";
 
-export type ModalProps = {
+type ModalPropsBase = {
     open?: boolean;
     title?: string;
     onClose?: React.MouseEventHandler;
     children?: ReactNode;
-    css?: Css;
     modalLayerDOMElement?: HTMLElement;
-    style?: React.CSSProperties;
-    className?: string;
 }
+
+export type ModalProps = ModalPropsBase & Omit<ComponentPropsWithRef<"div">, keyof ModalPropsBase>;

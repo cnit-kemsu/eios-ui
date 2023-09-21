@@ -1,6 +1,5 @@
 import type {ElementType, ReactElement} from "react";
-import {forwardRef} from 'react';
-import {toArray} from '../../utils'
+import * as React from 'react';
 import {useTheme} from '../../theme'
 import {Ripple} from '../Ripple'
 import type {PolymorphicRef} from "../types";
@@ -11,7 +10,10 @@ export type ButtonComponent =
     (<C extends ElementType = 'button'>(props: ButtonProps<C>, ref?: PolymorphicRef<C>) => (ReactElement | null))
     & { displayName?: string };
 
-export const Button: ButtonComponent = forwardRef(<C extends ElementType = 'button'>({
+/**
+ * Кнопка. По умолчанию представляет собой обертку вокруг `button`.
+ */
+export const Button: ButtonComponent = React.forwardRef(<C extends ElementType = 'button'>({
                                                                                          elementType,
                                                                                          disabled = false,
                                                                                          flat = false,
@@ -21,7 +23,6 @@ export const Button: ButtonComponent = forwardRef(<C extends ElementType = 'butt
                                                                                          fillable = false,
                                                                                          borderless = false,
                                                                                          children,
-                                                                                         css,
                                                                                          ...props
                                                                                      }: ButtonProps<C>, ref?: PolymorphicRef<C>) => {
 
@@ -44,7 +45,6 @@ export const Button: ButtonComponent = forwardRef(<C extends ElementType = 'butt
                 borderless
             }),
             button.css,
-            ...toArray(css)
         ]} {...props}>
             <Ripple color={colorStyles[colorStyle].ripple}/>
             {children}

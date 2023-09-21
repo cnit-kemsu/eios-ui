@@ -1,14 +1,13 @@
-import React, {MutableRefObject} from "react";
+import React, {ComponentPropsWithRef, MutableRefObject} from "react";
 import {Css} from "../types";
 
-export type TooltipProps = {
+type TooltipPropsBase = {
     targetElementRef: MutableRefObject<HTMLElement>,
-    css?: Css;
     children: React.ReactNode;
-    style?: React.CSSProperties;
-    className?: string;
     hideArrow?: boolean;
     showDelay?: number;
     hideDelay?: number;
     position?: "left" | "right" | "top" | "bottom";
 }
+
+export type TooltipProps = TooltipPropsBase & Omit<ComponentPropsWithRef<"div">, keyof TooltipPropsBase>;

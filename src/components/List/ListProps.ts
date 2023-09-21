@@ -1,14 +1,12 @@
-import {ColorStyle, Css, GetContent, GetSelectable, GetValue, ItemType, ValueType} from "../types";
+import {ColorStyle, GetContent, GetSelectable, GetValue, ItemType, ValueType} from "../types";
+import {ComponentPropsWithRef} from "react";
 
-
-
-export type ListProps = {
+type ListPropsBase = {
     name?: string;
     items?: ItemType[];
     borderless?: boolean;
     flat?: boolean;
     colorStyle?: ColorStyle;
-    css?: Css;
     valueIsIndex?: boolean;
     valueProp?: string;
     contentProp?: string;
@@ -20,3 +18,5 @@ export type ListProps = {
     disabled?: boolean;
     onChange?: (value: ValueType, item: ItemType) => void;
 }
+
+export type ListProps = ListPropsBase & Omit<ComponentPropsWithRef<'ul'>, keyof ListPropsBase>;
