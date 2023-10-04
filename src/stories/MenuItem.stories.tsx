@@ -1,5 +1,4 @@
 import {Meta} from "@storybook/react";
-import {argTypes} from "./argTypes";
 import {MenuItem} from "../components/Menu";
 import {MenuItemProps} from "../components/Menu/MenuProps";
 
@@ -10,17 +9,7 @@ export default {
       children: "Элемент меню"
     },
     argTypes: {
-        onClick: {action: 'clicked', description: "событие клика по кнопке"},
-        css: argTypes.css,
-        style: argTypes.style,
-        className: argTypes.className
-    },
-    parameters: {
-        docs: {
-            description: {
-                component: `Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--docs)`
-            }
-        }
+        onClick: { control: {type: null} },
     }
 } as Meta<typeof MenuItem>
 

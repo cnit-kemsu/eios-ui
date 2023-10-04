@@ -1,20 +1,29 @@
 import React, {ComponentPropsWithRef} from "react";
-import {ColorStyle, Css} from "../types";
+import {
+    BorderlessProp,
+    ColorStyleProp,
+    DisabledProp,
+    FillableProp,
+    FlatProp,
+    StickOnHoverProp,
+    TransparentProp
+} from "../types";
 
+export type BaseButtonProps =
+    DisabledProp
+    & FlatProp
+    & StickOnHoverProp
+    & ColorStyleProp
+    & TransparentProp
+    & FillableProp
+    & BorderlessProp
 
-type BaseButtonProps = {
-    disabled?: boolean;
-    /** кнопка будет плоской (без тени) */
-    flat?: boolean;
-    stickOnHover?: boolean;
-    colorStyle?: ColorStyle;
-    transparent?: boolean;
-    fillable?: boolean;
-    borderless?: boolean;
-    children?: React.ReactNode;
+export type ButtonElementType<C extends React.ElementType> = {
+    /** тип используемого внутри элемента. По умолчанию `button` */
+    elementType?: C;
 }
 
 export type ButtonProps<C extends React.ElementType> =
     BaseButtonProps
-    & { elementType?: C; }
+    & ButtonElementType<C>
     & Omit<ComponentPropsWithRef<C>, keyof BaseButtonProps | 'elementType'>;

@@ -1,17 +1,16 @@
-import {ComponentPropsWithoutRef, ReactNode} from "react";
-import {ColorStyle, Css} from "../types";
+import {ChildrenProp, ColorStyleProp, DisabledProp, NameProp, StyleProps, ValueProp} from "../types";
+import {ComponentPropsWithRef} from "react";
 
 export type CheckboxProps = {
-    children?: ReactNode,
-    /** имя элемента формы */
-    name?: string,
-    colorStyle?: ColorStyle,
-    /** если true, то чекбокс будет отключен для взаимодействия */
-    disabled?: boolean,
-    /** если true, то чекбокс будет отмечен */
-    checked?: boolean,
-    /** обработчик нажатия на чекбокс */
-    onClick?: () => void,
-    /** значение элемента формы */
-    value?: string | number
-} & Omit<ComponentPropsWithoutRef<'div'>, 'onClick'>
+        /** отметить чекбокс */
+        checked?: boolean,
+        /** обработчик нажатия на чекбокс */
+        onClick?: () => void,
+        ref?: ComponentPropsWithRef<'div'>['ref']
+    }
+    & ValueProp
+    & NameProp
+    & ColorStyleProp
+    & DisabledProp
+    & StyleProps
+    & ChildrenProp;

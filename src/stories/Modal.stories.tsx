@@ -15,12 +15,7 @@ export default {
         children: `Содержимое модального окна`
     },
     argTypes: {
-        css: argTypes.css,
-        style: argTypes.style,
-        className: argTypes.className,
-        onClose: {description: "событие клика по кнопке закрытия", control: {type: null}},
-        open: {description: "отобразить модальное окно", control: {type: null}},
-        modalLayerDOMElement: {description: "DOM-элемент, внутри которого будет отрисовано модальное окно"}
+        onClose: {control: {type: null}}
     }
 } as Meta<typeof Modal>
 

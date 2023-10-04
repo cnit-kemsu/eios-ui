@@ -1,7 +1,7 @@
 import React from "react";
 import {Meta, StoryObj} from "@storybook/react";
-import {Tab, Tabs} from "../components/Tabs";
-import {Button, useTabs} from "../index";
+import {Tabs} from "../components/Tabs";
+import {Button, Tab, useTabs} from "../index";
 
 export default {
     title: "Хуки/useTabs",

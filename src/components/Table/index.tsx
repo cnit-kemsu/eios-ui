@@ -5,7 +5,7 @@ import type {TableProps} from "./TableProps";
 import type {FCR} from "../types";
 
 /**
- * Обёртка вокруг `table`
+ * Обёртка вокруг `table`. Приримает также свойства `<table>`.
  */
 export const Table: FCR<TableProps, HTMLTableElement> = forwardRef<HTMLTableElement, TableProps>(({
                                                                                          children,

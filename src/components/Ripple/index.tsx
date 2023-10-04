@@ -1,15 +1,15 @@
 import React, {useEffect, useMemo, useReducer, useRef} from 'react'
 import {useTheme} from '../../theme'
-import {toArray} from '../../utils'
 import {dynRippleCss, rippleCss, rootCss} from './style'
 import {RippleCallbacks} from './RippleCallbacks'
 import {initRippleData} from "./RippleData";
 import {RippleProps} from "./RippleProps";
 
+/** Эффект ряби. */
 export function Ripple({
-                                   color = 'rgba(0,0,0,0.5)', duration = '2s', containerStyle,
-                                   rippleStyle, rippleClassName, ...props
-                               }: RippleProps) {
+                           color = 'rgba(0,0,0,0.5)', duration = '2s',
+                           rippleStyle, rippleClassName, style, className
+                       }: RippleProps) {
 
     const {disableRipple} = useTheme();
     const [, forceUpdate] = useReducer(x => x + 1, 0, undefined);
@@ -27,13 +27,12 @@ export function Ripple({
     const {active, x, y, diameter, hideRipple} = rippleDataRef.current;
 
     return (
-        <div {...props} ref={rippleDomRef} css={[rootCss]} {...mouseEventHandlers}>
+        <div style={style} className={className} ref={rippleDomRef} css={[rootCss]} {...mouseEventHandlers}>
             {
                 active && (
                     <div
-                        style={rippleStyle}
+                        style={rippleStyle} className={rippleClassName}
                         css={[rippleCss, dynRippleCss({color, duration, x, y, diameter, hideRipple})]}
-                        className={rippleClassName}
                         onTransitionEnd={onTransitionEnd}
                     >
                     </div>

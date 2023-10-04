@@ -1,33 +1,28 @@
-import React, {ComponentPropsWithRef, MouseEventHandler, ReactElement, ReactNode} from "react";
+import React, {ComponentPropsWithRef, MouseEventHandler, ReactElement} from "react";
+import {BorderlessProp, ChildrenProp, FlatProp, StyleProps} from "../types";
 
-type MenuItemPropsBase = {
-    onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
-    children?: ReactNode;
-}
+export type MenuItemProps = {
+            onClick?: React.MouseEventHandler;
+    }
+    & StyleProps
+    & ChildrenProp;
 
-export type MenuItemProps = MenuItemPropsBase & Omit<ComponentPropsWithRef<'li'>, keyof MenuItemPropsBase>
-
-type MenuPropsBase = {
-    show?: boolean;
-    enableOutsideArea?: boolean;
-    x?: number;
-    y?: number;
-    flat?: boolean;
-    borderless?: boolean;
-    children?: ReactElement<MenuItemProps> | ReactElement<MenuItemProps>[];
-    onMouseEnter?: MouseEventHandler;
-    onMouseLeave?: MouseEventHandler;
-    onOutsideClick?: MouseEventHandler;
-    rootElement?: HTMLElement;
-}
-
-export type MenuProps = MenuPropsBase & Omit<ComponentPropsWithRef<'ul'>, keyof MenuPropsBase>;
-
-type BaseMenuCloseAreaProps = {
-    show: boolean;
-    setShow: (value: boolean) => void;
-};
-
-export type MenuCloseAreaProps =
-    Omit<ComponentPropsWithRef<'div'>, keyof BaseMenuCloseAreaProps>
-    & BaseMenuCloseAreaProps;
+export type MenuProps = {
+        /** показать меню */
+        show?: boolean;
+        /** выводить скрытую область позади меню, растянутую на всю страницу.
+         * Используется для определения нажатия за пределами меню. */
+        enableOutsideArea?: boolean;
+        /** абсолютная позиция по x */
+        x?: number;
+        /** абсолютная позиция по y */
+        y?: number;
+        children?: ReactElement<MenuItemProps> | ReactElement<MenuItemProps>[];
+        onMouseEnter?: MouseEventHandler;
+        onMouseLeave?: MouseEventHandler;
+        onOutsideClick?: MouseEventHandler;
+        ref?: ComponentPropsWithRef<'ul'>['ref']
+    }
+    & FlatProp
+    & BorderlessProp
+    & StyleProps;

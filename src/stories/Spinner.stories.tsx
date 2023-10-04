@@ -6,14 +6,7 @@ import {SpinnerProps} from "../components/Spinner/SpinnerProps";
 
 export default {
     title: "Компоненты/Spinner",
-    component: Spinner,
-    argTypes: {
-        colorStyle: argTypes.colorStyle,
-        scale: {description: "масштаб"},
-        css: argTypes.css,
-        style: argTypes.style,
-        className: argTypes.className
-    }
+    component: Spinner
 } as Meta<typeof Spinner>
 
 export const Default : StoryObj<typeof Spinner> = {

@@ -1,10 +1,10 @@
 import React, {forwardRef} from 'react'
-import {toArray} from '../../utils'
 import {useTheme} from '../../theme'
 import {displayedMenuCss, dynMenuCloseAreaCss, dynMenuCss, dynMenuItemCss} from './style'
-import type {MenuCloseAreaProps, MenuItemProps, MenuProps} from "./MenuProps";
+import type {MenuItemProps, MenuProps} from "./MenuProps";
 import type {FCR} from "../types";
 
+/** Выпадающее меню. В качестве дочерних элементов принимает [MenuItem](..?path=/docs/компоненты-menuitem--docs) */
 export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElement, MenuProps>(({
                                                                                                    show,
                                                                                                    enableOutsideArea,
@@ -13,9 +13,9 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
                                                                                                    flat = false,
                                                                                                    borderless = false,
                                                                                                    children,
-                                                                                                   rootElement = document.body,
                                                                                                    onOutsideClick,
-                                                                                                   ...props
+                                                                                                   className,
+                                                                                                   style
                                                                                                }: MenuProps, ref) => {
 
     const theme = useTheme();
@@ -23,7 +23,7 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
     return (
         <>
             {enableOutsideArea && show && <div onClick={onOutsideClick} css={[dynMenuCloseAreaCss({theme})]}/>}
-            <ul ref={ref} {...props}
+            <ul ref={ref} style={style} className={className}
                 css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss]}>
                 {children}
             </ul>
@@ -33,10 +33,11 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
 
 Menu.displayName = "Menu";
 
+/** Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--docs) */
 export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElement, MenuItemProps>(({
                                                                                                onClick,
                                                                                                children,
-                                                                                               ...props
+                                                                                               style, className
                                                                                            }: MenuItemProps, ref) => {
 
     const theme = useTheme();
@@ -46,30 +47,10 @@ export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElem
             onClick={e => {
                 e.stopPropagation();
                 onClick?.(e);
-            }} {...props}>
+            }} style={style} className={className}>
             {children}
         </li>
     )
 });
 
 MenuItem.displayName = "MenuItem";
-
-export const MenuCloseArea : FCR<MenuCloseAreaProps, HTMLDivElement> = forwardRef<HTMLDivElement, MenuCloseAreaProps>(({
-                                                                                 show,
-                                                                                 setShow,
-                                                                                 onClick,
-                                                                                 ...props
-                                                                             }: MenuCloseAreaProps, ref) => {
-    const theme = useTheme();
-
-    const handleClick = e => {
-        if (show) setShow(false);
-        onClick?.(e);
-    }
-
-    return show
-        ? <div onClick={handleClick} ref={ref} css={[dynMenuCloseAreaCss({theme})]} {...props}/>
-        : null;
-});
-
-MenuCloseArea.displayName = "MenuCloseArea";

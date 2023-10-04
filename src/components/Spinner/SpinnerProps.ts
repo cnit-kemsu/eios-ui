@@ -1,12 +1,12 @@
-import {ColorStyle} from "../types";
-import React, {ComponentPropsWithRef} from "react";
+import {ColorStyleProp, StyleProps} from "../types";
+import {ComponentPropsWithRef} from "react";
 
 type BaseSpinnerProps = {
-    colorStyle?: ColorStyle;
-    scale?: number;
-    style?: React.CSSProperties;
-    className?: string;
-}
+        /** масштабирование спиннера */
+        scale?: number;
+    }
+    & ColorStyleProp
+    & StyleProps
 
 export type SpinnerProps =
     BaseSpinnerProps

@@ -8,12 +8,7 @@ export default {
     argTypes: {
         value: {
             control: {type: "text"}
-        },
-        css: argTypes.css,
-        disabled: argTypes.disabled,
-        colorStyle: argTypes.colorStyle,
-        borderless: argTypes.borderless,
-        flat: argTypes.flat,
+        }
     }
 } as Meta<typeof TextArea>
 

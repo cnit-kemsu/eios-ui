@@ -1,35 +1,28 @@
-import {ColorStyle, Css, FCR} from "../types";
-import React, {
-    ChangeEvent,
-    ComponentPropsWithRef,
-    forwardRef,
-    MutableRefObject,
-    TextareaHTMLAttributes,
-    useCallback
-} from "react";
+import {BorderlessProp, ColorStyleProp, DisabledProp, FCR, FlatProp, StyleProps} from "../types";
+import React, {ChangeEvent, ComponentPropsWithRef, forwardRef, useCallback} from "react";
 import {useTheme} from "../../theme";
 import {dynRootCss, rootCss} from "../InputField/style";
-import {toArray} from "../../utils";
 
-export interface TextAreaPropsBase {
-    colorStyle?: ColorStyle;
-    borderless?: boolean;
-    flat?: boolean;
-    onChange?: (value: string | number | undefined) => void;
-    disabled?: boolean;
-    ref?: MutableRefObject<HTMLTextAreaElement>
-}
+export type TextAreaPropsBase = {
+        onChange?: (value: string) => void;
+    }
+    & ColorStyleProp
+    & DisabledProp
+    & FlatProp
+    & BorderlessProp
+    & StyleProps;
 
 export type TextAreaProps = TextAreaPropsBase
     & Omit<ComponentPropsWithRef<"textarea">, keyof TextAreaPropsBase>
 
+/** Обертка вокруг `<textarea>`. Принимает также свойства `textarea`. */
 export const TextArea: FCR<TextAreaProps, HTMLTextAreaElement> = forwardRef<HTMLTextAreaElement>(({
-                                                                                 colorStyle = 'secondary',
-                                                                                 borderless = false,
-                                                                                 flat = false,
-                                                                                 onChange,
-                                                                                 ...props
-                                                                             }: TextAreaProps, ref) => {
+                                                                                                      colorStyle = 'secondary',
+                                                                                                      borderless = false,
+                                                                                                      flat = false,
+                                                                                                      onChange,
+                                                                                                      ...props
+                                                                                                  }: TextAreaProps, ref) => {
     const theme = useTheme();
     const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle})];
 

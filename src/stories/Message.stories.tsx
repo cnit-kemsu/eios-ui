@@ -9,13 +9,6 @@ export default {
     component: Message,
     args: {
         type: "info"
-    },
-    argTypes: {
-        borderless: argTypes.borderless,
-        flat: argTypes.flat,
-        css: argTypes.css,
-        style: argTypes.style,
-        className: argTypes.className
     }
 } as Meta<typeof Message>
 

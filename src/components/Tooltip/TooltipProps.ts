@@ -1,13 +1,16 @@
 import React, {ComponentPropsWithRef, MutableRefObject} from "react";
-import {Css} from "../types";
+import {ChildrenProp, Css, StyleProps} from "../types";
 
-type TooltipPropsBase = {
+export type TooltipProps = {
+    /** ref элемента, относительно которого будет выводиться подсказка */
     targetElementRef: MutableRefObject<HTMLElement>,
-    children: React.ReactNode;
+    /** убрать стрелочку, указывающую на элемент `targetElementRef`*/
     hideArrow?: boolean;
+    /** время задержки отображения подсказки в секундах */
     showDelay?: number;
+    /** время задержки скрытия подсказки в секундах */
     hideDelay?: number;
+    /** позиция относительно элемента `targetElementRef` */
     position?: "left" | "right" | "top" | "bottom";
-}
+} & StyleProps & ChildrenProp
 
-export type TooltipProps = TooltipPropsBase & Omit<ComponentPropsWithRef<"div">, keyof TooltipPropsBase>;

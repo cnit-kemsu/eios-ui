@@ -1,5 +1,5 @@
 import React from "react";
-import {Checkbox} from '../components/Checkbox'
+import {Checkbox} from '../components/Checkbox';
 import {Meta, StoryObj} from "@storybook/react";
 
 import 'material-icons/iconfont/material-icons.css';

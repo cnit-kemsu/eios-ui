@@ -1,19 +1,32 @@
-import {ChangeEventHandler, ComponentPropsWithoutRef, MutableRefObject} from "react";
-import {ColorStyle, Css} from "../types";
+import {ComponentPropsWithoutRef, ComponentPropsWithRef} from "react";
+import {
+    BorderlessProp,
+    ColorStyleProp,
+    DisabledProp,
+    FillableProp,
+    FlatProp,
+    LabelProp,
+    StickOnHoverProp,
+    StyleProps,
+    TransparentProp
+} from "../types";
 
-type BaseFileInputProps = {
-    label?: string;
-    colorStyle?: ColorStyle;
-    transparent?: boolean;
-    fillable?: boolean;
-    borderless?: boolean;
-    stickOnHover?: boolean;
-    flat?: boolean;
-    disabled?: boolean;
-    inputRef?: MutableRefObject<HTMLInputElement>;
-    multiple?: boolean;
-    onChange?: ChangeEventHandler<HTMLInputElement>;
-}
 export type FileInputProps =
-    BaseFileInputProps
-    & Omit<ComponentPropsWithoutRef<'input'>, keyof BaseFileInputProps | 'type'>;
+    LabelProp
+    & ColorStyleProp
+    & TransparentProp
+    & FillableProp
+    & BorderlessProp
+    & StickOnHoverProp
+    & FlatProp
+    & DisabledProp
+    & StyleProps
+    & {
+    /** включить возможность выбора множества файлов */
+    multiple?: boolean;
+    /** событие, которое срабатывает после выбора файлов */
+    onChange?: (files: FileList | null) => void;
+    /** какие типы файлов будут приниматься */
+    accept?: string;
+    ref?: ComponentPropsWithRef<'div'>['ref']
+}

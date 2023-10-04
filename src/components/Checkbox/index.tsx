@@ -1,10 +1,9 @@
 import type {ForwardedRef, ReactElement} from 'react';
+import {forwardRef} from "react";
 import {useTheme} from '../../theme'
-import {toArray} from '../../utils'
 import {Ripple} from '../Ripple'
 import {dynIconCss, dynRootCss, labelCss, rootCss} from './style'
 import type {CheckboxProps} from "./CheckboxProps";
-import {forwardRef} from "react";
 
 const rippleStyle = {
     width: '200%',
@@ -19,7 +18,7 @@ export type CheckboxComponent =
     & { displayName?: string };
 
 /**
- *
+ * Обертка вокруг `<input type='checkbox'>`.
  */
 export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxProps>(({
                                                                                           name,
@@ -32,8 +31,8 @@ export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxPr
                                                                                           ...props
                                                                                       }: CheckboxProps, ref) => {
 
-    const theme = useTheme()
-    const {colorStyles, checkbox} = theme
+    const theme = useTheme();
+    const {colorStyles, checkbox} = theme;
 
     return (
         <div ref={ref} {...props} onClick={() => onClick?.()}
@@ -56,7 +55,9 @@ export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxPr
                 </i>
             </div>
             <div css={labelCss}>{children}</div>
-            <input name={name} type='hidden' readOnly checked={checked} value={value}/>
+            <input name={name} type='checkbox' style={{display: "none"}} readOnly checked={checked} value={value}/>
         </div>
     )
 });
+
+Checkbox.displayName = "Checkbox";

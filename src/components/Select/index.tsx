@@ -9,12 +9,14 @@ import {
     dynSelectCss,
     selectCloseAreaCss
 } from './style'
-import {defGetContent, defGetSelectable, defGetValue} from "../List/defaults";
 import type {SelectProps} from "./SelectProps";
 import type {FCR} from "../types";
+import {getTrue} from "../../utils";
+import {useListFunctions} from "../../hooks/useListFunctions";
 
 const nativeSelectStyle = {display: 'none'}
 
+/** Выпадающий список. */
 export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElement, SelectProps>(({
                                                                                                      name,
                                                                                                      open = false,
@@ -25,10 +27,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      onChange,
                                                                                                      valueProp = 'value',
                                                                                                      contentProp = 'content',
-                                                                                                     selectableProp = 'selectable',
-                                                                                                     getContent = defGetContent,
-                                                                                                     getValue = defGetValue,
-                                                                                                     getSelectable = defGetSelectable,
+                                                                                                     selectableProp = getTrue,
                                                                                                      disabled = false,
                                                                                                      items = [],
                                                                                                      value,
@@ -39,16 +38,19 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      flat = false,
                                                                                                      fullWidth = false,
                                                                                                      width,
-                                                                                                     valueIsIndex,
+                                                                                                     valueIsIndex = false,
                                                                                                      BeforeContentComponent,
                                                                                                      AfterContentComponent,
                                                                                                      ContentWrapper = ({children}) => <>{children}</>,
-                                                                                                     ...props
+                                                                                                     style, className
                                                                                                  }: SelectProps, ref) => {
 
     const theme = useTheme();
 
-    const item = useMemo(() => items.find((item, index) => valueIsIndex ? index === value : getValue(item, valueProp, index) === value), [items, valueProp, value]);
+    const {getContent, getValue, isSelectable} =  useListFunctions(contentProp, valueProp, selectableProp, valueIsIndex);
+
+    const itemIndex = useMemo(() => items?.findIndex((item, index) => getValue(item, index) === value), [items, getValue, value]);
+    const item = itemIndex > -1 ? items[itemIndex] : null;
 
     const selectRef = useRef() as MutableRefObject<HTMLDivElement>;
     const listRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -105,7 +107,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
         <>
             {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
                                                css={[selectCloseAreaCss]}/>}
-            <div ref={ref} {...props} css={[containerCss]}>
+            <div ref={ref} style={style} className={className} css={[containerCss]}>
                 <div
                     ref={selectRef}
                     onClick={onClick}
@@ -114,7 +116,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                 >
                     <Ripple color='rgba(0,0,0,0.2)'/>
                     <span data-placeholder={placeholder ? true : undefined}>
-                        {item ? getContent(item, contentProp) : placeholder}
+                        {item ? getContent(item, itemIndex) : placeholder}
                     </span>
                     <i style={{userSelect: 'none', width: "24px"}} className="material-icons">arrow_drop_down</i>
                 </div>
@@ -127,7 +129,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                     {
                         items.map((item, index) => {
 
-                            const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
+                            const curValue = getValue(item, index);
 
                             return (
                                 <div  key={curValue} style={{display: "flex", alignItems: "center"}}>
@@ -135,12 +137,12 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                     <div
 
                                         css={dynOptionCss({theme})}
-                                        onClick={onChange && getSelectable(item, selectableProp, index) ?
-                                            (e) => onChange(curValue, item, e) : undefined
+                                        onClick={onChange && isSelectable(item, index) ?
+                                            (e) => onChange(curValue, item, index) : undefined
                                         }
                                     >
                                         <ContentWrapper item={item}>
-                                            {getContent(item, contentProp)}
+                                            {getContent(item, index)}
                                         </ContentWrapper>
                                     </div>
                                     {AfterContentComponent && <AfterContentComponent item={item}/>}
@@ -158,7 +160,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             >
                 {
                     items.map((item, index) => {
-                        const curValue = valueIsIndex ? index : getValue(item, valueProp, index)
+                        const curValue = valueIsIndex ? index : getValue(item, index)
                         return (<option key={curValue}
                                         value={curValue}
                         />)

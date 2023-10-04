@@ -11,7 +11,11 @@ export const buttonCss = css`
   box-sizing: content-box;
   /* for anchor */
   text-decoration: none;
-  cursor: pointer;  
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
 `
 type DynButtonCssArgs = {
     theme: Theme, colorStyle: ColorStyle, flat: Boolean,
@@ -53,8 +57,6 @@ export const dynButtonCss = ({
               :
               'pointer-events: none;'
       }
-      &:focus {
-        outline: none;
-      }
+      
     `
 }

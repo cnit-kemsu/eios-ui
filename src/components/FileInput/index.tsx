@@ -3,15 +3,15 @@ import {forwardRef} from 'react';
 import {buttonCss, dynButtonCss} from "../Button/style";
 import {Ripple} from '../Ripple';
 import {useTheme} from "../../theme";
-import {toArray} from "../../utils";
-import {inputCss, dynRootCss} from "./style";
+import {inputCss, rootCss} from "./style";
 import type {FileInputProps} from "./FileInputProps";
-import {CSSObject, SerializedStyles} from "@emotion/react";
+import {CSSObject} from "@emotion/react";
 
 export type FileInputComponent =
     ((props: FileInputProps, ref?: ForwardedRef<HTMLDivElement>) => ReactElement | null)
     & { displayName?: string };
 
+/** Обёртка вокруг `<input type='file'>`. */
 export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInputProps>(({
                                                                                              label,
                                                                                              colorStyle = "dark",
@@ -21,17 +21,16 @@ export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInpu
                                                                                              stickOnHover = false,
                                                                                              flat = false,
                                                                                              disabled = false,
-                                                                                             inputRef,
                                                                                              onChange,
                                                                                              multiple = false,
-                                                                                             ...props
+                                                                                             accept, style, className
                                                                                          }: FileInputProps, ref) => {
 
     const theme = useTheme();
     const {colorStyles, button} = theme;
-
+    // <label> нужен для создания связи со скрытым <input>, чтобы при нажатии на него открывалось окно выбора файла
     return (
-        <div ref={ref} css={dynRootCss({theme})}>
+        <div ref={ref} css={rootCss} style={style} className={className}>
             <label css={[
                 buttonCss,
                 dynButtonCss({theme, flat, stickOnHover, disabled, colorStyle, transparent, fillable, borderless}),
@@ -39,7 +38,7 @@ export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInpu
             ]}>
                 <Ripple color={colorStyles[colorStyle].ripple}/>
                 <span>{label}</span>
-                <input onChange={onChange} multiple={multiple} type="file" ref={inputRef} css={inputCss} {...props} />
+                <input onChange={e => onChange?.(e.target.files)} multiple={multiple} type="file" css={inputCss} accept={accept} />
             </label>
         </div>
     );

@@ -1,12 +1,14 @@
-import React, {ComponentPropsWithoutRef} from "react";
-import {Css} from "../types";
+import React from "react";
+import {StyleProps} from "../types";
 
-type BaseRippleProps = {
-    color?: string;
-    duration?: string;
-    containerStyle?: React.CSSProperties;
-    rippleStyle?: React.CSSProperties;
-    rippleClassName?: string;
-};
-
-export type RippleProps = BaseRippleProps & Omit<ComponentPropsWithoutRef<'div'>, keyof BaseRippleProps>;
+export type RippleProps = {
+        /** цвет эффекта ряби */
+        color?: string;
+        /** длительность эффекта ряби */
+        duration?: string;
+        /** стиль, передаваемый div`у, представляющего рябь */
+        rippleStyle?: React.CSSProperties;
+        /** css-классы, передаваемые div`у, представляющего рябь */
+        rippleClassName?: string;
+    }
+    & StyleProps;

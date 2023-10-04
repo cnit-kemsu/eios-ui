@@ -1,7 +1,6 @@
 import React from "react";
 import {Pane} from '../components/Pane'
 import {Meta, StoryObj} from "@storybook/react";
-import {argTypes} from "./argTypes";
 import {PaneProps} from "../components/Pane/PaneProps";
 
 export default {
@@ -9,14 +8,6 @@ export default {
     component: Pane,
     args: {
         title: "Заголовок"
-    },
-    argTypes: {
-        borderless: argTypes.borderless,
-        flat: argTypes.flat,
-        css: argTypes.css,
-        titleCss: argTypes.css,
-        style: argTypes.style,
-        className: argTypes.className
     }
 } as Meta<typeof Pane>
 

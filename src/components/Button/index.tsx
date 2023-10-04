@@ -11,7 +11,7 @@ export type ButtonComponent =
     & { displayName?: string };
 
 /**
- * Кнопка. По умолчанию представляет собой обертку вокруг `button`.
+ * Кнопка. По умолчанию представляет собой обертку вокруг `button`. Помимо своих свойств, принимает свойства оборачиваемого элемента.
  */
 export const Button: ButtonComponent = React.forwardRef(<C extends ElementType = 'button'>({
                                                                                          elementType,
@@ -44,7 +44,7 @@ export const Button: ButtonComponent = React.forwardRef(<C extends ElementType =
                 fillable,
                 borderless
             }),
-            button.css,
+            button.css
         ]} {...props}>
             <Ripple color={colorStyles[colorStyle].ripple}/>
             {children}

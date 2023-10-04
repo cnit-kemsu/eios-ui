@@ -1,7 +1,6 @@
-import type {ChangeEvent, ForwardedRef, HTMLInputTypeAttribute, MutableRefObject, ReactElement} from 'react';
+import type {ChangeEvent, ForwardedRef, HTMLInputTypeAttribute, ReactElement} from 'react';
 import {forwardRef, useCallback} from 'react';
 import {useTheme} from '../../theme';
-import {toArray} from '../../utils';
 import {dynRootCss, rootCss} from './style';
 import type {InputFieldProps} from "./InputFieldProps";
 
@@ -9,12 +8,14 @@ export type InputFieldComponent =
     ((props: InputFieldProps, ref?: ForwardedRef<HTMLInputElement>) => (ReactElement | null))
     & { displayName?: string };
 
+/**
+ * Обертка вокруг `<input>`. Помимо своих свойств, также принимает свойства `<input>`.
+ */
 export const InputField: InputFieldComponent = forwardRef<HTMLInputElement, InputFieldProps>(
     ({
          colorStyle = 'secondary',
          borderless = false,
          flat = false,
-         filled = false,
          type = "text",
          onChange,
          ...props

@@ -1,25 +1,17 @@
-import React, {ComponentPropsWithRef, ReactElement} from "react";
-import {ColorStyle, Css} from "../types";
+import {ComponentPropsWithRef, ReactElement} from "react";
+import {ColorStyleProp} from "../types";
+import {TabProps} from "./TabProps";
 
-type TabPropsBase = {
-    id?: string | number;
-    colorStyle?: ColorStyle;
-    elementType?: React.ElementType;
-    selected?: boolean;
-    fillSelectedTab?: boolean;
-    onClick?: () => void;
-    children?: React.ReactNode;
-};
-
-export type TabProps = TabPropsBase & Omit<ComponentPropsWithRef<"div">, keyof TabPropsBase>;
-
-type TabsPropsBase = {
-    colorStyle?: ColorStyle;
-    stretchTabs?: boolean;
-    onTabClick?: (id: string | number) => void;
-    tab?: string | number;
-    fillSelectedTab?: boolean;
-    children?: ReactElement<TabProps> | ReactElement<TabProps>[];
-};
-
-export type TabsProps = TabsPropsBase & Omit<ComponentPropsWithRef<"div">, keyof TabsPropsBase>;
+export type TabsProps = {
+        /** растягивает вкладки, выравнивая их по ширине */
+        stretchTabs?: boolean;
+        /** вызвается при нажатии на вкладку */
+        onTabClick?: (id: string | number) => void;
+        /** id выделяемой вкладки */
+        tab?: string | number;
+        /** заполняет вкладку цветом в соответствии с `colorStyle`, когда она выделена */
+        fillSelectedTab?: boolean;
+        children?: ReactElement<TabProps> | ReactElement<TabProps>[];
+        ref?: ComponentPropsWithRef<'div'>['ref'];
+    }
+    & ColorStyleProp;

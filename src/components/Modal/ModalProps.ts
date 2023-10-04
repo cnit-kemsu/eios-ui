@@ -1,11 +1,16 @@
-import React, {ComponentPropsWithRef, ReactNode} from "react";
+import React, {ComponentPropsWithRef, CSSProperties} from "react";
+import {ChildrenProp, StyleProps} from "../types";
 
-type ModalPropsBase = {
+export type ModalProps = {
+    /** отобразить окно */
     open?: boolean;
+    /** заголовок окна */
     title?: string;
     onClose?: React.MouseEventHandler;
-    children?: ReactNode;
-    modalLayerDOMElement?: HTMLElement;
+    /** стиль, который применится к корневому элементу самого окна */
+    style?: CSSProperties;
+    /** css-классы, которые применятся к корневому элементу самого окна */
+    className?: string;
+    ref?: ComponentPropsWithRef<'div'>['ref']
 }
-
-export type ModalProps = ModalPropsBase & Omit<ComponentPropsWithRef<"div">, keyof ModalPropsBase>;
+& ChildrenProp;

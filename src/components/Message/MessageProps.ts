@@ -1,12 +1,13 @@
-import {Css} from "../types";
-import React, {ComponentPropsWithRef} from "react";
+import {BorderlessProp, ChildrenProp, FlatProp} from "../types";
+import {ComponentPropsWithRef} from "react";
 
 type BaseMessageProps = {
-    flat?: boolean;
-    borderless?: boolean;
-    type?: 'info' | 'warning' | 'error' | 'success';
-    children?: React.ReactNode;
-}
+        type?: 'info' | 'warning' | 'error' | 'success';
+    }
+    & ChildrenProp
+    & BorderlessProp
+    & FlatProp
+
 export type MessageProps =
     BaseMessageProps
     & Omit<ComponentPropsWithRef<"div">, keyof BaseMessageProps>;

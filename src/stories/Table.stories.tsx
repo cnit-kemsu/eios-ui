@@ -2,18 +2,10 @@ import React from "react";
 import {Table} from '../components/Table'
 import {Meta, StoryObj} from "@storybook/react";
 import {TableProps} from "../components/Table/TableProps";
-import {argTypes} from "./argTypes";
 
 export default {
     title: "Компоненты/Table",
     component: Table,
-    argTypes: {
-        borderless: argTypes.borderless,
-        flat: argTypes.flat,
-        css: argTypes.css,
-        selectableRows: {description: "строки при наведении будут выделяться"},
-        selectableCell: {description: "ячейки при наведении будут выделяться"}
-    }
 } as Meta<typeof Table>
 
 export const Default : StoryObj<typeof Table> = {

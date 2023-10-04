@@ -20,15 +20,6 @@ const titleStyle = {
 export default {
     title: "Компоненты/Ripple",
     component: Ripple,
-    argTypes: {
-        color: {description: "Цвет эффекта ряби"},
-        duration: {description: "Длительность эффекта ряби"},
-        css: argTypes.css,
-        rippleCss: {control: {type: null}},
-        rippleClassName: {control: {type: null}},
-        containerStyle: { description: "Стиль контейнера эффекта ряби", control: {type: null}},
-        rippleStyle: { description: "Стиль самого эффекта ряби", control: {type: null}},
-    }
 } as Meta<typeof Ripple>
 
 export const Example : StoryObj<typeof Ripple> = {

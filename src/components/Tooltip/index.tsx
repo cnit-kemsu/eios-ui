@@ -27,7 +27,7 @@ export function Tooltip({
                             showDelay = 0.5,
                             hideDelay = 0.5,
                             position = "top",
-                            ...props
+                            style, className
                         }: TooltipProps) {
 
     const theme = useTheme();
@@ -119,13 +119,13 @@ export function Tooltip({
     }
 
     const contentElement = (
-        <div {...props}
+        <div style={style} className={className}
              css={[tooltipCss, dynTooltipCss({theme})]}>
             {children}
         </div>
     );
 
-    const arrowElement = hideArrow ? null : <div css={[arrowCss, dynArrowCss({theme, position})]}></div>;
+    const arrowElement = <div css={[arrowCss, dynArrowCss({theme, position, hideArrow})]}></div>;
 
     return (
         <div

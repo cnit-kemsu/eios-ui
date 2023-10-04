@@ -1,6 +1,5 @@
 import React, {MutableRefObject, useRef} from "react";
 import {Meta, StoryObj} from "@storybook/react";
-import {argTypes} from "./argTypes";
 import {Tooltip} from "../components/Tooltip";
 import {Button} from "../components/Button";
 import {TooltipProps} from "../components/Tooltip/TooltipProps";
@@ -10,15 +9,6 @@ export default {
     component: Tooltip,
     args: {
         children: "Я подсказка для этой кнопки"
-    },
-    argTypes: {
-        css: argTypes.css,
-        style: argTypes.style,
-        className: argTypes.className,
-        targetElementRef: {
-            description: "ref на элемент, относительно которого нужно вывести подсказку",
-            control: {type: null}
-        }
     }
 } as Meta<typeof Tooltip>
 

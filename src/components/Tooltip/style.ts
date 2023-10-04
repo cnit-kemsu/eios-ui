@@ -58,33 +58,34 @@ export const arrowCss = css`
   position: relative;
 `
 
-export const dynArrowCss = ({theme, position}: {theme: Theme, position: string}) => {
+export const dynArrowCss = ({theme, position, hideArrow}: {theme: Theme, position: string, hideArrow?: boolean}) => {
+
 
     switch (position) {
 
         case 'top':
             return css`
               border-width: 8px 4px 0 4px;
-              border-color: ${theme.tooltip.bg} transparent transparent transparent;
+              border-color: ${hideArrow ? 'transparent' : theme.tooltip.bg} transparent transparent transparent;
             `
 
         case 'left':
             return css`
               border-width: 4px 0 4px 8px;
-              border-color: transparent transparent transparent ${theme.tooltip.bg};
+              border-color: transparent transparent transparent ${hideArrow ? 'transparent' : theme.tooltip.bg};
             `
 
         case 'right':
             return css`
               border-width: 4px 8px 4px 0;
-              border-color: transparent ${theme.tooltip.bg} transparent transparent;
+              border-color: transparent ${hideArrow ? 'transparent' : theme.tooltip.bg} transparent transparent;
             `
 
         case 'bottom':
         default:
             return css`
               border-width: 0 4px 8px 4px;
-              border-color: transparent transparent ${theme.tooltip.bg} transparent;
+              border-color: transparent transparent ${hideArrow ? 'transparent' : theme.tooltip.bg} transparent;
             `
     }
 }

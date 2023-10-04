@@ -1,8 +1,6 @@
-import { css } from '@emotion/react'
-import {Theme} from "../../theme";
+import {css} from '@emotion/react'
 
-
-export const dynRootCss = ({theme} : {theme:Theme}) => css`
+export const rootCss = css`
     display: flex;
     align-items: center;    
 `
