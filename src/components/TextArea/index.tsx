@@ -24,7 +24,7 @@ export const TextArea: FCR<TextAreaProps, HTMLTextAreaElement> = forwardRef<HTML
                                                                                                       ...props
                                                                                                   }: TextAreaProps, ref) => {
     const theme = useTheme();
-    const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle})];
+    const elCss = [rootCss, dynRootCss({theme, flat, borderless, colorStyle, textarea: true})];
 
     const handleChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => onChange?.(e.target.value), [onChange]);
 

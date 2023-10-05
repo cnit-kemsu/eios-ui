@@ -10,14 +10,14 @@ export const rootCss = css`
 `
 
 type DynRootCssArgs = {
-    theme: Theme, borderless: boolean, flat: boolean, colorStyle: ColorStyle
+    theme: Theme, borderless: boolean, flat: boolean, colorStyle: ColorStyle, textarea?: boolean
 };
 
-export const dynRootCss = ({theme, borderless, flat, colorStyle}: DynRootCssArgs) => css`
+export const dynRootCss = ({theme, borderless, flat, colorStyle, textarea}: DynRootCssArgs) => css`
 
   ${!flat ? `${theme.boxShadow};` : ''}
 
-  height: ${theme.inputField.height};
+  height: ${textarea ? 'unset' : theme.inputField.height};
 
   ${flat && borderless ? `border: none; border-bottom: 1px solid ${theme.inputField.borderColor}; padding: 9px 9px 8px 9px;` : ''}
   ${flat && !borderless ? `border: 1px solid ${theme.inputField.borderColor};` : ''}
