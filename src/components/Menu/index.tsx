@@ -22,7 +22,9 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
 
     return (
         <>
-            {enableOutsideArea && show && <div onClick={onOutsideClick} css={[dynMenuCloseAreaCss({theme})]}/>}
+            <div>
+                {enableOutsideArea && show && <div onClick={onOutsideClick} css={[dynMenuCloseAreaCss({theme})]}/>}
+            </div>
             <ul ref={ref} style={style} className={className}
                 css={[dynMenuCss({theme, flat, borderless, x, y}), show && displayedMenuCss]}>
                 {children}
@@ -35,10 +37,11 @@ Menu.displayName = "Menu";
 
 /** Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--docs) */
 export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElement, MenuItemProps>(({
-                                                                                               onClick,
-                                                                                               children,
-                                                                                               style, className
-                                                                                           }: MenuItemProps, ref) => {
+                                                                                                         onClick,
+                                                                                                         children,
+                                                                                                         style,
+                                                                                                         className
+                                                                                                     }: MenuItemProps, ref) => {
 
     const theme = useTheme();
 

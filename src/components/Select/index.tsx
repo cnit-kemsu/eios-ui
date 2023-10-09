@@ -42,12 +42,13 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      BeforeContentComponent,
                                                                                                      AfterContentComponent,
                                                                                                      ContentWrapper = ({children}) => <>{children}</>,
-                                                                                                     style, className
+                                                                                                     style,
+                                                                                                     className
                                                                                                  }: SelectProps, ref) => {
 
     const theme = useTheme();
 
-    const {getContent, getValue, isSelectable} =  useListFunctions(contentProp, valueProp, selectableProp, valueIsIndex);
+    const {getContent, getValue, isSelectable} = useListFunctions(contentProp, valueProp, selectableProp, valueIsIndex);
 
     const itemIndex = useMemo(() => items?.findIndex((item, index) => getValue(item, index) === value), [items, getValue, value]);
     const item = itemIndex > -1 ? items[itemIndex] : null;
@@ -105,8 +106,10 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
     return (
         <>
-            {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
-                                               css={[selectCloseAreaCss]}/>}
+            <div>
+                {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
+                                                   css={[selectCloseAreaCss]}/>}
+            </div>
             <div ref={ref} style={style} className={className} css={[containerCss]}>
                 <div
                     ref={selectRef}
@@ -132,7 +135,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                             const curValue = getValue(item, index);
 
                             return (
-                                <div  key={curValue} style={{display: "flex", alignItems: "center"}}>
+                                <div key={curValue} style={{display: "flex", alignItems: "center"}}>
                                     {BeforeContentComponent && <BeforeContentComponent item={item}/>}
                                     <div
 
