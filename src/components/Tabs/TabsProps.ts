@@ -1,5 +1,5 @@
 import {ComponentPropsWithRef, ReactElement} from "react";
-import {ColorStyleProp} from "../types";
+import {ColorStyleProp, StyleProps} from "../types";
 import {TabProps} from "./TabProps";
 
 export type TabsProps = {
@@ -14,4 +14,5 @@ export type TabsProps = {
         children?: ReactElement<TabProps> | ReactElement<TabProps>[];
         ref?: ComponentPropsWithRef<'div'>['ref'];
     }
-    & ColorStyleProp;
+    & ColorStyleProp
+    & StyleProps;
