@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithRef, MutableRefObject} from "react";
+import React, {ComponentPropsWithRef, CSSProperties, MutableRefObject} from "react";
 import {ChildrenProp, Css, StyleProps} from "../types";
 
 export type TooltipProps = {
@@ -12,5 +12,13 @@ export type TooltipProps = {
     hideDelay?: number;
     /** позиция относительно элемента `targetElementRef` */
     position?: "left" | "right" | "top" | "bottom";
+    /** стиль для блока с подсказкой */
+    contentStyle?: CSSProperties;
+    /** css-классы для блока с подсказкой */
+    contentClassName?: string;
+    /** стиль для стрелочки */
+    arrowStyle?: CSSProperties;
+    /** css-классы для стрелочки */
+    arrowClassName?: string;
 } & StyleProps & ChildrenProp
 
