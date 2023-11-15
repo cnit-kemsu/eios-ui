@@ -1,6 +1,7 @@
 import {Meta, StoryObj} from "@storybook/react";
-import {Menu, MenuItem} from "../components/Menu";
+import {Menu} from "../components/Menu";
 import {MenuProps} from "../components/Menu/MenuProps";
+import {MenuItem} from "../components/Menu/MenuItem";
 
 export default {
     title: "Компоненты/Menu",

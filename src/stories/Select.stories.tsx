@@ -21,28 +21,29 @@ type Story = StoryObj<typeof Select>;
 
 export const Example1: Story = {
     name: "Пример 1",
-    render: (props) => (
+    args: {
+        open: true,
+        items: [
+            {value: 'item0', content: "Элемент 1"},
+            {value: 'item1', content: "Элемент 2"},
+            {value: 'item2', content: "Элемент 3"}
+        ],
+        value: 'item1'
+    }
+}
+
+export const Example2: Story = {
+    name: "Пример 2",
+    render: () => (
         <Select
             open
             items={["Элемент 1", "Элемент 2", "Элемент 3"]}
             value={1}
             contentProp={item => item}
             valueIsIndex
-            {...props}
         />
     )
 
-}
-
-export const Example2: Story = {
-    name: "Пример 2",
-    args: {
-        items: [{value: 'item0', content: "Элемент 1"}, {value: 'item1', content: "Элемент 2"}, {
-            value: 'item2',
-            content: "Элемент 3"
-        }],
-        value: 'item1'
-    }
 }
 
 export const Example3: Story = {

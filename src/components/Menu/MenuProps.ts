@@ -1,11 +1,6 @@
-import React, {ComponentPropsWithRef, MouseEventHandler, ReactElement} from "react";
-import {BorderlessProp, ChildrenProp, FlatProp, StyleProps} from "../types";
-
-export type MenuItemProps = {
-            onClick?: React.MouseEventHandler;
-    }
-    & StyleProps
-    & ChildrenProp;
+import {ComponentPropsWithRef, MouseEventHandler, ReactElement} from "react";
+import {BorderlessProp, FlatProp, StyleProps} from "../types";
+import {MenuItemProps} from "./MenuItemProps";
 
 export type MenuProps = {
         /** показать меню */

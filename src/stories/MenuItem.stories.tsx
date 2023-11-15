@@ -1,23 +1,24 @@
-import {Meta} from "@storybook/react";
-import {MenuItem} from "../components/Menu";
-import {MenuItemProps} from "../components/Menu/MenuProps";
+import {Meta, StoryObj} from "@storybook/react";
+import {Menu} from "../components/Menu";
+import {MenuItem} from "../components/Menu/MenuItem";
+import {MenuItemProps} from "../components/Menu/MenuItemProps";
 
 export default {
     title: "Компоненты/MenuItem",
     component: MenuItem,
     args: {
-      children: "Элемент меню"
+        children: "Элемент меню",
     },
     argTypes: {
-        onClick: { control: {type: null} },
+        onClick: {control: {type: null}},
     }
 } as Meta<typeof MenuItem>
 
-export const Default = {
+export const Default: StoryObj<typeof MenuItem> = {
     name: "MenuItem",
     render: (props: MenuItemProps) => (
-        <div style={{padding: "2em"}}>
+        <Menu show>
             <MenuItem {...props}/>
-        </div>
+        </Menu>
     )
 }

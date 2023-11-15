@@ -15,7 +15,8 @@ export {Tooltip} from './components/Tooltip'
 export {Tab} from "./components/Tabs/Tab";
 export {Tabs} from './components/Tabs'
 export {Spinner} from './components/Spinner'
-export {Menu, MenuItem} from './components/Menu'
+export {Menu} from './components/Menu'
+export {MenuItem} from "./components/Menu/MenuItem";
 export {TextArea} from './components/TextArea'
 
 export {useCheckbox} from './hooks/useCheckbox'

@@ -27,7 +27,9 @@ export function Tooltip({
                             showDelay = 0.5,
                             hideDelay = 0.5,
                             position = "top",
-                            style, className
+                            style, className,
+                            contentStyle, contentClassName,
+                            arrowStyle, arrowClassName
                         }: TooltipProps) {
 
     const theme = useTheme();
@@ -40,7 +42,7 @@ export function Tooltip({
 
     const updateOffset = useCallback(() => {
         let offset = getElementPositionRelativeTo(targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
-        if(offset) setOffset({left: offset.x, top: offset.y});
+        if (offset) setOffset({left: offset.x, top: offset.y});
     }, [position])
 
     const showTooltip = useCallback(debounce(target => {
@@ -61,7 +63,7 @@ export function Tooltip({
 
         setShow(false)
 
-        if(!/*target*/targetElementRef.current) return;
+        if (!/*target*/targetElementRef.current) return;
 
         //let offset = getElementPositionRelativeTo(/*target*/targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
         //if (offset) setOffset({left: offset.x, top: offset.y});
@@ -119,16 +121,19 @@ export function Tooltip({
     }
 
     const contentElement = (
-        <div style={style} className={className}
-             css={[tooltipCss, dynTooltipCss({theme})]}>
+        <div
+            style={contentStyle} className={contentClassName}
+            css={[tooltipCss, dynTooltipCss({theme})]}>
             {children}
         </div>
     );
 
-    const arrowElement = <div css={[arrowCss, dynArrowCss({theme, position, hideArrow})]}></div>;
+    const arrowElement = <div style={arrowStyle} className={arrowClassName}
+                              css={[arrowCss, dynArrowCss({theme, position, hideArrow})]}></div>;
 
     return (
         <div
+            style={style} className={className}
             onMouseEnter={handleTooltipMouseEnter}
             onMouseLeave={handleTooltipMouseLeave}
             ref={tooltipRef} css={[rootCss, dynRootCss({theme, position, show, offset})]}

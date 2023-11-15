@@ -13,19 +13,6 @@ type Story = StoryObj<typeof List>;
 
 export const Example1: Story = {
     name: "Пример 1",
-    render: (props) => (
-        <List
-            items={["Элемент 1", "Элемент 2", "Элемент 3"]}
-            value={1}
-            valueIsIndex
-            contentProp={item => item}
-            {...props}
-        />
-    )
-}
-
-export const Example2: Story = {
-    name: "Пример 2",
     args: {
         items: [
             {value: 'item0', content: "Элемент 1"},
@@ -34,6 +21,18 @@ export const Example2: Story = {
         ],
         value: 'item1'
     }
+}
+
+export const Example2: Story = {
+    name: "Пример 2",
+    render: () => (
+        <List
+            items={["Элемент 1", "Элемент 2", "Элемент 3"]}
+            value={1}
+            valueIsIndex
+            contentProp={item => item}
+        />
+    )
 }
 
 export const Example3: Story = {

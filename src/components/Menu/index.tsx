@@ -1,7 +1,7 @@
 import React, {forwardRef} from 'react'
 import {useTheme} from '../../theme'
-import {displayedMenuCss, dynMenuCloseAreaCss, dynMenuCss, dynMenuItemCss} from './style'
-import type {MenuItemProps, MenuProps} from "./MenuProps";
+import {displayedMenuCss, dynMenuCloseAreaCss, dynMenuCss} from './style'
+import type {MenuProps} from "./MenuProps";
 import type {FCR} from "../types";
 
 /** Выпадающее меню. В качестве дочерних элементов принимает [MenuItem](..?path=/docs/компоненты-menuitem--docs) */
@@ -34,26 +34,3 @@ export const Menu: FCR<MenuProps, HTMLUListElement> = forwardRef<HTMLUListElemen
 });
 
 Menu.displayName = "Menu";
-
-/** Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--docs) */
-export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElement, MenuItemProps>(({
-                                                                                                         onClick,
-                                                                                                         children,
-                                                                                                         style,
-                                                                                                         className
-                                                                                                     }: MenuItemProps, ref) => {
-
-    const theme = useTheme();
-
-    return (
-        <li ref={ref} data-menuitem={true} css={[dynMenuItemCss({theme})]}
-            onClick={e => {
-                e.stopPropagation();
-                onClick?.(e);
-            }} style={style} className={className}>
-            {children}
-        </li>
-    )
-});
-
-MenuItem.displayName = "MenuItem";

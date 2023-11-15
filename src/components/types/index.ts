@@ -27,7 +27,7 @@ export type DisabledProp = {
 }
 
 export type FlatProp = {
-    /** кнопка будет плоской (без эффекта тени) */
+    /** элемент будет плоским (без эффекта тени) */
     flat?: boolean;
 }
 
