@@ -1,5 +1,5 @@
 import React, {MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
-import {debounce, getElementPositionRelativeTo, toArray} from '../../utils'
+import {debounce, getElementPositionRelativeTo} from '../../utils'
 import {useTheme} from '../../theme'
 import {arrowCss, dynArrowCss, dynRootCss, dynTooltipCss, rootCss, tooltipCss} from './style'
 import {TooltipProps} from "./TooltipProps";
