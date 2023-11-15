@@ -64,7 +64,7 @@ export function getElementPositionRelativeTo(element: HTMLElement, targetElement
 
     const parentEl = targetElement.offsetParent;
 
-    if (!parentEl) throw new Error();
+    if (!parentEl) return null;
 
     const parentElBCR = parentEl.getBoundingClientRect();
     //const parentElPosition = parentEl.style.position ?? window.getComputedStyle(parentEl).position;
