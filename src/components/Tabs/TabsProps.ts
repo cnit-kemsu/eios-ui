@@ -11,7 +11,7 @@ export type TabsProps = {
         tab?: string | number;
         /** заполняет вкладку цветом в соответствии с `colorStyle`, когда она выделена */
         fillSelectedTab?: boolean;
-        children?: ReactElement<TabProps> | ReactElement<TabProps>[];
+        children?: ReactElement<TabProps> | boolean | null | undefined | (ReactElement<TabProps> | boolean | null | undefined)[];
         ref?: ComponentPropsWithRef<'div'>['ref'];
     }
     & ColorStyleProp
