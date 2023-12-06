@@ -126,7 +126,6 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
                 <div
                     ref={listRef}
-                    style={itemStyle}
                     css={[dynOptionsCss({theme, borderless, flat}), open && displayedSelectOptionsCss]}
                 >
                     {
@@ -135,7 +134,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                             const curValue = getValue(item, index);
 
                             return (
-                                <div key={curValue} style={{display: "flex", alignItems: "center"}}>
+                                <div key={curValue} style={{display: "flex", alignItems: "center", ...itemStyle}}>
                                     {BeforeContentComponent && <BeforeContentComponent item={item}/>}
                                     <div
 
