@@ -17,6 +17,8 @@ export type SelectProps = {
         size?: number;
         /** стиль, передаваемый div`у, представляющий элемент списка */
         itemStyle?: React.CSSProperties;
+        /** стиль, передаваемый div`у, содержащий контент элемента списка */
+        contentStyle?: React.CSSProperties;
         /** текст, который выводится если не выбран элемент */
         placeholder?: string;
         /** растягивать кнопку по ширине выпадающего списка */

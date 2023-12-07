@@ -33,6 +33,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      value,
                                                                                                      size,
                                                                                                      itemStyle,
+                                                                                                     contentStyle,
                                                                                                      placeholder,
                                                                                                      borderless = false,
                                                                                                      flat = false,
@@ -137,7 +138,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                 <div key={curValue} style={{display: "flex", alignItems: "center", ...itemStyle}}>
                                     {BeforeContentComponent && <BeforeContentComponent item={item}/>}
                                     <div
-
+                                        style={contentStyle}
                                         css={dynOptionCss({theme})}
                                         onClick={onChange && isSelectable(item, index) ?
                                             (e) => onChange(curValue, item, index) : undefined
