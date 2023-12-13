@@ -30,7 +30,7 @@ export const Tabs: TabsComponent = forwardRef<HTMLDivElement, TabsProps>(({
 
                     const selected = tab === child.props.id || tab === index;
 
-                    const childStyle: CSSProperties = {...child.props.style, flex: '1 1 0'};
+                    const childStyle: CSSProperties = {flex: '1 1 0', ...child.props.style};
 
                     return cloneElement(child, {
                         ...child.props,
