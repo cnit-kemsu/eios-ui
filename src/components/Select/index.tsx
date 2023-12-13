@@ -107,10 +107,8 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
 
     return (
         <>
-            <div>
-                {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
-                                                   css={[selectCloseAreaCss]}/>}
-            </div>
+            {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
+                                               css={[selectCloseAreaCss]}/>}
             <div ref={ref} style={style} className={className} css={[containerCss]}>
                 <div
                     ref={selectRef}
