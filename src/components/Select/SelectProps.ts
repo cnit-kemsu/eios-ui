@@ -15,6 +15,8 @@ export type SelectProps = {
         selectStyle?: React.CSSProperties;
         /** кол-во выводимых элементов */
         size?: number;
+        /** стиль, передаваемый div`у контейнеру элементов списка */
+        itemsContainerStyle?: React.CSSProperties;
         /** стиль, передаваемый div`у, представляющий элемент списка */
         itemStyle?: React.CSSProperties;
         /** стиль, передаваемый div`у, содержащий контент элемента списка */

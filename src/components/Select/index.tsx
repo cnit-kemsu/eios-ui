@@ -32,6 +32,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                                                                                      items = [],
                                                                                                      value,
                                                                                                      size,
+                                                                                                     itemsContainerStyle,
                                                                                                      itemStyle,
                                                                                                      contentStyle,
                                                                                                      placeholder,
@@ -124,6 +125,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                 </div>
 
                 <div
+                    style={itemsContainerStyle}
                     ref={listRef}
                     css={[dynOptionsCss({theme, borderless, flat}), open && displayedSelectOptionsCss]}
                 >
