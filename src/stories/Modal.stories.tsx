@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Modal} from '../components/Modal'
 import {Meta, StoryObj} from "@storybook/react";
-import {argTypes} from "./argTypes";
 import {ModalProps} from "../components/Modal/ModalProps";
 import {Button} from "../components/Button";
 

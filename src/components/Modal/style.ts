@@ -1,5 +1,6 @@
 import {css, keyframes} from '@emotion/react'
 import {Theme} from "../../theme";
+import {ColorStyle} from "../types";
 
 
 const dynBacklayerKeyframes = ({open}: { open: boolean }) => open ?
@@ -88,34 +89,35 @@ export const dynContainerCss = ({theme, open}: { theme: Theme, open: boolean }) 
 
 `
 
-export const dynHeaderCss = ({theme}: { theme: Theme }) => css`
+export const dynHeaderCss = ({theme, colorStyle}: { theme: Theme, colorStyle: ColorStyle }) => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px;
-  
+  padding: 1rem;
+  background: ${theme.colorStyles[colorStyle].origin};
+  color: ${theme.colorStyles[colorStyle].text}
 `
 
 export const dynTitleCss = ({theme}: { theme: Theme }) => css`
-  font-weight: bold;  
+  font-weight: bold;
   margin: 0 16px 0 0;
   padding-bottom: 0;
   font-size: 1.5rem;
 `
 
 export const contentCss = css`
-  padding: 16px;
-  padding-top: 0;
-  text-align: justify;  
+  padding: 1rem;
+  text-align: justify;
 `
 
-export const closeButtonIconCss = css`
-    font-size: 1.5rem;
+export const dynCloseButtonIconCss = ({theme, colorStyle}: { theme: Theme, colorStyle: ColorStyle }) => css`
+  font-size: 1.5rem;  
+  color: ${theme.colorStyles[colorStyle].text};
 `
 
-export const closeButtonCss = css`
+export const dynCloseButtonCss = ({theme}: { theme: Theme }) => css`
   width: 1.5rem;
   height: 1.5rem;
-  padding: 0;
+  padding: 0;  
 `
 

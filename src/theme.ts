@@ -92,9 +92,6 @@ export const defaultTheme = {
             success: '#44652b'
         }
     },
-    modal: {
-
-    },
     tabs: {
         height: '1rem',
         borderWidth: '4px',
