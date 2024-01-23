@@ -7,7 +7,7 @@ export const rootCss = css`
   background: white;
   border-width: 1px;
   border-style: solid;
-  padding: 8px 0 8px 0;
+  padding: 0;
 `
 
 type DynRootCssArgs = { theme: Theme, disabled: boolean, flat: boolean, borderless: boolean };
@@ -22,9 +22,10 @@ export const dynRootCss = ({theme, disabled, flat, borderless}: DynRootCssArgs) 
 export const itemCss = css`
   position: relative;
   overflow: hidden;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   display: block;
   cursor: pointer;
+  border-left: 0.3rem solid transparent;
 `
 
 type DynItemCssArgs = { theme: Theme, colorStyle: ColorStyle };
@@ -51,8 +52,6 @@ const dynSelectedItemKeyframes = ({theme, colorStyle}: DynItemCssArgs) => {
 
 export const dynSelectedItemCss = ({theme, colorStyle}: DynItemCssArgs) => css`
   background: ${tc(theme.colorStyles[colorStyle].origin).setAlpha(0.05).toString()};
-  border-left: 1px solid ${theme.colorStyles[colorStyle].origin};
-  border-left-width: 4px;  
-  padding-left: 12px;
+  border-left: 0.3rem solid ${theme.colorStyles[colorStyle].origin};
   animation: ${dynSelectedItemKeyframes({theme, colorStyle})} 0.5s;
 `
