@@ -13,20 +13,24 @@ export type ListComponent = ((props: ListProps, ref?: ForwardedRef<HTMLUListElem
  * Обертка вокруг `<select>`.
  */
 export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
-                                                                                                   name,
-                                                                                                   items = [],
-                                                                                                   borderless = false,
-                                                                                                   flat = false,
-                                                                                                   colorStyle = "primary",
-                                                                                                   valueIsIndex = false,
-                                                                                                   valueProp = "value",
-                                                                                                   contentProp = "content",
-                                                                                                   selectableProp = getTrue,
-                                                                                                   value,
-                                                                                                   disabled = false,
-                                                                                                   onChange,
-                                                                                                   style, className
-                                                                                               }: ListProps, ref) => {
+                                                                                name,
+                                                                                items = [],
+                                                                                borderless = false,
+                                                                                flat = false,
+                                                                                colorStyle = "primary",
+                                                                                valueIsIndex = false,
+                                                                                valueProp = "value",
+                                                                                contentProp = "content",
+                                                                                selectableProp = getTrue,
+                                                                                value,
+                                                                                disabled = false,
+                                                                                onChange,
+                                                                                style,
+                                                                                className,
+                                                                                itemContainerStyle,
+                                                                                itemContainerClassName,
+                                                                                disableSeparators
+                                                                            }: ListProps, ref) => {
 
     const theme = useTheme();
 
@@ -50,9 +54,11 @@ export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
                             }
                             css={[
                                 itemCss,
-                                dynItemCss({theme, colorStyle}),
+                                dynItemCss({theme, colorStyle, disableSeparators}),
                                 (curValue === value) && dynSelectedItemCss({theme, colorStyle})
                             ]}
+                            className={itemContainerClassName}
+                            style={itemContainerStyle}
                         >
                             <Ripple color={theme.colorStyles[colorStyle].ripple}/>
                             {getContent(item, index)}

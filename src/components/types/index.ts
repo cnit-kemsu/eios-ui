@@ -141,6 +141,12 @@ export type BaseListProps = {
          *  </table>
          */
         selectableProp?: string | IsSelectable;
+        /** стиль контейнера элемента */
+        itemContainerStyle?: CSSProperties;
+        /** css-класс контейнера элемента */
+        itemContainerClassName?: string;
+        /** не выводить линии разделители между элементами */
+        disableSeparators?: boolean;
     }
     & StyleProps
     & NameProp
