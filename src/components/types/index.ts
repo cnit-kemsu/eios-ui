@@ -145,8 +145,6 @@ export type BaseListProps = {
         itemContainerStyle?: CSSProperties;
         /** css-класс контейнера элемента */
         itemContainerClassName?: string;
-        /** не выводить линии разделители между элементами */
-        disableSeparators?: boolean;
     }
     & StyleProps
     & NameProp

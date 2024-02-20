@@ -7,7 +7,7 @@ export const rootCss = css`
   background: white;
   border-width: 1px;
   border-style: solid;
-  padding: 0;
+  padding: 1rem 0 2rem 0;
 `
 
 type DynRootCssArgs = { theme: Theme, disabled: boolean, flat: boolean, borderless: boolean };
@@ -21,23 +21,16 @@ export const dynRootCss = ({theme, disabled, flat, borderless}: DynRootCssArgs) 
 
 export const itemCss = css`
   position: relative;
-  overflow: hidden;
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  overflow: hidden;  
+  padding: 0.6rem 1rem 0.6rem 2rem;
   display: block;
   cursor: pointer;
+  border-left: 0.3rem solid transparent;
 `
 
-type DynItemCssArgs = { theme: Theme, colorStyle: ColorStyle, disableSeparators?: boolean };
+type DynItemCssArgs = { theme: Theme, colorStyle: ColorStyle };
 
-export const dynItemCss = ({theme, colorStyle, disableSeparators}: DynItemCssArgs) => css`
-
-  ${disableSeparators
-          ? ""
-          : css`
-            &:not(:last-of-type) {
-              border-bottom: 1px solid ${theme.borderColor};
-            }`
-  }
+export const dynItemCss = ({theme, colorStyle}: DynItemCssArgs) => css`  
   &:hover {
     color: ${theme.colorStyles[colorStyle].hover};
   }
@@ -54,12 +47,12 @@ const dynSelectedItemKeyframes = ({theme, colorStyle}: DynItemCssArgs) => {
       to {
         background: ${baseColor.setAlpha(0.05).toString()};
       }
-    `
+    `;
 }
 
 export const dynSelectedItemCss = ({theme, colorStyle}: DynItemCssArgs) => css`
-  background: ${tc(theme.colorStyles[colorStyle].origin).setAlpha(0.05).toString()};
-  padding: 0.5rem 1rem 0.5rem 0.7rem;
+  background: ${tc(theme.colorStyles[colorStyle].origin).setAlpha(0.05).toString()};  
+  padding: 0.6rem 1rem 0.6rem 2rem;
   border-left: 0.3rem solid ${theme.colorStyles[colorStyle].origin};
   animation: ${dynSelectedItemKeyframes({theme, colorStyle})} 0.5s;
 `

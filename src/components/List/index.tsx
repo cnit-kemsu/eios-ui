@@ -28,8 +28,7 @@ export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
                                                                                 style,
                                                                                 className,
                                                                                 itemContainerStyle,
-                                                                                itemContainerClassName,
-                                                                                disableSeparators
+                                                                                itemContainerClassName
                                                                             }: ListProps, ref) => {
 
     const theme = useTheme();
@@ -54,7 +53,7 @@ export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
                             }
                             css={[
                                 itemCss,
-                                dynItemCss({theme, colorStyle, disableSeparators}),
+                                dynItemCss({theme, colorStyle}),
                                 (curValue === value) && dynSelectedItemCss({theme, colorStyle})
                             ]}
                             className={itemContainerClassName}
