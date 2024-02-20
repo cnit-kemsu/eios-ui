@@ -10,7 +10,7 @@ export const messageCss = css`
 `
 
 export const dynMessageCss = ({ theme, flat, type, borderless } : DynMessageCssArgs) => css`
-    ${borderless ? 'border: none' : `border: 2px solid ${tc(theme.message.bg[type]).darken(10).toString()}`};
+    ${borderless ? 'border: none' : `border: 1px solid ${tc.mix(theme.message.bg[type], tc.black, 10).toString()}`};
     background: ${theme.message.bg[type]};
     color: ${theme.message.color[type]};
     ${flat ? '' : theme.boxShadow + ";"}

@@ -80,10 +80,10 @@ export const defaultTheme = {
     },
     message: {
         bg: {
-            info: tc('#edeffb').setAlpha(0.5).toString() as string,
-            warning: tc('#ffe581').setAlpha(0.5).toString() as string,
-            error: tc('#dc1654').lighten(lightenValue * 3).setAlpha(0.5).toString() as string,
-            success: tc('#a0e86a').setAlpha(0.5).toString() as string
+            info: tc('#edeffb').toString() as string,
+            warning: tc('#ffface').toString() as string,
+            error: tc('#ffd5d5').toString() as string,
+            success: tc('#daffbf').toString() as string
         },
         color: {
             info: '#575d6d',
