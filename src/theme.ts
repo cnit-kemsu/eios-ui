@@ -80,7 +80,7 @@ export const defaultTheme = {
     },
     message: {
         bg: {
-            info: tc('#edeffb').toString() as string,
+            info: tc('#f3f5fc').toString() as string,
             warning: tc('#ffface').toString() as string,
             error: tc('#ffd5d5').toString() as string,
             success: tc('#daffbf').toString() as string
