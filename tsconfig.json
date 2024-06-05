@@ -1,7 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
+    "types": ["vite/client", "@emotion/react/types/css-prop", "node", "jest", "vite-plugin-pwa/client", "react"],
+    "target": "ESNext",
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "moduleResolution": "Node",
@@ -19,7 +20,7 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": false,
-    "module": "esnext",
+    "module": "ESNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "disableSizeLimit": true,
