@@ -2,14 +2,16 @@ import {forwardRef} from 'react';
 import {useTheme} from '../../theme';
 import {dynMessageCss, messageCss} from './style';
 import type {MessageProps} from "./MessageProps";
-import type {FCR} from "../types";
+import type {FCR} from "../../types";
+
+export type {MessageProps};
 
 /** Для вывода сообщений разных типов. Принимает также все свойства `<div>`, передаваемый в корневой элемент. */
-export const Message : FCR<MessageProps, HTMLDivElement> = forwardRef<HTMLDivElement, MessageProps>(({
+export const Message  = forwardRef<HTMLDivElement, MessageProps>(({
                                                                      children,
-                                                                     flat,
-                                                                     type,
-                                                                     borderless,
+                                                                     flat = false,
+                                                                     type = 'info',
+                                                                     borderless = false,
                                                                      ...props
                                                                  }: MessageProps, ref) => {
 
@@ -21,6 +23,6 @@ export const Message : FCR<MessageProps, HTMLDivElement> = forwardRef<HTMLDivEle
             {children}
         </div>
     );
-});
+}) as FCR<MessageProps, HTMLDivElement>;
 
 Message.displayName = "Message";

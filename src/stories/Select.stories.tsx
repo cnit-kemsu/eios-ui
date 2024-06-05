@@ -1,32 +1,34 @@
-import React from 'react';
-import {Select} from "../components/Select";
+import {Select} from '../components/Select';
 import {Meta, StoryObj} from "@storybook/react";
+import {SelectProps} from "../components/Select/SelectProps.ts";
 
 import 'material-icons/iconfont/material-icons.css';
+import {Button} from "../components/Button";
+import {useSelect} from "../hooks/useSelect.ts";
 
-export default {
-    title: "Компоненты/Select",
+const meta = {
+    title: 'Select',
     component: Select,
-    argTypes: {
-        onChange: {control: {type: null}},
-        onClick: {control: {type: null}},
-        onOutsideClick: {control: {type: null}}
+    parameters: {
+        layout: 'centered',
     },
+    tags: ['autodocs'],
     decorators: [
-        (Story) => <div style={{height: "10em"}}>{Story()}</div>
+        Story => <div style={{height: "10em"}}><Story/></div>
     ]
-} as Meta<typeof Select>
+} satisfies Meta<typeof Select>;
 
-type Story = StoryObj<typeof Select>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Example1: Story = {
     name: "Пример 1",
     args: {
         open: true,
         items: [
-            {value: 'item0', content: "Элемент 1"},
-            {value: 'item1', content: "Элемент 2"},
-            {value: 'item2', content: "Элемент 3"}
+            {value: 'item0', content: "Пушкин А.С."},
+            {value: 'item1', content: "Джек Лондон"},
+            {value: 'item2', content: "Эрнест Хемингуэй"}
         ],
         value: 'item1'
     }
@@ -34,58 +36,97 @@ export const Example1: Story = {
 
 export const Example2: Story = {
     name: "Пример 2",
-    render: () => (
-        <Select
-            open
-            items={["Элемент 1", "Элемент 2", "Элемент 3"]}
-            value={1}
-            contentProp={item => item}
-            valueIsIndex
-        />
-    )
-
-}
+    args: {
+        open: true,
+        items: ["Пушкин А.С.", "Джек Лондон", "Эрнест Хемингуэй"],
+        contentProp: item => item,
+        value: 1,
+        valueIsIndex: true,
+        fullWidth: true
+    }
+} as Story
 
 export const Example3: Story = {
     name: "Пример 3",
     args: {
-        items: [{id: 'item0', name: "Элемент 1"}, {id: 'item1', name: "Элемент 2"}, {id: 'item2', name: "Элемент 3"}],
+        open: true,
+        items: [
+            {id: 'item0', name: "Пушкин А.С."},
+            {id: 'item1', name: "Джек Лондон"},
+            {id: 'item2', name: "Эрнест Хемингуэй"}
+        ],
         value: 'item1',
         valueProp: "id",
-        contentProp: "name"
+        contentProp: "name",
+        fullWidth: true
     }
 }
 
 export const Example4: Story = {
     name: "Пример 4",
-    render: () => (
+    render: (props: SelectProps<{ id: string, name: string }>) => (
         <Select
-            open
-            items={[{id: 'item0', name: "Элемент 1"}, {id: 'item1', name: "Элемент 2"}, {
-                id: 'item2',
-                name: "Элемент 3"
-            }]}
+            open fullWidth
+            items={[
+                {id: 'item0', name: "Пушкин А.С."},
+                {id: 'item1', name: "Джек Лондон"},
+                {id: 'item2', name: "Эрнест Хемингуэй"}
+            ]}
             value='item1'
             valueProp={item => item.id}
             contentProp={item => item.name}
+            {...props}
         />
     )
-}
+} as Story
 
 export const Example5: Story = {
     name: "Пример 5",
-    render: () => {
+    render: (props) => {
         return (
             <Select
+                open
                 value=""
                 fullWidth
                 placeholder="- Выберите элемент -"
                 items={[
-                    {value: "item1", content: "Элемент 1"},
-                    {value: "item2", content: "Элемент 2"},
-                    {value: "item3", content: "Элемент 3"}
+                    {value: "item1", content: "Пушкин А.С."},
+                    {value: "item2", content: "Джек Лондон"},
+                    {value: "item3", content: "Эрнест Хемингуэй"}
                 ]}
+                {...props}
             />
+        )
+    }
+}
+
+export const UseSelect: StoryObj = {
+    name: "Хук useSelect",
+    render: () => {
+        const initialValue = "item0";
+
+        const [sel, setValue] = useSelect(initialValue);
+
+        const style = {margin: "10px"};
+
+        return (
+            <>
+                <div style={style}>
+                    <Select {...sel} fullWidth items={[
+                        {value: 'item0', content: "Пушкин А.С."},
+                        {value: 'item1', content: "Джек Лондон"},
+                        {value: 'item2', content: "Эрнест Хемингуэй"}
+                    ]}/>
+                </div>
+
+                <div style={style}>
+                    Текущее значение: {sel.value}
+                </div>
+
+                <div style={style}>
+                    <Button onClick={() => setValue("item0")}>Сброс</Button>
+                </div>
+            </>
         )
     }
 }

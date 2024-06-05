@@ -1,17 +1,20 @@
-import React, { useState, useCallback } from 'react'
+import React, {useState, useCallback} from 'react'
 
-export type ReturnType = [{ onClick: () => void, checked: boolean }, React.Dispatch<React.SetStateAction<boolean>>]
+export type UseCheckboxReturnType = [{
+    onClick: () => void,
+    checked: boolean
+}, React.Dispatch<React.SetStateAction<boolean>>]
 
 /**
  * Хук, который используется в паре с компонентом {@link Checkbox}
  * @param initChecked начальное состояние чекбокса
  */
-export function useCheckbox(initChecked : boolean) {
+export function useCheckbox(initChecked: boolean) {
     const [checked, setChecked] = useState(initChecked);
 
     const onClick = useCallback(() => {
-		setChecked(cur => !cur)
-	}, []);
+        setChecked(cur => !cur)
+    }, []);
 
-    return [{ onClick, checked }, setChecked] as ReturnType;
+    return [{onClick, checked}, setChecked] as UseCheckboxReturnType;
 }

@@ -1,14 +1,19 @@
-import React, {useState} from "react";
+import type {Meta, StoryObj} from '@storybook/react';
 import {FileInput} from '../components/FileInput';
-import {FileInputProps} from "../components/FileInput/FileInputProps";
-import {Meta, StoryObj} from "@storybook/react";
+import {FileInputProps} from "../components/FileInput/FileInputProps.ts";
+import {useState} from "react";
 
-export default {
-    title: "Компоненты/FileInput",
+const meta = {
+    title: 'FileInput',
     component: FileInput,
-} as Meta<typeof FileInput>
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof FileInput>;
 
-type Story = StoryObj<typeof FileInput>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     name: "FileInput",
@@ -26,7 +31,7 @@ export const Example: Story = {
         const [files, setFiles] = useState<FileList | null>();
         return (
             <>
-                <FileInput label="Выберите файл(ы)" multiple onChange={e => setFiles(files)}/>
+                <FileInput label="Выберите файл(ы)" multiple onChange={() => setFiles(files)}/>
                 <div>
                     {files && files.length > 0 && (
                         Array.from(files).map(file => <div>{file.name}</div>)
@@ -35,8 +40,6 @@ export const Example: Story = {
             </>
         )
 
-    },
-    args: {
-        label: "Выберите файл"
     }
 }
+

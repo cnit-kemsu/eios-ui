@@ -1,11 +1,13 @@
 import {forwardRef} from 'react'
 import {useTheme} from '../../theme'
-import {dynContentCss, dynRootCss, dynTitleCss} from './style'
+import {contentCss, dynRootCss, dynTitleCss} from './style'
 import type {PaneProps} from "./PaneProps";
-import type {FCR} from "../types";
+import type {FCR} from "../../types";
+
+export type {PaneProps};
 
 /** Панель с заголовком и некоторым содержимым. Принимает все свойства `<div>`, которые передаются корневому элементу. */
-export const Pane: FCR<PaneProps, HTMLDivElement> = forwardRef<HTMLDivElement, PaneProps>(({
+export const Pane = forwardRef<HTMLDivElement, PaneProps>(({
                                                                                                flat = false,
                                                                                                borderless = false,
                                                                                                title,
@@ -18,9 +20,9 @@ export const Pane: FCR<PaneProps, HTMLDivElement> = forwardRef<HTMLDivElement, P
     return (
         <div ref={ref} {...props} css={[dynRootCss({theme, flat, borderless})]}>
             {title && <h2 css={[dynTitleCss({theme})]}>{title}</h2>}
-            <div css={dynContentCss({theme})}>{children}</div>
+            <div css={contentCss}>{children}</div>
         </div>
     )
-});
+}) as FCR<PaneProps, HTMLDivElement>;
 
 Pane.displayName = "Pane";

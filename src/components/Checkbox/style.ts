@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
 import {Theme} from "../../theme";
-import {ColorStyle} from "../types";
-
+import {ColorStyle} from "../../types";
 
 export const rootCss = css`
     position: relative; 
@@ -30,7 +29,7 @@ export const dynIconCss = ({ checked, disabled, theme, colorStyle } : DynIconCss
     `
 }
 
-export const dynRootCss = ({ disabled }) => disabled ? css`pointer-events: none;` : ''
+export const dynRootCss = ({ disabled } : { disabled: boolean }) => disabled ? css`pointer-events: none;` : ''
 
 export const labelCss = css`
   margin-left: 4px;

@@ -1,9 +1,10 @@
-import React from "react";
-import {InputField} from '../components/InputField'
-import {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from '@storybook/react';
+import {InputField} from '../components/InputField';
+import {useInputField} from "../hooks/useInputField.ts";
+import {Button} from "../components/Button";
 
-export default {
-    title: "Компоненты/InputField",
+const meta = {
+    title: 'InputField',
     component: InputField,
     argTypes: {
         type: {
@@ -14,11 +15,43 @@ export default {
         value: {
             control: {type: "text"}
         }
-    }
-} as Meta<typeof InputField>
+    },
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof InputField>;
 
-type Story = StoryObj<typeof InputField>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     name: "InputField"
 }
+
+export const UseInput: StoryObj = {
+    name: "Хук useInputField",
+    render: () => {
+
+        const [input, setInput] = useInputField("Начальное значение");
+
+        const style = {margin: "10px"};
+
+        return (
+            <>
+                <div style={style}>
+                    <InputField placeholder="Введите текст..." {...input}/>
+                </div>
+
+                <div style={style}>
+                    Текущее значение: {input.value}
+                </div>
+
+                <div style={style}>
+                    <Button onClick={() => setInput("")}>Сброс</Button>
+                </div>
+            </>
+        )
+    }
+}
+

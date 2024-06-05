@@ -1,15 +1,21 @@
-import React from "react";
-import {Spinner} from '../components/Spinner'
+import {Spinner} from '../components/Spinner';
 import {Meta, StoryObj} from "@storybook/react";
-import {argTypes} from "./argTypes";
-import {SpinnerProps} from "../components/Spinner/SpinnerProps";
 
-export default {
-    title: "Компоненты/Spinner",
-    component: Spinner
-} as Meta<typeof Spinner>
+const meta = {
+    title: 'Spinner',
+    component: Spinner,
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof Spinner>;
 
-export const Default : StoryObj<typeof Spinner> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default :Story = {
     name: "Spinner",
-    render: (props: SpinnerProps) => (<Spinner style={{ width: "4em"}} {...props} />)
+    args: {
+        style: {width: "4rem"}
+    }
 }

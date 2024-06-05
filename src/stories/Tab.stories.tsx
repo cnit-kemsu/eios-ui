@@ -1,16 +1,21 @@
-import React from "react";
+import {Tab} from '../components/Tabs/Tab';
 import {Meta, StoryObj} from "@storybook/react";
-import {Tab} from "../components/Tabs/Tab";
-import {TabProps} from "../components/Tabs/TabProps";
 
-export default {
-    title: "Компоненты/Tab",
+const meta = {
+    title: 'Tab',
     component: Tab,
-} as Meta<typeof Tab>
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof Tab>;
 
-export const Default: StoryObj<typeof Tab> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
     name: "Tab",
-    render: (props : TabProps) => (
-        <Tab {...props}>Вкладка</Tab>
-    )
+    args: {
+        children: "Вкладка"
+    }
 }

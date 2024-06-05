@@ -1,45 +1,27 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "types": ["vite/client", "@emotion/react/types/css-prop", "node", "jest", "vite-plugin-pwa/client", "react"],
-    "target": "ESNext",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
-    "moduleResolution": "Node",
-    "allowJs": true,
-    "checkJs": false,
+
+    /* Linting */
     "strict": true,
-    "sourceMap": true,
-    "declaration": false,
-    "emitDeclarationOnly": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": false,
-    "noImplicitAny": false,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": false,
-    "module": "ESNext",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "disableSizeLimit": true,
-    "baseUrl": "./src"
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src/index.ts",
-    "src/theme.ts",
-    "src/utils.ts",
-    "src/components/**/*.ts",
-    "src/components/**/*.tsx",
-    "src/hooks/**/*.ts",
-    "src/hooks/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".vs",
-    ".idea",
-    "**/*.js"
-  ]
+  "include": ["src"],
+  "exclude": ["src/main.tsx"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

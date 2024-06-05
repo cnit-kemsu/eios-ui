@@ -1,4 +1,4 @@
-import {ChildrenProp, ColorStyleProp, DisabledProp, NameProp, StyleProps, ValueProp} from "../types";
+import {ChildrenProp, ColorStyleProp, DisabledProp, NameProp, StyleProps, ValueProp} from "../../types";
 import {ComponentPropsWithRef} from "react";
 
 export type CheckboxProps = {

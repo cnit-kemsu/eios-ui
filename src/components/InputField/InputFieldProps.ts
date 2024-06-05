@@ -1,5 +1,5 @@
-import {BorderlessProp, ColorStyle, ColorStyleProp, Css, DisabledProp, FlatProp} from "../types";
-import React, {ComponentPropsWithRef, InputHTMLAttributes, MutableRefObject, TextareaHTMLAttributes} from "react";
+import {BorderlessProp, ColorStyleProp, DisabledProp, FlatProp, ValueType} from "../../types";
+import React, {ComponentPropsWithRef} from "react";
 
 export type InputFieldPropsBase =
     ColorStyleProp
@@ -9,7 +9,7 @@ export type InputFieldPropsBase =
     & {
     /** тип `<input>`, за исключением `submit`, `file`, `button` и `checkbox`. По умолчанию `text`. */
     type?: Omit<React.HTMLInputTypeAttribute, 'submit' | 'file' | 'button' | 'checkbox'>;
-    onChange?: (value: string | number | undefined) => void;
+    onChange?: (value: ValueType) => void;
 }
 
 export type InputFieldProps = InputFieldPropsBase

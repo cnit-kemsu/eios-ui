@@ -1,22 +1,21 @@
-import React from "react";
+import {Message} from '../components/Message';
 import {Meta, StoryObj} from "@storybook/react";
-import {argTypes} from "./argTypes";
-import {PaneProps} from "../components/Pane/PaneProps";
-import {Message} from "../index";
 
-export default {
-    title: "Компоненты/Message",
+const meta = {
+    title: 'Message',
     component: Message,
-    args: {
-        type: "info"
-    }
-} as Meta<typeof Message>
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof Message>;
 
-export const Default : StoryObj<typeof Message> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
     name: "Message",
-    render: (props: PaneProps) => (
-        <Message {...props}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid architecto beatae cumque deserunt esse, est fugit hic libero magnam, minus molestiae natus non officiis praesentium repellat rerum unde voluptatibus?
-        </Message>
-    )
+    args: {
+        children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid architecto beatae cumque deserunt esse, est fugit hic libero magnam, minus molestiae natus non officiis praesentium repellat rerum unde voluptatibus?"
+    }
 }

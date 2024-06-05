@@ -1,5 +1,5 @@
 import {createContext, useContext} from 'react'
-import tc from 'tinycolor2'
+import tc from 'tinycolor2';
 
 const darkenValue = 10
 const lightenValue = 8
@@ -126,8 +126,7 @@ export const defaultTheme = {
         color: 'white'
     },
     menu: {
-        height: '1rem',
-        padding: '8px',
+        padding: '0.6rem',
         zIndex: 1000000
     }
 

@@ -1,5 +1,5 @@
 import React, {ComponentPropsWithRef, CSSProperties} from "react";
-import {ChildrenProp, ColorStyleProp} from "../types";
+import {ChildrenProp, ColorStyleProp} from "../../types";
 
 export type ModalProps = {
     /** отобразить окно */

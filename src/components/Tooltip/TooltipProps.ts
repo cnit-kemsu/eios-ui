@@ -1,9 +1,9 @@
-import React, {ComponentPropsWithRef, CSSProperties, MutableRefObject} from "react";
-import {ChildrenProp, Css, StyleProps} from "../types";
+import {CSSProperties, MutableRefObject} from "react";
+import {ChildrenProp, StyleProps} from "../../types";
 
 export type TooltipProps = {
     /** ref элемента, относительно которого будет выводиться подсказка */
-    targetElementRef: MutableRefObject<HTMLElement>,
+    targetElementRef?: MutableRefObject<HTMLElement>,
     /** убрать стрелочку, указывающую на элемент `targetElementRef`*/
     hideArrow?: boolean;
     /** время задержки отображения подсказки в секундах */

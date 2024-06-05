@@ -1,5 +1,5 @@
 import {ComponentPropsWithRef} from "react";
-import {BorderlessProp, FlatProp} from "../types";
+import {BorderlessProp, FlatProp} from "../../types";
 
 type BaseTableProps = {
         /** добавляет стиль выделения строки при наведении */

@@ -1,11 +1,13 @@
-import {FCR} from "../types";
-import React, {forwardRef} from "react";
+import {FCR} from "../../types";
+import {forwardRef} from "react";
 import {useTheme} from "../../theme";
 import {dynMenuItemCss} from "./style";
 import {MenuItemProps} from "./MenuItemProps";
 
+export type {MenuItemProps};
+
 /** Элемент выпадающего меню [Menu](..?path=/docs/компоненты-menu--docs) */
-export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElement, MenuItemProps>(({
+export const MenuItem= forwardRef<HTMLLIElement, MenuItemProps>(({
                                                                                                          onClick,
                                                                                                          children,
                                                                                                          style,
@@ -23,6 +25,6 @@ export const MenuItem: FCR<MenuItemProps, HTMLLIElement> = forwardRef<HTMLLIElem
             {children}
         </li>
     )
-});
+}) as FCR<MenuItemProps, HTMLLIElement> ;
 
 MenuItem.displayName = "MenuItem";

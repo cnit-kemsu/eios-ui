@@ -1,4 +1,4 @@
-import React, {ComponentPropsWithRef} from "react";
+import {ComponentPropsWithRef, ElementType} from "react";
 import {
     BorderlessProp,
     ColorStyleProp,
@@ -7,7 +7,7 @@ import {
     FlatProp,
     StickOnHoverProp,
     TransparentProp
-} from "../types";
+} from "../../types";
 
 export type BaseButtonProps =
     DisabledProp
@@ -18,12 +18,12 @@ export type BaseButtonProps =
     & FillableProp
     & BorderlessProp
 
-export type ButtonElementType<C extends React.ElementType> = {
+export type ButtonElementType<C extends ElementType> = {
     /** тип используемого внутри элемента. По умолчанию `button` */
     elementType?: C;
 }
 
-export type ButtonProps<C extends React.ElementType> =
+export type ButtonProps<C extends ElementType> =
     BaseButtonProps
     & ButtonElementType<C>
     & Omit<ComponentPropsWithRef<C>, keyof BaseButtonProps | 'elementType'>;

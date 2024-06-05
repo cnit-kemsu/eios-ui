@@ -1,4 +1,4 @@
-import {ComponentPropsWithoutRef, ComponentPropsWithRef} from "react";
+import {ComponentPropsWithRef} from "react";
 import {
     BorderlessProp,
     ColorStyleProp,
@@ -9,7 +9,7 @@ import {
     StickOnHoverProp,
     StyleProps,
     TransparentProp
-} from "../types";
+} from "../../types";
 
 export type FileInputProps =
     LabelProp

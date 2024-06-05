@@ -1,16 +1,16 @@
-import * as React from "react";
+import type {MouseEvent} from 'react';
 import {MutableRefObject, useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {lerp} from '../utils'
 
 const defPosition = {} as MenuAnchorPosition
-type MenuAnchorPosition = { x?: number | undefined, y?: number | undefined };
+export type MenuAnchorPosition = { x?: number | undefined, y?: number | undefined };
 
 export function useMenu(anchorElementRef: MutableRefObject<Element>, position: MenuAnchorPosition = defPosition) {
     const [menuPos, setMenuPosition] = useState({x: 0, y: 0});
     const [show, setShow] = useState(false);
     const elRef = useRef() as MutableRefObject<HTMLUListElement>;
 
-    const showMenu = useCallback((e?: React.MouseEvent | undefined) => {
+    const showMenu = useCallback((e?: MouseEvent | undefined) => {
         e?.preventDefault();
         setShow(true);
 
@@ -25,13 +25,13 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
             if (e && position.x === undefined) {
                 x = e.clientX;
             } else {
-                x = lerp(brc.left, brc.right, position.x);
+                x = lerp(brc.left, brc.right, position.x as number);
             }
 
             if (e && position.y === undefined) {
                 y = e.clientY;
             } else {
-                y = lerp(brc.top, brc.bottom, position.y);
+                y = lerp(brc.top, brc.bottom, position.y as number);
             }
 
             setMenuPosition({
@@ -66,7 +66,7 @@ export function useSubmenu(menu: { ref: MutableRefObject<HTMLUListElement>, x: n
         !menu.show && setShowSubmenu(false);
     }, [menu.show]);
 
-    const onClick = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
+    const onClick = useCallback((e: MouseEvent<HTMLLIElement>) => {
 
         e.stopPropagation();
 

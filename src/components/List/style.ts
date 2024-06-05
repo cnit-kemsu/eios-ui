@@ -1,7 +1,7 @@
 import {css, keyframes} from '@emotion/react'
 import tc from 'tinycolor2'
 import {Theme} from "../../theme";
-import {ColorStyle} from "../types";
+import {ColorStyle} from "../../types";
 
 export const rootCss = css`
   background: white;

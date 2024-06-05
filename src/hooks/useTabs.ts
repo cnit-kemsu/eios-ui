@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import {ValueType} from "../components/types";
+import {ValueType} from "../types";
 
 export function useTabs(initTab?: ValueType) {
 

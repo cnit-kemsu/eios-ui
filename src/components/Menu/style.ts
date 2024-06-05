@@ -18,6 +18,7 @@ export const dynMenuCss = ({ theme, flat, borderless, x, y }: DynMenuCssArgs) =>
   transform-origin: top;
   transition-property: transform, opacity;
   transition-duration: ${theme.transitionDuration};
+  width: max-content;
 `
 
 export const displayedMenuCss = css`
@@ -30,7 +31,7 @@ export const dynMenuItemCss = ({ theme } : {theme: Theme}) => css`
     padding: ${theme.menu.padding};    
     color: ${theme.colorStyles.light.text};
     cursor: pointer;
-    height: ${theme.menu.height};
+    position: relative;    
 
     &:hover {        
         background: ${theme.colorStyles.light.origin};

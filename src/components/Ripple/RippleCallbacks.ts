@@ -1,24 +1,27 @@
-import React from "react";
+import React, {MouseEvent, MutableRefObject} from "react";
 import {offset} from '../../utils'
 import {RippleData} from "./RippleData";
 
 export class RippleCallbacks {
 
     update: () => void;
-    rippleDomRef: React.MutableRefObject<HTMLElement>;
+    rippleDomRef: React.MutableRefObject<HTMLElement | null>;
     rippleDataRef: React.MutableRefObject<RippleData>;
 
-    constructor(update, rippleDataRef, rippleDomRef) {
+    constructor(update: () => void, rippleDataRef: MutableRefObject<RippleData>, rippleDomRef: MutableRefObject<HTMLElement | null>) {
         this.update = update;
         this.rippleDomRef = rippleDomRef;
         this.rippleDataRef = rippleDataRef;
     }
 
     mouseEventHandlers = {
-        onMouseDown: event => {
+        onMouseDown: (event: MouseEvent) => {
 
             let active = false, restart = false
             const rippleData = this.rippleDataRef.current;
+            const rippleDom = this.rippleDomRef.current
+
+            if (!rippleDom) return;
 
             if (rippleData.active) {
                 restart = true
@@ -26,14 +29,12 @@ export class RippleCallbacks {
                 active = true
             }
 
-            const rippleDom = this.rippleDomRef.current
-
             const {offsetLeft, offsetTop} = offset(rippleDom)
 
             const radius = Math.max(rippleDom.offsetWidth, rippleDom.offsetHeight)
 
-            let scrollTop = window.scrollY;
-            let scrollLeft = window.scrollX;
+            const scrollTop = window.scrollY;
+            const scrollLeft = window.scrollX;
 
             rippleData.hideRipple = false
             rippleData.active = active

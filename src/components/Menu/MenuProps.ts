@@ -1,5 +1,5 @@
 import {ComponentPropsWithRef, MouseEventHandler, ReactElement} from "react";
-import {BorderlessProp, FlatProp, StyleProps} from "../types";
+import {BorderlessProp, FlatProp, StyleProps} from "../../types";
 import {MenuItemProps} from "./MenuItemProps";
 
 export type MenuProps = {

@@ -1,12 +1,12 @@
 import {useCallback, useState} from 'react'
-import {ItemType, ValueType} from "../components/types";
+import {ValueType} from "../types";
 
 export function useSelect(initValue?: ValueType) {
 
     const [value, setValue] = useState(initValue);
     const [open, setOpen] = useState(false);
 
-    const onChange = useCallback((v: ValueType, _: ItemType) => {
+    const onChange = useCallback((v: ValueType) => {
         setValue(v);
         setOpen(false);
     }, []);

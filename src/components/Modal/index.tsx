@@ -2,19 +2,21 @@ import {forwardRef, useCallback, useEffect, useState} from 'react'
 import {useTheme} from '../../theme'
 import {Button} from '../Button'
 import {
-    dynCloseButtonCss,
+    closeButtonCss,
     dynCloseButtonIconCss,
     contentCss,
     dynBackLayerCss,
     dynContainerCss,
     dynHeaderCss,
-    dynTitleCss
+    titleCss
 } from './style'
 import type {ModalProps} from "./ModalProps";
-import type {FCR} from "../types";
+import type {FCR} from "../../types";
+
+export type {ModalProps};
 
 /** Модальное окно. */
-export const Modal: FCR<ModalProps, HTMLDivElement> = forwardRef<HTMLDivElement, ModalProps>(({
+export const Modal = forwardRef<HTMLDivElement, ModalProps>(({
                                                                                                   open = false,
                                                                                                   title,
                                                                                                   onClose,
@@ -47,11 +49,11 @@ export const Modal: FCR<ModalProps, HTMLDivElement> = forwardRef<HTMLDivElement,
                 style={style} className={className}
             >
                 <div css={dynHeaderCss({theme, colorStyle})}>
-                    <h2 css={dynTitleCss({theme})}>
+                    <h2 css={titleCss}>
                         {title}
                     </h2>
                     <Button
-                        css={dynCloseButtonCss({theme})}
+                        css={closeButtonCss}
                         flat
                         transparent
                         fillable
@@ -68,6 +70,6 @@ export const Modal: FCR<ModalProps, HTMLDivElement> = forwardRef<HTMLDivElement,
             </div>
         </div>
     ) : null;
-});
+}) as FCR<ModalProps, HTMLDivElement>;
 
 Modal.displayName = "Modal";

@@ -4,20 +4,22 @@ import {dynSelectedTabCss, dynTabCss, tabCss} from "./style";
 import {Ripple} from "../Ripple";
 import {TabProps} from "./TabProps";
 
-type TabComponent =
+export type {TabProps};
+
+export type TabComponent =
     ((props: TabProps, ref?: ForwardedRef<HTMLElement>) => (React.ReactElement | null))
     & { displayName?: string };
 
 /** Отдельная вкладка. Используется в качестве дочернего элемента [Tabs](..?path=/docs/компоненты-tabs--docs) */
-export const Tab: TabComponent = forwardRef<HTMLDivElement, TabProps>(({
-                                                                        id,
-                                                                        fillSelectedTab = false,
-                                                                        colorStyle = 'secondary',
-                                                                        selected,
-                                                                        children,
-                                                                        onClick,
-                                                                        style, className
-                                                                    }: TabProps, ref) => {
+export const Tab = forwardRef<HTMLDivElement, TabProps>(({
+                                                             fillSelectedTab = false,
+                                                             colorStyle = 'secondary',
+                                                             selected,
+                                                             children,
+                                                             onClick,
+                                                             style,
+                                                             className
+                                                         }: TabProps, ref) => {
 
     const theme = useTheme();
 
@@ -30,6 +32,6 @@ export const Tab: TabComponent = forwardRef<HTMLDivElement, TabProps>(({
             <><Ripple color={theme.colorStyles[colorStyle].ripple}/>{children}</>
         </div>
     );
-});
+}) as TabComponent;
 
 Tab.displayName = "Tab";

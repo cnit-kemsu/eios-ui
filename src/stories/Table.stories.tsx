@@ -1,16 +1,21 @@
-import React from "react";
-import {Table} from '../components/Table'
+import {Table} from '../components/Table';
 import {Meta, StoryObj} from "@storybook/react";
-import {TableProps} from "../components/Table/TableProps";
 
-export default {
-    title: "Компоненты/Table",
+const meta = {
+    title: 'Table',
     component: Table,
-} as Meta<typeof Table>
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof Table>;
 
-export const Default : StoryObj<typeof Table> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default : Story = {
     name: "Table",
-    render: (props: TableProps) => (
+    render: (props) => (
         <Table {...props}>
             <thead>
             <tr>

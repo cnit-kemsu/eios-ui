@@ -1,36 +1,57 @@
-import React, {useState} from "react";
-import {Modal} from '../components/Modal'
-import {Meta, StoryObj} from "@storybook/react";
-import {ModalProps} from "../components/Modal/ModalProps";
+import type {Meta, StoryObj} from '@storybook/react';
+import {Modal} from "../components/Modal";
+import 'material-icons/iconfont/material-icons.css';
+import {useModal} from "../hooks/useModal.ts";
 import {Button} from "../components/Button";
 
-import 'material-icons/iconfont/material-icons.css';
-
-export default {
-    title: "Компоненты/Modal",
+const meta = {
+    title: 'Modal',
     component: Modal,
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs'],
+    decorators: [
+        Story => (
+            <div style={{width: "800px", height: "400px"}}>
+                <Story/>
+            </div>
+        )
+    ]
+} satisfies Meta<typeof Modal>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+    name: "Modal",
     args: {
         title: "Заголовок",
-        children: `Содержимое модального окна`
-    },
-    argTypes: {
-        onClose: {control: {type: null}}
+        open: true,
+        style: {
+            width: "300px"
+        },
+        children: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque cupiditate, debitis doloremque dolores in ipsa porro quaerat quasi reiciendis sit temporibus? Aut consequuntur explicabo fugiat perferendis porro praesentium similique."
     }
-} as Meta<typeof Modal>
+}
 
-export const Default : StoryObj<typeof Modal> = {
-    name: "Modal",
-    render: (props: Omit<ModalProps, 'open' | 'onClose'>) => {
+export const UseModal: Story = {
+    name: "Хук useModal",
+    render: () => {
 
-        const [open, setOpen] = useState(false);
-        const handleClose = () => setOpen(false);
-
-        delete (props as any).onClose;
+        const [modal, setOpen] = useModal();
 
         return (
             <div style={{minHeight: "400px"}}>
                 <Button onClick={() => setOpen(true)}>Открыть модальное окно</Button>
-                <Modal open={open} onClose={handleClose} {...props} />
+                <Modal {...modal} title="Заголовок" style={{width: "60%"}}>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam corporis illo
+                    laboriosam,
+                    libero quod ratione repellendus suscipit ut. Amet animi distinctio est facere libero nostrum odio
+                    sunt
+                    tenetur velit!
+                </Modal>
             </div>
         )
     }

@@ -1,4 +1,4 @@
-import React, {forwardRef, MutableRefObject, useLayoutEffect, useMemo, useRef} from 'react'
+import {ForwardedRef, forwardRef, MutableRefObject, ReactElement, useLayoutEffect, useMemo, useRef} from 'react'
 import {useTheme} from '../../theme'
 import {Ripple} from '../Ripple'
 import {
@@ -10,47 +10,51 @@ import {
     selectCloseAreaCss
 } from './style'
 import type {SelectProps} from "./SelectProps";
-import type {FCR} from "../types";
 import {getTrue} from "../../utils";
 import {useListFunctions} from "../../hooks/useListFunctions";
 
-const nativeSelectStyle = {display: 'none'}
+const nativeSelectStyle = {display: 'none'};
+
+export type {SelectProps};
+
+export type SelectComponent = (<C>(props: SelectProps<C>, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
+    & { displayName?: string };
 
 /** Выпадающий список. */
-export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElement, SelectProps>(({
-                                                                                                     name,
-                                                                                                     open = false,
-                                                                                                     enableOutsideArea,
-                                                                                                     onClick,
-                                                                                                     onOutsideClick,
-                                                                                                     selectStyle,
-                                                                                                     onChange,
-                                                                                                     valueProp = 'value',
-                                                                                                     contentProp = 'content',
-                                                                                                     selectableProp = getTrue,
-                                                                                                     disabled = false,
-                                                                                                     items = [],
-                                                                                                     value,
-                                                                                                     size,
-                                                                                                     itemsContainerStyle,
-                                                                                                     itemStyle,
-                                                                                                     contentStyle,
-                                                                                                     placeholder,
-                                                                                                     borderless = false,
-                                                                                                     flat = false,
-                                                                                                     fullWidth = false,
-                                                                                                     width,
-                                                                                                     valueIsIndex = false,
-                                                                                                     BeforeContentComponent,
-                                                                                                     AfterContentComponent,
-                                                                                                     ContentWrapper = ({children}) => <>{children}</>,
-                                                                                                     style,
-                                                                                                     className
-                                                                                                 }: SelectProps, ref) => {
+export const Select = forwardRef(function Select<C>({
+                                                                   name,
+                                                                   open = false,
+                                                                   enableOutsideArea,
+                                                                   onClick,
+                                                                   onOutsideClick,
+                                                                   selectStyle,
+                                                                   onChange,
+                                                                   valueProp = 'value',
+                                                                   contentProp = 'content',
+                                                                   selectableProp = getTrue,
+                                                                   disabled = false,
+                                                                   items = [],
+                                                                   value,
+                                                                   size,
+                                                                   itemsContainerStyle,
+                                                                   itemStyle,
+                                                                   contentStyle,
+                                                                   placeholder,
+                                                                   borderless = false,
+                                                                   flat = false,
+                                                                   fullWidth = false,
+                                                                   width,
+                                                                   valueIsIndex = false,
+                                                                   BeforeContentComponent,
+                                                                   AfterContentComponent,
+                                                                   ContentWrapper = ({children}) => <>{children}</>,
+                                                                   style,
+                                                                   className
+                                                               }: SelectProps<C>, ref?: ForwardedRef<HTMLDivElement>) {
 
     const theme = useTheme();
 
-    const {getContent, getValue, isSelectable} = useListFunctions(contentProp, valueProp, selectableProp, valueIsIndex);
+    const {getContent, getValue, isSelectable} = useListFunctions<C>(contentProp, valueProp, selectableProp, valueIsIndex);
 
     const itemIndex = useMemo(() => items?.findIndex((item, index) => getValue(item, index) === value), [items, getValue, value]);
     const item = itemIndex > -1 ? items[itemIndex] : null;
@@ -64,11 +68,8 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             selectRef.current.style.width = 'unset';
             listRef.current.style.width = 'unset';
         } else {
-            const listStyle = window.getComputedStyle(listRef.current);
-            const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
-
-            selectRef.current.style.width = width//`calc(${width} - ${listPaddingLeft}px - ${borderless ? '0px' : '2px'})`;
-            listRef.current.style.width = width //`calc(${width} - ${listPaddingLeft * 2}px - ${borderless ? '0px' : '2px'})`;
+            selectRef.current.style.width = width;
+            listRef.current.style.width = width;
         }
 
     }, [width, borderless])
@@ -84,14 +85,13 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             const listStyle = window.getComputedStyle(listRef.current);
             const selectStyle = window.getComputedStyle(selectRef.current);
 
-            //const listPaddingLeft = Number.parseFloat(listStyle.paddingLeft);
-            let listWidth = Number.parseFloat(listStyle.width)// + listPaddingLeft;
-            let selectWidth = Number.parseFloat(selectStyle.width);
+            const listWidth = Number.parseFloat(listStyle.width);
+            const selectWidth = Number.parseFloat(selectStyle.width);
 
             if (listWidth > selectWidth) {
                 selectRef.current.style.width = `${listWidth}px`;
             } else {
-                listRef.current.style.width = selectWidth + "px"//(selectWidth - listPaddingLeft) + "px";
+                listRef.current.style.width = selectWidth + "px";
             }
         }
 
@@ -141,7 +141,7 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
                                         style={contentStyle}
                                         css={dynOptionCss({theme})}
                                         onClick={onChange && isSelectable(item, index) ?
-                                            (e) => onChange(curValue, item, index) : undefined
+                                            () => onChange(curValue, item, index) : undefined
                                         }
                                     >
                                         <ContentWrapper item={item}>
@@ -172,6 +172,6 @@ export const Select: FCR<SelectProps, HTMLDivElement> = forwardRef<HTMLDivElemen
             </select>
         </>
     )
-});
+}) as SelectComponent;
 
 Select.displayName = "Select";

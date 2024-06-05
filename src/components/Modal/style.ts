@@ -1,6 +1,6 @@
 import {css, keyframes} from '@emotion/react'
 import {Theme} from "../../theme";
-import {ColorStyle} from "../types";
+import {ColorStyle} from "../../types";
 
 
 const dynBacklayerKeyframes = ({open}: { open: boolean }) => open ?
@@ -98,7 +98,7 @@ export const dynHeaderCss = ({theme, colorStyle}: { theme: Theme, colorStyle: Co
   color: ${theme.colorStyles[colorStyle].text}
 `
 
-export const dynTitleCss = ({theme}: { theme: Theme }) => css`
+export const titleCss = css`
   font-weight: bold;
   margin: 0 16px 0 0;
   padding-bottom: 0;
@@ -115,7 +115,7 @@ export const dynCloseButtonIconCss = ({theme, colorStyle}: { theme: Theme, color
   color: ${theme.colorStyles[colorStyle].text};
 `
 
-export const dynCloseButtonCss = ({theme}: { theme: Theme }) => css`
+export const closeButtonCss = css`
   width: 1.5rem;
   height: 1.5rem;
   padding: 0;  

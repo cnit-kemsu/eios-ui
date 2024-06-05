@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleProps} from "../types";
+import {StyleProps} from "../../types";
 
 export type RippleProps = {
         /** цвет эффекта ряби */

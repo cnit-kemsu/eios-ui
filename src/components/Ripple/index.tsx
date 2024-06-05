@@ -1,9 +1,11 @@
-import React, {useEffect, useMemo, useReducer, useRef} from 'react'
+import {MutableRefObject, useEffect, useMemo, useReducer, useRef} from 'react'
 import {useTheme} from '../../theme'
 import {dynRippleCss, rippleCss, rootCss} from './style'
 import {RippleCallbacks} from './RippleCallbacks'
 import {initRippleData} from "./RippleData";
 import {RippleProps} from "./RippleProps";
+
+export type {RippleProps};
 
 /** Эффект ряби. */
 export function Ripple({
@@ -13,7 +15,7 @@ export function Ripple({
 
     const {disableRipple} = useTheme();
     const [, forceUpdate] = useReducer(x => x + 1, 0, undefined);
-    const rippleDomRef = useRef<HTMLDivElement>(null);
+    const rippleDomRef = useRef(null) as MutableRefObject<HTMLDivElement | null>;
     const rippleDataRef = useRef(initRippleData);
 
     const {

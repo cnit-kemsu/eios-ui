@@ -1,4 +1,4 @@
-import {BorderlessProp, FlatProp} from "../types";
+import {BorderlessProp, FlatProp} from "../../types";
 import React, {ComponentPropsWithRef} from "react";
 
 type BasePaneProps = {

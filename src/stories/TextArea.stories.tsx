@@ -1,17 +1,18 @@
+import {TextArea} from '../components/TextArea';
 import {Meta, StoryObj} from "@storybook/react";
-import {argTypes} from "./argTypes";
-import {TextArea} from "../components/TextArea";
 
-export default {
-    title: "Компоненты/TextArea",
+const meta = {
+    title: 'TextArea',
     component: TextArea,
-    argTypes: {
-        value: {
-            control: {type: "text"}
-        }
-    }
-} as Meta<typeof TextArea>
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof TextArea>;
 
-export const Default : StoryObj<typeof TextArea> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default : Story = {
     name: "TextArea"
 }

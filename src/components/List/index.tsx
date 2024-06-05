@@ -1,4 +1,4 @@
-import React, {ForwardedRef, forwardRef, ReactElement} from 'react'
+import {ForwardedRef, forwardRef, ReactElement} from 'react'
 import {useTheme} from '../../theme'
 import {dynItemCss, dynRootCss, dynSelectedItemCss, itemCss, rootCss} from './style'
 import type {ListProps} from "./ListProps";
@@ -6,34 +6,36 @@ import {Ripple} from "../Ripple";
 import {useListFunctions} from "../../hooks/useListFunctions";
 import {getTrue} from "../../utils";
 
-export type ListComponent = ((props: ListProps, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
+export type {ListProps};
+
+export type ListComponent = (<C>(props: ListProps<C>, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
     & { displayName?: string };
 
 /**
  * Обертка вокруг `<select>`.
  */
-export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
-                                                                                name,
-                                                                                items = [],
-                                                                                borderless = false,
-                                                                                flat = false,
-                                                                                colorStyle = "primary",
-                                                                                valueIsIndex = false,
-                                                                                valueProp = "value",
-                                                                                contentProp = "content",
-                                                                                selectableProp = getTrue,
-                                                                                value,
-                                                                                disabled = false,
-                                                                                onChange,
-                                                                                style,
-                                                                                className,
-                                                                                itemContainerStyle,
-                                                                                itemContainerClassName
-                                                                            }: ListProps, ref) => {
+export const List = forwardRef(function List<C>({
+                                                    name,
+                                                    items = [],
+                                                    borderless = false,
+                                                    flat = false,
+                                                    colorStyle = "primary",
+                                                    valueIsIndex = false,
+                                                    valueProp = "value",
+                                                    contentProp = "content",
+                                                    selectableProp = getTrue,
+                                                    value,
+                                                    disabled = false,
+                                                    onChange,
+                                                    style,
+                                                    className,
+                                                    itemContainerStyle,
+                                                    itemContainerClassName
+                                                }: ListProps<C>, ref?: ForwardedRef<HTMLUListElement>) {
 
     const theme = useTheme();
 
-    const {getContent, getValue, isSelectable} = useListFunctions(contentProp, valueProp, selectableProp, valueIsIndex);
+    const {getContent, getValue, isSelectable} = useListFunctions<C>(contentProp, valueProp, selectableProp, valueIsIndex);
 
     return (
         <>
@@ -65,7 +67,7 @@ export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
                     })
                 }
             </ul>
-            <select disabled value={value} style={{display: 'none'}}>
+            <select name={name} disabled value={value} style={{display: 'none'}}>
                 {
                     items.map((item, index) => {
                         const curValue = getValue(item, index);
@@ -75,6 +77,6 @@ export const List: ListComponent = forwardRef<HTMLUListElement, ListProps>(({
             </select>
         </>
     )
-});
+}) as ListComponent;
 
 List.displayName = "List";

@@ -1,7 +1,9 @@
-import React, {FC, PropsWithChildren} from "react";
-import {BaseListProps, ItemType} from "../types";
+import React, {ComponentPropsWithRef, FC, PropsWithChildren} from "react";
+import {BaseListProps} from "../../types";
 
-export type SelectProps = {
+type BaseSelectProps<C> = Omit<BaseListProps<C>, 'colorStyle'>;
+
+export type SelectProps<C> = {
         /** открыть выпадающий список */
         open?: boolean;
         /** выводить скрытую область позади меню, растянутую на всю страницу.
@@ -28,12 +30,11 @@ export type SelectProps = {
         /** ширина кнопки и списка */
         width?: string;
         /** компонент, выводимый перед каждым элементом */
-        BeforeContentComponent?: FC<{ item: any }>;
+        BeforeContentComponent?: FC<{ item: C }>;
         /** компонент, выводимый после каждого элемента */
-        AfterContentComponent?: FC<{ item: any }>;
+        AfterContentComponent?: FC<{ item: C }>;
         /** компонент, в который будет обернут каждый элемент */
-        ContentWrapper?: FC<PropsWithChildren<{ item: any }>>;
+        ContentWrapper?: FC<PropsWithChildren<{ item: C }>>;
     }
-    & Omit<BaseListProps, 'colorStyle'>;
-
-
+    & BaseSelectProps<C>
+    & { ref?: ComponentPropsWithRef<'div'>['ref'] };

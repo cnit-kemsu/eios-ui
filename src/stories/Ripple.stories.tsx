@@ -1,8 +1,18 @@
-import React from "react";
+import {Ripple} from '../components/Ripple';
 import {Meta, StoryObj} from "@storybook/react";
-import {RippleProps} from "../components/Ripple/RippleProps";
-import {Ripple} from "../index";
-import {argTypes} from "./argTypes";
+import {RippleProps} from "../components/Ripple/RippleProps.ts";
+
+const meta = {
+    title: 'Ripple',
+    component: Ripple,
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof Ripple>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 const divStyle = {
     textAlign: 'center' as "center",
@@ -17,12 +27,7 @@ const titleStyle = {
     display: 'inline-block'
 }
 
-export default {
-    title: "Компоненты/Ripple",
-    component: Ripple,
-} as Meta<typeof Ripple>
-
-export const Example : StoryObj<typeof Ripple> = {
+export const Example : Story = {
     name:"Ripple",
     render:  (props : RippleProps) => {
         return (

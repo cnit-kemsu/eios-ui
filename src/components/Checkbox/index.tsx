@@ -13,6 +13,8 @@ const rippleStyle = {
     borderRadius: '100%',
 };
 
+export type {CheckboxProps};
+
 export type CheckboxComponent =
     ((props: CheckboxProps, ref?: ForwardedRef<HTMLDivElement>) => (ReactElement | null))
     & { displayName?: string };
@@ -20,16 +22,16 @@ export type CheckboxComponent =
 /**
  * Обертка вокруг `<input type='checkbox'>`.
  */
-export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxProps>(({
-                                                                                          name,
-                                                                                          colorStyle = 'secondary',
-                                                                                          disabled = false,
-                                                                                          checked = false,
-                                                                                          onClick,
-                                                                                          children,
-                                                                                          value,
-                                                                                          ...props
-                                                                                      }: CheckboxProps, ref) => {
+export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(({
+                                                                       name,
+                                                                       colorStyle = 'secondary',
+                                                                       disabled = false,
+                                                                       checked = false,
+                                                                       onClick,
+                                                                       children,
+                                                                       value,
+                                                                       ...props
+                                                                   }: CheckboxProps, ref) => {
 
     const theme = useTheme();
     const {colorStyles, checkbox} = theme;
@@ -58,6 +60,6 @@ export const Checkbox: CheckboxComponent = forwardRef<HTMLDivElement, CheckboxPr
             <input name={name} type='checkbox' style={{display: "none"}} readOnly checked={checked} value={value}/>
         </div>
     )
-});
+}) as CheckboxComponent;
 
 Checkbox.displayName = "Checkbox";

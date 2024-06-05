@@ -1,5 +1,5 @@
-import React, {ComponentPropsWithRef} from "react";
-import {ChildrenProp, ColorStyleProp, StyleProps} from "../types";
+import {ComponentPropsWithRef} from "react";
+import {ChildrenProp, ColorStyleProp, StyleProps} from "../../types";
 
 export type TabProps = {
         /** id вкладки, которое используется в [Tabs](..?path=/docs/компоненты-tabs--docs) в качестве значение свойства `tab` */

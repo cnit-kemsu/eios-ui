@@ -19,7 +19,7 @@ export const dynTitleCss = ({theme}: { theme: Theme }) => css`
   font-size: 1.5rem;
 `
 
-export const dynContentCss = ({theme}: { theme: Theme }) => css`
+export const contentCss = css`
   padding: 16px;
   flex: 1 0 auto;
 `

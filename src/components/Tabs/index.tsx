@@ -3,11 +3,13 @@ import {dynTabsCss, stretchTabsCss, tabsCss} from './style'
 import {useTheme} from '../../theme'
 import {TabsProps} from "./TabsProps";
 
-type TabsComponent = ((props: TabsProps, ref?: ForwardedRef<HTMLDivElement>) => (React.ReactElement | null))
+export type {TabsProps};
+
+export type TabsComponent = ((props: TabsProps, ref?: ForwardedRef<HTMLDivElement>) => (React.ReactElement | null))
     & { displayName?: string };
 
 /** Вкладки. В качестве дочерних элементов принимает [Tab](..?path=/docs/компоненты-tab--docs) */
-export const Tabs: TabsComponent = forwardRef<HTMLDivElement, TabsProps>(({
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
                                                                               colorStyle = 'secondary',
                                                                               stretchTabs,
                                                                               onTabClick,
@@ -46,13 +48,6 @@ export const Tabs: TabsComponent = forwardRef<HTMLDivElement, TabsProps>(({
             }
         </div>
     );
-});
+}) as TabsComponent;
 
 Tabs.displayName = "Tabs";
-
-function _Tab(){
-
-}
-
-
-

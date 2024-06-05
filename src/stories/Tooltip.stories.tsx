@@ -1,20 +1,23 @@
-import React, {MutableRefObject, useRef} from "react";
+import {Tooltip} from '../components/Tooltip';
 import {Meta, StoryObj} from "@storybook/react";
-import {Tooltip} from "../components/Tooltip";
+import {MutableRefObject, useRef} from "react";
 import {Button} from "../components/Button";
-import {TooltipProps} from "../components/Tooltip/TooltipProps";
 
-export default {
-    title: "Компоненты/Tooltip",
+const meta = {
+    title: 'Tooltip',
     component: Tooltip,
-    args: {
-        children: "Я подсказка для этой кнопки"
-    }
-} as Meta<typeof Tooltip>
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs']
+} satisfies Meta<typeof Tooltip>;
 
-export const Default: StoryObj<typeof Tooltip> = {
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
     name: "Tooltip",
-    render: (props: Omit<TooltipProps, 'targetElementRef'>) => {
+    render: (props) => {
 
         const buttonRef = useRef() as MutableRefObject<HTMLButtonElement>;
 
@@ -27,7 +30,9 @@ export const Default: StoryObj<typeof Tooltip> = {
                 alignItems: "center"
             }}>
                 <Button ref={buttonRef}>Наведи курсор на меня</Button>
-                <Tooltip targetElementRef={buttonRef} {...props} />
+                <Tooltip targetElementRef={buttonRef} {...props}>
+                    Текст подсказки
+                </Tooltip>
             </div>
         );
     }

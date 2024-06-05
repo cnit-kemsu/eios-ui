@@ -2,12 +2,14 @@ import {forwardRef} from 'react'
 import {dynSpinnerCircleCss, spinnerCircleCss, spinnerCss} from './style'
 import {useTheme} from '../../theme'
 import type {SpinnerProps} from "./SpinnerProps";
-import type {FCR} from "../types";
+import type {FCR} from "../../types";
+
+export type {SpinnerProps};
 
 /** Спиннер (крутилка). Используется для отображеня выполнения некого процесса (например, запрос api).
  * Принимает также свойства `<svg>`.
  */
-export const Spinner: FCR<SpinnerProps, SVGSVGElement> = forwardRef<SVGSVGElement, SpinnerProps>(({
+export const Spinner = forwardRef<SVGSVGElement, SpinnerProps>(({
                                                                                             colorStyle = "secondary",
                                                                                             scale = 1,
                                                                                             ...props
@@ -23,6 +25,6 @@ export const Spinner: FCR<SpinnerProps, SVGSVGElement> = forwardRef<SVGSVGElemen
             <circle css={[spinnerCircleCss, dynSpinnerCircleCss({theme, l, colorStyle})]} cx="50" cy="50" r={r}/>
         </svg>
     )
-});
+}) as FCR<SpinnerProps, SVGSVGElement>;
 
 Spinner.displayName = 'Spinner';

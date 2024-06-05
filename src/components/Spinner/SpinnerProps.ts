@@ -1,4 +1,4 @@
-import {ColorStyleProp, StyleProps} from "../types";
+import {ColorStyleProp, StyleProps} from "../../types";
 import {ComponentPropsWithRef} from "react";
 
 type BaseSpinnerProps = {

@@ -7,12 +7,14 @@ import {inputCss, rootCss} from "./style";
 import type {FileInputProps} from "./FileInputProps";
 import {CSSObject} from "@emotion/react";
 
+export type {FileInputProps};
+
 export type FileInputComponent =
     ((props: FileInputProps, ref?: ForwardedRef<HTMLDivElement>) => ReactElement | null)
     & { displayName?: string };
 
 /** Обёртка вокруг `<input type='file'>`. */
-export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInputProps>(({
+export const FileInput = forwardRef<HTMLDivElement, FileInputProps>(({
                                                                                              label,
                                                                                              colorStyle = "dark",
                                                                                              transparent = false,
@@ -42,6 +44,6 @@ export const FileInput: FileInputComponent = forwardRef<HTMLDivElement, FileInpu
             </label>
         </div>
     );
-});
+}) as FileInputComponent;
 
 FileInput.displayName = "FileInput";

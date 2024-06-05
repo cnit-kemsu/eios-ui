@@ -1,22 +1,27 @@
 import {SerializedStyles} from "@emotion/react";
-import React, {ComponentProps, CSSProperties, ForwardedRef, ReactElement, ReactNode} from "react";
-import {InputFieldProps} from "../InputField/InputFieldProps";
+import {
+    ComponentPropsWithRef,
+    CSSProperties,
+    ElementType,
+    ForwardedRef, JSX,
+    ReactElement,
+    ReactNode
+} from "react";
 
 export type ColorStyle = 'light' | 'dark' | 'primary' | 'secondary';
 
 export type Css = SerializedStyles | (SerializedStyles | null | undefined)[];
 
-export type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>["ref"];
+export type PolymorphicRef<C extends ElementType> = ComponentPropsWithRef<C>["ref"];
 
 export type Point = { x: number, y: number };
 
 export type ValueType = string | number;
-export type ItemType = string | number | { [key: string]: any };
 
-export type GetContent = ((item: any, index: number) => string | number | JSX.Element | null);
+export type GetContent<C> = ((item: C, index: number) => string | number | JSX.Element | null);
 
-export type GetValue = ((item: any, index: number) => string | number);
-export type IsSelectable = ((item: any, index: number) => boolean);
+export type GetValue<C> = ((item: C, index: number) => string | number);
+export type IsSelectable<C> = ((item: C, index: number) => boolean);
 
 export type FCR<P, R> = ((props: P, ref?: ForwardedRef<R>) => (ReactElement | null))
     & { displayName?: string }
@@ -82,17 +87,17 @@ export type ChildrenProp = {
     children?: ReactNode;
 }
 
-export type BaseListProps = {
+export type BaseListProps<C> = {
         /** использовать индекс элемента в качестве значения */
         valueIsIndex?: boolean;
         /** элементы, на основе которых формируется список */
-        items?: any[];
+        items?: C[];
         /** событие нажатия по элементу списка
          * @param value - значение элемента
          * @param item - данные элемента
          * @param index - номер элемента в массиве
          */
-        onChange?: (value: string | number, item: any, index: number) => void;
+        onChange?: (value: string | number, item: C, index: number) => void;
         /** имя свойства в элементе массива `items`, значение которого используется в `value`.
          * Также может быть функцией со следующими входными параметрами:<br/>
          * <table style="border-collapse: collapse;">
@@ -108,7 +113,7 @@ export type BaseListProps = {
          *     </tbody>
          *  </table>
           */
-        valueProp?: string | GetValue;
+        valueProp?: string | GetValue<C>;
         /** имя свойства в элементе массива `items`, значение которого представляет собой выводимый текст или React-элемент.
          * Также может быть функцией со следующими входными параметрами:<br/>
          * <table style="border-collapse: collapse;">
@@ -124,7 +129,7 @@ export type BaseListProps = {
          *     </tbody>
          *  </table>
          */
-        contentProp?: string | GetContent;
+        contentProp?: string | GetContent<C>;
         /** имя свойства в элементе массива `items`, значение которого определяет возможность выбора элемента.
          * Также может быть функцией со следующими входными параметрами:<br/>
          * <table style="border-collapse: collapse;">
@@ -140,7 +145,7 @@ export type BaseListProps = {
          *     </tbody>
          *  </table>
          */
-        selectableProp?: string | IsSelectable;
+        selectableProp?: string | IsSelectable<C>;
         /** стиль контейнера элемента */
         itemContainerStyle?: CSSProperties;
         /** css-класс контейнера элемента */

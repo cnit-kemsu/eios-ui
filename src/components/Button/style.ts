@@ -1,6 +1,6 @@
 import {css} from '@emotion/react'
 import {Theme} from "../../theme";
-import {ColorStyle} from "../types";
+import {ColorStyle} from "../../types";
 
 export const buttonCss = css`
   font-size: unset;
@@ -18,7 +18,7 @@ export const buttonCss = css`
   }
 `
 type DynButtonCssArgs = {
-    theme: Theme, colorStyle: ColorStyle, flat: Boolean,
+    theme: Theme, colorStyle: ColorStyle, flat: boolean,
     stickOnHover: boolean, transparent: boolean, fillable: boolean,
     borderless: boolean, disabled: boolean
 };

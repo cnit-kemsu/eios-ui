@@ -1,6 +1,6 @@
 import {css} from '@emotion/react'
 import {Theme} from "../../theme";
-import {ColorStyle} from "../types";
+import {ColorStyle} from "../../types";
 
 export const tabsCss = css`
   display: block;
