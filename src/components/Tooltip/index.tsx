@@ -22,6 +22,7 @@ const positionToPivotMap = {
 
 export type {TooltipProps};
 
+/** @deprecated Используйте Popup, usePopup и withPopup */
 export function Tooltip({
                             targetElementRef,
                             children,
