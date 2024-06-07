@@ -39,6 +39,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(({
         }
     }, [open, isAnimFin])
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(handleEffect, [open])
 
     return (open || !isAnimFin) ? (

@@ -22,6 +22,7 @@ export function usePopup(targetElementRef: MutableRefObject<HTMLElement>, delay 
             targetEl.removeEventListener('mouseleave', mouseLeaveHandler);
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [targetElementRef.current, delay]);
 
     return {

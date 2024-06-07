@@ -39,6 +39,7 @@ export function useMenu(anchorElementRef: MutableRefObject<Element>, position: M
                 y: y - parentEl.getBoundingClientRect().top
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [position.x, position.y]);
 
     const onOutsideClick = useCallback(() => setShow(false), [])

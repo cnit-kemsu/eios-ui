@@ -47,8 +47,10 @@ export function Tooltip({
         if (!targetElementRef?.current) return;
         const offset = getElementPositionRelativeTo(targetElementRef.current, tooltipRef.current, positionToPointMap[position], positionToPivotMap[position]);
         if (offset) setOffset({left: offset.x, top: offset.y});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [position])
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const showTooltip = useCallback(debounce(() => {
 
         if (!targetElementRef?.current || !tooltipRef.current) return;
@@ -57,6 +59,7 @@ export function Tooltip({
 
     }, showDelay * 1000), [position, showDelay]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const hideTooltip = useCallback(debounce(() => {
 
         if (!tooltipRef.current || enteredTheTooltipAreaRef.current) return;
@@ -78,6 +81,7 @@ export function Tooltip({
         return () => {
             window.removeEventListener('resize', handleResize);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -101,6 +105,7 @@ export function Tooltip({
             targetElement?.removeEventListener('mouseleave', handleMouseLeave);
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showTooltip, hideTooltip, targetElementRef?.current])
 
     useEffect(() => () => {

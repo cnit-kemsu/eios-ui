@@ -12,5 +12,5 @@ export function useListFunctions<C>(contentProp: string | GetContent<C>,
         getContent: (typeof contentProp === 'string' ? (item: ListItemType) => item[contentProp] : contentProp) as GetContent<C>,
         getValue: (valueIsIndex ? getValueFromIndex : (typeof valueProp === 'string' ? (item: ListItemType) => item[valueProp] : valueProp)) as GetValue<C>,
         isSelectable: (typeof selectableProp === 'string' ? (item: ListItemType) => item[selectableProp] : selectableProp) as IsSelectable<C>
-    }), [contentProp, valueProp, selectableProp]);
+    }), [valueIsIndex, contentProp, valueProp, selectableProp]);
 }
