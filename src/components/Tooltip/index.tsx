@@ -2,7 +2,7 @@ import {MutableRefObject, useCallback, useEffect, useRef, useState} from 'react'
 import {debounce, getElementPositionRelativeTo} from '../../utils'
 import {useTheme} from '../../theme'
 import {arrowCss, dynArrowCss, dynRootCss, dynTooltipCss, rootCss, tooltipCss} from './style'
-import {TooltipProps} from "./TooltipProps";
+import {TooltipProps} from "./types";
 
 const initOffset = {left: 0, top: 0};
 
