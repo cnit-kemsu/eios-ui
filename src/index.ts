@@ -28,6 +28,7 @@ export * from './hooks/useTabs'
 export * from './hooks/useModal'
 export * from './hooks/useMenu'
 export * from "./hooks/useListFunctions";
+export * from './hooks/usePopup';
 
 export * from './hocs/withPopup';
 
