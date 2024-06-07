@@ -18,6 +18,7 @@ export * from './components/Spinner'
 export * from './components/Menu'
 export * from "./components/Menu/MenuItem";
 export * from './components/TextArea'
+export * from './components/Popup';
 
 export * from './hooks/useCheckbox'
 export * from './hooks/useList'
@@ -27,5 +28,7 @@ export * from './hooks/useTabs'
 export * from './hooks/useModal'
 export * from './hooks/useMenu'
 export * from "./hooks/useListFunctions";
+
+export * from './hocs/withPopup';
 
 export * from './types';
