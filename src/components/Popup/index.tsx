@@ -39,6 +39,9 @@ export function Popup({style, className, children, show = false, position = "top
     };
 
     useEffect(() => {
+
+        if(!show) return;
+
         update();
 
         window.addEventListener('resize', update);
@@ -48,13 +51,12 @@ export function Popup({style, className, children, show = false, position = "top
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [position, targetElementRef?.current, divElRef.current]);
+    }, [show, position, targetElementRef?.current, divElRef.current]);
 
     const contentEl = <div css={[arrowCss, dynArrowCss({theme, position})]}/>;
     const arrowEl = <div css={[dynContentCss(theme)]}>
         {children}
     </div>;
-
 
     return createPortal(<div ref={divElRef} style={style} className={className}
                              css={[popupPosToCss[position], popupCss, show ? showPopupCss : undefined]} {...props}>
