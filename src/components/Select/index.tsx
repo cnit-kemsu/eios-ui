@@ -17,44 +17,49 @@ const nativeSelectStyle = {display: 'none'};
 
 export type {SelectProps};
 
-export type SelectComponent = (<C>(props: SelectProps<C>, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
+export type SelectComponent =
+    (<C>(props: SelectProps<C>, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
     & { displayName?: string };
 
 /** Выпадающий список. */
 export const Select = forwardRef(function Select<C>({
-                                                                   name,
-                                                                   open = false,
-                                                                   enableOutsideArea,
-                                                                   onClick,
-                                                                   onOutsideClick,
-                                                                   selectStyle,
-                                                                   onChange,
-                                                                   valueProp = 'value',
-                                                                   contentProp = 'content',
-                                                                   selectableProp = getTrue,
-                                                                   disabled = false,
-                                                                   items = [],
-                                                                   value,
-                                                                   size,
-                                                                   itemsContainerStyle,
-                                                                   itemStyle,
-                                                                   contentStyle,
-                                                                   placeholder,
-                                                                   borderless = false,
-                                                                   flat = false,
-                                                                   fullWidth = false,
-                                                                   width,
-                                                                   valueIsIndex = false,
-                                                                   BeforeContentComponent,
-                                                                   AfterContentComponent,
-                                                                   ContentWrapper = ({children}) => <>{children}</>,
-                                                                   style,
-                                                                   className
-                                                               }: SelectProps<C>, ref?: ForwardedRef<HTMLDivElement>) {
+                                                        name,
+                                                        open = false,
+                                                        enableOutsideArea,
+                                                        onClick,
+                                                        onOutsideClick,
+                                                        selectStyle,
+                                                        onChange,
+                                                        valueProp = 'value',
+                                                        contentProp = 'content',
+                                                        selectableProp = getTrue,
+                                                        disabled = false,
+                                                        items = [],
+                                                        value,
+                                                        size,
+                                                        itemsContainerStyle,
+                                                        itemStyle,
+                                                        contentStyle,
+                                                        placeholder,
+                                                        borderless = false,
+                                                        flat = false,
+                                                        fullWidth = false,
+                                                        width,
+                                                        valueIsIndex = false,
+                                                        BeforeContentComponent,
+                                                        AfterContentComponent,
+                                                        ContentWrapper = ({children}) => <>{children}</>,
+                                                        style,
+                                                        className
+                                                    }: SelectProps<C>, ref?: ForwardedRef<HTMLDivElement>) {
 
     const theme = useTheme();
 
-    const {getContent, getValue, isSelectable} = useListFunctions<C>(contentProp, valueProp, selectableProp, valueIsIndex);
+    const {
+        getContent,
+        getValue,
+        isSelectable
+    } = useListFunctions<C>(contentProp, valueProp, selectableProp, valueIsIndex);
 
     const itemIndex = useMemo(() => items?.findIndex((item, index) => getValue(item, index) === value), [items, getValue, value]);
     const item = itemIndex > -1 ? items[itemIndex] : null;
@@ -136,19 +141,21 @@ export const Select = forwardRef(function Select<C>({
 
                             return (
                                 <div key={curValue} style={{display: "flex", alignItems: "center", ...itemStyle}}>
-                                    {BeforeContentComponent && <BeforeContentComponent item={item}/>}
-                                    <div
-                                        style={contentStyle}
-                                        css={dynOptionCss({theme})}
-                                        onClick={onChange && isSelectable(item, index) ?
-                                            () => onChange(curValue, item, index) : undefined
-                                        }
-                                    >
-                                        <ContentWrapper item={item}>
+                                    {BeforeContentComponent && <BeforeContentComponent open={open} item={item}/>}
+                                    <ContentWrapper open={open} item={item}>
+                                        <div
+                                            style={contentStyle}
+                                            css={dynOptionCss({theme})}
+                                            onClick={onChange && isSelectable(item, index) ?
+                                                () => onChange(curValue, item, index) : undefined
+                                            }
+                                        >
+
                                             {getContent(item, index)}
-                                        </ContentWrapper>
-                                    </div>
-                                    {AfterContentComponent && <AfterContentComponent item={item}/>}
+
+                                        </div>
+                                    </ContentWrapper>
+                                    {AfterContentComponent && <AfterContentComponent open={open} item={item}/>}
                                 </div>
                             )
                         })

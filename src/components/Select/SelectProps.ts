@@ -30,11 +30,11 @@ export type SelectProps<C> = {
         /** ширина кнопки и списка */
         width?: string;
         /** компонент, выводимый перед каждым элементом */
-        BeforeContentComponent?: FC<{ item: C }>;
+        BeforeContentComponent?: FC<{ item: C, open: boolean }>;
         /** компонент, выводимый после каждого элемента */
-        AfterContentComponent?: FC<{ item: C }>;
+        AfterContentComponent?: FC<{ item: C, open: boolean }>;
         /** компонент, в который будет обернут каждый элемент */
-        ContentWrapper?: FC<PropsWithChildren<{ item: C }>>;
+        ContentWrapper?: FC<PropsWithChildren<{ item: C, open: boolean }>>;
     }
     & BaseSelectProps<C>
     & { ref?: ComponentPropsWithRef<'div'>['ref'] };
