@@ -6,6 +6,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh'],
     rules: {
+        'no-mixed-spaces-and-tabs': 0,
         'react-refresh/only-export-components': [
             'warn',
             {allowConstantExport: true},
