@@ -13,8 +13,6 @@ import type {SelectProps} from "./SelectProps";
 import {getTrue} from "../../utils";
 import {useListFunctions} from "../../hooks/useListFunctions";
 
-const nativeSelectStyle = {display: 'none'};
-
 export type {SelectProps};
 
 export type SelectComponent =
@@ -112,73 +110,57 @@ export const Select = forwardRef(function Select<C>({
     }, [items, size]);
 
     return (
-        <>
-            {enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
-                                               css={[selectCloseAreaCss]}/>}
-            <div ref={ref} style={style} className={className} css={[containerCss]}>
-                <div
-                    ref={selectRef}
-                    onClick={onClick}
-                    style={selectStyle}
-                    css={[dynSelectCss({theme, borderless, flat, disabled})]}
-                >
-                    <Ripple color='rgba(0,0,0,0.2)'/>
-                    <span data-placeholder={placeholder ? true : undefined}>
-                        {item ? getContent(item, itemIndex) : placeholder}
-                    </span>
-                    <i style={{userSelect: 'none', width: "24px"}} className="material-icons">arrow_drop_down</i>
-                </div>
+		<div ref={ref} style={style} className={className} css={[ containerCss ]}>
+			{enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
+											   css={[ selectCloseAreaCss ]}/>}
+			<div
+				ref={selectRef}
+				onClick={onClick}
+				style={selectStyle}
+				css={[ dynSelectCss( { theme, borderless, flat, disabled } ) ]}
+			>
+				<Ripple color='rgba(0,0,0,0.2)'/>
+				<span data-placeholder={placeholder ? true : undefined}>
+					{item ? getContent( item, itemIndex ) : placeholder}
+				</span>
+				<i style={{ userSelect: 'none', width: "24px" }} className="material-icons">arrow_drop_down</i>
+			</div>
 
-                <div
-                    style={itemsContainerStyle}
-                    ref={listRef}
-                    css={[dynOptionsCss({theme, borderless, flat}), open && displayedSelectOptionsCss]}
-                >
-                    {
-                        items.map((item, index) => {
+			<div
+				style={itemsContainerStyle}
+				ref={listRef}
+				css={[ dynOptionsCss( { theme, borderless, flat } ), open && displayedSelectOptionsCss ]}
+			>
+				{
+					items.map( ( item, index ) => {
 
-                            const curValue = getValue(item, index);
+						const curValue = getValue( item, index );
 
-                            return (
-                                <div key={curValue} style={{display: "flex", alignItems: "center", ...itemStyle}}>
-                                    {BeforeContentComponent && <BeforeContentComponent open={open} item={item}/>}
-                                    <ContentWrapper open={open} item={item}>
-                                        <div
-                                            style={contentStyle}
-                                            css={dynOptionCss({theme})}
-                                            onClick={onChange && isSelectable(item, index) ?
-                                                () => onChange(curValue, item, index) : undefined
-                                            }
-                                        >
+						return (
+							<div key={curValue} style={{ display: "flex", alignItems: "center", ...itemStyle }}>
+								{BeforeContentComponent && <BeforeContentComponent open={open} item={item}/>}
+								<ContentWrapper open={open} item={item}>
+									<div
+										style={contentStyle}
+										css={dynOptionCss( { theme } )}
+										onClick={onChange && isSelectable( item, index ) ?
+											() => onChange( curValue, item, index ) : undefined
+										}
+									>
 
-                                            {getContent(item, index)}
+										{getContent( item, index )}
 
-                                        </div>
-                                    </ContentWrapper>
-                                    {AfterContentComponent && <AfterContentComponent open={open} item={item}/>}
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
-            <select
-                disabled
-                name={name}
-                value={value}
-                style={nativeSelectStyle}
-            >
-                {
-                    items.map((item, index) => {
-                        const curValue = valueIsIndex ? index : getValue(item, index)
-                        return (<option key={curValue}
-                                        value={curValue}
-                        />)
-                    })
-                }
-            </select>
-        </>
-    )
+									</div>
+								</ContentWrapper>
+								{AfterContentComponent && <AfterContentComponent open={open} item={item}/>}
+							</div>
+						)
+					} )
+				}
+			</div>
+			<input type='hidden' value={value} name={name}/>
+		</div>
+	)
 }) as SelectComponent;
 
 Select.displayName = "Select";
