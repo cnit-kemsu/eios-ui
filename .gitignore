@@ -22,3 +22,5 @@ storybook-static
 *.njsproj
 *.sln
 *.sw?
+
+todo.txt
