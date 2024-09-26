@@ -1,4 +1,4 @@
-import {ComponentPropsWithRef} from "react";
+import { ComponentPropsWithRef } from "react"
 import {
     BorderlessProp,
     ColorStyleProp,
@@ -6,10 +6,9 @@ import {
     FillableProp,
     FlatProp,
     LabelProp,
-    StickOnHoverProp,
     StyleProps,
     TransparentProp
-} from "../../types";
+} from "../../types"
 
 export type FileInputProps =
     LabelProp
@@ -17,7 +16,6 @@ export type FileInputProps =
     & TransparentProp
     & FillableProp
     & BorderlessProp
-    & StickOnHoverProp
     & FlatProp
     & DisabledProp
     & StyleProps

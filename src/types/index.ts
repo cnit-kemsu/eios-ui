@@ -36,11 +36,6 @@ export type FlatProp = {
     flat?: boolean;
 }
 
-export type StickOnHoverProp = {
-    /** появится эффект "прилипания" при наведении на кнопку */
-    stickOnHover?: boolean;
-}
-
 export type ColorStyleProp = {
     /** цветовой стиль */
     colorStyle?: ColorStyle;
