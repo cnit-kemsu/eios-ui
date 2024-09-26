@@ -2,13 +2,6 @@ import {css} from '@emotion/react'
 import {Theme} from "../../theme";
 import {ColorStyle} from "../../types";
 
-export const rootCss = css`
-  outline: none;
-  padding: 8px;
-  transition-property: padding, border, box-shadow;
-  box-sizing: border-box;
-`
-
 type DynRootCssArgs = {
     theme: Theme, borderless: boolean, flat: boolean, colorStyle: ColorStyle, textarea?: boolean
 };

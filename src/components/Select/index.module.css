@@ -1,0 +1,19 @@
+.select {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.close-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+}
+
+.open {
+    transform: scaleY(1) !important;
+    opacity: 1 !important;
+}

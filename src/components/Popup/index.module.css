@@ -1,0 +1,44 @@
+.popup {
+    position: absolute;
+    z-index: 1000;
+    transition: transform 0.1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top {
+    margin-top: -0.1rem;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    flex-direction: column;
+}
+
+.bottom {
+    margin-top: 0.1rem;
+    transform: scaleY(0);
+    transform-origin: top;
+    flex-direction: column;
+}
+
+.left {
+    margin-left: -0.1rem;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+.right {
+    margin-left: 0.1rem;
+    transform: scaleX(0);
+}
+
+.show {
+    transform: scale(1);
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: relative;
+}

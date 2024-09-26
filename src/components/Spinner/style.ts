@@ -24,19 +24,6 @@ const spinnerDashKeyframe = (l: number) => keyframes`
     }
 `
 
-export const spinnerCss = css`
-    position: relative;
-    width: inherit;
-    /*height: 100%;*/
-`
-
-export const spinnerCircleCss = css`
-    fill: transparent;
-    stroke-width: 5;
-    stroke-linecap: round;
-    transform-origin: 50% 50%;
-`
-
 type DynSpinnerCircleCssArgs = { theme: Theme, colorStyle: ColorStyle, l: number };
 
 export const dynSpinnerCircleCss = ({theme, colorStyle, l}: DynSpinnerCircleCssArgs) => css`

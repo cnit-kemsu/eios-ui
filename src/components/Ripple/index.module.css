@@ -1,0 +1,34 @@
+.ripple-container {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+@keyframes ripple-kf {
+    from {
+        transform: scale(0, 0);
+    }
+    
+    to {
+        transform: scale(1, 1);
+    }
+}
+
+.ripple {
+    left: 0;
+    top: 0;
+    border-radius: 100%;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    transform-origin: center;
+
+    animation-name: ripple-kf;
+    animation-timing-function: cubic-bezier(0.120, 0.810, 0.650, 0.840);
+
+    pointer-events: none;
+    transition: opacity 1s;
+}

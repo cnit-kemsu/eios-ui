@@ -1,166 +1,163 @@
-import {ForwardedRef, forwardRef, MutableRefObject, ReactElement, useLayoutEffect, useMemo, useRef} from 'react'
-import {useTheme} from '../../theme'
-import {Ripple} from '../Ripple'
-import {
-    containerCss,
-    displayedSelectOptionsCss,
-    dynOptionCss,
-    dynOptionsCss,
-    dynSelectCss,
-    selectCloseAreaCss
-} from './style'
-import type {SelectProps} from "./SelectProps";
-import {getTrue} from "../../utils";
-import {useListFunctions} from "../../hooks/useListFunctions";
+import { ForwardedRef, forwardRef, MutableRefObject, ReactElement, useLayoutEffect, useMemo, useRef } from "react"
+import { useTheme } from "../../theme"
+import { Ripple } from "../Ripple"
 
-export type {SelectProps};
+import type { SelectProps } from "./SelectProps"
+import { getTrue } from "../../utils"
+import { useListFunctions } from "../../hooks/useListFunctions"
+
+import { dynOptionCss, dynOptionsCss, dynSelectCss } from "./style"
+import selectCss from "./index.module.css"
+import cx from "classix"
+
+export type { SelectProps }
 
 export type SelectComponent =
-    (<C>(props: SelectProps<C>, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
-    & { displayName?: string };
+	(<C>(props: SelectProps<C>, ref?: ForwardedRef<HTMLUListElement>) => (ReactElement | null))
+	& { displayName?: string };
 
 /** Выпадающий список. */
 export const Select = forwardRef(function Select<C>({
-                                                        name,
-                                                        open = false,
-                                                        enableOutsideArea,
-                                                        onClick,
-                                                        onOutsideClick,
-                                                        selectStyle,
-                                                        onChange,
-                                                        valueProp = 'value',
-                                                        contentProp = 'content',
-                                                        selectableProp = getTrue,
-                                                        disabled = false,
-                                                        items = [],
-                                                        value,
-                                                        size,
-                                                        itemsContainerStyle,
-                                                        itemStyle,
-                                                        contentStyle,
-                                                        placeholder,
-                                                        borderless = false,
-                                                        flat = false,
-                                                        fullWidth = false,
-                                                        width,
-                                                        valueIsIndex = false,
-                                                        BeforeContentComponent,
-                                                        AfterContentComponent,
-                                                        ContentWrapper = ({children}) => <>{children}</>,
-                                                        style,
-                                                        className
-                                                    }: SelectProps<C>, ref?: ForwardedRef<HTMLDivElement>) {
+														name,
+														open = false,
+														enableOutsideArea,
+														onClick,
+														onOutsideClick,
+														selectStyle,
+														onChange,
+														valueProp = "value",
+														contentProp = "content",
+														selectableProp = getTrue,
+														disabled = false,
+														items = [],
+														value,
+														size,
+														itemsContainerStyle,
+														itemStyle,
+														contentStyle,
+														placeholder,
+														borderless = false,
+														flat = false,
+														fullWidth = false,
+														width,
+														valueIsIndex = false,
+														BeforeContentComponent,
+														AfterContentComponent,
+														ContentWrapper = ({ children }) => <>{children}</>,
+														style,
+														className
+													}: SelectProps<C>, ref?: ForwardedRef<HTMLDivElement>) {
 
-    const theme = useTheme();
+	const theme = useTheme()
 
-    const {
-        getContent,
-        getValue,
-        isSelectable
-    } = useListFunctions<C>(contentProp, valueProp, selectableProp, valueIsIndex);
+	const {
+		getContent,
+		getValue,
+		isSelectable
+	} = useListFunctions<C>(contentProp, valueProp, selectableProp, valueIsIndex)
 
-    const itemIndex = useMemo(() => items?.findIndex((item, index) => getValue(item, index) === value), [items, getValue, value]);
-    const item = itemIndex > -1 ? items[itemIndex] : null;
+	const itemIndex = useMemo(() => items?.findIndex((item, index) => getValue(item, index) === value), [items, getValue, value])
+	const item = itemIndex > -1 ? items[itemIndex] : null
 
-    const selectRef = useRef() as MutableRefObject<HTMLDivElement>;
-    const listRef = useRef() as MutableRefObject<HTMLDivElement>;
+	const selectRef = useRef() as MutableRefObject<HTMLDivElement>
+	const listRef = useRef() as MutableRefObject<HTMLDivElement>
 
-    useLayoutEffect(() => {
+	useLayoutEffect(() => {
 
-        if (!width) {
-            selectRef.current.style.width = 'unset';
-            listRef.current.style.width = 'unset';
-        } else {
-            selectRef.current.style.width = width;
-            listRef.current.style.width = width;
-        }
+		if (!width) {
+			selectRef.current.style.width = "unset"
+			listRef.current.style.width = "unset"
+		} else {
+			selectRef.current.style.width = width
+			listRef.current.style.width = width
+		}
 
-    }, [width, borderless])
+	}, [width, borderless])
 
-    useLayoutEffect(() => {
+	useLayoutEffect(() => {
 
-        if (width) return;
+		if (width) return
 
-        selectRef.current.style.width = 'unset';
-        listRef.current.style.width = 'unset';
+		selectRef.current.style.width = "unset"
+		listRef.current.style.width = "unset"
 
-        if (fullWidth) {
-            const listStyle = window.getComputedStyle(listRef.current);
-            const selectStyle = window.getComputedStyle(selectRef.current);
+		if (fullWidth) {
+			const listStyle = window.getComputedStyle(listRef.current)
+			const selectStyle = window.getComputedStyle(selectRef.current)
 
-            const listWidth = Number.parseFloat(listStyle.width);
-            const selectWidth = Number.parseFloat(selectStyle.width);
+			const listWidth = Number.parseFloat(listStyle.width)
+			const selectWidth = Number.parseFloat(selectStyle.width)
 
-            if (listWidth > selectWidth) {
-                selectRef.current.style.width = `${listWidth}px`;
-            } else {
-                listRef.current.style.width = selectWidth + "px";
-            }
-        }
+			if (listWidth > selectWidth) {
+				selectRef.current.style.width = `${listWidth}px`
+			} else {
+				listRef.current.style.width = selectWidth + "px"
+			}
+		}
 
-    }, [items, fullWidth, theme, width]);
+	}, [items, fullWidth, theme, width])
 
-    useLayoutEffect(() => {
+	useLayoutEffect(() => {
 
-        if (typeof size === 'number' && size > 0 && listRef.current.children.length > 0) {
-            const itemHeight = listRef.current.children[0].clientHeight
-            listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size} + 16px)`
-        }
+		if (typeof size === "number" && size > 0 && listRef.current.children.length > 0) {
+			const itemHeight = listRef.current.children[0].clientHeight
+			listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size} + 16px)`
+		}
 
-    }, [items, size]);
+	}, [items, size])
 
-    return (
-		<div ref={ref} style={style} className={className} css={[ containerCss ]}>
-			{enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref}
-											   css={[ selectCloseAreaCss ]}/>}
+	return (
+		<div ref={ref} style={style} className={cx(selectCss.select, className)}>
+			{enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref} className={selectCss.closeArea} />}
 			<div
 				ref={selectRef}
 				onClick={onClick}
 				style={selectStyle}
-				css={[ dynSelectCss( { theme, borderless, flat, disabled } ) ]}
+				css={[dynSelectCss({ theme, borderless, flat, disabled })]}
 			>
-				<Ripple color='rgba(0,0,0,0.2)'/>
+				<Ripple color="rgba(0,0,0,0.2)" />
 				<span data-placeholder={placeholder ? true : undefined}>
-					{item ? getContent( item, itemIndex ) : placeholder}
+					{item ? getContent(item, itemIndex) : placeholder}
 				</span>
-				<i style={{ userSelect: 'none', width: "24px" }} className="material-icons">arrow_drop_down</i>
+				<i style={{ userSelect: "none", width: "24px" }} className="material-icons">arrow_drop_down</i>
 			</div>
 
 			<div
 				style={itemsContainerStyle}
 				ref={listRef}
-				css={[ dynOptionsCss( { theme, borderless, flat } ), open && displayedSelectOptionsCss ]}
+				css={dynOptionsCss({ theme, borderless, flat })}
+				className={cx(open && selectCss.open)}
 			>
 				{
-					items.map( ( item, index ) => {
+					items.map((item, index) => {
 
-						const curValue = getValue( item, index );
+						const curValue = getValue(item, index)
 
 						return (
 							<div key={curValue} style={{ display: "flex", alignItems: "center", ...itemStyle }}>
-								{BeforeContentComponent && <BeforeContentComponent open={open} item={item}/>}
+								{BeforeContentComponent && <BeforeContentComponent open={open} item={item} />}
 								<ContentWrapper open={open} item={item}>
 									<div
 										style={contentStyle}
-										css={dynOptionCss( { theme } )}
-										onClick={onChange && isSelectable( item, index ) ?
-											() => onChange( curValue, item, index ) : undefined
+										css={dynOptionCss({ theme })}
+										onClick={onChange && isSelectable(item, index) ?
+											() => onChange(curValue, item, index) : undefined
 										}
 									>
 
-										{getContent( item, index )}
+										{getContent(item, index)}
 
 									</div>
 								</ContentWrapper>
-								{AfterContentComponent && <AfterContentComponent open={open} item={item}/>}
+								{AfterContentComponent && <AfterContentComponent open={open} item={item} />}
 							</div>
 						)
-					} )
+					})
 				}
 			</div>
-			<input type='hidden' value={value} name={name}/>
+			<input type="hidden" value={value} name={name} />
 		</div>
 	)
-}) as SelectComponent;
+}) as SelectComponent
 
-Select.displayName = "Select";
+Select.displayName = "Select"

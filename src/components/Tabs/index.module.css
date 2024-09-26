@@ -1,0 +1,27 @@
+.tabs {
+    display: block;
+}
+
+.tab {
+    box-sizing: content-box;
+    outline: none;
+    border: none;
+    flex: unset;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    color: inherit;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.stretch {
+    display: flex;
+
+    &:after {
+        display: none;
+    }
+}

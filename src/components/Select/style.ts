@@ -1,12 +1,6 @@
 import {css} from '@emotion/react'
 import {Theme} from "../../theme";
 
-export const containerCss = css`
-  display: inline-block;
-  position: relative;  
-  box-sizing: border-box;
-`
-
 export const dynOptionCss = ({theme}: { theme: Theme }) => css`
   padding: 8px;
   position: relative;
@@ -73,18 +67,4 @@ export const dynSelectCss = ({theme, disabled, borderless, flat}: DynSelectCssAr
   span[data-placeholder=true] {
     color: ${theme.select.placeholderColor};
   }
-`
-
-export const displayedSelectOptionsCss = css`
-  transform: scaleY(1);
-  opacity: 1;
-`
-
-export const selectCloseAreaCss = css`
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
 `

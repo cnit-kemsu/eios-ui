@@ -1,0 +1,6 @@
+.input {
+    outline: none;
+    padding: 8px;
+    transition-property: padding, border, box-shadow;
+    box-sizing: border-box;
+}

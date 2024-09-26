@@ -2,15 +2,6 @@ import { css } from '@emotion/react'
 import {Theme} from "../../theme";
 import {ColorStyle} from "../../types";
 
-export const rootCss = css`
-    position: relative; 
-    cursor: pointer;  
-    display: inline-flex;
-    align-items: center;
-    flex-direction: row;
-    user-select: none;
-`
-
 type DynIconCssArgs = {
     checked: boolean, disabled: boolean, theme: Theme, colorStyle: ColorStyle
 };

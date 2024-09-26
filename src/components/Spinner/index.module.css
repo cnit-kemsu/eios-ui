@@ -1,0 +1,12 @@
+.spinner {
+    position: relative;
+    width: inherit;
+    /*height: 100%;*/
+}
+
+.circle {
+    fill: transparent;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transform-origin: 50% 50%;
+}
