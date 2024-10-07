@@ -1,7 +1,7 @@
 import {Tabs} from '../components/Tabs';
 import {Meta, StoryObj} from "@storybook/react";
-import {Tab} from "../components/Tabs/Tab.tsx";
-import {useTabs} from "../hooks/useTabs.ts";
+import {Tab} from "../components/Tabs/Tab";
+import {useTabs} from "../hooks/useTabs";
 import {Button} from "../components/Button";
 
 const meta = {

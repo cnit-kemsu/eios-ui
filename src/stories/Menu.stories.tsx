@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {Menu} from '../components/Menu';
-import {MenuItem} from "../components/Menu/MenuItem.tsx";
-import {MenuProps} from "../components/Menu/MenuProps.ts";
+import {MenuItem} from "../components/Menu/MenuItem";
+import {MenuProps} from "../components/Menu/MenuProps";
 import {MutableRefObject, useRef} from "react";
-import {useMenu, useSubmenu} from "../hooks/useMenu.tsx";
+import {useMenu, useSubmenu} from "../hooks/useMenu";
 import {Button} from "../components/Button";
 import {Message} from "../components/Message";
 

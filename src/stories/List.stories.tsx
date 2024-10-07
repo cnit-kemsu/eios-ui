@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {List} from '../components/List';
-import {useList} from "../hooks/useList.ts";
+import {useList} from "../hooks/useList";
 import {Button} from "../components/Button";
 
 const meta = {

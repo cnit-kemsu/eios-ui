@@ -1,7 +1,7 @@
 import {css} from '@emotion/react'
 import tc from 'tinycolor2'
-import {MessageType} from "./MessageProps.ts";
-import {Theme} from "../../theme.ts";
+import {MessageType} from "./MessageProps";
+import {Theme} from "../../theme";
 
 type DynMessageCssArgs = {
     theme: Theme,

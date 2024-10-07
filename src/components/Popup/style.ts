@@ -1,5 +1,5 @@
 import {css} from "@emotion/react";
-import {Theme} from "../../theme.ts";
+import {Theme} from "../../theme";
 
 export const dynContentCss = (theme : Theme) => css`
     

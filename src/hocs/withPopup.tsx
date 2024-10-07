@@ -1,7 +1,7 @@
 import {MutableRefObject, ReactNode, useRef} from "react";
 import {Popup, PopupProps} from "../components/Popup";
 import {FCR} from "../types";
-import {usePopup} from "../hooks/usePopup.tsx";
+import {usePopup} from "../hooks/usePopup";
 
 export type WithTooltipProps<P> =  {
     tooltip?: ReactNode,

@@ -1,6 +1,6 @@
 import {Ripple} from '../components/Ripple';
 import {Meta, StoryObj} from "@storybook/react";
-import {RippleProps} from "../components/Ripple/RippleProps.ts";
+import {RippleProps} from "../components/Ripple/RippleProps";
 
 const meta = {
     title: 'Ripple',

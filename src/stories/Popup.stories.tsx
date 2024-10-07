@@ -2,7 +2,7 @@ import {Popup} from '../components/Popup';
 import {Meta, StoryObj} from "@storybook/react";
 import {MutableRefObject, useRef, useState} from "react";
 import {Button} from "../components/Button";
-import {usePopup} from "../hooks/usePopup.tsx";
+import {usePopup} from "../hooks/usePopup";
 
 const meta = {
     title: 'Popup',

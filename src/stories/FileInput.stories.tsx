@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {FileInput} from '../components/FileInput';
-import {FileInputProps} from "../components/FileInput/FileInputProps.ts";
+import {FileInputProps} from "../components/FileInput/FileInputProps";
 import {useState} from "react";
 
 const meta = {

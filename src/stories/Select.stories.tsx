@@ -1,10 +1,10 @@
 import {Select} from '../components/Select';
 import {Meta, StoryObj} from "@storybook/react";
-import {SelectProps} from "../components/Select/SelectProps.ts";
+import {SelectProps} from "../components/Select/SelectProps";
 
 import 'material-icons/iconfont/material-icons.css';
 import {Button} from "../components/Button";
-import {useSelect} from "../hooks/useSelect.ts";
+import {useSelect} from "../hooks/useSelect";
 
 const meta = {
     title: 'Select',

@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {Checkbox} from '../components/Checkbox';
-import {useCheckbox} from "../hooks/useCheckbox.ts";
+import {useCheckbox} from "../hooks/useCheckbox";
 import {Button} from "../components/Button";
 
 import 'material-icons/iconfont/material-icons.css';

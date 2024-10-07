@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {Modal} from "../components/Modal";
 import 'material-icons/iconfont/material-icons.css';
-import {useModal} from "../hooks/useModal.ts";
+import {useModal} from "../hooks/useModal";
 import {Button} from "../components/Button";
 
 const meta = {

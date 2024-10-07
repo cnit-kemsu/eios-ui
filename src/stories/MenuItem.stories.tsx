@@ -1,7 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {MenuItem} from "../components/Menu/MenuItem.tsx";
+import {MenuItem} from "../components/Menu/MenuItem";
 import {Menu} from "../components/Menu";
-import {MenuItemProps} from "../components/Menu/MenuItemProps.ts";
+import {MenuItemProps} from "../components/Menu/MenuItemProps";
 import {fn} from '@storybook/test';
 
 const meta = {
