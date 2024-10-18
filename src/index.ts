@@ -3,6 +3,7 @@ export {ThemeProvider, defaultTheme, useTheme, type Theme} from './theme';
 export * from './components/Ripple'
 export * from './components/Button'
 export * from './components/Checkbox'
+export * from './components/Switch'
 export * from './components/List'
 export * from './components/Select'
 export * from './components/Message'
