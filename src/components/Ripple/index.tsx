@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo, useReducer, useRef } from "react"
+import { MutableRefObject, useLayoutEffect, useMemo, useReducer, useRef } from "react"
 import { useTheme } from "../../theme"
 import { dynRippleCss } from "./style"
 import { RippleCallbacks } from "./RippleCallbacks"
@@ -19,13 +19,13 @@ export function Ripple({
 	const { disableRipple } = useTheme()
 	const [, forceUpdate] = useReducer(x => x + 1, 0, undefined)
 	const rippleDomRef = useRef(null) as MutableRefObject<HTMLDivElement | null>
-	const rippleDataRef = useRef(initRippleData)
+	const rippleDataRef = useRef({ ...initRippleData })
 
 	const {
 		mouseEventHandlers, onTransitionEnd, handleEffect
 	} = useMemo(() => new RippleCallbacks(() => forceUpdate(), rippleDataRef, rippleDomRef), [])
 
-	useEffect(handleEffect)
+	useLayoutEffect(handleEffect)
 
 	if (disableRipple) return null
 
