@@ -9,7 +9,7 @@ const lightenValue = 8
  */
 export const defaultTheme = {
 	borderColor: "rgb(220, 227, 236)",//'#abb7c7',
-	transitionDuration: "0.1s",
+	transitionDuration: "0.15s",
 	disabledOpacity: "0.5",
 	disableRipple: false,
 	boxShadow: "box-shadow: 0 0px 6px rgba(0,0,0,0.1)",

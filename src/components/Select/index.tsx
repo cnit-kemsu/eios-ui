@@ -119,7 +119,7 @@ export const Select = forwardRef(function Select<C>({
 				<span data-placeholder={placeholder ? true : undefined}>
 					{item ? getContent(item, itemIndex) : placeholder}
 				</span>
-				<i style={{ userSelect: "none", width: "24px" }} className="material-icons">arrow_drop_down</i>
+				<i style={{ userSelect: "none", width: "24px" }} className={cx("material-icons", selectCss.arrow, open && selectCss.arrowOpen)}>arrow_drop_down</i>
 			</div>
 
 			<div

@@ -28,7 +28,7 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   ${flat ? borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor};` : 'border: none;'} transform: scaleY(0);
   opacity: 0;
   transform-origin: top;
-  transition: transform ${theme.transitionDuration}, opacity ${theme.transitionDuration};
+  transition: transform ease-in-out ${theme.transitionDuration}, opacity ease-in-out ${theme.transitionDuration};
   ${flat ? '' : theme.boxShadow + ";"};
   padding: 8px;
   box-sizing: border-box;
