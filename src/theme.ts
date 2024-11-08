@@ -84,12 +84,14 @@ export const defaultTheme = {
 	message: {
 		bg: {
 			info: tc("#f3f5fc").toString() as string,
+			darkInfo: tc("#39393b").toString() as string,
 			warning: tc("#ffface").toString() as string,
 			error: tc("#ffd5d5").toString() as string,
 			success: tc("#daffbf").toString() as string
 		},
 		color: {
 			info: "#575d6d",
+			darkInfo: "#f1f1f1",
 			warning: "#61562f",
 			error: tc("#dc1654").darken(darkenValue * 2).toString() as string,
 			success: "#44652b"
