@@ -1,0 +1,18 @@
+.toast {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%) scaleY(0);
+    width: 50rem;
+    max-width: calc(100% - 2rem);
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.show {
+    transform: translateX(-50%) translateY(0%) scaleY(1);
+}
