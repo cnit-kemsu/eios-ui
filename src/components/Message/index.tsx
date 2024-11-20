@@ -1,13 +1,13 @@
 import { forwardRef } from "react"
 import { useTheme } from "../../theme"
 import { dynMessageCss } from "./style"
-import type { MessageProps } from "./MessageProps"
+import type { MessageProps, MessageType } from "./MessageProps"
 import type { FCR } from "../../types"
 import cx from "classix"
 
 import style from "./index.module.css"
 
-export type { MessageProps }
+export type { MessageProps, MessageType }
 
 /** Для вывода сообщений разных типов. Принимает также все свойства `<div>`, передаваемый в корневой элемент. */
 export const Message = forwardRef<HTMLDivElement, MessageProps>(({
