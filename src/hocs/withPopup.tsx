@@ -1,7 +1,6 @@
-import {MutableRefObject, ReactNode, useRef} from "react";
-import {Popup, PopupProps} from "../components/Popup";
-import {FCR} from "../types";
-import {usePopup} from "../hooks/usePopup";
+import { createElement, FunctionComponent, ReactNode, Ref, useRef } from "react"
+import { Popup, PopupProps } from "../components/Popup"
+import { usePopup } from "../hooks/usePopup"
 
 export type WithTooltipProps<P> =  {
     tooltip?: ReactNode,
@@ -9,15 +8,18 @@ export type WithTooltipProps<P> =  {
     popupProps?: Omit<PopupProps, 'show' | 'onMouseEnter' | 'onMouseLeave' | 'children'>
 } & P;
 
-export function withPopup<P, R>(C: FCR<P, R>) {
+export function withPopup<P>(C: FunctionComponent<P & { ref: Ref<HTMLElement> }>) {
     function WithTooltip({tooltip, tooltipDelay = 0, popupProps = {}, ...props}: WithTooltipProps<P>) {
 
-        const elRef = useRef() as MutableRefObject<HTMLElement>;
+        const elRef = useRef<HTMLElement>(null);
         const popup = usePopup(elRef, tooltipDelay);
 
         return <>
             <Popup {...popup} {...popupProps}>{tooltip}</Popup>
-            <C ref={elRef} {...props as P}/>
+            {createElement(C, {
+                ...props as P,
+                ref: elRef
+            })}
         </>
     }
 

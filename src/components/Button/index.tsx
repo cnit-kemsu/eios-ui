@@ -1,4 +1,4 @@
-import { ElementType, forwardRef, JSX } from "react"
+import { ElementType, forwardRef, ForwardRefRenderFunction, JSX } from "react"
 
 import { useTheme } from "../../theme"
 import { Ripple } from "../Ripple"
@@ -18,7 +18,7 @@ export type ButtonComponent =
 /**
  * Кнопка. По умолчанию представляет собой обертку вокруг `button`. Помимо своих свойств, принимает свойства оборачиваемого элемента.
  */
-export const Button = forwardRef(<C extends ElementType = "button">({
+export const Button = forwardRef((<C extends ElementType = "button">({
 																																			elementType,
 																																			disabled = false,
 																																			flat = false,
@@ -31,6 +31,7 @@ export const Button = forwardRef(<C extends ElementType = "button">({
 																																			...props
 																																		}: ButtonProps<C>, ref?: PolymorphicRef<C>) => {
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const theme = useTheme()
 	const { colorStyles } = theme
 
@@ -54,6 +55,6 @@ export const Button = forwardRef(<C extends ElementType = "button">({
 			{children}
 		</Component>
 	)
-}) as ButtonComponent
+}) as ForwardRefRenderFunction<unknown>) as ButtonComponent
 
 Button.displayName = "Button"

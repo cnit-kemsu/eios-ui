@@ -1,7 +1,7 @@
 import {MutableRefObject, useEffect, useRef, useState} from "react";
 import {debounce} from "../utils";
 
-export function usePopup(targetElementRef: MutableRefObject<HTMLElement>, delay = 0) {
+export function usePopup(targetElementRef: MutableRefObject<HTMLElement | null>, delay = 0) {
     const [show, setShow] = useState(false);
     const insideTooltipRef = useRef(false);
 
