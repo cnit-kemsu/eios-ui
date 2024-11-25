@@ -7,6 +7,9 @@ export type ToastProps = MessageProps & {
 	show: boolean;
 }
 
+/**
+ * Всплывающее сообщение. Используется для небольших уведомлений. Появляется сверху
+ */
 export function Toast({ show, children, ...props } : ToastProps){
 	return <Message className={cx(cssStyle.toast, show && cssStyle.show)} {...props}>
 		{children}
