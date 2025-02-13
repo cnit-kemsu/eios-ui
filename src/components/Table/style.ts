@@ -42,7 +42,7 @@ export const dynTableCss = ({theme, borderless, flat, selectableRows, selectable
               }
             }
           ` : ''}
-  thead td {
+  thead td, thead th {
     background: ${theme.table.headerColBg};
   }
 
