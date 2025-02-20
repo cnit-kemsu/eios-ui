@@ -30,11 +30,23 @@ export const itemCss = css`
 
 type DynItemCssArgs = { theme: Theme, colorStyle: ColorStyle };
 
-export const dynItemCss = ({theme, colorStyle}: DynItemCssArgs) => css`  
-  &:hover {
-    color: ${theme.colorStyles[colorStyle].hover};
-  }
-`
+export const dynItemCss = ({theme, colorStyle}: DynItemCssArgs) => {
+
+    return css`
+
+        &:nth-of-type(2n-1) {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        
+        &:nth-of-type(2n) {
+             background: rgba(0, 0, 0, 0.02);
+         }
+
+        &:hover {
+            color: ${theme.colorStyles[colorStyle].hover};
+        }
+	`
+}
 
 const dynSelectedItemKeyframes = ({theme, colorStyle}: DynItemCssArgs) => {
 
@@ -53,6 +65,6 @@ const dynSelectedItemKeyframes = ({theme, colorStyle}: DynItemCssArgs) => {
 export const dynSelectedItemCss = ({theme, colorStyle}: DynItemCssArgs) => css`
   background: ${tc(theme.colorStyles[colorStyle].origin).setAlpha(0.05).toString()};  
   padding: 0.6rem 1rem 0.6rem 2rem;
-  border-left: 0.3rem solid ${theme.colorStyles[colorStyle].origin};
+  border-left: 0.3rem solid ${theme.colorStyles[colorStyle].origin} !important;
   animation: ${dynSelectedItemKeyframes({theme, colorStyle})} 0.5s;
 `
