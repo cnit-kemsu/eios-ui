@@ -73,14 +73,7 @@ export const List = forwardRef(function List<C>({
 					})
 				}
 			</ul>
-			<select name={name} disabled value={value} style={{ display: "none" }}>
-				{
-					items.map((item, index) => {
-						const curValue = getValue(item, index)
-						return <option key={curValue} value={curValue} />
-					})
-				}
-			</select>
+			<input type="hidden" name={name} value={value}/>
 		</>
 	)
 }) as ListComponent
