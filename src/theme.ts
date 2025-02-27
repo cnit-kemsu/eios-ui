@@ -100,8 +100,8 @@ export const defaultTheme = {
 	tabs: {
 		height: "1rem",
 		borderWidth: "4px",
-		tabPadding: "8px",
-		tabContentPadding: "8px"
+		tabPadding: "0.5rem",
+		tabContentPadding: "0.5rem"
 	},
 	select: {
 		selectedOptionBg: "#e8f0fb",

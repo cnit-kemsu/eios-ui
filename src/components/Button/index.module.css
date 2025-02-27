@@ -1,5 +1,6 @@
 
 .button {
+    line-height: 1rem;
     font-size: unset;
     display: inline-flex;
     align-items: center;

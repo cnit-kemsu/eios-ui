@@ -11,7 +11,7 @@ export const dynTabsCss = ({theme}: { theme: Theme }) => css`
 `
 
 export const dynTabCss = ({theme, colorStyle}: { theme: Theme, colorStyle: ColorStyle }) => css`
-  height: ${theme.tabs.height};
+  /*height: ${theme.tabs.height};*/
   border-bottom: 4px solid ${theme.borderColor};
   padding: ${theme.tabs.tabPadding};
   background: ${theme.colorStyles[colorStyle].text};
