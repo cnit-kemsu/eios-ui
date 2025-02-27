@@ -16,7 +16,7 @@
     "preview": "vite preview"
   },
   "publishConfig": {
-    "@kemsu:registry": "http://gitlab.kemsu.ru/api/v4/projects/3/packages/npm/"
+    "@kemsu:registry": "https://gitlab2.kemsu.ru/api/v4/projects/3/packages/npm/"
   },
   "keywords": [],
   "author": {
@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+http://gitlab.kemsu.ru/kemsu/eios-ui"
+    "url": "git+https://gitlab2.kemsu.ru/kemsu/eios-ui"
   },
   "license": "MIT",
   "peerDependencies": {
