@@ -1,5 +1,5 @@
 .tabs {
-    display: block;
+    display: flex;
 }
 
 .tab {
