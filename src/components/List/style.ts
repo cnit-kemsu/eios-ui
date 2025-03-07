@@ -35,11 +35,11 @@ export const dynItemCss = ({theme, colorStyle}: DynItemCssArgs) => {
     return css`
 
         &:nth-of-type(2n-1) {
-            background: rgba(0, 0, 0, 0.04);
+            background: rgba(0, 0, 0, 0.01);
         }
         
         &:nth-of-type(2n) {
-             background: rgba(0, 0, 0, 0.02);
+             background: rgba(0, 0, 0, 0.03);
          }
 
         &:hover {
