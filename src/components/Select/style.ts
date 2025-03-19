@@ -2,10 +2,10 @@ import {css} from '@emotion/react'
 import {Theme} from "../../theme";
 
 export const dynOptionCss = ({theme}: { theme: Theme }) => css`
-  padding: 8px;
+  padding: 0.5rem;
   position: relative;
-  overflow: hidden;
-  height: ${theme.select.itemHeight};
+  white-space: break-spaces;
+  /*height: ${theme.select.itemHeight};*/
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -24,13 +24,15 @@ export const dynOptionsCss = ({theme, borderless, flat}: DynOptionsCssArgs) => c
   overflow: auto;
   z-index: 100;  
   position: absolute;
+  left: 0;
+  right: 0;
   white-space: nowrap;
   ${flat ? borderless ? 'border: none' : `border: 1px solid ${theme.select.borderColor};` : 'border: none;'} transform: scaleY(0);
   opacity: 0;
   transform-origin: top;
   transition: transform ease-in-out ${theme.transitionDuration}, opacity ease-in-out ${theme.transitionDuration};
   ${flat ? '' : theme.boxShadow + ";"};
-  padding: 8px;
+  padding: 0.5rem;
   box-sizing: border-box;
   margin-top: -1px;
 `
@@ -39,6 +41,7 @@ type DynSelectCssArgs = {theme: Theme, disabled: boolean, borderless: boolean, f
 
 export const dynSelectCss = ({theme, disabled, borderless, flat}: DynSelectCssArgs) => css`  
   background: white;
+  width: 100%;
   height: ${theme.select.height};
   position: relative;
   overflow: hidden;
@@ -47,7 +50,7 @@ export const dynSelectCss = ({theme, disabled, borderless, flat}: DynSelectCssAr
   ${flat ? borderless ? 'border: none; padding: 3px;' : `border: 1px solid ${theme.select.borderColor};` : 'border: none; border-bottom: 2px solid transparent;'}  
   outline: none;
   transition-property: border;
-  padding: 8px 0 8px 8px;  
+  padding: 0.5rem 0 0.5rem 0.5rem;  
   cursor: pointer;
   justify-content: space-between;
   pointer-events: ${disabled ? 'none' : 'auto'};

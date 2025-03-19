@@ -38,8 +38,8 @@ export const Select = forwardRef(function Select<C>({
 														placeholder,
 														borderless = false,
 														flat = false,
-														fullWidth = false,
-														width,
+														/*fullWidth = false,
+														width,*/
 														valueIsIndex = false,
 														BeforeContentComponent,
 														AfterContentComponent,
@@ -60,9 +60,9 @@ export const Select = forwardRef(function Select<C>({
 	const item = itemIndex > -1 ? items[itemIndex] : null
 
 	const selectRef = useRef() as MutableRefObject<HTMLDivElement>
-	const listRef = useRef() as MutableRefObject<HTMLDivElement>
+	const listRef = useRef() as MutableRefObject<HTMLUListElement>
 
-	useLayoutEffect(() => {
+	/*useLayoutEffect(() => {
 
 		if (!width) {
 			selectRef.current.style.width = "unset"
@@ -95,20 +95,33 @@ export const Select = forwardRef(function Select<C>({
 			}
 		}
 
-	}, [items, fullWidth, theme, width])
+	}, [items, fullWidth, theme, width])*/
 
 	useLayoutEffect(() => {
 
 		if (typeof size === "number" && size > 0 && listRef.current.children.length > 0) {
-			const itemHeight = listRef.current.children[0].clientHeight
-			listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size} + 16px)`
+			/*const itemHeight = listRef.current.children[0].clientHeight
+			listRef.current.style.maxHeight = `calc(${itemHeight}px * ${size} + 16px)`*/
+
+			const options = listRef.current.children;
+
+			if(options.length > 0) {
+				let h = 0;
+				const n = Math.min(size, options.length)
+
+				for(let i = 0; i < n; ++i) {
+					h += options[i].clientHeight
+				}
+
+				listRef.current.style.maxHeight = `calc(${h}px + 2rem)`
+			}
 		}
 
 	}, [items, size])
 
 	return (
 		<div ref={ref} style={style} className={cx(selectCss.select, className)}>
-			{enableOutsideArea && open && <div onClick={onOutsideClick} ref={ref} className={selectCss.closeArea} />}
+			{enableOutsideArea && open && <div onClick={onOutsideClick} className={selectCss.closeArea} />}
 			<div
 				ref={selectRef}
 				onClick={onClick}
@@ -122,7 +135,7 @@ export const Select = forwardRef(function Select<C>({
 				<i style={{ userSelect: "none", width: "24px" }} className={cx("material-icons", selectCss.arrow, open && selectCss.arrowOpen)}>arrow_drop_down</i>
 			</div>
 
-			<div
+			<ul
 				style={itemsContainerStyle}
 				ref={listRef}
 				css={dynOptionsCss({ theme, borderless, flat })}
@@ -134,7 +147,7 @@ export const Select = forwardRef(function Select<C>({
 						const curValue = getValue(item, index)
 
 						return (
-							<div key={curValue} style={{ display: "flex", alignItems: "center", ...itemStyle }}>
+							<li key={curValue} style={{ display: "flex", alignItems: "center", ...itemStyle }}>
 								{BeforeContentComponent && <BeforeContentComponent open={open} item={item} />}
 								<ContentWrapper open={open} item={item}>
 									<div
@@ -150,11 +163,11 @@ export const Select = forwardRef(function Select<C>({
 									</div>
 								</ContentWrapper>
 								{AfterContentComponent && <AfterContentComponent open={open} item={item} />}
-							</div>
+							</li>
 						)
 					})
 				}
-			</div>
+			</ul>
 			<input type="hidden" value={value} name={name} />
 		</div>
 	)
