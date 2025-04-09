@@ -1,10 +1,9 @@
 import cssStyle from "./index.module.css"
-import { ComponentPropsWithRef, ForwardedRef, forwardRef, MutableRefObject, ReactElement, useRef } from "react"
+import { ComponentPropsWithRef, ForwardedRef, forwardRef, ReactElement, useRef } from "react"
 import { ColorStyleProp, DisabledProp, NameProp, StyleProps, ValueProp } from "../../types"
 import { Ripple } from "../Ripple"
-import { useTheme } from "../../theme.ts"
 import cx from "classix"
-import { dynSwitchButtonCss, dynSwitchCss } from "./style.ts"
+import { getRippleColorFromColorStyle } from "../../utils.ts"
 
 const rippleStyle = {
 	width: "200%",
@@ -35,7 +34,7 @@ export type SwitchComponent = ((props: SwitchProps, ref?: ForwardedRef<HTMLDivEl
  */
 export const Switch = forwardRef<HTMLDivElement, SwitchProps>(({
 																   name,
-																   colorStyle = "secondary",
+																   colorStyle = "primary",
 																   disabled = false,
 																   checked = false,
 																   onClick,
@@ -44,24 +43,19 @@ export const Switch = forwardRef<HTMLDivElement, SwitchProps>(({
 																   ...props
 															   }: SwitchProps, ref) => {
 
-	const buttonRef = useRef() as MutableRefObject<HTMLDivElement>
-	const theme = useTheme()
-	const { colorStyles } = theme
+	const inputRef = useRef<HTMLInputElement>(null)
 
-	return <>
-		<div ref={ref}
-			 style={{ background: checked ? colorStyles[colorStyle].light : theme.switch.background }}
-			 onClick={() => onClick?.()}
-			 css={dynSwitchCss({ theme, disabled })} className={cx(className, cssStyle.switchContainer)} {...props}
-		>
-			<div ref={buttonRef} css={dynSwitchButtonCss({ theme, checked, colorStyle })}
-				 className={cx(cssStyle.switchButton, checked && cssStyle.switchButtonOn)}
-			>
-				<Ripple
-					style={rippleStyle}
-					color={colorStyles[colorStyle].ripple} />
-			</div>
+	return <div ref={ref} onClick={() => {
+		inputRef.current?.focus()
+		return onClick?.()
+	}} className={cx(`cs-${colorStyle}`, cssStyle.switchContainer,
+		disabled && cssStyle.disabled, checked && cssStyle.checked, className)} {...props}>
+		<input ref={inputRef} name={name} type="checkbox" readOnly checked={checked} value={value} />
+		<div className={cx(cssStyle.switchButton, checked && cssStyle.checked)}>
+			<Ripple
+				style={rippleStyle}
+				color={getRippleColorFromColorStyle(colorStyle)} />
 		</div>
-		<input name={name} type="checkbox" style={{ display: "none" }} readOnly checked={checked} value={value} />
-	</>
+	</div>
+
 }) as SwitchComponent

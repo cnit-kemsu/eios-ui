@@ -1,12 +1,10 @@
-import type { ForwardedRef, ReactElement } from "react"
-import { forwardRef } from "react"
-import { useTheme } from "../../theme"
+import { ForwardedRef, forwardRef, ReactElement, useRef } from "react"
 import { Ripple } from "../Ripple"
-import { dynIconCss, dynRootCss } from "./style"
 import type { CheckboxProps } from "./CheckboxProps"
 import cx from "classix"
 
 import indexCss from "./index.module.css"
+import { getRippleColorFromColorStyle } from "../../utils.ts"
 
 const rippleStyle = {
 	width: "200%",
@@ -27,7 +25,7 @@ export type CheckboxComponent =
  */
 export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(({
 																	   name,
-																	   colorStyle = "secondary",
+																	   colorStyle = "primary",
 																	   disabled = false,
 																	   checked = false,
 																	   onClick,
@@ -37,32 +35,21 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(({
 																	   ...props
 																   }: CheckboxProps, ref) => {
 
-	const theme = useTheme()
-	const { colorStyles } = theme
+	const inputRef = useRef<HTMLInputElement>(null)
 
 	return (
-		<div ref={ref} {...props} onClick={() => onClick?.()}
-			 className={cx(indexCss.checkbox, className)}
-			 css={dynRootCss({ disabled })}>
-			<div
-				css={[
-					dynIconCss({ theme, disabled, checked, colorStyle }),
-					{
-						position: "relative",
-						overflow: "unset"
-					}
-				]}
-			>
-				<Ripple
-					style={rippleStyle}
-					color={colorStyles[colorStyle].ripple}
-				/>
-				<i style={{ display: "block" }}
-				   className="material-icons">{checked ? "check_box" : "check_box_outline_blank"}
-				</i>
+		<div ref={ref} onClick={() => {
+			inputRef.current?.focus()
+			return onClick?.()
+		}}
+			 className={cx(indexCss.checkbox, disabled && indexCss.disabled, className)} {...props} >
+			<input ref={inputRef} name={name} type="checkbox" readOnly checked={checked} value={value} />
+			<div className={cx(`cs-${colorStyle}`, indexCss.checkboxIcon, checked && indexCss.checked)}>
+				<Ripple style={rippleStyle} color={getRippleColorFromColorStyle(colorStyle)} />
+				{checked && <i className="material-icons">check</i>}
 			</div>
+
 			<div className={indexCss.label}>{children}</div>
-			<input name={name} type="checkbox" style={{ display: "none" }} readOnly checked={checked} value={value} />
 		</div>
 	)
 }) as CheckboxComponent

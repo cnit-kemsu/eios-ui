@@ -1,6 +1,4 @@
-import React, { Children, cloneElement, CSSProperties, ForwardedRef, forwardRef } from "react"
-import { dynTabsCss } from "./style"
-import { useTheme } from "../../theme"
+import React, { Children, cloneElement, ComponentProps, ForwardedRef, forwardRef } from "react"
 import { TabsProps } from "./TabsProps"
 
 import tabsCss from "./index.module.css"
@@ -23,13 +21,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
 															   ...props
 														   }: TabsProps, ref) => {
 
-
-	const theme = useTheme()
-
 	return (
-		<div ref={ref} {...props}
-			 className={cx(tabsCss.tabs, stretchTabs && tabsCss.stretch, className)}
-			 css={dynTabsCss({ theme })}>
+		<div ref={ref} {...props} className={cx(tabsCss.tabs, stretchTabs && tabsCss.stretch, className)}>
 			{
 				Children.map(children, (child, index) => {
 
@@ -37,7 +30,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(({
 
 					const selected = tab === child.props.id || tab === index
 
-					const childStyle: CSSProperties = { flex: "1 1 0", ...child.props.style }
+					const childStyle: ComponentProps<'div'>['style'] = { flex: "1 1 0", ...child.props.style }
 
 					return cloneElement(child, {
 						...child.props,

@@ -1,6 +1,37 @@
 .input {
+    background: white;
     outline: none;
     padding: 8px;
     transition-property: padding, border, box-shadow;
     box-sizing: border-box;
+    border: 1px solid var(--input-field-border-color);
+    transition: border-bottom-color var(--transition-duration) ease-out;
+
+    &::placeholder {
+        color: var(--input-field-placeholder-color);
+    }
+
+    &:disabled {
+        opacity: var(--disabled-opacity);
+    }
+
+    &.borderless {
+        border: none;
+        border-bottom: 1px solid var(--input-field-border-color);
+        padding: 9px 9px 8px 9px;
+    }
+
+    &:focus {
+        border-bottom: 1px solid var(--cs-origin);
+        padding-bottom: 8px;
+    }
+
+}
+
+input.input {
+    height: var(--input-field-height);
+}
+
+textarea.input {
+    height: unset;
 }

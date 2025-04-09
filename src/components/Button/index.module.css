@@ -1,11 +1,15 @@
 
 .button {
+
+    height: var(--button-height);
+    transition-duration: var(--transition-duration);
+
     line-height: 1rem;
     font-size: unset;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition-property: background, color, box-shadow;
+    transition-property: background, color;
     box-sizing: content-box;
     /* for anchor */
     text-decoration: none;
@@ -15,8 +19,43 @@
     padding: 8px 16px;
     position: relative;
     overflow: hidden;
+    opacity: 1;
+
+    border: 1px solid var(--cs-origin);
+
+    background: var(--cs-origin);
+    color: var(--cs-text);
+
+    &:hover, &.fillable:hover {
+        background: var(--cs-hover);
+        color: var(--cs-text-hover);
+    }
 
     &:focus {
-        outline: none;
+        outline-offset: 1px;
+        outline: 1px solid var(--cs-light);
+    }
+
+    &:active {
+
+    }
+
+    &.disabled {
+        opacity: var(--disabled-opacity);
+        pointer-events: none;
+    }
+
+    &.transparent {
+        background: transparent;
+        color: var(--cs-origin);
+
+        &:not(.fillable):hover {
+            background: transparent;
+            color: var(--cs-hover);
+        }
+    }
+
+    &.borderless {
+        border: 1px solid transparent;
     }
 }

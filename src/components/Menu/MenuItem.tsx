@@ -1,8 +1,8 @@
-import {FCR} from "../../types";
-import {forwardRef} from "react";
-import {useTheme} from "../../theme";
-import {dynMenuItemCss} from "./style";
-import {MenuItemProps} from "./MenuItemProps";
+import { FCR } from "../../types"
+import { forwardRef } from "react"
+import { MenuItemProps } from "./MenuItemProps"
+import cssStyle from "./index.module.css"
+import cx from "classix"
 
 export type {MenuItemProps};
 
@@ -14,14 +14,12 @@ export const MenuItem= forwardRef<HTMLLIElement, MenuItemProps>(({
                                                                                                          className
                                                                                                      }: MenuItemProps, ref) => {
 
-    const theme = useTheme();
-
     return (
-        <li ref={ref} data-menuitem={true} css={[dynMenuItemCss({theme})]}
+        <li ref={ref} data-menuitem={true}
             onClick={e => {
                 e.stopPropagation();
                 onClick?.(e);
-            }} style={style} className={className}>
+            }} style={style} className={cx(cssStyle.menuItem, className)}>
             {children}
         </li>
     )

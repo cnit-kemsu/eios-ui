@@ -16,10 +16,16 @@ export default defineConfig({
             external: Object.keys(pkg.peerDependencies)
         }
     },
+    css: {
+        modules: {
+            generateScopedName: "[local]__[hash:base64:5]",
+            localsConvention: "camelCase"
+        }
+    },
     plugins: [
         dts(),
         react({
-            jsxImportSource: "@emotion/react",
+            //jsxImportSource: "@emotion/react",
             babel: {
                 plugins: [
                     [

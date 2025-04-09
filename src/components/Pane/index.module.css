@@ -1,0 +1,24 @@
+.pane {
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+
+    & > div {
+        padding: 16px;
+        flex: 1 0 auto;
+    }
+
+    & > h2 {
+        background: var(--pane-title-bg);
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 16px;
+        font-size: 1.5rem;
+    }
+
+    &.flat {
+        box-shadow: none;
+        border: 1px solid var(--pane-border-color);
+    }
+}

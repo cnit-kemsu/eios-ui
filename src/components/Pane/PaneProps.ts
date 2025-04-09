@@ -1,12 +1,11 @@
-import {BorderlessProp, FlatProp} from "../../types";
-import React, {ComponentPropsWithRef} from "react";
+import type { FlatProp } from "../../types"
+import type { ReactNode, ComponentPropsWithRef } from "react"
 
 type BasePaneProps = {
     title?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 & FlatProp
-& BorderlessProp
 
 export type PaneProps =
     BasePaneProps

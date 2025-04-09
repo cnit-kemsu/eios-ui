@@ -1,13 +1,12 @@
 import type { ForwardedRef, ReactElement } from "react"
 import { forwardRef } from "react"
-import { dynButtonCss } from "../Button/style"
 import { Ripple } from "../Ripple"
-import { useTheme } from "../../theme"
 import type { FileInputProps } from "./FileInputProps"
 import cx from "classix"
 
 import cbStyle from "./index.module.css"
-import buttonStyle from "../Button/index.module.css"
+import btnStyle from "../Button/index.module.css"
+import { getRippleColorFromColorStyle } from "../../utils.ts"
 
 export type { FileInputProps }
 
@@ -17,32 +16,36 @@ export type FileInputComponent =
 
 /** Обёртка вокруг `<input type='file'>`. */
 export const FileInput = forwardRef<HTMLDivElement, FileInputProps>(({
-																																			 label,
-																																			 colorStyle = "dark",
-																																			 transparent = false,
-																																			 fillable = false,
-																																			 borderless = false,
-																																			 flat = false,
-																																			 disabled = false,
-																																			 onChange,
-																																			 multiple = false,
-																																			 accept, style, className
-																																		 }: FileInputProps, ref) => {
+																		 label,
+																		 colorStyle = "primary",
+																		 transparent = false,
+																		 fillable = false,
+																		 borderless = false,
+																		 disabled = false,
+																		 onChange,
+																		 multiple = false,
+																		 accept,
+																		 style,
+																		 className
+																	 }: FileInputProps, ref) => {
 
-	const theme = useTheme()
-	const { colorStyles } = theme
 	// <label> нужен для создания связи со скрытым <input>, чтобы при нажатии на него открывалось окно выбора файла
 	return (
-		<div ref={ref} style={style} className={cx(cbStyle.checkbox, className)}>
-			<label className={cx(buttonStyle.button)} css={[dynButtonCss({
-				theme, flat, disabled, colorStyle, transparent, fillable, borderless
-			})]}>
-				<Ripple color={colorStyles[colorStyle].ripple} />
+		<div ref={ref} style={style} className={cx(cbStyle.fileInput, className)}>
+			<label className={cx(
+				btnStyle.button,
+				disabled && btnStyle.disabled,
+				borderless && btnStyle.borderless,
+				transparent && btnStyle.transparent,
+				fillable && btnStyle.fillable,
+				`cs-${colorStyle}`,
+				className)}>
+				<Ripple color={getRippleColorFromColorStyle(colorStyle)} />
 				<span>{label}</span>
 				<input onChange={e => onChange?.(e.target.files)}
-							 multiple={multiple}
-							 type="file"
-							 accept={accept} />
+					   multiple={multiple}
+					   type="file"
+					   accept={accept} />
 			</label>
 		</div>
 	)

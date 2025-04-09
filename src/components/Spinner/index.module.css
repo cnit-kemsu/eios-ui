@@ -1,12 +1,36 @@
+
+@keyframes spinner-stroke-animation {
+    0% {
+        stroke-dasharray: 20, 262.7433388;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 262.7433388, 20;
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dasharray: 20, 262.7433388;
+        stroke-dashoffset: -282.7433388;
+    }
+}
+
+@keyframes spinner-rotate-animation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .spinner {
     position: relative;
     width: inherit;
-    /*height: 100%;*/
 }
 
 .circle {
     fill: transparent;
-    stroke-width: 5;
     stroke-linecap: round;
-    transform-origin: 50% 50%;
+    transform-origin: center;
+    stroke: var(--cs-origin);
+    animation: spinner-stroke-animation 1.5s linear infinite, spinner-rotate-animation 2s linear infinite;
 }

@@ -1,12 +1,35 @@
 .switch-container {
     border-radius: 20px;
-
+    background-color: var(--switch-background);
     position: relative;
     width: 4rem;
     height: 2rem;
     box-sizing: content-box;
     z-index: 0;
-    transition: background-color 0.25s;
+    transition: background 0.25s;
+
+    & > input {
+        opacity: 0;
+        position: absolute;
+    }
+
+    &:has(> input:focus) {
+        outline-offset: 1px;
+        outline: 1px solid var(--switch-background);
+
+        &.checked {
+            outline: 1px solid var(--cs-light);
+        }
+    }
+
+    &.checked {
+        background-color: var(--cs-light)
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: var(--disabled-opacity);
+    }
 
     &:hover, &:active, &:focus {
         .switch-button {
@@ -17,6 +40,7 @@
 }
 
 .switch-button {
+    box-sizing: border-box;
     width: 2rem;
     height: 2rem;
     position: absolute;
@@ -28,10 +52,11 @@
     border: 2px solid rgba(0, 0, 0, 0.25);
     overflow: hidden;
     outline: 4px solid transparent;
-
     z-index: 1;
+
+    &.checked {
+        border: 2px solid var(--cs-light);
+        left: calc(100% - 2rem);
+    }
 }
 
-.switch-button-on {
-    left: calc(100% - 2rem);
-}

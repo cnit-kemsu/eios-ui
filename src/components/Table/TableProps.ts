@@ -1,5 +1,4 @@
-import {ComponentPropsWithRef} from "react";
-import {BorderlessProp, FlatProp} from "../../types";
+import type { ComponentPropsWithRef } from "react"
 
 type BaseTableProps = {
         /** добавляет стиль выделения строки при наведении */
@@ -7,8 +6,6 @@ type BaseTableProps = {
         /** добавляет стиль выделения ячейки при наведении */
         selectableCell?: boolean;
     }
-    & BorderlessProp
-    & FlatProp
 
 export type TableProps =
     BaseTableProps

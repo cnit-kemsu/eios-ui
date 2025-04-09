@@ -1,5 +1,3 @@
-import { Point } from "./types"
-
 export function offset(elem: HTMLElement) {
 
 	const rect = elem.getBoundingClientRect()
@@ -9,10 +7,6 @@ export function offset(elem: HTMLElement) {
 		offsetLeft: rect.left + window.scrollX
 	}
 
-}
-
-export function toArray(val: unknown) {
-	return Array.isArray(val) ? val : [val]
 }
 
 export function debounce(f: (...args: unknown[]) => void, delayMs: number) {
@@ -42,35 +36,10 @@ export function getTrue() {
 	return true
 }
 
-export function getElementPositionRelativeTo(element: HTMLElement, targetElement: HTMLElement, targetPosition: Point, targetElementPivot: Point) {
-
-	const elementBCR = element.getBoundingClientRect()
-
-	const p = {
-		x: lerp(elementBCR.left, elementBCR.right, targetPosition.x),
-		y: lerp(elementBCR.top, elementBCR.bottom, targetPosition.y)
-	}
-
-	const parentEl = targetElement.offsetParent
-
-	if (!parentEl) return null
-
-	const parentElBCR = parentEl.getBoundingClientRect()
-	return ({
-		x: p.x - parentElBCR.left - targetElement.clientWidth * targetElementPivot.x,
-		y: p.y - parentElBCR.top - targetElement.clientHeight * targetElementPivot.y
-	}) as Point
-}
-
-export function isPrimitive(arg: unknown) {
-	const type = typeof arg
-	return arg == null || (type != "object" && type != "function")
-}
-
 export function lerp(start: number, end: number, t: number) {
 	return start * (1 - t) + end * t
 }
 
-export function clamp(v: number, a = 0, b = 1) {
-	return Math.min(Math.max(v, a), b)
+export function getRippleColorFromColorStyle(colorStyle : 'light' | 'dark' | 'primary' | 'secondary') {
+	return `var(--cs-${colorStyle}-ripple)`
 }

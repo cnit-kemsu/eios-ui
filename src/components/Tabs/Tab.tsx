@@ -1,11 +1,10 @@
 import React, { ForwardedRef, forwardRef } from "react"
-import { useTheme } from "../../theme"
-import { dynSelectedTabCss, dynTabCss } from "./style"
 import { Ripple } from "../Ripple"
 import { TabProps } from "./TabProps"
 
 import tabsCss from "./index.module.css"
 import cx from "classix"
+import { getRippleColorFromColorStyle } from "../../utils.ts"
 
 export type { TabProps }
 
@@ -15,25 +14,22 @@ export type TabComponent =
 
 /** Отдельная вкладка. Используется в качестве дочернего элемента [Tabs](..?path=/docs/компоненты-tabs--docs) */
 export const Tab = forwardRef<HTMLDivElement, TabProps>(({
+															 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+															 id,
 															 fillSelectedTab = false,
 															 colorStyle = "secondary",
 															 selected,
 															 children,
 															 onClick,
-															 style,
-															 className
+															 className,
+															 ...props
 														 }: TabProps, ref) => {
 
-	const theme = useTheme()
-
 	return (
-		<div onClick={onClick} ref={ref}
-			 className={cx(tabsCss.tab, className)}
-			 css={[
-				 dynTabCss({ theme, colorStyle }),
-				 selected ? dynSelectedTabCss({ theme, fillSelectedTab, colorStyle }) : undefined
-			 ]} style={style}>
-			<><Ripple color={theme.colorStyles[colorStyle].ripple} />{children}</>
+		<div onClick={onClick} ref={ref} {...props}
+			 className={cx(`cs-${colorStyle}`, tabsCss.tab, selected && tabsCss.selected,
+				 fillSelectedTab && tabsCss.fill, className)}>
+			<><Ripple color={getRippleColorFromColorStyle(colorStyle)} />{children}</>
 		</div>
 	)
 }) as TabComponent

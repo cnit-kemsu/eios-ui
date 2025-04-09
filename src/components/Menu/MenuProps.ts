@@ -1,6 +1,6 @@
-import {ComponentPropsWithRef, MouseEventHandler, ReactElement} from "react";
-import {BorderlessProp, FlatProp, StyleProps} from "../../types";
-import {MenuItemProps} from "./MenuItemProps";
+import { ComponentPropsWithRef, MouseEventHandler, ReactElement } from "react"
+import { StyleProps } from "../../types"
+import { MenuItemProps } from "./MenuItemProps"
 
 export type MenuProps = {
         /** показать меню */
@@ -18,6 +18,4 @@ export type MenuProps = {
         onOutsideClick?: MouseEventHandler;
         ref?: ComponentPropsWithRef<'ul'>['ref']
     }
-    & FlatProp
-    & BorderlessProp
     & StyleProps;

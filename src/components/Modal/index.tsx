@@ -1,24 +1,23 @@
 import { forwardRef, useCallback, useEffect, useState } from "react"
-import { useTheme } from "../../theme"
 import { Button } from "../Button"
-import { dynBackLayerCss, dynCloseButtonIconCss, dynContainerCss, dynHeaderCss } from "./style"
 import type { ModalProps } from "./ModalProps"
 import type { FCR } from "../../types"
+import cssStyle from "./index.module.css"
+import cx from "classix"
 
 export type { ModalProps }
 
 /** Модальное окно. */
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(({
-																															 open = false,
-																															 title,
-																															 onClose,
-																															 children,
-																															 style,
-																															 colorStyle = "primary",
-																															 className
-																														 }: ModalProps, ref) => {
+																 open = false,
+																 title,
+																 onClose,
+																 children,
+																 style,
+																 colorStyle = "primary",
+																 className
+															 }: ModalProps, ref) => {
 
-	const theme = useTheme()
 
 	const [isAnimFin, setAnimFin] = useState(true)
 	const handleAnimationEnd = useCallback(() => {
@@ -34,26 +33,23 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(({
 	useEffect(handleEffect, [open])
 
 	return (open || !isAnimFin) ? (
-		<div ref={ref} css={dynBackLayerCss({ theme, open })}>
+		<div ref={ref} className={cx(`cs-${colorStyle}`, cssStyle.modalBacklayer, open && cssStyle.open)} /*css={dynBackLayerCss({ theme, open })}*/>
 			<div
 				onAnimationEnd={open ? undefined : handleAnimationEnd}
-				css={dynContainerCss({ theme, open })}
+				/*css={dynContainerCss({ theme, open })}*/
 				style={style}
-				className={className}
+				className={cx(cssStyle.modalContainer, className)}
 			>
-				<div css={dynHeaderCss({ theme, colorStyle })}>
-					<h2>
-						{title}
-					</h2>
+				<div className={cssStyle.modalHeader}>
+					<h2>{title}</h2>
 					<Button
-						flat
 						transparent
 						fillable
 						borderless
 						colorStyle={colorStyle}
 						onClick={onClose}
 					>
-						<i css={dynCloseButtonIconCss({ theme, colorStyle })} className="material-icons">close</i>
+						<i className="material-icons">close</i>
 					</Button>
 				</div>
 				<div>

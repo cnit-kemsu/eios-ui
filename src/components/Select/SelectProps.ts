@@ -25,10 +25,6 @@ export type SelectProps<C> = {
         contentStyle?: React.CSSProperties;
         /** текст, который выводится если не выбран элемент */
         placeholder?: string;
-        /** растягивать кнопку по ширине выпадающего списка */
-        fullWidth?: boolean;
-        /** ширина кнопки и списка */
-        width?: string;
         /** компонент, выводимый перед каждым элементом */
         BeforeContentComponent?: FC<{ item: C, open: boolean }>;
         /** компонент, выводимый после каждого элемента */

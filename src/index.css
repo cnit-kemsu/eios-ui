@@ -1,0 +1,83 @@
+.cs-dark {
+    --cs-dark: var(--cs-dark-dark);
+    --cs-hover: var(--cs-dark-hover);
+    --cs-light: var(--cs-dark-light);
+    --cs-origin: var(--cs-dark-origin);
+    --cs-ripple: var(--cs-dark-ripple);
+    --cs-shadow: var(--cs-dark-shadow);
+    --cs-text-hover: var(--cs-dark-text-hover);
+    --cs-text: var(--cs-dark-text);
+}
+
+.cs-light {
+    --cs-dark: var(--cs-light-dark);
+    --cs-hover: var(--cs-light-hover);
+    --cs-light: var(--cs-light-light);
+    --cs-origin: var(--cs-light-origin);
+    --cs-ripple: var(--cs-light-ripple);
+    --cs-shadow: var(--cs-light-shadow);
+    --cs-text-hover: var(--cs-light-text-hover);
+    --cs-text: var(--cs-light-text);
+}
+
+.cs-primary {
+    --cs-dark: var(--cs-primary-dark);
+    --cs-hover: var(--cs-primary-hover);
+    --cs-light: var(--cs-primary-light);
+    --cs-origin: var(--cs-primary-origin);
+    --cs-ripple: var(--cs-primary-ripple);
+    --cs-shadow: var(--cs-primary-shadow);
+    --cs-text-hover: var(--cs-primary-text-hover);
+    --cs-text: var(--cs-primary-text);
+}
+
+.cs-secondary {
+    --cs-dark: var(--cs-secondary-dark);
+    --cs-hover: var(--cs-secondary-hover);
+    --cs-light: var(--cs-secondary-light);
+    --cs-origin: var(--cs-secondary-origin);
+    --cs-ripple: var(--cs-secondary-ripple);
+    --cs-shadow: var(--cs-secondary-shadow);
+    --cs-text-hover: var(--cs-secondary-text-hover);
+    --cs-text: var(--cs-secondary-text);
+}
+
+.message-bg-info {
+    --message-bg: var(--message-bg-info);
+}
+
+.message-bg-darkInfo {
+    --message-bg: var(--message-bg-dark-info);
+}
+
+.message-bg-success {
+    --message-bg: var(--message-bg-success);
+}
+
+.message-bg-warning {
+    --message-bg: var(--message-bg-warning);
+}
+
+.message-bg-error {
+    --message-bg: var(--message-bg-error);
+}
+
+.message-color-info {
+    --message-color: var(--message-color-info);
+}
+
+.message-color-darkInfo {
+    --message-color: var(--message-color-dark-info);
+}
+
+.message-color-success {
+    --message-color: var(--message-color-success);
+}
+
+.message-color-warning {
+    --message-color: var(--message-color-warning);
+}
+
+.message-color-error {
+    --message-color: var(--message-color-error);
+}

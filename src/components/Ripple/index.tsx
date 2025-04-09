@@ -1,6 +1,4 @@
 import { MutableRefObject, useLayoutEffect, useMemo, useReducer, useRef } from "react"
-import { useTheme } from "../../theme"
-import { dynRippleCss } from "./style"
 import { RippleCallbacks } from "./RippleCallbacks"
 import { initRippleData } from "./RippleData"
 import { RippleProps } from "./RippleProps"
@@ -16,7 +14,6 @@ export function Ripple({
 						   rippleStyle, rippleClassName, style, className
 					   }: RippleProps) {
 
-	const { disableRipple } = useTheme()
 	const [, forceUpdate] = useReducer(x => x + 1, 0, undefined)
 	const rippleDomRef = useRef(null) as MutableRefObject<HTMLDivElement | null>
 	const rippleDataRef = useRef({ ...initRippleData })
@@ -27,21 +24,27 @@ export function Ripple({
 
 	useLayoutEffect(handleEffect)
 
-	if (disableRipple) return null
-
 	const { active, x, y, diameter, hideRipple } = rippleDataRef.current
 
 	return (
-		<div style={style}
+		<div style={style} data-foo="ripple"
 			 className={cx(rippleCss.rippleContainer, className)}
 			 ref={rippleDomRef}
 			 {...mouseEventHandlers}>
 			{
 				active && (
 					<div
-						style={rippleStyle}
+						style={{
+							background: color,
+							opacity: hideRipple ? "0" : "1",
+							left: `${x}px`,
+							top: `${y}px`,
+							width: `${diameter}px`,
+							height: `${diameter}px`,
+							animationDuration: duration,
+							...rippleStyle
+						}}
 						className={cx(rippleCss.ripple, rippleClassName)}
-						css={dynRippleCss({ color, duration, x, y, diameter, hideRipple })}
 						onTransitionEnd={onTransitionEnd}
 					>
 					</div>

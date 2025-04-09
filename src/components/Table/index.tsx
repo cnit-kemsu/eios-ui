@@ -1,38 +1,30 @@
-import {forwardRef} from 'react';
-import {dynTableCss} from './style';
-import {useTheme} from '../../theme';
-import type {TableProps} from "./TableProps";
-import type {FCR} from "../../types";
+import { forwardRef } from "react"
+import type { TableProps } from "./TableProps"
+import type { FCR } from "../../types"
+import cssStyle from "./index.module.css"
+import cx from "classix"
 
-export type {TableProps};
+export type { TableProps }
 
 /**
  * Обёртка вокруг `table`. Приримает также свойства `<table>`.
  */
 export const Table = forwardRef<HTMLTableElement, TableProps>(({
-                                                                   children,
-                                                                   borderless = false,
-                                                                   flat = false,
-                                                                   selectableRows = false,
-                                                                   selectableCell = false,
-                                                                   ...props
-                                                               }: TableProps, ref) => {
+																   className,
+																   children,
+																   selectableRows = false,
+																   selectableCell = false,
+																   ...props
+															   }: TableProps, ref) => {
 
-    const theme = useTheme();
+	return (
+		<table ref={ref} className={cx(cssStyle.table,
+            selectableRows && cssStyle.selectableRows,
+            selectableCell && cssStyle.selectableCell,
+            className)} {...props}>
+			{children}
+		</table>
+	)
+}) as FCR<TableProps, HTMLTableElement>
 
-    return (
-        <table
-            ref={ref}
-            {...props}
-            css={[
-                dynTableCss({
-                    theme, selectableCell, selectableRows, borderless, flat
-                })
-            ]}
-        >
-            {children}
-        </table>
-    );
-}) as FCR<TableProps, HTMLTableElement>;
-
-Table.displayName = "Table";
+Table.displayName = "Table"

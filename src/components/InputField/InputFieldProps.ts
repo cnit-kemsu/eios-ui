@@ -1,10 +1,9 @@
-import {BorderlessProp, ColorStyleProp, DisabledProp, FlatProp, ValueType} from "../../types";
-import React, {ComponentPropsWithRef} from "react";
+import type { BorderlessProp, ColorStyleProp, DisabledProp, ValueType } from "../../types"
+import React, { ComponentPropsWithRef } from "react"
 
 export type InputFieldPropsBase =
     ColorStyleProp
     & BorderlessProp
-    & FlatProp
     & DisabledProp
     & {
     /** тип `<input>`, за исключением `submit`, `file`, `button` и `checkbox`. По умолчанию `text`. */

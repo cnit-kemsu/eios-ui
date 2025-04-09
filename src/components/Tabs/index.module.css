@@ -1,5 +1,19 @@
 .tabs {
     display: flex;
+
+    &:after {
+        content: '';
+        flex: 1;
+        border-bottom-color: 4px solid var(--border-color);
+    }
+
+    &.stretch {
+        display: flex;
+
+        &:after {
+            display: none;
+        }
+    }
 }
 
 .tab {
@@ -11,7 +25,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /*display: inline-block;*/
     cursor: pointer;
     font-weight: bold;
     color: inherit;
@@ -20,12 +33,20 @@
     text-decoration: none;
     overflow: hidden;
     position: relative;
-}
+    border-bottom: 4px solid var(--border-color);
+    padding: var(--tabs-tab-padding);
+    background: var(--cs-text);
 
-.stretch {
-    display: flex;
+    &.selected {
+        background: white;
+        color: var(--cs-origin);
+        border-bottom-color: var(--cs-origin);
+    }
 
-    &:after {
-        display: none;
+    &.selected.fill {
+        background: var(--cs-origin);
+        color: var(--cs-text);
+        border-bottom-color: var(--cs-origin);
     }
 }
+

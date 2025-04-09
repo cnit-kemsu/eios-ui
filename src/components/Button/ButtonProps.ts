@@ -1,9 +1,8 @@
 import { ComponentPropsWithRef, ElementType } from "react"
-import { BorderlessProp, ColorStyleProp, DisabledProp, FillableProp, FlatProp, TransparentProp } from "../../types"
+import { BorderlessProp, ColorStyleProp, DisabledProp, FillableProp, TransparentProp } from "../../types"
 
 export type BaseButtonProps =
     DisabledProp
-    & FlatProp
     & ColorStyleProp
     & TransparentProp
     & FillableProp

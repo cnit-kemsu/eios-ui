@@ -1,20 +1,9 @@
-import {SerializedStyles} from "@emotion/react";
-import {
-    ComponentPropsWithRef,
-    CSSProperties,
-    ElementType,
-    ForwardedRef, JSX,
-    ReactElement,
-    ReactNode
-} from "react";
+import { ComponentPropsWithRef, CSSProperties, ElementType, ForwardedRef, JSX, ReactElement, ReactNode } from "react"
 
 export type ColorStyle = 'light' | 'dark' | 'primary' | 'secondary';
 
-export type Css = SerializedStyles | (SerializedStyles | null | undefined)[];
-
 export type PolymorphicRef<C extends ElementType> = ComponentPropsWithRef<C>["ref"];
 
-export type Point = { x: number, y: number };
 
 export type ValueType = string | number;
 
@@ -150,6 +139,5 @@ export type BaseListProps<C> = {
     & NameProp
     & ValueProp
     & BorderlessProp
-    & FlatProp
     & ColorStyleProp
     & DisabledProp;

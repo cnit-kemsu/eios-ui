@@ -1,8 +1,6 @@
 import { MutableRefObject, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
 import { PopupProps } from "./types"
-import { dynArrowCss, dynContentCss } from "./style"
-import { useTheme } from "../../theme"
 
 import popupStyle from "./index.module.css"
 import cx from "classix"
@@ -18,8 +16,6 @@ export function Popup({
 						  targetElementRef,
 						  ...props
 					  }: PopupProps) {
-
-	const theme = useTheme()
 
 	const divElRef = useRef() as MutableRefObject<HTMLDivElement>
 
@@ -63,14 +59,14 @@ export function Popup({
 
 	}, [show, position, targetElementRef?.current, divElRef.current])
 
-	const contentEl = <div className={popupStyle.arrow} css={dynArrowCss({ theme, position })} />
-	const arrowEl = <div css={dynContentCss(theme)}>
+	const contentEl = <div className={cx(popupStyle.arrow, popupStyle[position])}/>
+	const arrowEl = <div className={popupStyle.content}>
 		{children}
 	</div>
 
 	return createPortal(<div ref={divElRef}
 							 style={style}
-							 className={cx(popupStyle[position], popupStyle.popup, show && popupStyle.show, className)}
+							 className={cx(popupStyle.popup, popupStyle[position], show && popupStyle.show, className)}
 							 {...props}>
 		{position === "top" || position === "left"
 			? <>{arrowEl}{contentEl}</>

@@ -1,5 +1,5 @@
-import {BorderlessProp, ChildrenProp, FlatProp} from "../../types";
-import {ComponentPropsWithRef} from "react";
+import type { BorderlessProp, ChildrenProp } from "../../types"
+import type { ComponentPropsWithRef } from "react"
 
 export type MessageType = 'info' | 'darkInfo' | 'warning' | 'error' | 'success';
 
@@ -8,7 +8,6 @@ type BaseMessageProps = {
     }
     & ChildrenProp
     & BorderlessProp
-    & FlatProp
 
 export type MessageProps =
     BaseMessageProps

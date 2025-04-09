@@ -1,0 +1,40 @@
+.menu-close-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: calc(var(--menu-z-index) - 1000);
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--border-color);
+    position: absolute;
+    background: white;
+    z-index: var(--menu-z-index);
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition-property: transform, opacity;
+    transition-duration: var(--transition-duration);
+    width: max-content;
+
+    &.show {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    }
+
+.menu-item {
+    list-style: none;
+    padding: var(--menu-padding);
+    color: var(--cs-light-text);
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+        background: var(--cs-light-origin);
+    }
+}

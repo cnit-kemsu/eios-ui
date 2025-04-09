@@ -4,7 +4,6 @@ import {
     ColorStyleProp,
     DisabledProp,
     FillableProp,
-    FlatProp,
     LabelProp,
     StyleProps,
     TransparentProp
@@ -16,7 +15,6 @@ export type FileInputProps =
     & TransparentProp
     & FillableProp
     & BorderlessProp
-    & FlatProp
     & DisabledProp
     & StyleProps
     & {

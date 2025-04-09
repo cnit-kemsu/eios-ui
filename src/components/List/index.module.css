@@ -1,7 +1,27 @@
+@keyframes selected-item-animation {
+    from {
+        background: rgb(from var(--cs-origin) r g b / 20%);
+    }
+
+    to {
+        background: rgb(from var(--cs-origin) r g b / 80%);
+        color: var(--cs-text);
+    }
+}
+
 .list {
     background: white;
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid var(--border-color);
+
+    &.borderless {
+        border: none;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: var(--disabled-opacity);
+    }
+
     /*padding: 1rem 0 2rem 0;*/
 
     & > li {
@@ -11,5 +31,26 @@
         display: block;
         cursor: pointer;
         border-left: 0.3rem solid transparent;
+
+        &:nth-of-type(2n-1) {
+            background: rgba(0, 0, 0, 0.01);
+        }
+
+        &:nth-of-type(2n) {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        &:hover {
+            color: var(--cs-hover);
+        }
+
+        &.selected {
+            background: rgb(from var(--cs-origin) r g b / 5%);
+            padding: 0.6rem 1rem 0.6rem 2rem;
+            border-left: 0.3rem solid var(--cs-origin) !important;
+            animation-name: selected-item-animation;
+            animation-duration: 0.2s;
+            animation-fill-mode: forwards;
+        }
     }
 }

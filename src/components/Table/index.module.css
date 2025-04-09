@@ -1,0 +1,31 @@
+.table {
+
+    width: 100%;
+    border-collapse: collapse;
+
+    &.selectable-rows {
+        tbody tr:hover td {
+            background: var(--table-hover-color);
+        }
+    }
+
+    &.selectable-cell {
+        tbody td:hover {
+            background: var(--table-hover-color)
+        }
+    }
+
+    td, th {
+        border: 1px solid var(--table-border-color);
+        padding: 8px;
+    }
+
+    thead td, thead th {
+        background: var(--table-header-col-bg);
+    }
+
+    tbody td {
+        background: var(--table-body-col-bg);
+    }
+}
+

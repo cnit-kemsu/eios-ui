@@ -1,13 +1,11 @@
 import { ElementType, forwardRef, ForwardRefRenderFunction, JSX } from "react"
-
-import { useTheme } from "../../theme"
 import { Ripple } from "../Ripple"
 import type { PolymorphicRef } from "../../types"
-import { dynButtonCss } from "./style"
 import type { ButtonProps } from "./ButtonProps"
 
 import style from "./index.module.css"
 import cx from "classix"
+import { getRippleColorFromColorStyle } from "../../utils"
 
 export type { ButtonProps }
 
@@ -18,40 +16,33 @@ export type ButtonComponent =
 /**
  * Кнопка. По умолчанию представляет собой обертку вокруг `button`. Помимо своих свойств, принимает свойства оборачиваемого элемента.
  */
-export const Button = forwardRef((<C extends ElementType = "button">({
-																																			elementType,
-																																			disabled = false,
-																																			flat = false,
-																																			colorStyle = "dark",
-																																			transparent = false,
-																																			fillable = false,
-																																			borderless = false,
-																																			children,
-																																			className,
-																																			...props
-																																		}: ButtonProps<C>, ref?: PolymorphicRef<C>) => {
+export const Button = forwardRef((function Button<C extends ElementType = "button">({
+																						elementType,
+																						disabled = false,
+																						colorStyle = "primary",
+																						transparent = false,
+																						fillable = false,
+																						borderless = false,
+																						children,
+																						className,
+																						...props
+																					}: ButtonProps<C>, ref?: PolymorphicRef<C>) {
 
-	// eslint-disable-next-line react-hooks/rules-of-hooks
-	const theme = useTheme()
-	const { colorStyles } = theme
 
 	const Component: ElementType = elementType ?? "button"
 
 	return (
 		<Component ref={ref}
-							 className={cx(style.button, className)}
-							 css={[
-								 dynButtonCss({
-									 theme,
-									 flat,
-									 disabled,
-									 colorStyle,
-									 transparent,
-									 fillable,
-									 borderless
-								 })
-							 ]} {...props}>
-			<Ripple color={colorStyles[colorStyle].ripple} />
+				   className={cx(
+					   style.button,
+					   disabled && style.disabled,
+					   borderless && style.borderless,
+					   transparent && style.transparent,
+					   fillable && style.fillable,
+					   `cs-${colorStyle}`,
+					   className)}
+				   {...props}>
+			<Ripple color={getRippleColorFromColorStyle(colorStyle)} />
 			{children}
 		</Component>
 	)
