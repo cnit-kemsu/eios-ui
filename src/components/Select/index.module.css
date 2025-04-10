@@ -20,6 +20,12 @@
         justify-content: space-between;
         box-sizing: border-box;
 
+        & > span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         &.disabled {
             pointer-events: none;
 
