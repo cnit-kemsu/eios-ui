@@ -4,8 +4,8 @@
     }
 
     to {
-        background: rgb(from var(--cs-origin) r g b / 80%);
-        color: var(--cs-text);
+        background: rgb(from var(--cs-origin) r g b / 10%);
+        color: var(--cs-dark);
     }
 }
 
@@ -45,12 +45,12 @@
         }
 
         &.selected {
-            background: rgb(from var(--cs-origin) r g b / 5%);
+            background: rgb(from var(--cs-origin) r g b / 10%);
             padding: 0.6rem 1rem 0.6rem 2rem;
             border-left: 0.3rem solid var(--cs-origin) !important;
-            animation-name: selected-item-animation;
+            /*animation-name: selected-item-animation;
             animation-duration: 0.2s;
-            animation-fill-mode: forwards;
+            animation-fill-mode: forwards;*/
         }
     }
 }
