@@ -61,7 +61,7 @@
     --message-color-success: #44652b;
     --message-color-warning: #61562f;
     --pane-title-bg: #d2dce6;
-    --pane-border-color: color-mix(in srgb, var(--pane-title-bg), black 10%);
+    --pane-border-color: var(--pane-title-bg);
     --select-border-color: var(--input-field-border-color);
     --select-height: 2.5rem;
     --select-item-height: 2.5rem;
