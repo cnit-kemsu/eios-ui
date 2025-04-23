@@ -27,7 +27,7 @@ export function Ripple({
 	const { active, x, y, diameter, hideRipple } = rippleDataRef.current
 
 	return (
-		<div style={style} data-foo="ripple"
+		<div style={style}
 			 className={cx(rippleCss.rippleContainer, className)}
 			 ref={rippleDomRef}
 			 {...mouseEventHandlers}>
