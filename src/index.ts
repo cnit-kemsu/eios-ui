@@ -18,6 +18,7 @@ export * from "./components/Menu/MenuItem"
 export * from "./components/TextArea"
 export * from "./components/Popup"
 export * from "./components/Toast"
+export * from "./components/Collapsable"
 
 export * from "./hooks/useCheckbox"
 export * from "./hooks/useList"
